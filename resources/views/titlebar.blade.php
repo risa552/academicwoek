@@ -9,7 +9,31 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
+                            <div class="container">
+                                    <div class="row">
+                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                             <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                                                <li class="active"><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> หน้าแรก</a>
+                                                </li>
+                                                <li><a data-toggle="tab" href="#mailbox"><i class="notika-icon notika-mail"></i> หลักสูตร</a>
+                                                </li>
+                                                <li><a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> ลงทะเบียน</a>
+                                                </li>
+                                                <li><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> แผนการเรียน</a>
+                                                </li>
+                                                <li><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> กลุ่มวิชา</a>
+                                                </li>
+                                                <li><a data-toggle="tab" href="#Forms"><i class="notika-icon notika-form"></i> การส่งข้อสอบ</a>
+                                                </li>
+                                                <li><a data-toggle="tab" href="#Appviews"><i class="notika-icon notika-app"></i> App views</a>
+                                                </li>
+                                                <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> Pages</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                            </div>
+                        <!-- <li class="nav-item dropdown">
                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-mail"></i></span></a>
                                 <div role="menu" class="dropdown-menu message-dd animated zoomIn">
                                     <div class="hd-mg-tt">
@@ -142,7 +166,7 @@
                                     <div class="hd-mg-va">
                                         <a href="#">View All</a>
                                     </div>
-                                </div>
+                                </div> 
                             </li>
                             <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-menus"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>2</span></div></a>
                                 <div role="menu" class="dropdown-menu message-dd task-dd animated zoomIn">
@@ -257,11 +281,11 @@
                                                 </div>
                                             </div>
                                         </a>
-                                    </div>
+                                    </div> 
                                     <div class="hd-mg-va">
                                         <a href="#">View All</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> 

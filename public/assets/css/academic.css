@@ -1,0 +1,9 @@
+.navbar-header{height:80px;}
+.navbar-brand{padding:0px 0px 15px 15px;}
+.navbar-brand .mylogo{height:80px;}
+.nav-bg-color{background: #2759be;}
+.nav-menu a{color:#fff!important;}
+.sub-nav-menu a{color:#333!important; font-size:13px;}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{background-color: rgba(0,0,0,.1)}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{background-color: rgba(0,0,0,.3)}
+.header-panal{background: #AED6F1!important;color:#21618C!important;}

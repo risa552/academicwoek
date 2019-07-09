@@ -7,10 +7,10 @@ use App\Http\Controllers\Controller;
 use Input;
 use DB;
 
-class LoginController extends Controller
+class ProgramController extends Controller
 {
     public function index()
     {
-     return view('Program::Program');
+     return view('program::Program');
     }
 }

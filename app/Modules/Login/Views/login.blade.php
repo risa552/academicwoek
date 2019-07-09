@@ -5,7 +5,6 @@
 
         <div class="modal-content" style="height:302px; width:352px; margin-top: 100px; ">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel">Log in</h4>
             </div> <!-- /.modal-header -->
 

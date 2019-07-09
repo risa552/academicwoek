@@ -20,12 +20,12 @@
                 </a>
             </div>
             <ul class="nav navbar-nav pull-right" style="margin-top: 11px">
-                <li class="nav-menu"><a href="#">หน้าแรก</a></li>
-                <li class="nav-menu"><a href="#">ลงทะเบียน</a></li>
+                <li class="nav-menu"><a href="/">หน้าแรก</a></li>
+                <li class="nav-menu"><a href="/Course">ลงทะเบียน</a></li>
                 <li class="nav-menu"><a href="#">หลักสูตร</a></li>
                 <li class="nav-menu"><a href="#">แผนการเรียน</a></li>
                 <li class="nav-menu"><a href="#">กลุ่มวิชา</a></li>
-                <li class="nav-menu"><a href="#">การส่งข้อสอบ</a></li>
+                <li class="nav-menu"><a href="/Test">การส่งข้อสอบ</a></li>
 
                 <li class="dropdown nav-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">

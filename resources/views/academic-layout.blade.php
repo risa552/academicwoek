@@ -22,10 +22,24 @@
             <ul class="nav navbar-nav pull-right" style="margin-top: 11px">
                 <li class="nav-menu"><a href="/">หน้าแรก</a></li>
                 <li class="nav-menu"><a href="/Course">ลงทะเบียน</a></li>
-                <li class="nav-menu"><a href="#">หลักสูตร</a></li>
+                <li class="dropdown nav-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                    การบริหารจัดการ<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="sub-nav-menu"><a href="#">กลุ่มเรียน</a></li>
+                        <li class="sub-nav-menu"><a href="#">ระดับ</a></li>
+                        <li class="sub-nav-menu"><a href="#">สาขาวิชา</a></li>
+                        <li class="sub-nav-menu"><a href="#">กลุ่มวิชา</a></li>
+                        <li class="sub-nav-menu"><a href="#">วิชา</a></li>
+                        <li class="sub-nav-menu"><a href="#">ภาคเรียน</a></li>
+                        <li class="sub-nav-menu"><a href="#">การสอน</a></li>
+                        <li class="sub-nav-menu"><a href="#">นักศึกษา</a></li>
+                        <li class="sub-nav-menu"><a href="#">อาจารย์</a></li>
+                        <li class="sub-nav-menu"><a href="#">ผู้ใช้งาน</a></li>
+                    </ul>
+                </li>
                 <li class="nav-menu"><a href="/program">แผนการเรียน</a></li>
-                <li class="nav-menu"><a href="#">กลุ่มวิชา</a></li>
-                <li class="nav-menu"><a href="#">การส่งข้อสอบ</a></li>
                 <li class="nav-menu"><a href="/Test">การส่งข้อสอบ</a></li>
                 <li class="dropdown nav-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">

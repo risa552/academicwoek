@@ -8,21 +8,29 @@
             <div class="panel panel-default">
                 <div class="panel-heading"></div>
                 <div class="panel-body">
-                    <form action="/action_page.php">
+                
                         <div class="form-group">
-                            <label for="email">รหัสนักศึกษา</label>
+                            <label for="email">ภาคเรียน</label>
                             <input type="email" class="form-control" id="email">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">ชื่อนักศึกษา</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <label for="email">รหัสวิชา</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">ชื่อวิชา</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">ปีการศึกษา</label>
+                            <input type="email" class="form-control" id="email">
                         </div>
                         
                         <button type="submit" class="btn btn-default">ค้นหา</button>
                     </form>
                 </div>
             </div>
-            <button type="submit" class="btn btn-info"><a href="/product/productfrom">เพิ่มรายวิชา</a></button>
+
         </div> 
         <div class="col-md-9">
             <div class="panel panel-default">
@@ -33,18 +41,15 @@
                       <b>ข้อมูลระดับการศึกษา</b> :ปริญญาตรี ปกติ<br></div>
                 <div class="ui-state-highlight ui-corner-all" style="margin-top: 5px; padding: 0 .7em;height:20px;">
              </div>
-                  <center> <button class="btn การศึกษาทั่วไป">การศึกษาทั่วไป</button>
-                  <button class="btn วิชาเฉพาะด้าน">วิชาเฉพาะด้าน</button>
-                  <button class="btn วิชาเลือกเสรี">วิชาเลือกเสรี</button>
+                 
              <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                              <tr>
+                                <th>ภาคเรียน</th>
                                 <th>รหัสวิชา</th>
-                                <th>ชื่อวิชาภาษาไทย</th>
-                                <th>ชื่อวิชาภาษาอังกฤษ</th>
-                                <th>จำนวนหน่วยกิต</th>
-                                <th>หน่วยกิต</th>
+                                <th>ชื่อวิชา</th>
+                                <th>ปีการศึกษา</th>
                                 <th style="width:110px">แก้ไข</th>
                             </tr>
                             </thead>

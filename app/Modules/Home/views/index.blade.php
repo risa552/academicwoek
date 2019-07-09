@@ -3,6 +3,7 @@
 @section('content')
 <div class="panel panel-default">
     <div class="panel-body">
+        <center>
         <img src="http://bait.rmutsb.ac.th/bait/images/logobait.png"/>
     </div>
 </div>

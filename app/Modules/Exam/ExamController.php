@@ -13,4 +13,8 @@ class ExamController extends Controller
     {
      return view('exam::exam');
     }
+    public function from()
+    {
+     return view('exam::from');
+    }
 }

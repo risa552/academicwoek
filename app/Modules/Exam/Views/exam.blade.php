@@ -1,5 +1,5 @@
 @extends('academic-layout') 
-@section('title','การส่งข้อสอบ')
+@section('title','เช็คการส่งข้อสอบ')
 @section('content')
 <div class="container">
     <div class="row">
@@ -20,19 +20,24 @@
                     </form>
                 </div>
             </div>
-            <button type="submit" class="btn btn-info"><a href="#">ส่งข้อสอบ</a></button>
+            <!--<button type="submit" class="btn btn-info"><a href="#">ส่งข้อสอบ</a></button> -->
         </div> 
         <div class="col-md-9">
             <div class="panel panel-default">
-                <div class="panel-heading">รายการการส่งข้อสอบ</div>
+                <div class="panel-heading">
+                รายการการส่งข้อสอบ
+               <a href="/exam/from" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> ส่งข้อสอบ</a>
+                </div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>รหัสการส่งข้อสอบ</th>
-                                <th>รหัสวืชา</th>
+                                <th>ภาคเรียน</th>
                                 <th>ชื่อวิชา</th>
+                                <th>ปีการศึกษา</th>
                                 <th>ส่งวันที่</th>
+
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -40,13 +45,14 @@
                         @for($i=0;$i<25;$i++)
                             <tr>
                                 <td>01</td>
-                                <td>306-03-03</td>
+                                <td>1/62</td>
                                 <td>ดาต้าเบด</td>
+                                <td>ปี2562</td>
                                 <td>25-1-62</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary">แก้ไข</button>
-                                        <button type="button" class="btn btn-sm btn-primary">ลบ</button>
+                                        <button type="button" class="btn btn-info"><i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </div>
                                 </td>
                             </tr>

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Modules\Test;
+namespace App\Modules\Exam;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Input;
 use DB;
 
-class TestController extends Controller
+class ExamController extends Controller
 {
     public function index()
     {
-     return view('test::test');
+     return view('exam::exam');
     }
 }

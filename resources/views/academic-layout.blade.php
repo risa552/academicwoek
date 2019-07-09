@@ -21,12 +21,13 @@
             </div>
             <ul class="nav navbar-nav pull-right" style="margin-top: 11px">
                 <li class="nav-menu"><a href="/">หน้าแรก</a></li>
-                <li class="nav-menu"><a href="/Course">ลงทะเบียน</a></li>
+                <li class="nav-menu"><a href="#">ลงทะเบียน</a></li>
                 <li class="dropdown nav-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                     การบริหารจัดการ<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
+                        <li class="sub-nav-menu"><a href="/course">หลักสูตร</a></li>
                         <li class="sub-nav-menu"><a href="#">กลุ่มเรียน</a></li>
                         <li class="sub-nav-menu"><a href="#">ระดับ</a></li>
                         <li class="sub-nav-menu"><a href="#">สาขาวิชา</a></li>
@@ -40,7 +41,6 @@
                     </ul>
                 </li>
                 <li class="nav-menu"><a href="/program">แผนการเรียน</a></li>
-                <li class="nav-menu"><a href="/Test">การส่งข้อสอบ</a></li>
                 <li class="dropdown nav-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                         <i class="fa fa-user" aria-hidden="true"> ริสา เบ็ญมูซา</i><span class="caret"></span>
@@ -50,9 +50,9 @@
                         <li class="sub-nav-menu"><a href="#">ข้อมูลการศึกษา</a></li>
                         <li class="sub-nav-menu"><a href="#">ตารางเรียน</a></li>
                         <li class="sub-nav-menu"><a href="#">ตารางสอบ</a></li>
+                        <li class="sub-nav-menu"><a href="/exam">การส่งข้อสอบ</a></li>
                     </ul>
                 </li>
-                <li><a href="#"></a></li>
             </ul>
         </div>
     </nav>

@@ -27,11 +27,11 @@
                     การบริหารจัดการ<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="sub-nav-menu"><a href="/course">หลักสูตร</a></li>
+                        <li class="sub-nav-menu"><a href="#">หลักสูตร</a></li>
                         <li class="sub-nav-menu"><a href="#">กลุ่มเรียน</a></li>
                         <li class="sub-nav-menu"><a href="#">ระดับ</a></li>
                         <li class="sub-nav-menu"><a href="#">สาขาวิชา</a></li>
-                        <li class="sub-nav-menu"><a href="#">กลุ่มวิชา</a></li>
+                        <li class="sub-nav-menu"><a href="/subjectg">กลุ่มวิชา</a></li>
                         <li class="sub-nav-menu"><a href="#">วิชา</a></li>
                         <li class="sub-nav-menu"><a href="#">ภาคเรียน</a></li>
                         <li class="sub-nav-menu"><a href="#">การสอน</a></li>

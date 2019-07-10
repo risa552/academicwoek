@@ -1,4 +1,143 @@
 @extends('academic-layout') 
-@section('title','เข้าสู่ระบบ')
+@section('title','กลุ่มเรียน')
 @section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">ค้นหากลุ่มเรียน</div>
+                <div class="panel-body">
+                    <form action="/action_page.php">
+                        <div class="form-group">
+                            <label for="email">รหัสกลุ่มเรียน</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <button type="submit" class="btn btn-default">ยืนยัน</button>
+                    </form>
+                </div>
+            </div>
+            <!--<button type="submit" class="btn btn-info"><a href="#">กลุ่มเรียน</a></button> -->
+        </div> 
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                รายการการส่งข้อสอบ
+               <a href="/group/fromgroup" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มกลุ่มเรียน</a>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>รหัสกลุ่มเรียน</th>
+                                <th>ปีการศึกษา</th>
+                                <th style="width:110px">แก้ไขรายการ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @for($i=0;$i<25;$i++)
+                            <tr>
+                                <td>BIT</td>
+                                <td>2559</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/group/editgroup"></a></button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
+                                                        </div>
+                                                        <div class="modal-body" style="color:#000;">
+                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
+                                                        </div>
+                                                        <div class="modal-footer" action="/action_page.php">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IS</td>
+                                <td>2560</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/group/editgroup"></a></button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
+                                                        </div>
+                                                        <div class="modal-body" style="color:#000;">
+                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>คธ</td>
+                                <td>2559</td>
+                       
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/group/editgroup"></a></button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
+                                                        </div>
+                                                        <div class="modal-body" style="color:#000;">
+                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
+                                                        </div>
+                                                        <div class="modal-footer" action="/action_page.php">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endfor
+                        </tbody>
+                    </table>
+                    <!--<ul class="pagination">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
 @endsection

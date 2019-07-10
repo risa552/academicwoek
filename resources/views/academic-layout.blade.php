@@ -28,7 +28,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="sub-nav-menu"><a href="#">หลักสูตร</a></li>
-                        <li class="sub-nav-menu"><a href="#">กลุ่มเรียน</a></li>
+                        <li class="sub-nav-menu"><a href="/group">กลุ่มเรียน</a></li>
                         <li class="sub-nav-menu"><a href="#">ระดับ</a></li>
                         <li class="sub-nav-menu"><a href="#">สาขาวิชา</a></li>
                         <li class="sub-nav-menu"><a href="/subjectg">กลุ่มวิชา</a></li>

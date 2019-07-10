@@ -11,6 +11,14 @@ class GroupController extends Controller
 {
     public function index()
     {
-     return view('group::Group');
+    return view('group::Group');
+    }
+    public function fromgroup()
+    {
+    return view('group::fromgroup');
+    }
+    public function editgroup()
+    {
+    return view('group::editgroup');
     }
 }

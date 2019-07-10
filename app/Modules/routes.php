@@ -8,4 +8,5 @@
   Route::Get('/subjectg','\App\Modules\Subjectg\SubjectgController@index');
   Route::Get('/subjectg/table','\App\Modules\Subjectg\SubjectgController@from');
   Route::Get('/exam/edit','\App\Modules\Exam\ExamController@edit');
+  Route::Get('/subjectg/e','\App\Modules\Subjectg\SubjectgController@from');
 ?>

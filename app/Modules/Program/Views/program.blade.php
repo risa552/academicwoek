@@ -37,7 +37,7 @@
     <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-heading">
-                แผนการเรียนึ
+                แผนการเรียน
                  <a href="/subjectg/table" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มแผนการเรียน</a>
             </div>
                 <div class="panel-body">

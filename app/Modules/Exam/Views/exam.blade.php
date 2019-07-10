@@ -35,6 +35,7 @@
                                 <th>รหัสการส่งข้อสอบ</th>
                                 <th>ภาคเรียน</th>
                                 <th>ชื่อวิชา</th>
+                                <th>อาจารย์ที่ส่ง</th>
                                 <th>ปีการศึกษา</th>
                                 <th>ส่งวันที่</th>
 
@@ -47,12 +48,99 @@
                                 <td>01</td>
                                 <td>1/62</td>
                                 <td>ดาต้าเบด</td>
+                                <td>ไพฑูรย์</td>
                                 <td>ปี2562</td>
                                 <td>25-1-62</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><i class="fa fa-pencil-square" aria-hidden="true"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/exam/edit"></a></button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
+                                                        </div>
+                                                        <div class="modal-body" style="color:#000;">
+                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
+                                                        </div>
+                                                        <div class="modal-footer" action="/action_page.php">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>1/62</td>
+                                <td>การเงิน</td>
+                                <td>ไพฑูรย์</td>
+                                <td>ปี2562</td>
+                                <td>23-1-62</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/exam/edit"></a></button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
+                                                        </div>
+                                                        <div class="modal-body" style="color:#000;">
+                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>1/62</td>
+                                <td>Project Study</td>
+                                <td>มงคล</td>
+                                <td>ปี2562</td>
+                                <td>20-1-62</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/exam/edit"></a></button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
+                                                        </div>
+                                                        <div class="modal-body" style="color:#000;">
+                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
+                                                        </div>
+                                                        <div class="modal-footer" action="/action_page.php">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                            </div>
                                     </div>
                                 </td>
                             </tr>

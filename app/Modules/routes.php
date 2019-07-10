@@ -7,4 +7,5 @@
   Route::Get('/exam/from','\App\Modules\Exam\ExamController@from');
   Route::Get('/subjectg','\App\Modules\Subjectg\SubjectgController@index');
   Route::Get('/subjectg/table','\App\Modules\Subjectg\SubjectgController@from');
+  Route::Get('/exam/edit','\App\Modules\Exam\ExamController@edit');
 ?>

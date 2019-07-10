@@ -17,4 +17,8 @@ class ExamController extends Controller
     {
      return view('exam::from');
     }
+    public function edit()
+    {
+     return view('exam::edit');
+    }
 }

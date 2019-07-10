@@ -22,7 +22,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 กลุ่มวิชาการศึกษา
-                 <a href="/subjectg/table" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มกลุ่มวิชา</a>
+                 <a href="/subjectg/fromsubjectg" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มกลุ่มวิชา</a>
             </div>
                 <div class="panel-body">
                     <table class="table table-striped">
@@ -42,7 +42,7 @@
                                 <td>
                             
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-info"><i class="fa fa-pencil-square" aria-hidden="true" href="/subjectg/editsubjectg"></i></button>
                                         <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </div>
                                 </td>
@@ -54,7 +54,7 @@
                                  <td>
                             
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-info"><i class="fa fa-pencil-square" aria-hidden="true" href="/subjectg/editsubjectg"></i></button>
                                         <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </div>
                                 </td>
@@ -66,7 +66,7 @@
                                 <td>
                             
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-info"><i class="fa fa-pencil-square" aria-hidden="true" href="/subjectg/editsubjectg"></i></button>
                                         <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </div>
                                  </td>

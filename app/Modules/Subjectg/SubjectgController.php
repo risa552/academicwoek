@@ -13,8 +13,12 @@ class SubjectgController extends Controller
     {
      return view('subjectg::Subjectg');
     }
-    public function from()
+    public function fromsubjectg()
     {
-     return view('subjectg::Table');
+     return view('subjectg::fromsubjectg');
+    }
+    public function editsubjectg()
+    {
+     return view('subjectg::editsubjectg');
     }
 }

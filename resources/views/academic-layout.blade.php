@@ -32,7 +32,7 @@
                         <li class="sub-nav-menu"><a href="#">ระดับ</a></li>
                         <li class="sub-nav-menu"><a href="#">สาขาวิชา</a></li>
                         <li class="sub-nav-menu"><a href="/subjectg">กลุ่มวิชา</a></li>
-                        <li class="sub-nav-menu"><a href="#">วิชา</a></li>
+                        <li class="sub-nav-menu"><a href="/sub"></a></li>
                         <li class="sub-nav-menu"><a href="#">ภาคเรียน</a></li>
                         <li class="sub-nav-menu"><a href="#">การสอน</a></li>
                         <li class="sub-nav-menu"><a href="#">นักศึกษา</a></li>

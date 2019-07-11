@@ -36,7 +36,11 @@
                         <li class="sub-nav-menu"><a href="#">ภาคเรียน</a></li>
                         <li class="sub-nav-menu"><a href="/teaching">การสอน</a></li>
                         <li class="sub-nav-menu"><a href="/student">นักศึกษา</a></li>
+<<<<<<< HEAD
                         <li class="sub-nav-menu"><a href="/professor">อาจารย์</a></li>
+=======
+                        <li class="sub-nav-menu"><a href="#">อาจารย์</a></li>
+>>>>>>> 30c631a318be3121c1ef21569599e47371cccfb4
                         <li class="sub-nav-menu"><a href="#">ผู้ใช้งาน</a></li>
                     </ul>
                 </li>

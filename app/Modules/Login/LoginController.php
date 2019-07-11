@@ -8,11 +8,14 @@ use Input;
 use DB;
 use MyConst;
 use MyResponse;
+use Hash;
+use Auth;
 
 class LoginController extends Controller
 {
     public function index()
     {
+       // echo Hash::make('123456');exit;
      return view('log::login');
     }
     public function action(Request $request)
@@ -26,5 +29,20 @@ class LoginController extends Controller
         if(empty($password)){
             return MyResponse::error('กรุณาป้อน Password ค่ะ');
         }
+        $user = DB::table('users')
+                ->where('username',$username)
+                ->where('status','Y')
+                ->first();
+        if(empty($user)){
+            return MyResponse::error('Username หรือ Password ผิดค่ะ');
+        }
+        if(Hash::check($password,$user->password)){
+            Auth::loginsigId($user->id, $remember);
+            DB::table('user')
+                ->where('id',$user->id)
+                ->update(['last_login_at'=>date('Y-m-d H:i:s')]);
+            return MyResponse::success('Login สำเร็จ');
+        }
+
     }
 }

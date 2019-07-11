@@ -1,3 +1,9 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 var Helper = {};
 Helper.ajax = function(url,method,params,callback){
     if(typeof params === 'object'){
@@ -20,14 +26,16 @@ Helper.ajax = function(url,method,params,callback){
                 alert('ขออภัยระบบเกิดความผิดพลาด');
             },
             400:function(response){
+                console.log(response);          
                 alert(response.responseJson.body);
             },
-            success:function(response){
-                if(typeof callback ==='function'){
-                    callback(response);
-                }else{
-                    alert(response.message);
-                }
+        },
+        success:function(response){
+            console.log(response);  
+            if(typeof callback ==='function'){
+                callback(response);
+            }else{
+                alert(response.message);
             }
         }
     });

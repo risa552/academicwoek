@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">   
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,12 +22,13 @@
             </div>
             
         </div>
-    </nav>
+    </nav>  
     <div class="container-fluid">
          @yield('content')
     </div>
 <script src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/mysscipt.js"></script>
+@stack('scripts')
 </body>
 </html>

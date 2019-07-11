@@ -227,6 +227,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'MyConst' => App\Services\MyConst::class,
         'MyResponse' => App\Services\MyResponse::class,
+        'CurrentUser' => App\Services\CurrentUser::class,
+
 
     ],
 

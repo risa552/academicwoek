@@ -33,5 +33,7 @@
   Route::Get('/term','\App\Modules\Term\TermController@index');
   Route::Get('/term/fromterm','\App\Modules\Term\TermController@fromterm');
   Route::Get('/term/editterm','\App\Modules\Term\TermController@editterm');
-
+  Route::Get('/branch','\App\Modules\Branch\BranchController@index');
+  Route::Get('/branch/frombranch','\App\Modules\Branch\BranchController@frombranch');
+  Route::Get('/branch/editbranch','\App\Modules\Branch\BranchController@editbranch');
 ?>

@@ -15,6 +15,7 @@
   Route::Get('/group/editgroup','\App\Modules\Group\GroupController@editgroup');
   Route::Get('/sub','\App\Modules\Sub\SubController@index');
   Route::Get('/sub/fromsub','\App\Modules\Sub\SubController@fromsub');
-  Route::Get('/sub/editsub','\App\Modules\Sub\SubController@editsub');
-  
+  Route::Get('/professor','\App\Modules\Professor\ProfessorController@index');
+  Route::Get('/professor/proedit','\App\Modules\Professor\ProfessorController@proedit');
+  Route::Get('/professor/proform','\App\Modules\Professor\ProfessorController@proform');
 ?>

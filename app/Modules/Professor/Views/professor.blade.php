@@ -1,20 +1,16 @@
 @extends('academic-layout') 
-@section('title','เช็คการส่งข้อสอบ')
+@section('title',' อาจารย์')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหาวิชา</div>
+                <div class="panel-heading">ค้นหาอาจารย์</div>
                 <div class="panel-body">
                     <form action="/action_page.php">
                         <div class="form-group">
                             <label for="email">ชื่ออาจารย์</label>
                             <input type="email" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">ชื่อวิชา</label>
-                            <input type="password" class="form-control" id="pwd">
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
@@ -25,19 +21,20 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                รายการการส่งข้อสอบ
-               <a href="/exam/from" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> ส่งข้อสอบ</a>
+                    รายการชื่ออาจารย์
+                    <a href="/professor/proedit" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มอาจารย์</a>
                 </div>
-                <div class="panel-body">
-                    <table class="table table-striped">
+                <div class="panel-body">  
+                <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสการส่งข้อสอบ</th>
-                                <th>ภาคเรียน</th>
-                                <th>ชื่อวิชา</th>
-                                <th>อาจารย์ที่ส่ง</th>
-                                <th>ปีการศึกษา</th>
-                                <th>ส่งวันที่</th>
+                                <th>รหัสอาจารย์</th>
+                                <th>ชื่ออาจารย์</th>
+                                <th>นามสกุล</th>
+                                <th>เพศ</th>
+                                <th>เบอร์</th>
+                                <th>ที่อยู่</th>
+                                <th>E-mail</th>
 
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
@@ -45,14 +42,15 @@
                         <tbody>
                             <tr>
                                 <td>01</td>
-                                <td>1/62</td>
-                                <td>ดาต้าเบด</td>
                                 <td>ไพฑูรย์</td>
-                                <td>ปี2562</td>
-                                <td>25-1-62</td>
+                                <td>จันทร์เรือง</td>
+                                <td>ชาย</td>
+                                <td>08564192745</td>
+                                <td>จ.นนทบุรี</td>
+                                <td>toon@gmail.com</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/exam/edit"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/professor/proedit"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -78,14 +76,15 @@
                             </tr>
                             <tr>
                                 <td>02</td>
-                                <td>1/62</td>
-                                <td>การเงิน</td>
-                                <td>ไพฑูรย์</td>
-                                <td>ปี2562</td>
-                                <td>23-1-62</td>
+                                <td>จงกลนี</td>
+                                <td>ลิ้มประภัสสร</td>
+                                <td>หญิง</td>
+                                <td>0978456325</td>
+                                <td>จ.นนทบุรี</td>
+                                <td>kongnee@gmail.com</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/exam/edit"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/professor/proedit"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -110,39 +109,6 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>03</td>
-                                <td>1/62</td>
-                                <td>Project Study</td>
-                                <td>มงคล</td>
-                                <td>ปี2562</td>
-                                <td>20-1-62</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/exam/edit"></a></button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
-                                                        </div>
-                                                        <div class="modal-body" style="color:#000;">
-                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
-                                                        </div>
-                                                        <div class="modal-footer" action="/action_page.php">
-                                                        <button type="submit" class="btn btn-info">Submit</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>    
-                                                </div>
-                                            </div>
-                                    </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                     <!--<ul class="pagination">
@@ -157,5 +123,4 @@
         </div>
     </div>  
 </div>
-
 @endsection

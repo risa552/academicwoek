@@ -9,17 +9,17 @@
   Route::Get('/subjectg/fromsubjectg','\App\Modules\Subjectg\SubjectgController@fromsubjectg');
   Route::Get('/exam/edit','\App\Modules\Exam\ExamController@edit');
   Route::Get('/subjectg/editsubjectg','\App\Modules\Subjectg\SubjectgController@editsubjectg');
-  
   Route::Get('/group','\App\Modules\Group\GroupController@index');
   Route::Get('/group/fromgroup','\App\Modules\Group\GroupController@fromgroup');
   Route::Get('/group/editgroup','\App\Modules\Group\GroupController@editgroup');
   Route::Get('/sub','\App\Modules\Sub\SubController@index');
   Route::Get('/sub/fromsub','\App\Modules\Sub\SubController@fromsub');
   Route::Get('/sub/editsub','\App\Modules\Sub\SubController@editsub');
-  
-
-
   Route::Get('/student','\App\Modules\Student\StudentController@index');
   Route::Get('/student/fromstu','\App\Modules\Student\StudentController@fromstu');
   Route::Get('/student/editstu','\App\Modules\Student\StudentController@editstu');
+  Route::Get('/teaching','\App\Modules\Teaching\TeachingController@index');
+  Route::Get('/teaching/fromtea','\App\Modules\Teaching\TeachingController@fromtea');
+  Route::Get('/teaching/edittea','\App\Modules\Teaching\TeachingController@edittea');
+
 ?>

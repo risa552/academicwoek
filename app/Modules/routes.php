@@ -24,4 +24,5 @@
   Route::Get('/teaching','\App\Modules\Teaching\TeachingController@index');
   Route::Get('/teaching/fromtea','\App\Modules\Teaching\TeachingController@fromtea');
   Route::Get('/teaching/edittea','\App\Modules\Teaching\TeachingController@edittea');
+
 ?>

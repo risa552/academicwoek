@@ -18,8 +18,11 @@ class ModuleServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/Professor/Views','pro');
 
         $this->loadViewsFrom(__DIR__.'/Student/Views','student');
+<<<<<<< HEAD
 
         $this->loadViewsFrom(__DIR__.'/Student/Views','student');
+=======
+>>>>>>> 501707778d4690b428c0a8c925fbc3b576667fff
 
         
 

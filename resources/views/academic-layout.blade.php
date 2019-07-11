@@ -35,13 +35,8 @@
                         <li class="sub-nav-menu"><a href="/sub">วิชา</a></li>
                         <li class="sub-nav-menu"><a href="#">ภาคเรียน</a></li>
                         <li class="sub-nav-menu"><a href="#">การสอน</a></li>
-<<<<<<< HEAD
                         <li class="sub-nav-menu"><a href="/professor">อาจารย์</a></li>
                         <li class="sub-nav-menu"><a href="/student">นักศึกษา</a></li>
-=======
-                        <li class="sub-nav-menu"><a href="/student">นักศึกษา</a></li>
-                        <li class="sub-nav-menu"><a href="#">อาจารย์</a></li>
->>>>>>> 501707778d4690b428c0a8c925fbc3b576667fff
                         <li class="sub-nav-menu"><a href="#">ผู้ใช้งาน</a></li>
                     </ul>
                 </li>

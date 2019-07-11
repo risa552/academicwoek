@@ -18,12 +18,6 @@
   Route::Get('/professor/proedit','\App\Modules\Professor\ProfessorController@proedit');
   Route::Get('/professor/proform','\App\Modules\Professor\ProfessorController@proform');
   Route::Get('/sub/editsub','\App\Modules\Sub\SubController@editsub');
-<<<<<<< HEAD
-=======
-  
-
-
->>>>>>> 501707778d4690b428c0a8c925fbc3b576667fff
   Route::Get('/student','\App\Modules\Student\StudentController@index');
   Route::Get('/student/fromstu','\App\Modules\Student\StudentController@fromstu');
   Route::Get('/student/editstu','\App\Modules\Student\StudentController@editstu');

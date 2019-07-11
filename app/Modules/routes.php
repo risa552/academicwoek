@@ -21,4 +21,7 @@
   Route::Get('/student','\App\Modules\Student\StudentController@index');
   Route::Get('/student/fromstu','\App\Modules\Student\StudentController@fromstu');
   Route::Get('/student/editstu','\App\Modules\Student\StudentController@editstu');
+  Route::Get('/teaching','\App\Modules\Teaching\TeachingController@index');
+  Route::Get('/teaching/fromtea','\App\Modules\Teaching\TeachingController@fromtea');
+  Route::Get('/teaching/edittea','\App\Modules\Teaching\TeachingController@edittea');
 ?>

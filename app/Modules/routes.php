@@ -16,4 +16,5 @@
   Route::Get('/sub','\App\Modules\Sub\SubController@index');
   Route::Get('/sub/fromsub','\App\Modules\Sub\SubController@fromsub');
   Route::Get('/sub/editsub','\App\Modules\Sub\SubController@editsub');
+  
 ?>

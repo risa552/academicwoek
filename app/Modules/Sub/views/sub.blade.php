@@ -1,46 +1,54 @@
 @extends('academic-layout') 
-@section('title','กลุ่มเรียน')
+@section('title','วิชา')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหากลุ่มเรียน</div>
+                <div class="panel-heading">ค้นหาวิชา</div>
                 <div class="panel-body">
                     <form action="/action_page.php">
                         <div class="form-group">
-                            <label for="email">รหัสกลุ่มเรียน</label>
+                            <label for="email">ชื่อวิชา</label>
                             <input type="email" class="form-control" id="email">
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
             </div>
-            <!--<button type="submit" class="btn btn-info"><a href="#">กลุ่มเรียน</a></button> -->
+            <!--<button type="submit" class="btn btn-info"><a href="#">วิชา</a></button> -->
         </div> 
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                รายการการส่งข้อสอบ
-               <a href="/group/fromgroup" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มกลุ่มเรียน</a>
+                รายการวิชา
+               <a href="/sub/fromsub" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มวิชา</a>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสกลุ่มเรียน</th>
-                                <th>ปีการศึกษา</th>
+                                <th>รหัสวิชา</th>
+                                <th>ชื่อวิชา</th>
+                                <th>หน่วยกิจ</th>
+                                <th>ชั่วโมงทฤษฎี</th>
+                                <th>ชั่วโมงปฎิบัติ</th>
+                                <th>คาบเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
                         @for($i=0;$i<25;$i++)
                             <tr>
-                                <td>BIT</td>
-                                <td>2559</td>
+                                <td>(3-3-6)</td>
+                                <td>โปรแกรมเมอร์</td>
+                                <td>3</td>
+                                <td>3 ชั่วโมง</td>
+                                <td>3 ชั่วโมง</td>
+                                <td>คาบเช้า</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/group/editgroup"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/sub/editsub"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -65,11 +73,15 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>IS</td>
-                                <td>2560</td>
+                            <td>(3-3-6)</td>
+                                <td>program</td>
+                                <td>3</td>
+                                <td>3 ชั่วโมง</td>
+                                <td>3 ชั่วโมง</td>
+                                <td>คาบเช้า</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/group/editgroup"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/sub/editsub"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -95,12 +107,16 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>คธ</td>
-                                <td>2559</td>
+                            <td>(3-3-6)</td>
+                                <td>Sa ออกแบบ</td>
+                                <td>3</td>
+                                <td>3 ชั่วโมง</td>
+                                <td>3 ชั่วโมง</td>
+                                <td>คาบเช้า</td>
                        
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/group/editgroup"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/sub/editsub"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">

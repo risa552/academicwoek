@@ -24,5 +24,12 @@
   Route::Get('/teaching','\App\Modules\Teaching\TeachingController@index');
   Route::Get('/teaching/fromtea','\App\Modules\Teaching\TeachingController@fromtea');
   Route::Get('/teaching/edittea','\App\Modules\Teaching\TeachingController@edittea');
+  Route::Get('/teaching','\App\Modules\Teaching\TeachingController@index');
+  Route::Get('/teaching/fromtea','\App\Modules\Teaching\TeachingController@fromtea');
+  Route::Get('/teaching/edittea','\App\Modules\Teaching\TeachingController@edittea');
+  Route::Get('/cou','\App\Modules\Cou\CouController@index');
+  Route::Get('/cou/fromcou','\App\Modules\Cou\CouController@fromcou');
+  Route::Get('/cou/editcou','\App\Modules\Cou\CouController@editcou');
+
 
 ?>

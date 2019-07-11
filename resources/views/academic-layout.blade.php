@@ -21,13 +21,13 @@
             </div>
             <ul class="nav navbar-nav pull-right" style="margin-top: 11px">
                 <li class="nav-menu"><a href="/">หน้าแรก</a></li>
-                <li class="nav-menu"><a href="#">ลงทะเบียน</a></li>
+                <li class="nav-menu"><a href="/course">ลงทะเบียน</a></li>
                 <li class="dropdown nav-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                     การบริหารจัดการ<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="sub-nav-menu"><a href="#">หลักสูตร</a></li>
+                        <li class="sub-nav-menu"><a href="/cou">หลักสูตร</a></li>
                         <li class="sub-nav-menu"><a href="/group">กลุ่มเรียน</a></li>
                         <li class="sub-nav-menu"><a href="#">ระดับ</a></li>
                         <li class="sub-nav-menu"><a href="#">สาขาวิชา</a></li>

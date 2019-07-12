@@ -37,7 +37,7 @@
                         <li class="sub-nav-menu"><a href="/teaching">การสอน</a></li>
                         <li class="sub-nav-menu"><a href="/student">นักศึกษา</a></li>
                         <li class="sub-nav-menu"><a href="/professor">อาจารย์</a></li>
-                        <li class="sub-nav-menu"><a href="#">ผู้ใช้งาน</a></li>
+                        <li class="sub-nav-menu"><a href="/admin">ผู้ใช้งาน</a></li>
                     </ul>
                 </li>
                 <li class="nav-menu"><a href="/program">แผนการเรียน</a></li>

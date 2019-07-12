@@ -26,8 +26,8 @@ Helper.ajax = function(url,method,params,callback){
                 alert('ขออภัยระบบเกิดความผิดพลาด');
             },
             400:function(response){
-                console.log(response);          
-                alert(response.responseJson.body);
+                console.log(response.responseJSON);          
+                alert(response.responseJSON.message);
             },
         },
         success:function(response){

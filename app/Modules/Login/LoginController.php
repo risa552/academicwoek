@@ -37,11 +37,13 @@ class LoginController extends Controller
             return MyResponse::error('Username หรือ Password ผิดค่ะ');
         }
         if(Hash::check($password,$user->password)){
-            Auth::loginsigId($user->id, $remember);
-            DB::table('user')
+            Auth::loginUsingId($user->id, $remember);
+            DB::table('users')
                 ->where('id',$user->id)
                 ->update(['last_login_at'=>date('Y-m-d H:i:s')]);
             return MyResponse::success('Login สำเร็จ');
+        }else{
+            return MyResponse::error('Username หรือ Password ผิดค่ะ');
         }
 
     }

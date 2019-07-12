@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">  
-            <div class="panel-heading">กลุ่มเรียน</div>
+            <div class="panel-heading">แก้ไขกลุ่มเรียน</div>
                 <form class="form-horizontal" action="/group" style="margin-top:15px;">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="email">รหัสกลุ่มเรียน:</label>
@@ -14,7 +14,25 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">ปีการศึกษา:</label>
+                        <label class="control-label col-sm-2" for="pwd">รหัสนักศึกษา:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">วัน/เดือน/ปี ที่เข้า:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">รหัสระดับ:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">รหัสหลักสูตร:</label>
                         <div class="col-sm-10"> 
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password">
                         </div>

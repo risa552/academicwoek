@@ -43,5 +43,8 @@
   Route::Get('/degree','\App\Modules\Degree\DegreeController@index');
   Route::Get('/degree/fromde','\App\Modules\Degree\DegreeController@fromde');
   Route::Get('/degree/editde','\App\Modules\Degree\DegreeController@editde');
+  Route::Get('/teach','\App\Modules\Teach\TeachController@index');
+  Route::Get('/teach/fromte','\App\Modules\Teach\TeachController@fromte');
+  Route::Get('/teach/editte','\App\Modules\Teach\TeachController@editte');
 
 ?>

@@ -33,6 +33,7 @@
                         <li class="sub-nav-menu"><a href="/branch">สาขาวิชา</a></li>
                         <li class="sub-nav-menu"><a href="/subjectg">กลุ่มวิชา</a></li>
                         <li class="sub-nav-menu"><a href="/sub">วิชา</a></li>
+                        <li class="sub-nav-menu"><a href="/teach">วิชาที่เปิดสอน</a></li>
                         <li class="sub-nav-menu"><a href="/term">ภาคเรียน</a></li>
                         <li class="sub-nav-menu"><a href="/teaching">การสอน</a></li>
                         <li class="sub-nav-menu"><a href="/student">นักศึกษา</a></li>

@@ -34,6 +34,7 @@
                             <tr>
                                 <th>รหัสระดับ</th>
                                 <th>ชื่อระดับ</th>
+                                <th>รหัสกลุ่มเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -41,6 +42,7 @@
                             <tr>
                                 <td>01</td>
                                 <td>ปริญญาตรี</td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/degree/editde"></a></button>
@@ -70,6 +72,7 @@
                             <tr>
                                 <td>02</td>
                                 <td>ปวส เทียบโอน</td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/degree/editde"></a></button>

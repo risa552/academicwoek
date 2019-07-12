@@ -30,7 +30,7 @@
                         <li class="sub-nav-menu"><a href="/cou">หลักสูตร</a></li>
                         <li class="sub-nav-menu"><a href="/group">กลุ่มเรียน</a></li>
                         <li class="sub-nav-menu"><a href="#">ระดับ</a></li>
-                        <li class="sub-nav-menu"><a href="#">สาขาวิชา</a></li>
+                        <li class="sub-nav-menu"><a href="/branch">สาขาวิชา</a></li>
                         <li class="sub-nav-menu"><a href="/subjectg">กลุ่มวิชา</a></li>
                         <li class="sub-nav-menu"><a href="/sub">วิชา</a></li>
                         <li class="sub-nav-menu"><a href="/term">ภาคเรียน</a></li>

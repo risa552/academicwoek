@@ -43,7 +43,7 @@
                 <li class="nav-menu"><a href="/program">แผนการเรียน</a></li>
                 <li class="dropdown nav-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                        <i class="fa fa-user" aria-hidden="true"> ริสา เบ็ญมูซา</i><span class="caret"></span>
+                        <i class="fa fa-user" aria-hidden="true">{{CurrentUser::user()->first_name}} </i><span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="sub-nav-menu"><a href="#">ข้อมูลทั่วไป</a></li>

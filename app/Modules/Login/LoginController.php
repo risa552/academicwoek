@@ -16,8 +16,15 @@ class LoginController extends Controller
     public function index()
     {
        // echo Hash::make('123456');exit;
-     return view('log::login');
+        return view('log::login');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
+
     public function action(Request $request)
     {
         $username = $request->get('username');

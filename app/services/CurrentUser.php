@@ -8,7 +8,7 @@ use MyConst;
 
 class CurrentUser
 {
-    public static function uer(){
+    public static function user(){
         if(Auth::check()){
             $user = Auth::user();
             if($user->user_type===MyConst::$USER_LEVEL_ADMIN){

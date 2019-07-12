@@ -1,51 +1,51 @@
 @extends('academic-layout') 
-@section('title','ข้อมูลกลุ่มเรียน')
+@section('title','ข้อมูลวิชาที่เปิดสอน')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหาข้อมูลกลุ่มเรียน</div>
+                <div class="panel-heading">ค้นหาวิชาที่เปิดสอน</div>
                 <div class="panel-body">
                     <form action="/action_page.php">
                         <div class="form-group">
-                            <label for="email">รหัสกลุ่มเรียน</label>
+                            <label for="email">คาบเรียน</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">รหัสภาคเรียน</label>
                             <input type="email" class="form-control" id="email">
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
             </div>
-            <!--<button type="submit" class="btn btn-info"><a href="#">ข้อมูลกลุ่มเรียน</a></button> -->
+            <!--<button type="submit" class="btn btn-info"><a href="#">ข้อมูลวิชาที่เปิดสอน</a></button> -->
         </div> 
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    รายการข้อมูลกลุ่มเรียน
-                    <a href="/group/fromgroup" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลกลุ่มเรียน</a>
+                    รายการข้อมูลวิชาที่เปิดสอน
+                    <a href="/teach/fromte" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลวิชาที่เปิดสอน</a>
                 </div>
                 <div class="panel-body">  
                 <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสกลุ่มเรียน</th>
-                                <th>รหัสนักศึกษา</th>
-                                <th>วัน/เดือน/ปี ที่เข้า</th>
-                                <th>รหัสระดับ</th>
-                                <th>รหัสหลักสูตร</th>
+                                <th>คาบเรียน</th>
+                                <th>วัน/เดือน/ปี ที่สร้าง</th>
+                                <th>รหัสภาคเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>BIT15942N</td>
-                                <td>159333241057</td>
+                                <td>เช้า</td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>2562</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/group/editgroup"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/teach/editte"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -70,14 +70,12 @@
                                 </td>
                             </tr>
                             <tr>
-                            <td>BIT15942N</td>
-                                <td>159333241060</td>
+                            <td>บ่าย</td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>2562</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/group/editgroup"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/teach/editte"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">

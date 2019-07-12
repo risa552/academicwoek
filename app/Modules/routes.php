@@ -38,5 +38,16 @@
   Route::Get('/branch/frombranch','\App\Modules\Branch\BranchController@frombranch');
   Route::Get('/branch/editbranch','\App\Modules\Branch\BranchController@editbranch');
   Route::Get('/logout','\App\Modules\Login\LoginController@index');
+  Route::Get('/admin','\App\Modules\Admin\AdminController@index');
+  Route::Get('/admin/fromad','\App\Modules\Admin\AdminController@fromad');
+  Route::Get('/admin/editad','\App\Modules\Admin\AdminController@editad');
+  Route::Get('/degree','\App\Modules\Degree\DegreeController@index');
+  Route::Get('/degree/fromde','\App\Modules\Degree\DegreeController@fromde');
+  Route::Get('/degree/editde','\App\Modules\Degree\DegreeController@editde');
+  Route::Get('/teach','\App\Modules\Teach\TeachController@index');
+  Route::Get('/teach/fromte','\App\Modules\Teach\TeachController@fromte');
+  Route::Get('/teach/editte','\App\Modules\Teach\TeachController@editte');
+  Route::Get('/program/frompro','\App\Modules\Program\ProgramController@frompro');
+  Route::Get('/program/editpro','\App\Modules\Program\ProgramController@editpro');
   
 ?>

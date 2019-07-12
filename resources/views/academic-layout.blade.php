@@ -29,15 +29,16 @@
                     <ul class="dropdown-menu">
                         <li class="sub-nav-menu"><a href="/cou">หลักสูตร</a></li>
                         <li class="sub-nav-menu"><a href="/group">กลุ่มเรียน</a></li>
-                        <li class="sub-nav-menu"><a href="#">ระดับ</a></li>
+                        <li class="sub-nav-menu"><a href="/degree">ระดับ</a></li>
                         <li class="sub-nav-menu"><a href="/branch">สาขาวิชา</a></li>
                         <li class="sub-nav-menu"><a href="/subjectg">กลุ่มวิชา</a></li>
                         <li class="sub-nav-menu"><a href="/sub">วิชา</a></li>
+                        <li class="sub-nav-menu"><a href="/teach">วิชาที่เปิดสอน</a></li>
                         <li class="sub-nav-menu"><a href="/term">ภาคเรียน</a></li>
                         <li class="sub-nav-menu"><a href="/teaching">การสอน</a></li>
                         <li class="sub-nav-menu"><a href="/student">นักศึกษา</a></li>
                         <li class="sub-nav-menu"><a href="/professor">อาจารย์</a></li>
-                        <li class="sub-nav-menu"><a href="#">ผู้ใช้งาน</a></li>
+                        <li class="sub-nav-menu"><a href="/admin">ผู้ใช้งาน</a></li>
                     </ul>
                 </li>
                 <li class="nav-menu"><a href="/program">แผนการเรียน</a></li>

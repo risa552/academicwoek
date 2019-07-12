@@ -1,51 +1,55 @@
 @extends('academic-layout') 
-@section('title','ข้อมูลกลุ่มเรียน')
+@section('title','ผู้ดูแลระบบ')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหาข้อมูลกลุ่มเรียน</div>
+                <div class="panel-heading">ค้นหาข้อมูลผูู้แลระบบ</div>
                 <div class="panel-body">
                     <form action="/action_page.php">
                         <div class="form-group">
-                            <label for="email">รหัสกลุ่มเรียน</label>
+                            <label for="email">รหัสผู้ดูแลระบบ</label>
                             <input type="email" class="form-control" id="email">
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
             </div>
-            <!--<button type="submit" class="btn btn-info"><a href="#">ข้อมูลกลุ่มเรียน</a></button> -->
+            <!--<button type="submit" class="btn btn-info"><a href="#">ผู้ดูแลระบบ</a></button> -->
         </div> 
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    รายการข้อมูลกลุ่มเรียน
-                    <a href="/group/fromgroup" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลกลุ่มเรียน</a>
+                    รายการผู้ดูแลระบบ
+                    <a href="/admin/fromad" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลผู้ดูแลระบบ</a>
                 </div>
                 <div class="panel-body">  
                 <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสกลุ่มเรียน</th>
-                                <th>รหัสนักศึกษา</th>
-                                <th>วัน/เดือน/ปี ที่เข้า</th>
-                                <th>รหัสระดับ</th>
-                                <th>รหัสหลักสูตร</th>
+                                <th>รหัสผู้ดูแลระบบ</th>
+                                <th>ชื่อ</th>
+                                <th>นามสกุล</th>
+                                <th>เพศ</th>
+                                <th>เบอร์</th>
+                                <th>ที่อยู่</th>
+                                <th>Email</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>BIT15942N</td>
-                                <td>159333241057</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>01</td>
+                                <td>เบียร์</td>
+                                <td>อิอิ</td>
+                                <td>ชาย</td>
+                                <td>08XXXXXXXX</td>
+                                <td>ราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</td>
+                                <td>b33@gmail.com</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/group/editgroup"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/admin/editad"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -70,14 +74,16 @@
                                 </td>
                             </tr>
                             <tr>
-                            <td>BIT15942N</td>
-                                <td>159333241060</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <td>02</td>
+                                <td>ช้าง</td>
+                                <td>จิบิ</td>
+                                <td>ชาย</td>
+                                <td>08XXXXXXXX</td>
+                                <td>ราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</td>
+                                <td>c33@gmail.com</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/group/editgroup"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/admin/editad"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">

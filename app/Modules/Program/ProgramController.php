@@ -13,4 +13,12 @@ class ProgramController extends Controller
     {
      return view('program::Program');
     }
+    public function frompro()
+    {
+     return view('program::frompro');
+    }
+    public function editpro()
+    {
+     return view('program::editpro');
+    }
 }

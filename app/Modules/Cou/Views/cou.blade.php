@@ -20,7 +20,7 @@
                     </form>
                 </div>
             </div>
-            <!--<button type="submit" class="btn btn-info"><a href="#">ส่งข้อสอบ</a></button> -->
+            <!--<button type="submit" class="btn btn-info"><a href="#">หลักสูตร</a></button> -->
         </div> 
         <div class="col-md-9">
             <div class="panel panel-default">
@@ -34,13 +34,17 @@
                             <tr>
                                 <th>รหัสหลักสูตร</th>
                                 <th>ชื่อหลักสูตร</th>
+                                <th>รหัสสาขาวิชา</th>
+                                <th>รหัสแผนการเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>2554</td>
-                                <td>เทคโนโลยีสารสนเทศธุรกิจ</td>
+                                <td>1</td>
+                                <td>บริหารธุรกิจบัณฑิต</td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/cou/editcou"></a></button>
@@ -68,8 +72,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>2560</td>
-                                <td>ระบบสารสนเทศธุรกิจ</td>
+                            <td>2</td>
+                                <td>บริหารธุรกิจบัณฑิต</td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/cou/editcou"></a></button>

@@ -1,5 +1,5 @@
 @extends('academic-layout') 
-@section('title','เช็คการส่งข้อสอบ')
+@section('title','การส่งข้อสอบ')
 @section('content')
 <div class="container">
     <div class="row">
@@ -32,24 +32,21 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสการส่งข้อสอบ</th>
-                                <th>ภาคเรียน</th>
-                                <th>ชื่อวิชา</th>
-                                <th>อาจารย์ที่ส่ง</th>
+                                <th>รหัสข้อสอบ</th>
+                                <th>ชื่อข้อสอบ</th>
                                 <th>ปีการศึกษา</th>
-                                <th>ส่งวันที่</th>
-
+                                <th>วันเดือนปีที่ส่งข้อสอบ</th>
+                                <th>รหัสวิชาที่เปิดสอน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>01</td>
-                                <td>1/62</td>
-                                <td>ดาต้าเบด</td>
-                                <td>ไพฑูรย์</td>
-                                <td>ปี2562</td>
-                                <td>25-1-62</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/exam/edit"></a></button>
@@ -78,11 +75,10 @@
                             </tr>
                             <tr>
                                 <td>02</td>
-                                <td>1/62</td>
-                                <td>การเงิน</td>
-                                <td>ไพฑูรย์</td>
-                                <td>ปี2562</td>
-                                <td>23-1-62</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/exam/edit"></a></button>
@@ -112,11 +108,10 @@
                             </tr>
                             <tr>
                                 <td>03</td>
-                                <td>1/62</td>
-                                <td>Project Study</td>
-                                <td>มงคล</td>
-                                <td>ปี2562</td>
-                                <td>20-1-62</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/exam/edit"></a></button>

@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">ชื่อนักศึกษา:</label>
+                        <label class="control-label col-sm-2" for="pwd">ชื่อ:</label>
                         <div class="col-sm-10"> 
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password">
                         </div>
@@ -45,6 +45,24 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="pwd">Email:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">รหัสกลุ่มเรียน:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">รหัสลงทะเบียน:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">รหัสสิทธิ์การใช้งาน:</label>
                         <div class="col-sm-10"> 
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password">
                         </div>

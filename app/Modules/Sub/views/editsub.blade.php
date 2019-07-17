@@ -1,11 +1,11 @@
 @extends('academic-layout') 
-@section('title','แก้ไขวิชา')
+@section('title','แก้ไขข้อมูลวิชา')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">  
-            <div class="panel-heading">วิชา</div>
+            <div class="panel-heading">แก้ไขข้อมูลวิชา</div>
                 <form class="form-horizontal" action="/sub" style="margin-top:15px;">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="email">รหัสวิชา:</label>
@@ -33,6 +33,18 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="pwd">ชั่วโมงปฎิบัติ:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">รหัสกลุ่มวิชา:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">รหัสวิชาที่เปิดสอน:</label>
                         <div class="col-sm-10"> 
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password">
                         </div>

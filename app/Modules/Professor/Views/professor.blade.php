@@ -16,25 +16,28 @@
                     </form>
                 </div>
             </div>
-            <!--<button type="submit" class="btn btn-info"><a href="#">ส่งข้อสอบ</a></button> -->
+            <!--<button type="submit" class="btn btn-info"><a href="#">อาจารย์</a></button> -->
         </div> 
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     รายการชื่ออาจารย์
-                    <a href="/professor/proedit" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มอาจารย์</a>
+                    <a href="/professor/proform" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มอาจารย์</a>
                 </div>
                 <div class="panel-body">  
                 <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>รหัสอาจารย์</th>
-                                <th>ชื่ออาจารย์</th>
+                                <th>ชื่อ</th>
                                 <th>นามสกุล</th>
                                 <th>เพศ</th>
                                 <th>เบอร์</th>
                                 <th>ที่อยู่</th>
                                 <th>E-mail</th>
+                                <th>รหัสการสอน</th>
+                                <th>รหัสสิทธิ์</th>
+
 
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
@@ -48,6 +51,8 @@
                                 <td>08564192745</td>
                                 <td>จ.นนทบุรี</td>
                                 <td>toon@gmail.com</td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/professor/proedit"></a></button>
@@ -82,6 +87,8 @@
                                 <td>0978456325</td>
                                 <td>จ.นนทบุรี</td>
                                 <td>kongnee@gmail.com</td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/professor/proedit"></a></button>

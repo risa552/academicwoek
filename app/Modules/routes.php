@@ -16,8 +16,8 @@
   Route::Get('/sub','\App\Modules\Sub\SubController@index');
   Route::Get('/sub/fromsub','\App\Modules\Sub\SubController@fromsub');
   Route::Get('/professor','\App\Modules\Professor\ProfessorController@index');
-  Route::Get('/professor/proedit','\App\Modules\Professor\ProfessorController@proedit');
-  Route::Get('/professor/proform','\App\Modules\Professor\ProfessorController@proform');
+  Route::Get('/professor/editprof','\App\Modules\Professor\ProfessorController@editprof');
+  Route::Get('/professor/fromprof','\App\Modules\Professor\ProfessorController@fromprof');
   Route::Get('/sub/editsub','\App\Modules\Sub\SubController@editsub');
   Route::Get('/student','\App\Modules\Student\StudentController@index');
   Route::Get('/student/fromstu','\App\Modules\Student\StudentController@fromstu');

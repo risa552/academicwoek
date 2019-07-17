@@ -1,11 +1,11 @@
 @extends('academic-layout') 
-@section('title','การแก้ไขอาจารย์')
+@section('title','เพิ่มข้อมูลอาจารย์')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">  
-            <div class="panel-heading">การแก้ไขข้อมูลอาจารย์</div>
+            <div class="panel-heading">เพิ่มข้อมูลอาจารย์</div>
                 <form class="form-horizontal" action="/action_page.php" style="margin-top:15px;">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="email">รหัสอาจารย์:</label>
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">ชื่ออาจารย์:</label>
+                        <label class="control-label col-sm-2" for="pwd">ชื่อ:</label>
                         <div class="col-sm-10"> 
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password">
                         </div>
@@ -38,13 +38,25 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">ทึ่อยู่:</label>
+                        <label class="control-label col-sm-2" for="pwd">ที่อยู่:</label>
                         <div class="col-sm-10"> 
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">E-mail:</label>
+                        <label class="control-label col-sm-2" for="pwd">Email:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">รหัสการสอน:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">รหัสสิทธิ์การใช้งาน:</label>
                         <div class="col-sm-10"> 
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password">
                         </div>

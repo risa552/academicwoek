@@ -13,12 +13,12 @@ class ProfessorController extends Controller
     {
      return view('professor::Professor');
     }
-    public function proform()
+    public function fromprof()
     {
-     return view('professor::proform');
+     return view('professor::fromprof');
     }
-    public function proedit()
+    public function editprof()
     {
-     return view('professor::proedit');
+     return view('professor::editprof');
     }
 }

@@ -49,4 +49,7 @@
   Route::Get('/teach/editte','\App\Modules\Teach\TeachController@editte');
   Route::Get('/program/frompro','\App\Modules\Program\ProgramController@frompro');
   Route::Get('/program/editpro','\App\Modules\Program\ProgramController@editpro');
+  Route::Get('/rights','\App\Modules\Rights\RightsController@index');
+  Route::Get('/rights/fromrig','\App\Modules\Rights\RightsController@fromRig');
+  Route::Get('/rights/editrig','\App\Modules\Rights\RightsController@editRig');
 ?>

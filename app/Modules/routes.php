@@ -49,4 +49,5 @@
   Route::Get('/teach/editte','\App\Modules\Teach\TeachController@editte');
   Route::Get('/program/frompro','\App\Modules\Program\ProgramController@frompro');
   Route::Get('/program/editpro','\App\Modules\Program\ProgramController@editpro');
+
 ?>

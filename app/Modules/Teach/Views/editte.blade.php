@@ -54,10 +54,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-<<<<<<< HEAD
                         <label class="control-label col-sm-2" for="pwd">รหัสภาคเรียน:</label>
-=======
->>>>>>> 9aee2266d71f86ea82a0604cfee85f088f2fbd0f
                         <label class="control-label col-sm-2" for="pwd">ภาคเรียน:</label>
                         <div class="col-sm-10"> 
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password">

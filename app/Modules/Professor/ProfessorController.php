@@ -11,10 +11,14 @@ class ProfessorController extends Controller
 {
     public function index()
     {
-     return view('pro::professor');
+     return view('professor::Professor');
     }
-    public function proedit()
+    public function fromprof()
     {
-     return view('pro::proedit');
+     return view('professor::fromprof');
+    }
+    public function editprof()
+    {
+     return view('professor::editprof');
     }
 }

@@ -1,13 +1,17 @@
 @extends('academic-layout') 
-@section('title',' อาจารย์')
+@section('title',' ข้อมูลอาจารย์')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหาอาจารย์</div>
+                <div class="panel-heading">ค้นหาข้อมูลอาจารย์</div>
                 <div class="panel-body">
                     <form action="/action_page.php">
+                        <div class="form-group">
+                            <label for="email">รหัสอาจารย์</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
                         <div class="form-group">
                             <label for="email">ชื่ออาจารย์</label>
                             <input type="email" class="form-control" id="email">
@@ -16,41 +20,44 @@
                     </form>
                 </div>
             </div>
-            <!--<button type="submit" class="btn btn-info"><a href="#">ส่งข้อสอบ</a></button> -->
+            <!--<button type="submit" class="btn btn-info"><a href="#">อาจารย์</a></button> -->
         </div> 
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    รายการชื่ออาจารย์
-                    <a href="/professor/proedit" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มอาจารย์</a>
+                    รายการข้อมูลอาารย์
+                    <a href="/professor/fromprof" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลอาจารย์</a>
                 </div>
                 <div class="panel-body">  
                 <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>รหัสอาจารย์</th>
-                                <th>ชื่ออาจารย์</th>
+                                <th>ชื่อ</th>
                                 <th>นามสกุล</th>
                                 <th>เพศ</th>
                                 <th>เบอร์</th>
                                 <th>ที่อยู่</th>
                                 <th>E-mail</th>
-
+                                <th>รหัสการสอน</th>
+                                <th>รหัสสิทธิ์</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>01</td>
+                                <td>1</td>
                                 <td>ไพฑูรย์</td>
                                 <td>จันทร์เรือง</td>
                                 <td>ชาย</td>
-                                <td>08564192745</td>
-                                <td>จ.นนทบุรี</td>
+                                <td>08XXXXXXXX</td>
+                                <td>มหาลัย</td>
                                 <td>toon@gmail.com</td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/professor/proedit"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/professor/editprof"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -75,16 +82,18 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>02</td>
+                                <td>2</td>
                                 <td>จงกลนี</td>
                                 <td>ลิ้มประภัสสร</td>
                                 <td>หญิง</td>
-                                <td>0978456325</td>
-                                <td>จ.นนทบุรี</td>
-                                <td>kongnee@gmail.com</td>
+                                <td>08XXXXXXXX</td>
+                                <td>บ้าน</td>
+                                <td>g@gmail.com</td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/professor/proedit"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/professor/editprof"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">

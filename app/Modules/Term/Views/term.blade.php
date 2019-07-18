@@ -30,7 +30,8 @@
                             <tr>
                                 <th>รหัสภาคเรียน</th>
                                 <th>ชื่อภาคเรียน</th>
-                                <th>วัน/เดือน/ปี ที่เข้าเรียน</th>
+                                <th>ปีการศึกษา</th>
+                                <th>รหัสวิชาที่เปิดสอน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -38,6 +39,7 @@
                             <tr>
                                 <td>1</td>
                                 <td>1/2559</td>
+                                <td></td>
                                 <td></td>
                                 <td>
                                     <div class="btn-group">
@@ -68,6 +70,7 @@
                             <tr>
                             <td>2</td>
                                 <td>2/2559</td>
+                                <td></td>
                                 <td></td>
                                 <td>
                                     <div class="btn-group">

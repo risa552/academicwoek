@@ -14,6 +14,11 @@
                         </div>
                         <div class="form-group">
                             <label for="email">รหัสภาคเรียน</label>
+                            <label for="email">รหัสวิชาที่เปิดสอน</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">รหัสวิชา</label>
                             <input type="email" class="form-control" id="email">
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
@@ -35,6 +40,14 @@
                                 <th>คาบเรียน</th>
                                 <th>วัน/เดือน/ปี ที่สร้าง</th>
                                 <th>รหัสภาคเรียน</th>
+                                <th>รหัสวิชาที่เปิดสอน</th>
+                                <th>รหัสวิชา</th>
+                                <th>คาบเรียน</th>                                                               
+                                <th>รหัสการสอน</th>
+                                <th>รหัสข้อสอบ</th>
+                                <th>รหัสลงทะเบียน</th>
+                                <th>รหัสภาคเรียน</th>
+                                <th>วัน/เดือน/ปี ที่สร้าง</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -43,6 +56,14 @@
                                 <td>เช้า</td>
                                 <td></td>
                                 <td>2562</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/teach/editte"></a></button>
@@ -73,6 +94,14 @@
                             <td>บ่าย</td>
                                 <td></td>
                                 <td>2562</td>
+                            <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/teach/editte"></a></button>

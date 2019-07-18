@@ -37,7 +37,7 @@
   Route::Get('/branch','\App\Modules\Branch\BranchController@index');
   Route::Get('/branch/frombranch','\App\Modules\Branch\BranchController@frombranch');
   Route::Get('/branch/editbranch','\App\Modules\Branch\BranchController@editbranch');
-  Route::Get('/logout','\App\Modules\Login\LoginController@index');
+  Route::Get('/logout','\App\Modules\Login\LoginController@logout');
   Route::Get('/admin','\App\Modules\Admin\AdminController@index');
   Route::Get('/admin/fromad','\App\Modules\Admin\AdminController@fromad');
   Route::Get('/admin/editad','\App\Modules\Admin\AdminController@editad');

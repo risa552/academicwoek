@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <div class="modal-content" style="height:302px; width:352px; margin:100px auto;  ">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Log in</h4>
+                    <h4 class="modal-title" id="myModalLabel">Log.in</h4>
                 </div> <!-- /.modal-header -->
                 <div class="modal-body">
                     <form role="form" id='login' >

@@ -7,30 +7,38 @@
                     <table class="table">
                         <thead class="thead-light">
                             <tr>
-                            <th scope="col">รหัสวิชา</th>
-                            <th scope="col">ชื่อวิชา</th>
-                            <th scope="col">หน่อยกิต</th>
-                            <th scope="col">กลุ่มเรียน</th>
+                            <th scope="col">รหัสลงทะเบียน</th>
+                            <th scope="col">รหัสวิชาที่เปิดสอน</th>
+                            <th scope="col">รหัสนักศึกษา</th>
+                            <th scope="col">เกรด</th>
+                            <th scope="col">วันเดือนปีที่ลงทะเบียน</th>
+                            <th scope="col">สถานะ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>01</td>
+                            <td>159333241057</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             </tr>
                             <tr>
                             <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td>02</td>
+                            <td>159333241059</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             </tr>
                             <tr>
                             <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
+                            <td>03</td>
+                            <td>159333241060</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             </tr>
                         
                             <!--<i class="fa fa-plus-circle" aria-hidden="true"></i> --> 
@@ -42,10 +50,12 @@
                 <table class="table">
                 <thead class="thead-light">
                 <tr>
-                        <th scope="col">รหัสวิชา</th>
-                        <th scope="col">ชื่อวิชา</th>
-                        <th scope="col">หน่วยกิต</th>
-                        <th scope="col">กลุ่มเรียน</th>
+                <th scope="col">รหัสลงทะเบียน</th>
+                            <th scope="col">รหัสวิชาที่เปิดสอน</th>
+                            <th scope="col">รหัสนักศึกษา</th>
+                            <th scope="col">เกรด</th>
+                            <th scope="col">วันเดือนปีที่ลงทะเบียน</th>
+                            <th scope="col">สถานะ</th>
                         </tr>
                 </thead>
                 </table>

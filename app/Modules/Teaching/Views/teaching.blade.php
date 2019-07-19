@@ -30,7 +30,7 @@
                             <tr>
                                 <th>รหัสการสอน</th>
                                 <th>รหัสอาจารย์</th>
-                                <th>รหัสวิชาที่เปิดสอน</th>
+                                <th>รหัสวิชา</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -41,7 +41,7 @@
                                 <td></td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/teachiing/edittea"></a></button>
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/teaching/edittea"></a></button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">

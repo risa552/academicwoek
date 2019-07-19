@@ -19,6 +19,12 @@
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">รหัสสาขาวิชา:</label>
+                        <div class="col-sm-10"> 
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
                     <div class="form-group" > 
                         <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-secondary"><a  href="/cou" class="fa fa-arrow-left" aria-hidden="true"> back</a></button>

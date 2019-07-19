@@ -37,7 +37,9 @@
                                 <th>หน่วยกิต</th>
                                 <th>ชั่วโมงทฤษฎี</th>
                                 <th>ชั่วโมงปฎิบัติ</th>
-                                <th>รหัสกลุ่มวิชา</th>
+                                <th>คาบเรียน</th>
+                                <th>รหัสภาคเรียน</th>
+                                <th>รหัสแผนการเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -48,6 +50,8 @@
                                 <td>6</td>
                                 <td>3 ชั่วโมง</td>
                                 <td>3 ชั่วโมง</td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td>
                                     <div class="btn-group">
@@ -81,6 +85,8 @@
                                 <td>6</td>
                                 <td>3 ชั่มโมง</td>
                                 <td>3 ชั่วโมง</td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td>
                                     <div class="btn-group">

@@ -8,10 +8,11 @@
                         <thead class="thead-light">
                             <tr>
                             <th scope="col">รหัสลงทะเบียน</th>
-                            <th scope="col">รหัสวิชาที่เปิดสอน</th>
+                            <th scope="col">รหัสวิชา</th>
                             <th scope="col">รหัสนักศึกษา</th>
                             <th scope="col">เกรด</th>
-                            <th scope="col">วันเดือนปีที่ลงทะเบียน</th>
+                            <th scope="col">วัน/เดือน/ปี ที่ลงทะเบียน</th>
+                            <th scope="col">รหัสภาคเรียน</th>
                             <th scope="col">สถานะ</th>
                             </tr>
                         </thead>
@@ -23,6 +24,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                             </tr>
                             <tr>
                             <th scope="row">2</th>
@@ -31,11 +33,13 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                             </tr>
                             <tr>
                             <th scope="row">3</th>
                             <td>03</td>
                             <td>159333241060</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -50,11 +54,12 @@
                 <table class="table">
                 <thead class="thead-light">
                 <tr>
-                <th scope="col">รหัสลงทะเบียน</th>
-                            <th scope="col">รหัสวิชาที่เปิดสอน</th>
+                            <th scope="col">รหัสลงทะเบียน</th>
+                            <th scope="col">รหัสวิชา</th>
                             <th scope="col">รหัสนักศึกษา</th>
                             <th scope="col">เกรด</th>
-                            <th scope="col">วันเดือนปีที่ลงทะเบียน</th>
+                            <th scope="col">วัน/เดือน/ปีที่ลงทะเบียน</th>
+                            <th scope="col">รหัสภาคเรียน</th>
                             <th scope="col">สถานะ</th>
                         </tr>
                 </thead>

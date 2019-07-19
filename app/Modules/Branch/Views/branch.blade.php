@@ -30,7 +30,6 @@
                             <tr>
                                 <th>รหัสสาขาวิชา</th>
                                 <th>ชื่อสาขาวิชา</th>
-                                <th>รหัสหลักสูตร</th>
                                 <th>รหัสกลุ่มเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
@@ -39,7 +38,6 @@
                             <tr>
                                 <td>305</td>
                                 <td>เทคโนโลยีสารสนเทศธุรกิจ</td>
-                                <td></td>
                                 <td></td>
                                 <td>
                                     <div class="btn-group">
@@ -70,7 +68,6 @@
                             <tr>
                             <td>306</td>
                                 <td>คอมพิวเตอร์ธุรกิจ</td>
-                                <td></td>
                                 <td></td>
                                 <td>
                                     <div class="btn-group">

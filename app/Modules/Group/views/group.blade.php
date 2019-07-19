@@ -29,19 +29,13 @@
                         <thead>
                             <tr>
                                 <th>รหัสกลุ่มเรียน</th>
-                                <th>รหัสนักศึกษา</th>
                                 <th>วัน/เดือน/ปี ที่เข้า</th>
-                                <th>รหัสระดับ</th>
-                                <th>รหัสหลักสูตร</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>BIT15942N</td>
-                                <td>159333241057</td>
-                                <td></td>
-                                <td></td>
                                 <td></td>
                                 <td>
                                     <div class="btn-group">
@@ -70,10 +64,7 @@
                                 </td>
                             </tr>
                             <tr>
-                            <td>BIT15942N</td>
-                                <td>159333241060</td>
-                                <td></td>
-                                <td></td>
+                            <td>IS15942N</td>
                                 <td></td>
                                 <td>
                                     <div class="btn-group">

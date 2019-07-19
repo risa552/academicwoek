@@ -34,8 +34,6 @@
                             <tr>
                                 <th>รหัสหลักสูตร</th>
                                 <th>ชื่อหลักสูตร</th>
-                                <th>รหัสสาขาวิชา</th>
-                                <th>รหัสแผนการเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -43,8 +41,6 @@
                             <tr>
                                 <td>1</td>
                                 <td>บริหารธุรกิจบัณฑิต</td>
-                                <td></td>
-                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/cou/editcou"></a></button>
@@ -74,8 +70,6 @@
                             <tr>
                             <td>2</td>
                                 <td>บริหารธุรกิจบัณฑิต</td>
-                                <td></td>
-                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/cou/editcou"></a></button>

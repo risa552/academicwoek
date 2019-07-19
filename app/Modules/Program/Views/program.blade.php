@@ -34,19 +34,13 @@
                             <tr>
                                 <th>รหัสแผนการเรียน</th>
                                 <th>ชื่อแผนการเรียน</th>
-                                <th>รหัสวิชา</th>
-                                <th>รหัสภาคเรียน</th>
                                 <th>รหัสหลักสูตร</th>
-                                <th>รหัสภาคเรียน</th>
-                                <th>รหัสวิชา</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td></td>
-                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td>
@@ -76,9 +70,7 @@
                                 </td>
                             </tr>
                             <tr>
-                            <td>2</td>
-                                <td></td>
-                                <td></td>
+                                <td>2</td>
                                 <td></td>
                                 <td></td>
                                 <td>

@@ -52,13 +52,13 @@
                                 <td>{{$index+1}}</td>
                                 <td>{{$professor->first_name}}</td>
                                 <td>{{$professor->last_name}}</td>
-                                <td>{{$professor->Tel}}</td>
+                                <td>{{$professor->tel}}</td>
                                 <td>{{$professor->sex}}</td>
-                                <!--<td>{{$professor->Tel}}</td>-->
-                                <td>{{$professor->Add}}</td>
+                                <!--<td>{{$professor->tel}}</td>-->
+                                <td>{{$professor->add}}</td>
                                 <td>{{$professor->email}}</td>
                                 <td>01</td>
-                                <td>{{$professor->rigthid}}</td>
+                                <td>{{$professor->pre_id}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/professor/{{$professor->id}}"></a></button>

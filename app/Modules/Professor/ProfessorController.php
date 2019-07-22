@@ -33,7 +33,7 @@ class ProfessorController extends Controller
             $teacher->where(function ($query) use($keyword){
                 $query->where('frist_name','LIKE','%'.$keyword.'%')
                       ->orwhere('last_name','LIKE','%'.$keyword.'%')
-                      ->orwhere('Email','LIKE','%'.$keyword.'%');
+                      ->orwhere('email','LIKE','%'.$keyword.'%');
             });
         }
         $teacher = $teacher->get();
@@ -44,7 +44,7 @@ class ProfessorController extends Controller
 
     public function create()
     {
-        return view('professor::fromprof');
+        return view('professor::fromprofessor');
     
     }
 
@@ -54,24 +54,24 @@ class ProfessorController extends Controller
         {
             $first_name = $request->get('first_name');
             $last_name = $request->get('last_name');
-            $Tel = $request->get('Tel');
+            $tel = $request->get('tel');
             $sex = $request->get('sex');
-            //$Tel = $request->get('Tel');
-            $Add = $request->get('Add');
+            //$tel = $request->get('tel');
+            $add = $request->get('add');
             $email = $request->get('email');
-            $rigthid = $request->get('rigthid');
+            $pre_id = $request->get('pre_id');
 
-            if(!empty($first_name) && !empty($last_name) && !empty($Tel) && !empty($sex) && !empty($Add) && !empty($email) && !empty($rigthid) )
+            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($pre_id) )
             {
                
                 DB::table('teacher')->insert([
                     'first_name' =>$first_name,
                     'last_name' =>$last_name,
-                    'Tel' =>$Tel,
+                    'tel' =>$tel,
                     'sex' =>$sex,
-                    'Add' =>$Add,
+                    'Add' =>$add,
                     'email' =>$email,
-                    'rigthid' =>$rigthid,
+                    'pre_id' =>$pre_id,
                     'created_at' =>date('Y-m-d H:i:s'),
                 ]);
                // print_r('teacher');exit;
@@ -89,7 +89,7 @@ class ProfessorController extends Controller
             $professor = DB::table('teacher')->where('id',$id)->first();
             if(!empty($professor))
             {
-                return view('professor::fromprof',[
+                return view('professor::fromprofessor',[
                     'professor'=>$professor
                 ]);
             }
@@ -103,12 +103,12 @@ class ProfessorController extends Controller
             
             $first_name = $request->get('first_name');
             $last_name = $request->get('last_name');
-            $Tel = $request->get('Tel');
+            $Tel = $request->get('tel');
             $sex = $request->get('sex');
-            //$Tel = $request->get('Tel');
-            $Add = $request->get('Add');
+            //$Tel = $request->get('tel');
+            $Add = $request->get('add');
             $email = $request->get('email');
-            $rigthid = $request->get('rigthid');
+            $rigthid = $request->get('pre_id');
 
             if(!empty($first_name) && !empty($last_name) && !empty($Tel) && !empty($sex) && !empty($Add) && !empty($email) && !empty($rigthid) )
             {
@@ -116,11 +116,11 @@ class ProfessorController extends Controller
                 DB::table('teacher')->where('id',$id)->update([
                     'first_name' =>$first_name,
                     'last_name' =>$last_name,
-                    'Tel' =>$Tel,
+                    'tel' =>$Tel,
                     'sex' =>$sex,
-                    'Add' =>$Add,
+                    'add' =>$Add,
                     'email' =>$email,
-                    'rigthid' =>$rigthid,
+                    'pre_id' =>$rigthid,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/professor');

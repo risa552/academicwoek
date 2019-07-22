@@ -27,17 +27,17 @@
                         <th>นามสกุล:</th>
                         <input type="text" name="last_name" class="form-control" value="{{isset($profressor)?$profressor->last_name:''}}"/> 
                         <th>เบอร์:</th>
-                        <input type="text" name="Tel" class="form-control" value="{{isset($profressor)?$profressor->Tel:''}}"/>  
+                        <input type="text" name="tel" class="form-control" value="{{isset($profressor)?$profressor->Tel:''}}"/>  
                         <th>เพศ:</th>
                         <input type="text" name="sex" class="form-control" value="{{isset($profressor)?$profressor->sex:''}}"/> 
                         <th>ที่อยู่:</th>
-                        <input type="text" name="Add" class="form-control" value="{{isset($profressor)?$profressor->Add:''}}"/>
+                        <input type="text" name="add" class="form-control" value="{{isset($profressor)?$profressor->Add:''}}"/>
                         <th>email:</th>
                         <input type="text" name="email" class="form-control" value="{{isset($profressor)?$profressor->email:''}}"/> 
                        <!-- <th>รหัสการสอน:</th>
                         <input type="text" name="gender" class="form-control" value="{{isset($profressor)?$profressor->gender:''}}"/> -->
                         <th>รหัสสิทธิ์:</th>
-                        <input type="text" name="rigthid" class="form-control" value="{{isset($profressor)?$profressor->rigthid:''}}"/> 
+                        <input type="text" name="pre_id" class="form-control" value="{{isset($profressor)?$profressor->pre_id:''}}"/> 
                     </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>

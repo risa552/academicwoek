@@ -1,6 +1,11 @@
 <?php
+Route::prefix('')->group(function () {
   Route::Get('/','\App\Modules\Home\HomeController@index');
+  Route::resource('/professor', '\App\Modules\Professor\ProfessorController');
   Route::Get('/login','\App\Modules\Login\LoginController@index');
+  Route::Post('/login','\App\Modules\Login\LoginController@action');
+
+  /*Route::Get('/login','\App\Modules\Login\LoginController@index');
   Route::Post('/login','\App\Modules\Login\LoginController@action');
   Route::Get('/program','\App\Modules\Program\ProgramController@index');
   Route::Get('/course','\App\Modules\Course\CourseController@index');
@@ -18,6 +23,7 @@
   Route::Get('/professor','\App\Modules\Professor\ProfessorController@index');
   Route::Get('/professor/editprof','\App\Modules\Professor\ProfessorController@editprof');
   Route::Get('/professor/fromprof','\App\Modules\Professor\ProfessorController@fromprof');
+  Route::POST('/professor/fromprof','\App\Modules\Professor\ProfessorController@addaction');
   Route::Get('/sub/editsub','\App\Modules\Sub\SubController@editsub');
   Route::Get('/student','\App\Modules\Student\StudentController@index');
   Route::Get('/student/fromstu','\App\Modules\Student\StudentController@fromstu');
@@ -51,5 +57,6 @@
   Route::Get('/program/editpro','\App\Modules\Program\ProgramController@editpro');
   Route::Get('/rights','\App\Modules\Rights\RightsController@index');
   Route::Get('/rights/fromrig','\App\Modules\Rights\RightsController@fromRig');
-  Route::Get('/rights/editrig','\App\Modules\Rights\RightsController@editRig');
+  Route::Get('/rights/editrig','\App\Modules\Rights\RightsController@editRig');*/
+});
 ?>

@@ -10,9 +10,10 @@ class MyResponse
                 'message'=>$message
             ],400);   
     }
-    public static function success($message,$body = null){
+    public static function success($message,$url='',$body = null){
         return [
             'status'=>200,
+            'url' =>$url,
             'message'=>$message,
             'body'=>$body
         ];   

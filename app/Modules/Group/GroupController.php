@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Input;
 use DB;
+use App\Services\MyResponse;
 
 class GroupController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
     return view('group::Group');
     }

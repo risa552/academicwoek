@@ -13,12 +13,8 @@ class AdminController extends Controller
     {
      return view('admin::Admin');
     }
-    public function editad()
+    public function fromadmin()
     {
-     return view('admin::editad');
-    }
-    public function fromad()
-    {
-     return view('admin::fromad');
+     return view('admin::fromadmin');
     }
 }

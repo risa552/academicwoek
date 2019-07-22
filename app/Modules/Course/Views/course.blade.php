@@ -1,70 +1,118 @@
 @extends('academic-layout') 
-@section('title','ลงทะเบียน')
+@section('title',' หลักสูตร')
 @section('content')
-        <div class="well">
-            <H1>ข้อมูลนักศึกษา</H1>
-                <div style="display: table; width:100%; margin-bottom:15px;">
-                    <table class="table">
-                        <thead class="thead-light">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">ค้นหาหลักสูตร</div>
+                <div class="panel-body">
+                    <form action="/action_page.php">
+                        <div class="form-group">
+                            <label for="email">รหัสหลักสูตร</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">ชื่อหลักสูตร</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <button type="submit" class="btn btn-default">ยืนยัน</button>
+                    </form>
+                </div>
+            </div>
+            <!--<button type="submit" class="btn btn-info"><a href="#">หลักสูตร</a></button> -->
+        </div> 
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    รายการชื่อหลักสูตร
+                    <a href="/cou/fromcou" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลหลักสูตร</a>
+                </div>
+                <div class="panel-body">  
+                <table class="table table-striped">
+                        <thead>
                             <tr>
-                            <th scope="col">รหัสลงทะเบียน</th>
-                            <th scope="col">รหัสวิชา</th>
-                            <th scope="col">รหัสนักศึกษา</th>
-                            <th scope="col">เกรด</th>
-                            <th scope="col">วัน/เดือน/ปี ที่ลงทะเบียน</th>
-                            <th scope="col">รหัสภาคเรียน</th>
-                            <th scope="col">สถานะ</th>
+                                <th>รหัสหลักสูตร</th>
+                                <th>ชื่อหลักสูตร</th>
+                                <th>รหัสสาขาวิชา</th>
+
+                                <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                            <th scope="row">1</th>
-                            <td>01</td>
-                            <td>159333241057</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                                <td>1</td>
+                                <td>บริหารธุรกิจบัณฑิต</td>
+                                <td></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/cou/editcou"></a></button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
+                                                        </div>
+                                                        <div class="modal-body" style="color:#000;">
+                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
+                                                        </div>
+                                                        <div class="modal-footer" action="/action_page.php">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                            </div>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
-                            <th scope="row">2</th>
-                            <td>02</td>
-                            <td>159333241059</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>2</td>
+                                <td>บริหารธุรกิจบัณฑิต</td>
+                                <td></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/cou/editcou"></a></button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
+                                                        </div>
+                                                        <div class="modal-body" style="color:#000;">
+                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>03</td>
-                            <td>159333241060</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            </tr>
-                        
-                            <!--<i class="fa fa-plus-circle" aria-hidden="true"></i> --> 
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-info pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> ยืนยัน</button>
-                </div>   
-            <div>
-                <table class="table">
-                <thead class="thead-light">
-                <tr>
-                            <th scope="col">รหัสลงทะเบียน</th>
-                            <th scope="col">รหัสวิชา</th>
-                            <th scope="col">รหัสนักศึกษา</th>
-                            <th scope="col">เกรด</th>
-                            <th scope="col">วัน/เดือน/ปีที่ลงทะเบียน</th>
-                            <th scope="col">รหัสภาคเรียน</th>
-                            <th scope="col">สถานะ</th>
-                        </tr>
-                </thead>
-                </table>
+                    <!--<ul class="pagination">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    </ul> -->
+                </div>
             </div>
         </div>
-    
+    </div>  
+</div>
 @endsection

@@ -22,7 +22,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     รายการผู้ดูแลระบบ
-                    <a href="/admin/fromad" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลผู้ดูแลระบบ</a>
+                    <a href="/admin/fromadmin" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลผู้ดูแลระบบ</a>
                 </div>
                 <div class="panel-body">  
                 <table class="table table-striped">

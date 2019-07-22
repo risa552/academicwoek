@@ -10,20 +10,20 @@ class ModuleServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/Home/views','home');
         $this->loadViewsFrom(__DIR__.'/Login/Views','log');
         $this->loadViewsFrom(__DIR__.'/Program/Views','program');
-        $this->loadViewsFrom(__DIR__.'/Course/Views','cou');
+        $this->loadViewsFrom(__DIR__.'/Course/Views','course');
         $this->loadViewsFrom(__DIR__.'/Exam/Views','exam');
-        $this->loadViewsFrom(__DIR__.'/Subjectg/Views','subjectg');
-        $this->loadViewsFrom(__DIR__.'/Group/Views','group');
-        $this->loadViewsFrom(__DIR__.'/Sub/Views','sub');
+        $this->loadViewsFrom(__DIR__.'/Subjectgroup/Views','subjectgroup');
+        $this->loadViewsFrom(__DIR__.'/Studygroup/Views','studygroup');
+        $this->loadViewsFrom(__DIR__.'/Subject/Views','subject');
         $this->loadViewsFrom(__DIR__.'/Professor/Views','professor');
         $this->loadViewsFrom(__DIR__.'/Student/Views','student');
-        $this->loadViewsFrom(__DIR__.'/Teaching/Views','teaching');
-        $this->loadViewsFrom(__DIR__.'/Cou/Views','cou');
         $this->loadViewsFrom(__DIR__.'/Term/Views','term'); 
         $this->loadViewsFrom(__DIR__.'/Branch/Views','branch'); 
         $this->loadViewsFrom(__DIR__.'/Admin/Views','admin'); 
         $this->loadViewsFrom(__DIR__.'/Degree/Views','degree'); 
-        $this->loadViewsFrom(__DIR__.'/Teach/Views','teach');
-        $this->loadViewsFrom(__DIR__.'/Rights/Views','rights');
+        $this->loadViewsFrom(__DIR__.'/Educate/Views','educate'); 
+        $this->loadViewsFrom(__DIR__.'/Enrolment/Views','enrolment'); 
+        $this->loadViewsFrom(__DIR__.'/Premission/Views','premission'); 
+    
     }
 }

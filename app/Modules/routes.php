@@ -4,7 +4,7 @@ Route::prefix('')->group(function () {
   Route::resource('/professor', '\App\Modules\Professor\ProfessorController');
   Route::Get('/login','\App\Modules\Login\LoginController@index');
   Route::Post('/login','\App\Modules\Login\LoginController@action');
-  Route::resource('/group', '\App\Modules\Group\GroupController@index');
+  Route::resource('/studygroup', '\App\Modules\Studygroup\StudygroupController');
 
   /*Route::Get('/login','\App\Modules\Login\LoginController@index');
   Route::Post('/login','\App\Modules\Login\LoginController@action');

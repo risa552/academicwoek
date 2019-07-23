@@ -36,7 +36,7 @@ class ProfessorController extends Controller
                       ->orwhere('email','LIKE','%'.$keyword.'%');
             });
         }
-        $teacher = $teacher->get();
+        $teacher = $teacher->paginate(10);
         return view('professor::professor',[
             'teacher'=>$teacher
         ]);
@@ -79,7 +79,7 @@ class ProfessorController extends Controller
             }else{
                 return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ'); 
             }
-        }
+        }   
     }
 
     public function show($id,Request $request)

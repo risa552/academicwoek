@@ -1,5 +1,5 @@
 @extends('academic-layout') 
-@section('title','เพิ่มข้อมูลหลักสูตร')
+@section('title','ข้อมูลหลักสูตร')
 @section('content')
 <div class="container">
     <div class="row">

@@ -7,15 +7,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">ค้นหาข้อมูลอาจารย์</div>
                 <div class="panel-body">
-                    <form action="/action_page.php">
+                    <form action="/professor">
                         <div class="form-group">
-                            <label for="keyword">รหัสอาจารย์</label>
-                            <input type="text" name="keyword" class="form-control" >
+                            <label for="keyword">ชื่ออาจารย์</label>
+                            <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}" >
                         </div>
-                        <div class="form-group">
-                            <label for="email">ชื่ออาจารย์</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
+                        
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -33,16 +30,13 @@
                 <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสอาจารย์</th>
+                                <th>ลำดับที่</th>
                                 <th>ชื่อ</th>
                                 <th>นามสกุล</th>
                                 <th>เบอร์</th>
                                 <th>เพศ</th>
-                                <!--<th>เบอร์</th> -->
                                 <th>ที่อยู่</th>
                                 <th>E-mail</th>
-                                <th>รหัสการสอน</th>
-                                <th>รหัสสิทธิ์</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -54,28 +48,18 @@
                                 <td>{{$professor->last_name}}</td>
                                 <td>{{$professor->tel}}</td>
                                 <td>{{$professor->sex}}</td>
-                                <!--<td>{{$professor->tel}}</td>-->
                                 <td>{{$professor->add}}</td>
                                 <td>{{$professor->email}}</td>
-                                <td>01</td>
-                                <td>{{$professor->pre_id}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/professor/{{$professor->id}}"></a></button>
-                                        <button type="button" class="btn btn-danger"><a class="fa fa-trash delete-item" aria-hidden="true" href="/professor/{{$professor->id}}"></a></button>
+                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/professor/{{$professor->id}}"></a>
+                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/professor/{{$professor->id}}"></a>
                                     </div>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                    <!--<ul class="pagination">
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                    </ul> -->
                 </div>
             </div>
         </div>

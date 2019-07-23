@@ -9,12 +9,14 @@ Route::prefix('')->group(function () {
   Route::resource('/degree', '\App\Modules\Degree\DegreeController');
   Route::resource('/term', '\App\Modules\Term\TermController');
   Route::resource('/subject', '\App\Modules\Subject\SubjectController');
-  Route::resource('/premission', '\App\Modules\Premission\PremissionController');
   Route::resource('/program', '\App\Modules\Program\ProgramController');
   Route::resource('/educate', '\App\Modules\Educate\EducateController');
   Route::resource('/subjectgroup', '\App\Modules\Subjectgroup\SubjectgroupController');
   Route::resource('/exam', '\App\Modules\Exam\ExamController');
   Route::resource('/enrolment', '\App\Modules\Enrolment\EnrolmentController');
+  Route::resource('/branch', '\App\Modules\Branch\BranchController');
+
+
 
   /*Route::Get('/login','\App\Modules\Login\LoginController@index');
   Route::Post('/login','\App\Modules\Login\LoginController@action');

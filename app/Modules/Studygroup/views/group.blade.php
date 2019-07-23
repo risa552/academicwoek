@@ -7,10 +7,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading">ค้นหาข้อมูลกลุ่มเรียน</div>
                 <div class="panel-body">
-                    <form action="/action_page.php">
+                    <form action="/studygroup">
                         <div class="form-group">
-                            <label for="email">รหัสกลุ่มเรียน</label>
-                            <input type="email" class="form-control" id="email">
+                            <label>รหัสกลุ่มเรียน</label>
+                            <input type="text" class="form-control" name="keyword" value="{{Input::get('keyword')}}">
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>

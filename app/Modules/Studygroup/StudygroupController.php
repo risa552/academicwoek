@@ -17,9 +17,8 @@ class StudygroupController extends Controller
         ->whereNull('delete_at');
         if(!empty($keyword)){
             $studygroup->where(function ($query) use($keyword){
-                $query->where('frist_name','LIKE','%'.$keyword.'%')
-                      ->orwhere('last_name','LIKE','%'.$keyword.'%')
-                      ->orwhere('email','LIKE','%'.$keyword.'%');
+                $query->where('group','LIKE','%'.$keyword.'%')
+                      ->orwhere('year','LIKE','%'.$keyword.'%');
             });
         }
         $studygroup = $studygroup->get();

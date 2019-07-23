@@ -1,17 +1,13 @@
 @extends('academic-layout') 
-@section('title',' หลักสูตร')
+@section('title',' ข้อมูลหลักสูตร')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหาหลักสูตร</div>
+                <div class="panel-heading">ค้นหาข้อมูลหลักสูตร</div>
                 <div class="panel-body">
                     <form action="/action_page.php">
-                        <div class="form-group">
-                            <label for="email">รหัสหลักสูตร</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
                         <div class="form-group">
                             <label for="email">ชื่อหลักสูตร</label>
                             <input type="email" class="form-control" id="email">
@@ -22,85 +18,35 @@
             </div>
             <!--<button type="submit" class="btn btn-info"><a href="#">หลักสูตร</a></button> -->
         </div> 
+
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    รายการชื่อหลักสูตร
-                    <a href="/cou/fromcou" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลหลักสูตร</a>
+                    รายการข้อมูลหลักสูตร
+                    <a href="/course/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลหลักสูตร</a>
                 </div>
-                <div class="panel-body">  
+                <div class="panel-body">
                 <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสหลักสูตร</th>
+                                <th>ลำดับที่</th>
                                 <th>ชื่อหลักสูตร</th>
-                                <th>รหัสสาขาวิชา</th>
-
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($course as $index => $course)
                             <tr>
-                                <td>1</td>
-                                <td>บริหารธุรกิจบัณฑิต</td>
-                                <td></td>
+                                <td>{{$index+1}}</td>
+                                <td>{{$course->cou_name}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/cou/editcou"></a></button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
-                                                        </div>
-                                                        <div class="modal-body" style="color:#000;">
-                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
-                                                        </div>
-                                                        <div class="modal-footer" action="/action_page.php">
-                                                        <button type="submit" class="btn btn-info">Submit</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>    
-                                                </div>
-                                            </div>
+                                    <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/course/{{$course->cou_id}}"></a></button>
+                                    <button type="button" class="btn btn-danger"><a class="fa fa-trash delete-item" aria-hidden="true" href="/course/{{$course->cou_id}}"></a></button>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                            <td>2</td>
-                                <td>บริหารธุรกิจบัณฑิต</td>
-                                <td></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/cou/editcou"></a></button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
-                                                        </div>
-                                                        <div class="modal-body" style="color:#000;">
-                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-info">Submit</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                     <!--<ul class="pagination">

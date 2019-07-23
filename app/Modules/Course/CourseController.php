@@ -1,24 +1,103 @@
 <?php
 
-namespace App\Modules\Cou;
+namespace App\Modules\Course;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Input;
 use DB;
+use App\Services\MyResponse;
 
-class CouController extends Controller
+class CourseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-     return view('cou::Cou');
+        /*DB::table('course')->insert([
+            'cou_name' => 'บัณฑิต',
+        ]);  */
+        $keyword =$request->get('keyword');
+        
+        $course = DB::table('course')
+        ->whereNull('delete_at');
+        if(!empty($keyword)){
+            $course->where(function ($query) use($keyword){
+                $query->where('cou_name','LIKE','%'.$keyword.'%');
+            });
+        }
+        $course = $course->paginate(10);
+        return view('course::course',[
+            'course'=>$course
+        ]);
     }
-    public function editcou()
+
+    public function create()
     {
-     return view('cou::editcou');
+        return view('course::fromcourse');
+    
     }
-    public function fromcou()
+
+    public function store(Request $request)
     {
-     return view('cou::fromcou');
+        
+        {
+            $cou_name = $request->get('cou_name');
+            if(!empty($cou_name) )
+            {
+                DB::table('course')->insert([
+                    'cou_name' =>$cou_name,
+                ]);
+               // print_r('course');exit;
+               return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/course');
+            }else{
+                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ'); 
+            }
+        }
+    }
+
+    public function show($cou_id,Request $request)
+    {
+        if(is_numeric($cou_id))
+        {
+            $course = DB::table('course')->where('cou_id',$cou_id)->first();
+            if(!empty($course))
+            {
+                return view('course::fromcourse',[
+                    'course'=>$course
+                ]);
+            }
+        }
+        return view('data-not-found',['back_url'=>'/course']);
+    }
+    public function update($cou_id,Request $request)
+    {
+        if(is_numeric($cou_id))
+        {
+            
+            $cou_name = $request->get('cou_name');
+
+            if(!empty($cou_name) )
+            {
+               
+                DB::table('course')->where('cou_id',$cou_id)->update([
+                    'cou_name' =>$cou_name,
+                ]);
+                return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/course');
+            }else{
+                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ');
+            }
+        }
+        return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
+    }
+    
+    public function destroy($cou_id)
+    {
+        if(is_numeric($cou_id))
+        {
+            DB::table('course')->where('cou_id',$cou_id)->update([
+                'delete_at' =>date('Y-m-d H:i:s'),
+            ]);
+            return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
+        }
+        return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
 }

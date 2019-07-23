@@ -26,7 +26,7 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    รายการข้อมูลหลักสูตร
+                    รายการข้อมูลระดับ
                     <a href="/degree/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> ข้อมูลระดับ</a>
                 </div>
                 <div class="panel-body">

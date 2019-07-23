@@ -41,10 +41,13 @@ class CourseController extends Controller
         
         {
             $cou_name = $request->get('cou_name');
+
             if(!empty($cou_name) )
             {
+                
                 DB::table('course')->insert([
                     'cou_name' =>$cou_name,
+                    'created_at' =>date('Y-m-d H:i:s'),
                 ]);
                // print_r('course');exit;
                return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/course');
@@ -80,6 +83,7 @@ class CourseController extends Controller
                
                 DB::table('course')->where('cou_id',$cou_id)->update([
                     'cou_name' =>$cou_name,
+                    'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/course');
             }else{

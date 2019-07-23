@@ -4,10 +4,17 @@ Route::prefix('')->group(function () {
   Route::resource('/professor', '\App\Modules\Professor\ProfessorController');
   Route::Get('/login','\App\Modules\Login\LoginController@index');
   Route::Post('/login','\App\Modules\Login\LoginController@action');
-  
+  Route::resource('/studygroup', '\App\Modules\Studygroup\StudygroupController');
   Route::resource('/course', '\App\Modules\Course\CourseController');
   Route::resource('/degree', '\App\Modules\Degree\DegreeController');
   Route::reource('/term', '\App\Modules\Term\TermController');
+  Route::reource('/subject', '\App\Modules\Subject\SubjectController');
+  Route::reource('/premission', '\App\Modules\Premission\PremissionController');
+  Route::reource('/program', '\App\Modules\Program\ProgramController');
+  Route::reource('/educate', '\App\Modules\Educate\EducateController');
+  Route::reource('/subjectgroup', '\App\Modules\Subjectgroup\SubjectgroupController');
+  Route::reource('/exam', '\App\Modules\Exam\ExamController');
+  Route::reource('/enrolment', '\App\Modules\Enrolment\EnrolmentController');
   /*Route::Get('/login','\App\Modules\Login\LoginController@index');
   Route::Post('/login','\App\Modules\Login\LoginController@action');
   Route::Get('/program','\App\Modules\Program\ProgramController@index');

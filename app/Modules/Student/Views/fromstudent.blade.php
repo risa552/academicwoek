@@ -4,77 +4,55 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default">  
-            <div class="panel-heading">เพิ่มข้อมูลนักศึกษา</div>
-                <form class="form-horizontal" action="/action_page.php" style="margin-top:15px;">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="email">รหัสนักศึกษา:</label>
-                        <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" placeholder="Enter email">
+            <div class="panel panel-default"> 
+                 <a herf="/student" กลับหน้าหลัก> </a>
+                <div class="panel-heading">
+                    @if(isset($student))
+                    นักศึกษา : {{$student->std_fname}}
+                    @else
+                    เพิ่มข้อมูลนักศึกษา
+                    @endif
+                </div>
+                @if(isset($student))
+                <form action="/student/{{$student->std_id}}" class="form-ajax" method="PUT">
+                    <input type="hidden" value="put" name="_mathods">
+                    @csrf()
+                @else
+                <form class="form-ajax" action="/student" method="POST">
+                @csrf()
+                @endif
+                <div class="panel-body">
+                        <div class="form-group">
+                            <label for="email">ชื่อนักศึกษา:</label>
+                            <input type="text" name="std_fname" class="form-control" value="{{isset($subject)?$subject->sub_name:''}}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">นามสกุล:</label>
+                            <input type="text" name="std_lname" class="form-control" value="{{isset($student)?$student->credit:''}}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">เบอร์โทรศัพท์:</label>
+                            <input type="text" name="tel" class="form-control" value="{{isset($student)?$student->theory:''}}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">เพศ:</label>
+                            <input type="text" name="sex" class="form-control" value="{{isset($student)?$student->practice:''}}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">ที่อยู่:</label>
+                            <input type="text" name="add" class="form-control" value="{{isset($student)?$student->practice:''}}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">E-mail:</label>
+                            <input type="text" name="email" class="form-control" value="{{isset($student)?$student->practice:''}}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">รหัสกลุ่มเรียน:</label>
+                            <input type="text" name="group_id" class="form-control" value="{{isset($student)?$student->practice:''}}"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">ชื่อ:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">นามสกุล:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">เพศ:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">เบอร์:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">ที่อยู่:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">Email:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">รหัสกลุ่มเรียน:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">รหัสลงทะเบียน:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">รหัสสิทธิ์การใช้งาน:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
-                    </div>
-                    <div class="form-group"> 
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-secondary"><a  href="/student" class="fa fa-arrow-left" aria-hidden="true"> back</a></button>
-                            <button type="submit" class="btn btn-info">Submit</button>
-                        </div>
-                    </div>
+                    <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>
-            </div>
         </div>
     </div>  
 </div>

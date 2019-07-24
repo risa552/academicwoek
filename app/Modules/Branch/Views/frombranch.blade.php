@@ -25,7 +25,7 @@
                         <th>ชื่อสาขา : </th>
                         <input type="text" name="bran_name" class="form-control" value="{{isset($branch)?$branch->bran_name:''}}"/>
                         <th>หลักสูตร:</th>
-                        <input type="text" name="con_id" class="form-control" value="{{isset($branch)?$branch->con_id:''}}"/> 
+                        <input type="text" name="cou_id" class="form-control" value="{{isset($branch)?$branch->cou_id:''}}"/> 
                     </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>

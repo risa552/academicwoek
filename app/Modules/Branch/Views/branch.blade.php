@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{$index+1}}</td>
                                     <td>{{$bran->bran_name}}</td>
-                                    <td>{{$bran->con_id}}</td>
+                                    <td>{{$bran->cou_id}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/branch/{{$bran->bran_id}}"></a>

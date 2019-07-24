@@ -38,14 +38,14 @@ class BranchController extends Controller
         
         {
             $bran_name = $request->get('bran_name');
-            $con_id = $request->get('con_id');
+            $cou_id = $request->get('cou_id');
 
-            if(!empty($bran_name) && !empty($con_id))
+            if(!empty($bran_name) && !empty($cou_id))
             {
                
                 DB::table('Branch')->insert([
                     'bran_name' =>$bran_name,
-                    'con_id' =>$con_id,
+                    'cou_id' =>$cou_id,
                     'created_at' =>date('Y-m-d H:i:s'),
                 ]);
                // print_r('teacher');exit;
@@ -76,14 +76,14 @@ class BranchController extends Controller
         {
             
             $bran_name = $request->get('bran_name');
-            $con_id = $request->get('con_id');
+            $cou_id = $request->get('cou_id');
 
-            if(!empty($bran_name) && !empty($con_id))
+            if(!empty($bran_name) && !empty($cou_id))
             {
                
                 DB::table('Branch')->where('bran_id',$bran_id)->update([
                     'bran_name' =>$bran_name,
-                    'con_id' =>$con_id,
+                    'cou_id' =>$cou_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/branch');

@@ -1,129 +1,61 @@
 @extends('academic-layout') 
-@section('title','ข้อมูลวิชา')
+@section('title',' วิชา')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหาวิชา</div>
+                <div class="panel-heading">ค้นหาข้อมูลวิชา</div>
                 <div class="panel-body">
-                    <form action="/action_page.php">
+                    <form action="/subject">
                         <div class="form-group">
-                            <label for="email">รหัสวิชา</label>
-                            <input type="email" class="form-control" id="email">
+                            <label for="keyword">ชื่อวิชา</label>
+                            <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}" >
                         </div>
-                        <div class="form-group">
-                            <label for="email">ชื่อวิชา</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
+                        
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
             </div>
-            <!--<button type="submit" class="btn btn-info"><a href="#">ข้อมูลวิชา</a></button> -->
+            <!--<button type="submit" class="btn btn-info"><a href="#">วิชา</a></button> -->
         </div> 
+
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    ข้อมูลวิชา
-                    <a href="/sub/fromsub" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลวิชา</a>
+                    รายการข้อมูลวิชา
+                    <a href="/subject/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลวิชา</a>
                 </div>
-                <div class="panel-body">  
+                <div class="panel-body">
                 <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสวิชา</th>
+                                <th>ลำดับที่</th>
                                 <th>ชื่อวิชา</th>
                                 <th>หน่วยกิต</th>
-                                <th>ชั่วโมงทฤษฎี</th>
                                 <th>ชั่วโมงปฎิบัติ</th>
-                                <th>คาบเรียน</th>
-                                <th>รหัสภาคเรียน</th>
-                                <th>รหัสแผนการเรียน</th>
+                                <th>ชั่วโมงทฤษฎี</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($subject as $index =>$subject)
                             <tr>
-                                <td>(3-3-6)</td>
-                                <td>โปรแกรมมิ้ง</td>
-                                <td>6</td>
-                                <td>3 ชั่วโมง</td>
-                                <td>3 ชั่วโมง</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$index+1}}</td>
+                                <td>{{$subject->sub_name}}</td>
+                                <td>{{$subject->credit}}</td>
+                                <td>{{$subject->theory}}</td>
+                                <td>{{$subject->practice}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/sub/editsub"></a></button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
-                                                        </div>
-                                                        <div class="modal-body" style="color:#000;">
-                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
-                                                        </div>
-                                                        <div class="modal-footer" action="/action_page.php">
-                                                        <button type="submit" class="btn btn-info">Submit</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>    
-                                                </div>
-                                            </div>
+                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/subject/{{$subject->sub_id}}"></a>
+                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/subject/{{$subject->sub_id}}"></a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>(3-3-6)</td>
-                                <td>อัลกอริทึ่ม</td>
-                                <td>6</td>
-                                <td>3 ชั่มโมง</td>
-                                <td>3 ชั่วโมง</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/sub/editsub"></a></button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
-                                                        </div>
-                                                        <div class="modal-body" style="color:#000;">
-                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-info">Submit</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
-                    <!--<ul class="pagination">
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                    </ul> -->
                 </div>
             </div>
         </div>

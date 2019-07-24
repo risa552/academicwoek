@@ -6,19 +6,108 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Input;
 use DB;
+use App\Services\MyResponse;
 
 class TermController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-    return view('term::Term');
+        
+        /*DB::table('term')->insert([
+            'term_name' => 'เทอม',
+        ]);  */
+        $keyword =$request->get('keyword');
+        
+        $term = DB::table('term')
+        ->whereNull('delete_at');
+        if(!empty($keyword)){
+            $term->where(function ($query) use($keyword){
+                $query->where('term_name','LIKE','%'.$keyword.'%')
+                      ->orwhere('year','LIKE','%'.$keyword.'%');
+            });
+        }
+        $term = $term->paginate(10);
+        return view('term::term',[
+            'term'=>$term
+        ]);
     }
-    public function fromterm()
+
+    public function create()
     {
-    return view('term::fromterm');
+        return view('term::fromterm');
+    
     }
-    public function editterm()
+
+    public function store(Request $request)
     {
-    return view('term::editterm');
+        
+        {
+            $term_name = $request->get('term_name');
+            $year = $request->get('year');
+
+            if(!empty($term_name) && !empty($year) )
+            {
+               
+                DB::table('term')->insert([
+                    'term_name' =>$term_name,
+                    'year' =>$year,
+                    'created_at' =>date('Y-m-d H:i:s'),
+                ]);
+               // print_r('term');exit;
+               return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/term');
+            }else{
+                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ'); 
+            }
+        }   
+    }
+
+    public function show($term_id,Request $request)
+    {
+        if(is_numeric($term_id))
+        {
+            $term = DB::table('term')->where('term_id',$term_id)->first();
+            if(!empty($term))
+            {
+                return view('term::fromterm',[
+                    'term'=>$term
+                ]);
+            }
+        }
+        return view('data-not-found',['back_url'=>'/term']);
+    }
+    public function update($term_id,Request $request)
+    {
+        if(is_numeric($term_id))
+        {
+            
+            $term_name = $request->get('term_name');
+            $year = $request->get('year');
+
+            if(!empty($term_name) && !empty($year) )
+            {
+               
+                DB::table('term')->where('term_id',$term_id)->update([
+                    'term_name' =>$term_name,
+                    'year' =>$year,
+                    'updated_at' =>date('Y-m-d H:i:s'),
+                ]);
+                return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/term');
+            }else{
+                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ');
+            }
+        }
+        return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
+    }
+    
+    public function destroy($term_id)
+    {
+        if(is_numeric($term_id))
+        {
+            DB::table('term')->where('term_id',$term_id)->update([
+                'delete_at' =>date('Y-m-d H:i:s'),
+            ]);
+            return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
+        }
+        return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
 }

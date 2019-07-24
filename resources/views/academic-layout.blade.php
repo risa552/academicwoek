@@ -32,7 +32,7 @@
                         <li class="sub-nav-menu"><a href="/studygroup">กลุ่มเรียน</a></li>
                         <li class="sub-nav-menu"><a href="/degree">ระดับ</a></li>
                         <li class="sub-nav-menu"><a href="/branch">สาขาวิชา</a></li>
-                        <li class="sub-nav-menu"><a href="/subjectgruop">กลุ่มวิชา</a></li>
+                        <li class="sub-nav-menu"><a href="/subjectgroup">กลุ่มวิชา</a></li>
                         <li class="sub-nav-menu"><a href="/subject">วิชา</a></li>
                         <li class="sub-nav-menu"><a href="/term">ภาคเรียน</a></li>
                         <li class="sub-nav-menu"><a href="/educate">การสอน</a></li>

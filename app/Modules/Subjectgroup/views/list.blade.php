@@ -34,14 +34,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                          @foreach($subjectgroup as $index => $subgroup)
+                          @foreach($items as $index => $item)
                           <tr>
                             <td>{{$index+1}}</td>
-                            <td>{{$subgroup->subgroup_name}}</td>
+                            <td>{{$item->subgroup_name}}</td>
                             <td>
                                 <div class="btn-group">
-                                       <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/subjectgroup/{{$subgroup->subgroup_id}}"></a>
-                                       <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/subjectgroup/{{$subgroup->subgroup_id}}"></a>
+                                       <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/subjectgroup/{{$item->subgroup_id}}"></a>
+                                       <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/subjectgroup/{{$item->subgroup_id}}"></a>
                                 </div>
                             </td>
                           </tr>

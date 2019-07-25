@@ -38,22 +38,24 @@ class DegreeController extends Controller
 
     public function store(Request $request)
     {
+        $degree_name = $request->get('degree_name');
         
+        if(!empty($degree_name) )
         {
-            $degree_name = $request->get('degree_name');
-            
-            if(!empty($degree_name) )
-            {
-
-                DB::table('degree')->insert([
-                    'degree_name' =>$degree_name,
-                    'created_at' =>date('Y-m-d H:i:s'),
-                ]);
-               // print_r('degree');exit;
-               return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/degree');
-            }else{
-                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ'); 
+            $degree = DB::table('degree')
+            ->where('degree_name',$degree_name)
+            ->whereNull('delete_at')->first();
+            if(!empty($degree)){
+                return MyResponse::error('ขออภัยข้อมูลระดับนี้มีอยู่ในระบบแล้ว');
             }
+            DB::table('degree')->insert([
+                'degree_name' =>$degree_name,
+                'created_at' =>date('Y-m-d H:i:s'),
+            ]);
+            // print_r('degree');exit;
+            return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/degree');
+        }else{
+            return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ'); 
         }
     }
 
@@ -80,7 +82,13 @@ class DegreeController extends Controller
 
             if(!empty($degree_name) )
             {
-               
+                $degree = DB::table('degree')
+                ->where('degree_id','!=',$degree_id)
+                ->where('degree_name',$degree_name)
+                ->whereNull('delete_at')->first();
+                if(!empty($degree)){
+                    return MyResponse::error('ขออภัยข้อมูลระดับนี้มีอยู่ในระบบแล้ว');
+                }
                 DB::table('degree')->where('degree_id',$degree_id)->update([
                     'degree_name' =>$degree_name,
                     'updated_at' =>date('Y-m-d H:i:s'),

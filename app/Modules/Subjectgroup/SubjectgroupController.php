@@ -10,35 +10,34 @@ use App\Services\MyResponse;
 
 class SubjectgroupController extends Controller
 {
+    private $table_name = 'subjectgroup';
     public function index(Request $request)
     {
         $keyword =$request->get('keyword');
-        $subjectgroup = DB::table('subjectgroup')
+        $items = DB::table($this->table_name)
         ->whereNull('delete_at');
         if(!empty($keyword)){
-            $subjectgroup->where(function ($query) use($keyword){
+            $items->where(function ($query) use($keyword){
                 $query->where('subgroup_name','LIKE','%'.$keyword.'%');
             });
         }
-        $subjectgroup = $subjectgroup->get();
-        return view('subjectgroup::subjectg',[
-            'subjectgroup'=>$subjectgroup
+        $items = $items->paginate(10);
+        return view($this->table_name.'::list',[
+            'items'=>$items
         ]);
     }
     
     public function create()
     {
-        return view('subjectgroup::from');
+        return view($this->table_name.'::from');
     }
     
     public function store(Request $request)
     {
         $subgroup_name = $request->get('subgroup_name');
-       
-        
         if( !empty($subgroup_name))
         {
-            DB::table('subjectgroup')->insert([
+            DB::table($this->table_name)->insert([
                 'subgroup_name' =>$subgroup_name,
                 'created_at' =>date('Y-m-d H:i:s'),
             ]);
@@ -48,29 +47,29 @@ class SubjectgroupController extends Controller
         }
     }
 
-    public function show($subgroup_id,Request $request)
+    public function show($id,Request $request)
     {
-        if(is_numeric($subgroup_id))
+        if(is_numeric($id))
         {
-            $subjectgroup = DB::table('subjectgroup')->where('subgroup_id',$subgroup_id)->first();
-            if(!empty($subjectgroup))
+            $item = DB::table($this->table_name)->where('subgroup_id',$id)->first();
+            if(!empty($item))
             {
-                return view('subjectgroup::from',[
-                    'subjectgroup'=>$subjectgroup
+                return view($this->table_name.'::from',[
+                    $this->table_name=>$subjectgroup
                 ]);
             }
         }
         return view('data-not-found',['back_url'=>'/subjectgroup']);
     }
 
-    public function update($subgroup_id,Request $request)
+    public function update($id,Request $request)
     {
-        if(is_numeric($subgroup_id))
+        if(is_numeric($id))
         {
             $subgroup_name = $request->get('subgroup_name');
             if( !empty($subgroup_name))
             {
-                DB::table('subjectgroup')->where('subgroup_id',$subgroup_id)->update([
+                DB::table($this->table_name)->where('subgroup_id',$id)->update([
                     'subgroup_name' =>$subgroup_name,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
@@ -81,11 +80,11 @@ class SubjectgroupController extends Controller
         }
         return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
-    public function destroy($subgroup_id)
+    public function destroy($id)
     {
-        if(is_numeric($subgroup_id))
+        if(is_numeric($id))
         {
-            DB::table('subjectgroup')->where('subgroup_id',$subgroup_id)->update([
+            DB::table($this->table_name)->where('subgroup_id',$id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');

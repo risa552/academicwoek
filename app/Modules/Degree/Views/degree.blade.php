@@ -45,8 +45,8 @@
                                 <td>{{$degree->degree_name}}</td>
                                 <td>
                                     <div class="btn-group">
-                                    <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/degree/{{$degree->degree_id}}"></a></button>
-                                    <button type="button" class="btn btn-danger"><a class="fa fa-trash delete-item" aria-hidden="true" href="/degree/{{$degree->degree_id}}"></a></button>
+                                    <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/degree/{{$degree->degree_id}}"></a>
+                                    <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/degree/{{$degree->degree_id}}"></a>
                                     </div>
                                 </td>
                             </tr>

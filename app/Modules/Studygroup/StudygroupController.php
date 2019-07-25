@@ -10,26 +10,48 @@ use App\Services\MyResponse;
 
 class StudygroupController extends Controller
 {
+    private $table_name = 'studygroup';
+    private $table2 = 'branch';
+    private $table3 = 'degree';
+
     public function index(Request $request)
     {
         $keyword =$request->get('keyword');
-        $studygroup = DB::table('studygroup')
-        ->whereNull('delete_at');
-        if(!empty($keyword)){
-            $studygroup->where(function ($query) use($keyword){
+        $bran_id =$request->get('bran_id');
+        $degree_id =$request->get('degree_id');
+
+        $items = DB::table($this->table_name)
+        ->select('studygroup.*','branch.bran_name','degree.degree_name')
+        ->leftJoin('branch','studygroup.bran_id','branch.bran_id')
+        ->leftJoin('degree','studygroup.degree_id','degree.degree_id')
+        ->whereNull('studygroup.delete_at');
+
+        if(!empty($keyword))
+        {
+            $items->where(function ($query) use($keyword){
                 $query->where('group','LIKE','%'.$keyword.'%')
                       ->orwhere('year','LIKE','%'.$keyword.'%');
             });
         }
-        $studygroup = $studygroup->get();
-        return view('studygroup::group',[
-            'studygroup'=>$studygroup
-        ]);
+        if(is_numeric($bran_id))
+        {
+            $items->where('studygroup.bran_id','=',$bran_id);
+        }
+        if(is_numeric($degree_id))
+        {
+            $items->where('studygroup.degree_id','=',$degree_id);
+        }
+        $items = $items->orderBy('studygroup.year','asc')->paginate(10);
+        $branch = DB::table($this->table2)->whereNull('delete_at')->get();
+        $degree = DB::table($this->table3)->whereNull('delete_at')->get();
+        return view($this->table_name.'::list',compact('items','branch','degree'));
     }
     
     public function create()
     {
-        return view('studygroup::fromgroup');
+        $branch = DB::table($this->table2)->whereNull('delete_at')->get();
+        $degree = DB::table($this->table3)->whereNull('delete_at')->get();
+        return view($this->table_name.'::form',compact('branch','degree'));
     }
     
     public function store(Request $request)
@@ -41,7 +63,14 @@ class StudygroupController extends Controller
         
         if( !empty($group) && !empty($year) && !empty($bran_id) && !empty($degree_id))
         {
-            DB::table('studygroup')->insert([
+            $items = DB::table($this->table_name)
+            ->where('group',$group)
+            ->whereNull('delete_at')->first();
+            if(!empty($items))
+            {
+                return MyResponse::error('ขออภัยข้อมูลกลุ่มเรียนนี้มีอยู่ในระบบแล้ว');
+            }   
+            DB::table($this->table_name)->insert([
                 'group' =>$group,
                 'year' =>$year,
                 'bran_id' =>$bran_id,
@@ -59,16 +88,18 @@ class StudygroupController extends Controller
     {
         if(is_numeric($id))
         {
-            $studygroup = DB::table('studygroup')->where('id',$id)->first();
-            if(!empty($studygroup))
+            $items = DB::table($this->table_name)->where('id',$id)->first();
+            if(!empty($items))
             {
-                return view('studygroup::fromgroup',[
-                    'studygroup'=>$studygroup
+                $branch = DB::table($this->table2)->whereNull('delete_at')->get();
+                $degree = DB::table($this->table3)->whereNull('delete_at')->get();
+                return view($this->table_name.'::form',[
+                    'items'=>$items,
+                    'branch'=>$branch,
+                    'degree'=>$degree
                 ]);
             }
-           
         }
-    
         return view('data-not-found',['back_url'=>'/studygroup']);
     }
 
@@ -83,7 +114,14 @@ class StudygroupController extends Controller
             
             if( !empty($group) && !empty($year) && !empty($bran_id) && !empty($degree_id))
             {
-                DB::table('studygroup')->where('id',$id)->update([
+                $items = DB::table($this->table_name)
+            ->where('id','!=',$id)
+            ->where('group',$group)
+            ->whereNull('delete_at')->first();
+            if(!empty($items)){
+                return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
+            }
+                DB::table($this->table_name)->where('id',$id)->update([
                     'group' =>$group,
                     'year' =>$year,
                     'bran_id' =>$bran_id,
@@ -94,14 +132,15 @@ class StudygroupController extends Controller
             }else{
                 return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยคะ');
             }
-        }
-        return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
+        }  
+            return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
+
     public function destroy($id)
     {
         if(is_numeric($id))
         {
-            DB::table('studygroup')->where('id',$id)->update([
+            DB::table($this->table_name)->where('id',$id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');

@@ -38,17 +38,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($studygroup as $index => $studygroup)
+                        @foreach($items as $index => $row)
                         <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{$studygroup->group}}</td>
-                                <td>{{$studygroup->year}}</td>
-                                <td>{{$studygroup->bran_id}}</td>
-                                <td>{{$studygroup->degree_id}}</td>
+                                <td>{{$row->group}}</td>
+                                <td>{{$row->year}}</td>
+                                <td>{{$row->bran_name}}</td>
+                                <td>{{$row->degree_name}}</td>
                                 <td>
                                     <div class="btn-group">
-                                       <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/studygroup/{{$studygroup->id}}"></a>
-                                       <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/studygroup/{{$studygroup->id}}"></a>
+                                       <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/studygroup/{{$row->id}}"></a>
+                                       <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/studygroup/{{$row->id}}"></a>
                                     </div>
                                 </td>
                             </tr>

@@ -111,12 +111,12 @@ class BranchController extends Controller
             if( !empty($bran_name) && !empty($cou_id) && !empty($program_id))
             {
                 $items = DB::table($this->table_name)
-            ->where('bran_id','!=',$id)
-            ->where('bran_name',$bran_name)
-            ->whereNull('delete_at')->first();
-            if(!empty($items)){
-                return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
-            }
+                    ->where('bran_id','!=',$id)
+                    ->where('bran_name',$bran_name)
+                    ->whereNull('delete_at')->first();
+                if(!empty($items)){
+                    return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
+                }
                 DB::table($this->table_name)->where('bran_id',$id)->update([
                     'bran_name' =>$bran_name,
                     'cou_id' =>$cou_id,

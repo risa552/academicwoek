@@ -10,95 +10,132 @@ use App\Services\MyResponse;
 
 class BranchController extends Controller
 {
+    private $table_name = 'branch';
+    private $table2 = 'course';
+    private $table3 = 'educationprogram';
+
     public function index(Request $request)
     {
         $keyword =$request->get('keyword');
-        
-        $branch = DB::table('branch')
-        ->whereNull('delete_at');
-        if(!empty($keyword)){
-            $branch->where(function ($query) use($keyword){
+        $pk1 =$request->get('pk1');
+        $pk2 =$request->get('pk2');
+
+        $items = DB::table($this->table_name)
+        ->select('branch.*','course.cou_name','educationprogram.program_name')
+        ->leftJoin('course','branch.cou_id','course.cou_id')
+        ->leftJoin('educationprogram','branch.program_id','educationprogram.program_id')
+        ->whereNull('branch.delete_at');
+
+        if(!empty($keyword))
+        {
+            $items->where(function ($query) use($keyword){
                 $query->where('bran_name','LIKE','%'.$keyword.'%');
             });
         }
-        $branch = $branch->paginate(10);
-        return view('branch::branch',[
-            'branch'=>$branch
-        ]);
+        if(is_numeric($pk1))
+        {
+            $items->where('branch.cou_id','=',$pk1);
+        }
+        if(is_numeric($pk2))
+        {
+            $items->where('branch.program_id','=',$pk2);
+        }
+        $items = $items->orderBy('bran_name','asc')->paginate(10);
+        $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
+        $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
+        return view($this->table_name.'::list',compact('items','items2','items3'));
     }
-
+    
     public function create()
     {
-        return view('branch::frombranch');
-    
+        $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
+        $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
+        return view($this->table_name.'::form',compact('items2','items3'));
     }
-
+    
     public function store(Request $request)
     {
+        $bran_name = $request->get('bran_name');
+        $cou_id = $request->get('cou_id');
+        $program_id = $request->get('program_id');
         
+        if( !empty($bran_name) && !empty($cou_id) && !empty($program_id))
         {
-            $bran_name = $request->get('bran_name');
-            $cou_id = $request->get('cou_id');
-
-            if(!empty($bran_name) && !empty($cou_id))
+            $items = DB::table($this->table_name)
+            ->where('bran_name',$bran_name)
+            ->whereNull('delete_at')->first();
+            if(!empty($items))
             {
-               
-                DB::table('Branch')->insert([
-                    'bran_name' =>$bran_name,
-                    'cou_id' =>$cou_id,
-                    'created_at' =>date('Y-m-d H:i:s'),
-                ]);
-               // print_r('teacher');exit;
-               return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/branch');
-            }else{
-                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ'); 
-            }
-        }   
+                return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
+            }   
+            DB::table($this->table_name)->insert([
+                'bran_name' =>$bran_name,
+                'cou_id' =>$cou_id,
+                'program_id' =>$program_id,
+                'created_at' =>date('Y-m-d H:i:s'),
+                //'created_at' =>date('Y-m-d H::i::s'),
+            ]);
+            return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/branch');
+        }else{
+            return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยคะ');
+        }
     }
 
-    public function show($bran_id,Request $request)
+    public function show($id,Request $request)
     {
-        if(is_numeric($bran_id))
+        if(is_numeric($id))
         {
-            $branch = DB::table('branch')->where('bran_id',$bran_id)->first();
-            if(!empty($branch))
+            $items = DB::table($this->table_name)->where('bran_id',$id)->first();
+            if(!empty($items))
             {
-                return view('branch::frombranch',[
-                    'branch'=>$branch
+                $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
+                $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
+                return view($this->table_name.'::form',[
+                    'items'=>$items,
+                    'items2'=>$items2,
+                    'items3'=>$items3,
                 ]);
             }
         }
         return view('data-not-found',['back_url'=>'/branch']);
     }
-    public function update($bran_id,Request $request)
+
+    public function update($id,Request $request)
     {
-        if(is_numeric($bran_id))
+        if(is_numeric($id))
         {
-            
             $bran_name = $request->get('bran_name');
             $cou_id = $request->get('cou_id');
-
-            if(!empty($bran_name) && !empty($cou_id))
+            $program_id = $request->get('program_id');
+            
+            if( !empty($bran_name) && !empty($cou_id) && !empty($program_id))
             {
-               
-                DB::table('Branch')->where('bran_id',$bran_id)->update([
+                $items = DB::table($this->table_name)
+            ->where('bran_id','!=',$id)
+            ->where('bran_name',$bran_name)
+            ->whereNull('delete_at')->first();
+            if(!empty($items)){
+                return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
+            }
+                DB::table($this->table_name)->where('bran_id',$id)->update([
                     'bran_name' =>$bran_name,
                     'cou_id' =>$cou_id,
+                    'program_id' =>$program_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/branch');
             }else{
-                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ');
+                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยคะ');
             }
-        }
-        return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
+        }  
+            return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
-    
-    public function destroy($bran_id)
+
+    public function destroy($id)
     {
-        if(is_numeric($bran_id))
+        if(is_numeric($id))
         {
-            DB::table('branch')->where('bran_id',$bran_id)->update([
+            DB::table($this->table_name)->where('bran_id',$id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');

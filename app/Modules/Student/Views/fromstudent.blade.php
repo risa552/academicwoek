@@ -22,33 +22,35 @@
                 @csrf()
                 @endif
                 <div class="panel-body">
+                <div class="form-group">
+                <div class="form-group">
                         <div class="form-group">
                             <label for="email">ชื่อนักศึกษา:</label>
-                            <input type="text" name="std_fname" class="form-control" value="{{isset($subject)?$subject->sub_name:''}}"/>
+                            <input type="text" name="std_fname" class="form-control" value="{{isset($student)?$student->std_fname:''}}"/>
                         </div>
                         <div class="form-group">
                             <label for="pwd">นามสกุล:</label>
-                            <input type="text" name="std_lname" class="form-control" value="{{isset($student)?$student->credit:''}}"/>
+                            <input type="text" name="std_lname" class="form-control" value="{{isset($student)?$student->std_lname:''}}"/>
                         </div>
                         <div class="form-group">
                             <label for="pwd">เบอร์โทรศัพท์:</label>
-                            <input type="text" name="tel" class="form-control" value="{{isset($student)?$student->theory:''}}"/>
+                            <input type="text" name="tel" class="form-control" value="{{isset($student)?$student->tel:''}}"/>
                         </div>
                         <div class="form-group">
                             <label for="pwd">เพศ:</label>
-                            <input type="text" name="sex" class="form-control" value="{{isset($student)?$student->practice:''}}"/>
+                            <input type="text" name="sex" class="form-control" value="{{isset($student)?$student->sex:''}}"/>
                         </div>
                         <div class="form-group">
                             <label for="pwd">ที่อยู่:</label>
-                            <input type="text" name="add" class="form-control" value="{{isset($student)?$student->practice:''}}"/>
+                            <input type="text" name="add" class="form-control" value="{{isset($student)?$student->add:''}}"/>
                         </div>
                         <div class="form-group">
-                            <label for="pwd">E-mail:</label>
-                            <input type="text" name="email" class="form-control" value="{{isset($student)?$student->practice:''}}"/>
+                            <label for="pwd">e-mail:</label>
+                            <input type="text" name="email" class="form-control" value="{{isset($student)?$student->email:''}}"/>
                         </div>
                         <div class="form-group">
                             <label for="pwd">รหัสกลุ่มเรียน:</label>
-                            <input type="text" name="group_id" class="form-control" value="{{isset($student)?$student->practice:''}}"/>
+                            <input type="text" name="group_id" class="form-control" value="{{isset($student)?$student->group_id:''}}"/>
                         </div>
                     </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>

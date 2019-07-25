@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Input;
 use DB;
+use App\Services\MyResponse;
 
 class StudentController extends Controller
 {
@@ -16,10 +17,10 @@ class StudentController extends Controller
         ]);  */
         $keyword =$request->get('keyword');
         
-        $subject = DB::table('student')
+        $student = DB::table('student')
         ->whereNull('delete_at');
         if(!empty($keyword)){
-            $subject->where(function ($query) use($keyword){
+            $student->where(function ($query) use($keyword){
                 $query->where('std_fname','LIKE','%'.$keyword.'%');
                 $query->where('std_lname','LIKE','%'.$keyword.'%');
                 $query->where('email','LIKE','%'.$keyword.'%');
@@ -57,7 +58,7 @@ class StudentController extends Controller
                     'std_lname' =>$std_lname,
                     'tel' =>$tel,
                     'sex' =>$sex,
-                    'email' =>$add,
+                    'add' =>$add,
                     'email' =>$email,
                     'group_id' =>$group_id,
                     'created_at' =>date('Y-m-d H:i:s'),
@@ -106,7 +107,7 @@ class StudentController extends Controller
                     'std_lname' =>$std_lname,
                     'tel' =>$tel,
                     'sex' =>$sex,
-                    'email' =>$add,
+                    'add' =>$add,
                     'email' =>$email,
                     'group_id' =>$group_id,
                     'updated_at' =>date('Y-m-d H:i:s'),

@@ -7,10 +7,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">ค้นหาข้อมูลนักศึกษา</div>
                 <div class="panel-body">
-                    <form action="/subject">
+                    <form action="/student">
                         <div class="form-group">
                             <label for="keyword">ชื่อนักศึกษา</label>
-                            <label for="keyword">รหัสกลุ่มเรียน</label>
                             <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}" >
                         </div>
                         
@@ -31,7 +30,6 @@
                 <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสนักศึกษา</th>
                                 <th>ชื่อนักศึกษา</th>
                                 <th>นามสกุล</th>
                                 <th>เบอร์โทรศัพท์</th>
@@ -45,18 +43,17 @@
                         <tbody>
                         @foreach($student as $index =>$student)
                             <tr>
-                                <td>{{$index+1}}</td>
                                 <td>{{$student->std_fname}}</td>
-                                <td>{{$subject->std_lname}}</td>
-                                <td>{{$subject->tel}}</td>
-                                <td>{{$subject->sex}</td>
-                                <td>{{$subject->add}</td>
-                                <td>{{$subject->email}</td>
-                                <td>{{$subject->group_id}</td>
+                                <td>{{$student->std_lname}}</td>
+                                <td>{{$student->tel}}</td>
+                                <td>{{$student->sex}}</td>
+                                <td>{{$student->add}}</td>
+                                <td>{{$student->email}}</td>
+                                <td>{{$student->group_id}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/subject/{{$subject->std_id}}"></a>
-                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/subject/{{$subject->std_id}}"></a>
+                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/student/{{$student->std_id}}"></a>
+                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/student/{{$student->std_id}}"></a>
                                     </div>
                                 </td>
                             </tr>

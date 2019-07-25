@@ -20,6 +20,7 @@ Route::prefix('')->group(function ()
       Route::resource('/exam', '\App\Modules\Exam\ExamController');
       Route::resource('/enrolment', '\App\Modules\Enrolment\EnrolmentController');
       Route::resource('/branch', '\App\Modules\Branch\BranchController');
+      Route::resource('/student', '\App\Modules\Student\StudentController');
     });
 });
 ?>

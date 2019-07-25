@@ -23,6 +23,12 @@ class CurrentUser
                             ->first();
                 return $admin;
             }
+            elseif($user->user_type===MyConst::$USER_LEVEL_STUDENT){
+                $admin = DB::table('student')
+                            ->where('std_id',$user->user_id)
+                            ->first();
+                return $admin;
+            }
         }
         return null;
     }

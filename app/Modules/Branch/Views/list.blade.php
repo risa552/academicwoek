@@ -31,19 +31,21 @@
                                 <th>ลำดับที่</th>
                                 <th>ชื่อสาขาวิชา</th>
                                 <th>หลักสูตร</th>
+                                <th>แผนการเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($branch as $index => $bran)
+                            @foreach($items as $index => $row)
                                 <tr>
                                     <td>{{$index+1}}</td>
-                                    <td>{{$bran->bran_name}}</td>
-                                    <td>{{$bran->cou_id}}</td>
+                                    <td>{{$row->bran_name}}</td>
+                                    <td>{{$row->cou_name}}</td>
+                                    <td>{{$row->program_name}}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/branch/{{$bran->bran_id}}"></a>
-                                            <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/branch/{{$bran->bran_id}}"></a>
+                                            <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/branch/{{$row->bran_id}}"></a>
+                                            <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/branch/{{$row->bran_id}}"></a>
                                         </div>
                                     </td>
                                 </tr>

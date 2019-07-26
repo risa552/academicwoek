@@ -9,10 +9,9 @@
                 <div class="panel-body">
                     <form action="/subject">
                         <div class="form-group">
-                            <label for="keyword">ชื่อวิชา</label>
+                            <label>ชื่อวิชา</label>
                             <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}" >
                         </div>
-                        
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -35,21 +34,25 @@
                                 <th>หน่วยกิต</th>
                                 <th>ชั่วโมงปฎิบัติ</th>
                                 <th>ชั่วโมงทฤษฎี</th>
+                                <th>กลุ่มวิชา</th>
+                                <th>แผนการเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($subject as $index =>$subject)
+                        @foreach($items as $index =>$row)
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{$subject->sub_name}}</td>
-                                <td>{{$subject->credit}}</td>
-                                <td>{{$subject->theory}}</td>
-                                <td>{{$subject->practice}}</td>
+                                <td>{{$row->sub_name}}</td>
+                                <td>{{$row->credit}}</td>
+                                <td>{{$row->theory}}</td>
+                                <td>{{$row->practice}}</td>
+                                <td>{{$row->subgroup_name}}</td>
+                                <td>{{$row->program_name}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/subject/{{$subject->sub_id}}"></a>
-                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/subject/{{$subject->sub_id}}"></a>
+                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/subject/{{$row->sub_id}}"></a>
+                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/subject/{{$row->sub_id}}"></a>
                                     </div>
                                 </td>
                             </tr>

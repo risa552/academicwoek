@@ -55,7 +55,7 @@ class SubjectgroupController extends Controller
             if(!empty($item))
             {
                 return view($this->table_name.'::from',[
-                    $this->table_name=>$subjectgroup
+                    $this->table_name=>$item
                 ]);
             }
         }

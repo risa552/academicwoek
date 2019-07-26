@@ -35,7 +35,6 @@
                         <li class="sub-nav-menu"><a href="/subjectgroup">กลุ่มวิชา</a></li>
                         <li class="sub-nav-menu"><a href="/subject">วิชา</a></li>
                         <li class="sub-nav-menu"><a href="/term">ภาคเรียน</a></li>
-                        <li class="sub-nav-menu"><a href="/educate">การสอน</a></li>
                         <li class="sub-nav-menu"><a href="/student">นักศึกษา</a></li>
                         <li class="sub-nav-menu"><a href="/professor">อาจารย์</a></li>
                         <li class="sub-nav-menu"><a href="/admin">ผู้ใช้งาน</a></li>

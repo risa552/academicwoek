@@ -7,7 +7,7 @@
             <div class="panel panel-default">  
                 <div class="panel-heading">
                         @if(isset($items))
-                        ลงทะเบียน : {{$items->group}}
+                        ลงทะเบียน : {{$items->enro_id}}
                         @else
                         เพิ่มลงทะเบียน
                         @endif
@@ -21,30 +21,30 @@
                     @csrf()
                     @endif
                     <div class="panel-body">
+                            <div class="form-group">
+                                <label >ชื่อนักศึกษา:</label>
+                                <select name="std_id">
+                                    <option value="all">
+                                        ทั้งหมด
+                                    </option>
+                                @foreach($student as $index => $row1)
+                                    <option value ="{{$row1->std_id}}" {{Input::get('std_id')==$row1->std_id?'stlected':''}}>
+                                        {{$row1->std_id}}
+                                    </option>
+                                @endforeach
+                                </select>
+                            </div>
                             <div>
-                                <label >วัน/เดือน/ปี ที่ลงทะเบียน:</label>
-                                <input type="text" name="group" class="form-control" value="{{isset($items)?$items->date:''}}"/> 
+                                <label >เกรด:</label>
+                                <input type="text" name="grade" class="form-control" value="{{isset($items)?$items->grade:''}}"/> 
                             </div>
                             <div>
                                 <label >สถานะ:</label>
                                 <input type="text" name="status" class="form-control" value="{{isset($items)?$items->status:''}}"/> 
                             </div>
                             <div>
-                                <label >เกรด:</label>
-                                <input type="text" name="grade" class="form-control" value="{{isset($items)?$items->grade:''}}"/> 
-                            </div>
-                            <div class="form-group">
-                                <label >นักศึกษา:</label>
-                                <select name="bran_id">
-                                    <option value="all">
-                                        ทั้งหมด
-                                    </option>
-                                @foreach($student as $index => $row1)
-                                    <option value ="{{$row1->std_id}}" {{Input::get('std_id')==$row1->std_id?'stlected':''}}>
-                                        {{$row1->std_fname}}
-                                    </option>
-                                @endforeach
-                                </select>
+                                <label >วันที่ ลงทะเบียน:</label>
+                                <input type="text" name="year" class="form-control" value="{{isset($items)?$items->year:''}}"/> 
                             </div>
                             <div class="form-group">
                                 <label >แผนการเรียน:</label>
@@ -58,7 +58,7 @@
                                     </option>
                                 @endforeach
                                 </select>
-                            </div>
+                            </div> 
                         <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                     </div>
                 </form>

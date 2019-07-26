@@ -7,9 +7,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">ค้นหาข้อมูลลงทะเบียน</div>
                 <div class="panel-body">
-                    <form action="/studygroup">
+                    <form action="/enrolment">
                         <div class="form-group">
-                            <label>ชื่อ</label>
+                            <label>วันที่ลงทะเบียน</label>
                             <input type="text" class="form-control" name="keyword" value="{{Input::get('keyword')}}">
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
@@ -30,10 +30,10 @@
                         <thead>
                             <tr>
                                 <th>ลำดับที่</th>
-                                <th>วัน/เดือน/ปี ที่ลงทะเบียน</th>
-                                <th>สถานะ</th>
+                                <th>ชื่อนักศึกษา</th>
                                 <th>เกรด</th>
-                                <th>นักศึกษา</th>
+                                <th>สถานะ</th>
+                                <th>วันที่ ลงทะเบียน</th>
                                 <th>แผนการเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
@@ -42,10 +42,10 @@
                         @foreach($items as $index => $row)
                         <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{$row->date}}</td>
-                                <td>{{$row->status}}</td>
-                                <td>{{$row->grade}}</td>
                                 <td>{{$row->std_fname}}</td>
+                                <td>{{$row->grade}}</td>
+                                <td>{{$row->status}}</td>
+                                <td>{{$row->year}}</td>
                                 <td>{{$row->program_name}}</td>
                                 <td>
                                     <div class="btn-group">

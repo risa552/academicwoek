@@ -21,6 +21,7 @@ class StudentController extends Controller
         ->whereNull('delete_at');
         if(!empty($keyword)){
             $student->where(function ($query) use($keyword){
+                $query->where('std_id','LIKE','%'.$keyword.'%');
                 $query->where('std_fname','LIKE','%'.$keyword.'%');
                 $query->where('std_lname','LIKE','%'.$keyword.'%');
                 $query->where('email','LIKE','%'.$keyword.'%');
@@ -42,6 +43,7 @@ class StudentController extends Controller
     {
         
         {
+            $std_id = $request->get('std_id');
             $std_fname = $request->get('std_fname');
             $std_lname = $request->get('std_lname');
             $tel = $request->get('tel');
@@ -50,10 +52,11 @@ class StudentController extends Controller
             $email = $request->get('email');
             $group_id = $request->get('group_id');
             
-            if(!empty($std_fname) && !empty($std_lname) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($group_id))
+            if(!empty($std_id) && !empty($std_fname) && !empty($std_lname) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($group_id))
             {
 
                 DB::table('student')->insert([
+                    'std_id' =>$std_id,
                     'std_fname' =>$std_fname,
                     'std_lname' =>$std_lname,
                     'tel' =>$tel,
@@ -90,6 +93,7 @@ class StudentController extends Controller
         if(is_numeric($std_id))
         {
             
+            $std_id = $request->get('sid_id');
             $std_fname = $request->get('std_fname');
             $std_lname = $request->get('std_lname');
             $tel = $request->get('tel');
@@ -98,11 +102,12 @@ class StudentController extends Controller
             $email = $request->get('email');
             $group_id = $request->get('group_id');
   
-            if(!empty($std_fname) && !empty($std_lname) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($group_id))
+            if(!empty($std_id) && !empty($std_fname) && !empty($std_lname) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($group_id))
             
             {
                
                 DB::table('student')->insert([
+                    'std_id' =>$std_id,
                     'std_fname' =>$std_fname,
                     'std_lname' =>$std_lname,
                     'tel' =>$tel,

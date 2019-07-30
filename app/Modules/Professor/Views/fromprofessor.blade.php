@@ -14,7 +14,7 @@
                     @endif
                 </div>
                 @if(isset($professor))
-                <form action="/professor/{{$professor->id}}" class="form-ajax" method="PUT">
+                <form action="/professor/{{$professor->teach_id}}" class="form-ajax" method="PUT">
                     <input type="hidden" value="put" name="_mathods">
                     @csrf()
                 @else

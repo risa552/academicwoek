@@ -12,6 +12,32 @@
                             <label>รหัสกลุ่มเรียน</label>
                             <input type="text" class="form-control" name="keyword" value="{{Input::get('keyword')}}">
                         </div>
+                        <div class="form-group">
+                            <label >สาขา:</label>
+                            <select style="width:150px;" name="bran_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($items2 as $index => $row1)
+                                <option value ="{{$row1->bran_id}}" {{Input::get('bran_id')==$row1->bran_id?'selected':''}}> 
+                                    {{$row1->bran_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label >ระดับ:</label>
+                            <select style="width:150px;" name="degree_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($items3 as $index => $row2)
+                                <option value ="{{$row2->degree_id}}" {{Input::get('degree_id')==$row2->degree_id?'selected':''}}> 
+                                    {{$row2->degree_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>

@@ -12,6 +12,19 @@
                             <label>ชื่อวิชา</label>
                             <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}" >
                         </div>
+                        <div class="form-group">
+                            <label >กลุ่มเรียน:</label>
+                            <select name="subgroup_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($items2 as $index => $row1)
+                                <option value ="{{$row1->subgroup_id}}" {{Input::get('subgroup_id')==$row1->subgroup_id?'selected':''}}>
+                                    {{$row1->subgroup_id}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -35,7 +48,6 @@
                                 <th>ชั่วโมงปฎิบัติ</th>
                                 <th>ชั่วโมงทฤษฎี</th>
                                 <th>กลุ่มวิชา</th>
-                                <th>แผนการเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -48,7 +60,6 @@
                                 <td>{{$row->theory}}</td>
                                 <td>{{$row->practice}}</td>
                                 <td>{{$row->subgroup_name}}</td>
-                                <td>{{$row->program_name}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/subject/{{$row->sub_id}}"></a>

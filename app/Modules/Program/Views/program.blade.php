@@ -9,15 +9,67 @@
                 <div class="panel-body">
                     <form action="/program">
                         <div class="form-group">
-                            <label for="keyword">ชื่อแผนการเรียน</label>
+                            <label for="keyword">แผนการเรียน</label>
                             <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}">
+                        </div>
+                        <div class="form-group">
+                            <label >สาขา:</label>
+                            <select style="width:150px;" name="bran_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($items2 as $index => $row1)
+                                <option value ="{{$row1->bran_id}}" {{Input::get('bran_id')==$row1->bran_id?'selected':''}}> 
+                                    {{$row1->bran_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label >ภาคเรียน:</label>
+                            <select style="width:150px;" name="term_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($items3 as $index => $row2)
+                                <option value ="{{$row2->term_id}}" {{Input::get('term_id')==$row2->term_id?'selected':''}}>
+                                    {{$row2->term_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label >วิชา:</label>
+                            <select style="width:150px;" name="sub_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($items4 as $index => $row3)
+                                <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'selected':''}}>
+                                    {{$row3->sub_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label >อาจารย์:</label>
+                            <select style="width:150px;" name="teach_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($items5 as $index => $row4)
+                                <option value ="{{$row4->teach_id}}" {{Input::get('trach_id')==$row4->teach_id?'selected':''}}>
+                                    {{$row4->first_name}}  {{$row4->last_name}} 
+                                </option>
+                            @endforeach
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
             </div>
-            <!--<button type="submit" class="btn btn-info"><a href="#">ข้อมูลแผนการเรียน</a></button> -->
         </div> 
+
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -29,21 +81,29 @@
                         <thead>
                             <tr>
                                 <th>ลำดับที่</th>
-                                <th>ชื่อแผนการเรียน</th>
-                                <th>รหัสหลักสูตร</th>
+                                <th>สาขา</th>
+                                <th>ภาคเรียน</th>
+                                <th>วิชา</th>
+                                <th>อาจารย์</th>
+                                <th>คาบเรียน</th>
+                                <th>ห้องเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($educationprogram as $index => $program)
+                            @foreach($items as $index => $row)
                                 <tr>
                                     <td>{{$index+1}}</td>
-                                    <td>{{$program->program_name}}</td>
-                                    <td>{{$program->cou_id}}</td>
+                                    <td>{{$row->bran_name}}</td>
+                                    <td>{{$row->term_name}}</td>
+                                    <td>{{$row->sub_name}}</td>
+                                    <td>{{$row->first_name}} {{$row->last_name}}</td>
+                                    <td>{{$row->class}}</td>
+                                    <td>{{$row->room}}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/program/{{$program->program_id}}"></a>
-                                            <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/program/{{$program->program_id}}"></a>
+                                            <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/program/{{$row->program_id}}"></a>
+                                            <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/program/{{$row->program_id}}"></a>
                                         </div>
                                     </td>
                                 </tr>

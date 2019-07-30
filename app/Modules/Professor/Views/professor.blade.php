@@ -52,8 +52,8 @@
                                 <td>{{$professor->email}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/professor/{{$professor->id}}"></a>
-                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/professor/{{$professor->id}}"></a>
+                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/professor/{{$professor->teach_id}}"></a>
+                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/professor/{{$professor->teach_id}}"></a>
                                     </div>
                                 </td>
                             </tr>

@@ -12,6 +12,32 @@
                             <label for="keyword">สาขาวิชา</label>
                             <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}">
                         </div>
+                        <div class="form-group">
+                                <label >หลักสูตร:</label>
+                                <select style="width:150px;" name="cou_id">
+                                    <option value="all">
+                                        ทั้งหมด
+                                    </option>
+                                @foreach($items2 as $index => $row1)
+                                    <option value ="{{$row1->cou_id}}" {{Input::get('cou_id')==$row1->cou_id?'stlected':''}}>
+                                        {{$row1->cou_name}}
+                                    </option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label >แผนการเรียน:</label>
+                                <select style="width:150px;" name="program_id">
+                                    <option value="all">
+                                        ทั้งหมด
+                                    </option>
+                                @foreach($items3 as $index => $row2)
+                                    <option value ="{{$row2->program_id}}" {{Input::get('program_id')==$row2->program_id?'stlected':''}}>
+                                        {{$row2->program_id}}
+                                    </option>
+                                @endforeach
+                                </select>
+                            </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -41,7 +67,7 @@
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->bran_name}}</td>
                                     <td>{{$row->cou_name}}</td>
-                                    <td>{{$row->program_name}}</td>
+                                    <td>{{$row->program_id}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/branch/{{$row->bran_id}}"></a>

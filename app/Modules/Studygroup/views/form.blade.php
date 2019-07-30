@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label >สาาขา:</label>
-                                <select name="bran_id">
+                                <select style="width:150px;" name="bran_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group">
                                 <label >ระดับ:</label>
-                                <select name="degree_id">
+                                <select style="width:150px;" name="degree_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>

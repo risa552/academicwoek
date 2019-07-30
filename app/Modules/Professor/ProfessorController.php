@@ -43,10 +43,8 @@ class ProfessorController extends Controller
             $last_name = $request->get('last_name');
             $tel = $request->get('tel');
             $sex = $request->get('sex');
-            //$tel = $request->get('tel');
             $add = $request->get('add');
             $email = $request->get('email');
-            //$pre_id = $request->get('pre_id');
 
             if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) )
             {
@@ -58,7 +56,6 @@ class ProfessorController extends Controller
                     'sex' =>$sex,
                     'Add' =>$add,
                     'email' =>$email,
-                    //'pre_id' =>$pre_id,
                     'created_at' =>date('Y-m-d H:i:s'),
                 ]);
                // print_r('teacher');exit;
@@ -73,7 +70,7 @@ class ProfessorController extends Controller
     {
         if(is_numeric($id))
         {
-            $professor = DB::table('teacher')->where('id',$id)->first();
+            $professor = DB::table('teacher')->where('teach_id',$id)->first();
             if(!empty($professor))
             {
                 return view('professor::fromprofessor',[
@@ -92,22 +89,19 @@ class ProfessorController extends Controller
             $last_name = $request->get('last_name');
             $Tel = $request->get('tel');
             $sex = $request->get('sex');
-            //$Tel = $request->get('tel');
             $Add = $request->get('add');
             $email = $request->get('email');
-           // $rigthid = $request->get('pre_id');
 
-            if(!empty($first_name) && !empty($last_name) && !empty($Tel) && !empty($sex) && !empty($Add) && !empty($email) && !empty($rigthid) )
+            if(!empty($first_name) && !empty($last_name) && !empty($Tel) && !empty($sex) && !empty($Add) && !empty($email) )
             {
                
-                DB::table('teacher')->where('id',$id)->update([
+                DB::table('teacher')->where('teach_id',$id)->update([
                     'first_name' =>$first_name,
                     'last_name' =>$last_name,
                     'tel' =>$Tel,
                     'sex' =>$sex,
                     'add' =>$Add,
                     'email' =>$email,
-                    //'pre_id' =>$rigthid,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/professor');
@@ -122,7 +116,7 @@ class ProfessorController extends Controller
     {
         if(is_numeric($id))
         {
-            DB::table('teacher')->where('id',$id)->update([
+            DB::table('teacher')->where('teach_id',$id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');

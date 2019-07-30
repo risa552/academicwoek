@@ -27,12 +27,12 @@
                         </div>
                             <div class="form-group">
                                 <label >หลักสูตร:</label>
-                                <select name="cou_id">
+                                <select style="width:150px;" name="cou_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
                                 @foreach($items2 as $index => $row1)
-                                    <option value ="{{$row1->cou_id}}" {{Input::get('cou_id')==$row1->cou_id?'stlected':''}}>
+                                    <option value ="{{$row1->cou_id}}" {{isset($items)&& $items->cou_id==$row1->cou_id?'selected':''}}>
                                         {{$row1->cou_name}}
                                     </option>
                                 @endforeach
@@ -40,13 +40,13 @@
                             </div>
                             <div class="form-group">
                                 <label >แผนการเรียน:</label>
-                                <select name="program_id">
+                                <select style="width:150px;" name="program_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
                                 @foreach($items3 as $index => $row2)
-                                    <option value ="{{$row2->program_id}}" {{Input::get('program_id')==$row2->program_id?'stlected':''}}>
-                                        {{$row2->program_name}}
+                                    <option value ="{{$row2->program_id}}" {{isset($items)&& $items->program_id==$row2->program_id?'selected':''}}>
+                                        {{$row2->program_id}}
                                     </option>
                                 @endforeach
                                 </select>

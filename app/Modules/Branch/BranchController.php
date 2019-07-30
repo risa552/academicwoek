@@ -12,18 +12,18 @@ class BranchController extends Controller
 {
     private $table_name = 'branch';
     private $table2 = 'course';
-    private $table3 = 'educationprogram';
+    private $table3 = 'program';
 
     public function index(Request $request)
     {
         $keyword =$request->get('keyword');
-        $pk1 =$request->get('pk1');
-        $pk2 =$request->get('pk2');
+        $cou_id =$request->get('cou_id');
+        $program_id =$request->get('program_id');
 
         $items = DB::table($this->table_name)
-        ->select('branch.*','course.cou_name','educationprogram.program_name')
+        ->select('branch.*','course.cou_name','program.program_id')
         ->leftJoin('course','branch.cou_id','course.cou_id')
-        ->leftJoin('educationprogram','branch.program_id','educationprogram.program_id')
+        ->leftJoin('program','branch.program_id','program.program_id')
         ->whereNull('branch.delete_at');
 
         if(!empty($keyword))
@@ -32,13 +32,13 @@ class BranchController extends Controller
                 $query->where('bran_name','LIKE','%'.$keyword.'%');
             });
         }
-        if(is_numeric($pk1))
+        if(is_numeric($cou_id))
         {
-            $items->where('branch.cou_id','=',$pk1);
+            $items->where('branch.cou_id','=',$cou_id);
         }
-        if(is_numeric($pk2))
+        if(is_numeric($program_id))
         {
-            $items->where('branch.program_id','=',$pk2);
+            $items->where('branch.program_id','=',$program_id);
         }
         $items = $items->orderBy('bran_name','asc')->paginate(10);
         $items2 = DB::table($this->table2)->whereNull('delete_at')->get();

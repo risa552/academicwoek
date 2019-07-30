@@ -39,31 +39,18 @@
                             <input type="text" name="practice" class="form-control" value="{{isset($items)?$items->practice:''}}"/>
                         </div>
                         <div class="form-group">
-                                <label >กลุ่มเรียน:</label>
-                                <select name="subgroup_id">
-                                    <option value="all">
-                                        ทั้งหมด
-                                    </option>
-                                @foreach($items2 as $index => $row1)
-                                    <option value ="{{$row1->subgroup_id}}" {{Input::get('subgroup_id')==$row1->subgroup_id?'stlected':''}}>
-                                        {{$row1->subgroup_id}}
-                                    </option>
-                                @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label >แผนการเรียน:</label>
-                                <select name="program_id">
-                                    <option value="all">
-                                        ทั้งหมด
-                                    </option>
-                                @foreach($items3 as $index => $row2)
-                                    <option value ="{{$row2->program_id}}" {{Input::get('program_id')==$row2->program_id?'stlected':''}}>
-                                        {{$row2->program_name}}
-                                    </option>
-                                @endforeach
-                                </select>
-                            </div>
+                            <label >กลุ่มเรียน:</label>
+                            <select name="subgroup_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($items2 as $index => $row1)
+                                <option value ="{{$row1->subgroup_id}}" {{isset($items)&& $items->subgroup_id==$row1->subgroup_id?'selected':''}}>
+                                    {{$row1->subgroup_id}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </div>                
                 </form>

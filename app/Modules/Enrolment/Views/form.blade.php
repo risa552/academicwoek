@@ -22,6 +22,9 @@
                     @endif
                     <div class="panel-body">
                             <div class="form-group">
+                                <label >รหัสนักศึกษา:</label>
+                                <input type="text" name="grade" class="form-control" value="{{isset($items)?$items->std_id:''}}"/> 
+                            </div>
                                 <label >ชื่อนักศึกษา:</label>
                                 <select name="std_id">
                                     <option value="all">
@@ -34,13 +37,17 @@
                                 @endforeach
                                 </select>
                             </div>
+                            <div class="panel-body">
                             <div>
                                 <label >เกรด:</label>
                                 <input type="text" name="grade" class="form-control" value="{{isset($items)?$items->grade:''}}"/> 
                             </div>
                             <div>
                                 <label >สถานะ:</label>
-                                <input type="text" name="status" class="form-control" value="{{isset($items)?$items->status:''}}"/> 
+                                <select  name="status" class="form-control">
+                                    <option {{isset($enrolment) && $enrolment->status=='เปิด'?' selected ':''}} value="เปิด">เปิด</option>
+                                    <option {{isset($enrolment) && $enrolment->status=='ปิด '?' selected ':''}} value="ปิด">ปิด</option>
+                                </select>
                             </div>
                             <div>
                                 <label >วันที่ ลงทะเบียน:</label>
@@ -54,7 +61,7 @@
                                     </option>
                                 @foreach($program as $index => $row2)
                                     <option value ="{{$row2->program_id}}" {{Input::get('program_id')==$row2->program_id?'stlected':''}}>
-                                        {{$row2->program_name}}
+                                        {{$row2->program_id}}
                                     </option>
                                 @endforeach
                                 </select>

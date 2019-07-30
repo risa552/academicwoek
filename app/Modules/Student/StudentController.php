@@ -10,67 +10,78 @@ use App\Services\MyResponse;
 
 class StudentController extends Controller
 {
+    private $table_name = 'student';
+    private $table2 = 'studygroup';
+
     public function index(Request $request)
     {
-        /*DB::table('student')->insert([
-            'std_fname' => 'เยาวเรศ',
-        ]);  */
         $keyword =$request->get('keyword');
-        
-        $student = DB::table('student')
-        ->whereNull('delete_at');
-        if(!empty($keyword)){
-            $student->where(function ($query) use($keyword){
-                $query->where('std_id','LIKE','%'.$keyword.'%');
-                $query->where('std_fname','LIKE','%'.$keyword.'%');
-                $query->where('std_lname','LIKE','%'.$keyword.'%');
-                $query->where('email','LIKE','%'.$keyword.'%');
+        $group_id =$request->get('group_id');
+
+        $items = DB::table($this->table_name)
+        ->select('student.*','studygroup.group_name')
+        ->leftJoin('studygroup','student.group_id','studygroup.group_id')
+        ->whereNull('student.delete_at');
+
+        if(!empty($keyword))
+        {
+            $items->where(function ($query) use($keyword){
+                $query->where('name','LIKE','%'.$keyword.'%')
+                      ->orwhere('std_fname','LIKE','%'.$keyword.'%')
+                      ->orwhere('std_lname','LIKE','%'.$keyword.'%')
+                      ->orwhere('email','LIKE','%'.$keyword.'%');
             });
         }
-        $student = $student->paginate(10);
-        return view('student::student',[
-            'student'=>$student
-        ]);
+        if(is_numeric($group_id))
+        {
+            $items->where('student.group_id','=',$group_id);
+        }
+        $items = $items->orderBy('student.add','asc')->paginate(10);
+        $studygroup = DB::table($this->table2)->whereNull('delete_at')->get();
+        return view($this->table_name.'::list',compact('items','studygroup'));
     }
-
+    
     public function create()
     {
-        return view('student::fromstudent');
-    
+        $studygroup = DB::table($this->table2)->whereNull('delete_at')->get();
+        return view($this->table_name.'::form',compact('studygroup'));
     }
-
+    
     public function store(Request $request)
     {
-        
-        {
-            $std_id = $request->get('std_id');
-            $std_fname = $request->get('std_fname');
-            $std_lname = $request->get('std_lname');
-            $tel = $request->get('tel');
-            $sex = $request->get('sex');
-            $add = $request->get('add');
-            $email = $request->get('email');
-            $group_id = $request->get('group_id');
-            
-            if(!empty($std_id) && !empty($std_fname) && !empty($std_lname) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($group_id))
-            {
+        $name = $request->get('name');
+        $std_fname = $request->get('std_fname');
+        $std_lname = $request->get('std_lname');
+        $tel = $request->get('tel');
+        $sex = $request->get('sex');
+        $add = $request->get('add');
+        $email = $request->get('email');
+        $group_id = $request->get('group_id');
 
-                DB::table('student')->insert([
-                    'std_id' =>$std_id,
-                    'std_fname' =>$std_fname,
-                    'std_lname' =>$std_lname,
-                    'tel' =>$tel,
-                    'sex' =>$sex,
-                    'add' =>$add,
-                    'email' =>$email,
-                    'group_id' =>$group_id,
-                    'created_at' =>date('Y-m-d H:i:s'),
-                ]);
-               // print_r('student');exit;
-               return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/student');
-            }else{
-                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ'); 
-            }
+        if( !empty($name) && !empty($std_fname) && !empty($std_lname) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($group_id))
+        {
+            $items = DB::table($this->table_name)
+            ->where('std_fname',$std_fname)
+            ->whereNull('delete_at')->first();
+            if(!empty($items))
+            {
+                return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
+            }   
+            DB::table($this->table_name)->insert([
+                'name'=>$name,
+                'std_fname'=>$std_fname,
+                'std_lname'=>$std_lname,
+                'tel'=>$tel,
+                'sex'=>$sex,
+                'add'=>$add,
+                'email'=>$email,
+                'group_id'=>$group_id,
+                'created_at' =>date('Y-m-d H:i:s'),
+                //'created_at' =>date('Y-m-d H::i::s'),
+            ]);
+            return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/student');
+        }else{
+            return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ');
         }
     }
 
@@ -78,22 +89,24 @@ class StudentController extends Controller
     {
         if(is_numeric($std_id))
         {
-            $student = DB::table('student')->where('std_id',$std_id)->first();
-            if(!empty($student))
+            $items = DB::table($this->table_name)->where('std_id',$std_id)->first();
+            if(!empty($items))
             {
-                return view('student::fromstudent',[
-                    'student'=>$student
+                $studygroup = DB::table($this->table2)->whereNull('delete_at')->get();
+                return view($this->table_name.'::form',[
+                    'items'=>$items,
+                    'studygroup'=>$studygroup,
                 ]);
             }
         }
         return view('data-not-found',['back_url'=>'/student']);
     }
+
     public function update($std_id,Request $request)
     {
         if(is_numeric($std_id))
         {
-            
-            $std_id = $request->get('sid_id');
+            $name = $request->get('name');
             $std_fname = $request->get('std_fname');
             $std_lname = $request->get('std_lname');
             $tel = $request->get('tel');
@@ -101,35 +114,40 @@ class StudentController extends Controller
             $add = $request->get('add');
             $email = $request->get('email');
             $group_id = $request->get('group_id');
-  
-            if(!empty($std_id) && !empty($std_fname) && !empty($std_lname) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($group_id))
-            
-            {
-               
-                DB::table('student')->insert([
-                    'std_id' =>$std_id,
-                    'std_fname' =>$std_fname,
-                    'std_lname' =>$std_lname,
-                    'tel' =>$tel,
-                    'sex' =>$sex,
-                    'add' =>$add,
-                    'email' =>$email,
-                    'group_id' =>$group_id,
+        if( !empty($name) && !empty($std_fname) && !empty($std_lname) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($group_id))
+        {
+                $items = DB::table($this->table_name)
+            ->where('std_id','!=',$std_id)
+            ->where('std_fname',$std_fname)
+            ->whereNull('delete_at')->first();
+            if(!empty($items)){
+                return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
+            }
+                DB::table($this->table_name)->where('std_id',$std_id)->update([
+                   
+                    'name'=>$name,
+                    'std_fname'=>$std_fname,
+                    'std_lname'=>$std_lname,
+                    'tel'=>$tel,
+                    'sex'=>$sex,
+                    'add'=>$add,
+                    'email'=>$email,
+                    'group_id'=>$group_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/student');
             }else{
-                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ');
+                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะะ');
             }
-        }
-        return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
+        }  
+            return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
-    
+
     public function destroy($std_id)
     {
         if(is_numeric($std_id))
         {
-            DB::table('student')->where('std_id',$std_id)->update([
+            DB::table($this->table_name)->where('std_id',$std_id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');

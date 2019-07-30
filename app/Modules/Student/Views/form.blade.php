@@ -1,5 +1,5 @@
 @extends('academic-layout') 
-@section('title','เพิ่มข้อมูลนักศึกษา')
+@section('title','ข้อมูลนักศึกษา')
 @section('content')
 <div class="container">
     <div class="row">
@@ -25,7 +25,7 @@
                 <div class="form-group">
                         <div class="form-group">
                             <label for="email">รหัสนักศึกษา:</label>
-                            <input type="text" name="std_fname" class="form-control" value="{{isset($student)?$student->std_id:''}}"/>
+                            <input type="text" name="name" class="form-control" value="{{isset($student)?$student->name:''}}"/>
                         </div>
                         <div class="form-group">
                             <label for="email">ชื่อนักศึกษา:</label>
@@ -41,7 +41,10 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">เพศ:</label>
-                            <input type="text" name="sex" class="form-control" value="{{isset($student)?$student->sex:''}}"/>
+                            <select  name="sex" class="form-control">
+                            <option {{isset($student) && $student->sex=='ชาย'?' selected ':''}} value="ชาย">ชาย</option>
+                            <option {{isset($student) && $student->sex=='หญิง'?' selected ':''}} value="หญิง">หญิง</option>
+                        </select>
                         </div>
                         <div class="form-group">
                             <label for="pwd">ที่อยู่:</label>
@@ -52,9 +55,17 @@
                             <input type="text" name="email" class="form-control" value="{{isset($student)?$student->email:''}}"/>
                         </div>
                         <div class="form-group">
-                            <label for="pwd">รหัสกลุ่มเรียน:</label>
-                            <input type="text" name="group_id" class="form-control" value="{{isset($student)?$student->group_id:''}}"/>
-                        </div>
+                                <label >กลุ่มเรียน:</label>
+                                <select name="group_id">
+                                    <option value="all">
+                                        ทั้งหมด
+                                    </option>
+                                @foreach($studygroup as $index => $row2)
+                                    <option value ="{{$row2->degree_id}}" {{Input::get('group_id')==$row2->group_id?'stlected':''}}>
+                                        {{$row2->group_name}}
+                                    </option>
+                                @endforeach
+                                </select>
                     </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>

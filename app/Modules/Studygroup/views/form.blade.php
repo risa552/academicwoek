@@ -7,13 +7,13 @@
             <div class="panel panel-default">  
                 <div class="panel-heading">
                         @if(isset($items))
-                        กลุ่มเรียน : {{$items->group}}
+                        กลุ่มเรียน : {{$items->group_name}}
                         @else
                         เพิ่มกลุ่มเรียน
                         @endif
                 </div>
                     @if(isset($items))
-                    <form action="/studygroup/{{$items->id}}" class="form-ajax" method="put">
+                    <form action="/studygroup/{{$items->group_id}}" class="form-ajax" method="put">
                         <input type="hidden" value="put" name="_mathods">
                         @csrf()
                     @else
@@ -23,7 +23,7 @@
                     <div class="panel-body">
                             <div class="form-group">
                                 <label for="email">ชื่อกลุ่มรียน:</label>
-                                <input type="text" name="group" class="form-control" value="{{isset($items)?$items->group:''}}"/> 
+                                <input type="text" name="group_name" class="form-control" value="{{isset($items)?$items->group_name:''}}"/> 
                             </div>
                             <div>
                                 <label >ปีที่เข้าศึกษา:</label>

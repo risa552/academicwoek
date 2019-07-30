@@ -29,7 +29,7 @@
                 <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ลำดับที่</th>
+                                <th>รหัสนักศึกษา</th>
                                 <th>ชื่อนักศึกษา</th>
                                 <th>เกรด</th>
                                 <th>สถานะ</th>
@@ -41,12 +41,12 @@
                         <tbody>
                         @foreach($items as $index => $row)
                         <tr>
-                                <td>{{$index+1}}</td>
+                                <td>{{$row->std_id}}</td>
                                 <td>{{$row->std_fname}}</td>
                                 <td>{{$row->grade}}</td>
                                 <td>{{$row->status}}</td>
                                 <td>{{$row->year}}</td>
-                                <td>{{$row->program_name}}</td>
+                                <td>{{$row->program_id}}</td>
                                 <td>
                                     <div class="btn-group">
                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/enrolment/{{$row->enro_id}}"></a>

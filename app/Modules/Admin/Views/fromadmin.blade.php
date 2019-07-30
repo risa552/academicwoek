@@ -1,62 +1,55 @@
 @extends('academic-layout') 
-@section('title','เพิ่มข้อมูลผู้ดูแลระบบ')
+@section('title','ข้อมูลผู้ดูแลระบบ')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default">  
-            <div class="panel-heading">เพิ่มข้อมูลผู้ดูแลระบบ</div>
-                <form class="form-horizontal" action="/action_page.php" style="margin-top:15px;">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="email">รหัสผู้ดูแลระบบ:</label>
-                        <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" placeholder="Enter email">
-                        </div>
+            <div class="panel panel-default"> 
+                 <a herf="/admin" กลับหน้าหลัก> </a>
+                <div class="panel-heading">
+                    @if(isset($admin))
+                    ผู้ดูแลระบบผู้ : {{$admin->first_name}}
+                    @else
+                    เพิ่มผู้ดูแลระบบ
+                    @endif
+                </div>
+                @if(isset($admin))
+                <form action="/admin/{{$admin->id}}" class="form-ajax" method="PUT">
+                    <input type="hidden" value="put" name="_mathods">
+                    @csrf()
+                @else
+                <form class="form-ajax" action="/admin" method="POST">
+                @csrf()
+                @endif
+                    <div class="panel-body">
+                        <th>ชื่อ : </th>
+                        <input type="text" name="first_name" class="form-control" value="{{isset($admin)?$admin->first_name:''}}"/>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">ชื่อ:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
+                    <div class="panel-body">
+                        <th>นามสกุล : </th>
+                        <input type="text" name="last_name" class="form-control" value="{{isset($admin)?$admin->last_name:''}}"/>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">นามสกุล:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
+                    <div class="panel-body">
+                        <th>เบอร์โทรศัพท์ : </th>
+                        <input type="text" name="tel" class="form-control" value="{{isset($admin)?$admin->tel:''}}"/>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">เพศ:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
+                    <div class="panel-body">
+                        <th>เพศ: </th>
+                        <select  name="sex" class="form-control">
+                            <option {{isset($admin) && $admin->sex=='ชาย'?' selected ':''}} value="ชาย">ชาย</option>
+                            <option {{isset($admin) && $admin->sex=='หญิง'?' selected ':''}} value="หญิง">หญิง</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">เบอร์:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
+                    <div class="panel-body">
+                        <th>ที่อยู่ : </th>
+                        <input type="text" name="house" class="form-control" value="{{isset($admin)?$admin->house:''}}"/>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">ที่อยู่:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
+                    <div class="panel-body">
+                        <th>e-mail : </th>
+                        <input type="text" name="email" class="form-control" value="{{isset($admin)?$admin->email:''}}"/>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">Email:</label>
-                        <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                        </div>
-                    </div>
-                    <div class="form-group"> 
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-secondary"><a  href="/admin" class="fa fa-arrow-left" aria-hidden="true"> back</a></button>
-                            <button type="submit" class="btn btn-info">Submit</button>
-                        </div>
-                    </div>
+                    <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>
-            </div>
         </div>
     </div>  
 </div>

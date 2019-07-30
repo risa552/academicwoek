@@ -12,7 +12,7 @@ class EnrolmentController extends Controller
 {
     private $table_name = 'enrolment';
     private $table2 = 'student';
-    private $table3 = 'educationprogram';
+    private $table3 = 'program';
 
     public function index(Request $request)
     {
@@ -21,9 +21,9 @@ class EnrolmentController extends Controller
         $program_id =$request->get('program_id');
 
         $items = DB::table($this->table_name)
-        ->select('enrolment.*','student.std_fname','educationprogram.program_name')
+        ->select('enrolment.*','student.std_fname','program.program_id')
         ->leftJoin('student','enrolment.std_id','student.std_id')
-        ->leftJoin('educationprogram','enrolment.program_id','educationprogram.program_id')
+        ->leftJoin('program','enrolment.program_id','program.program_id')
         ->whereNull('enrolment.delete_at');
 
         if(!empty($keyword))
@@ -57,11 +57,12 @@ class EnrolmentController extends Controller
     public function store(Request $request)
     {
         $std_id = $request->get('std_id');
+        $std_fname = $request->get('std_fname');
         $grade = $request->get('grade');
         $status = $request->get('status');
         $year = $request->get('year');
         $program_id = $request->get('program_id');
-        if( !empty($std_id) && !empty($grade) && !empty($status) && !empty($year) && !empty($program_id))
+        if( !empty($std_id) && !empty($std_fname) && !empty($grade) && !empty($status) && !empty($year) && !empty($program_id))
         {
             $items = DB::table($this->table_name)
             ->where('program_id',$program_id)
@@ -73,6 +74,7 @@ class EnrolmentController extends Controller
             DB::table($this->table_name)->insert([
                 
                 'std_id'=>$std_id,
+                'std_fname'=>$std_fname,
                 'grade'=>$grade,
                 'status'=>$status,
                 'year'=>$year,
@@ -110,12 +112,13 @@ class EnrolmentController extends Controller
         if(is_numeric($enro_id))
         {
             $std_id = $request->get('std_id');
+            $std_fname = $request->get('std_fname');
             $grade = $request->get('grade');
             $status = $request->get('status');
             $year = $request->get('year');
             $program_id = $request->get('program_id');
             
-            if( !empty($std_id) && !empty($grade) && !empty($status) && !empty($year) && !empty($program_id))    
+            if( !empty($std_id) && !empty($std_fname) && !empty($grade) && !empty($status) && !empty($year) && !empty($program_id))    
             {
                 $items = DB::table($this->table_name)
             ->where('enro_id','!=',$enro_id)
@@ -127,6 +130,7 @@ class EnrolmentController extends Controller
                 DB::table($this->table_name)->where('enro_id',$enro_id)->update([
                    
                     'std_id'=>$std_id,
+                    'std_fname'=>$std_fname,
                     'grade'=>$grade,
                     'status'=>$status,
                     'year'=>$year,

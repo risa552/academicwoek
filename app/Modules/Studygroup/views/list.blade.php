@@ -18,7 +18,7 @@
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
-                            @foreach($items2 as $index => $row1)
+                            @foreach($branch as $index => $row1)
                                 <option value ="{{$row1->bran_id}}" {{Input::get('bran_id')==$row1->bran_id?'selected':''}}> 
                                     {{$row1->bran_name}}
                                 </option>
@@ -31,7 +31,7 @@
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
-                            @foreach($items3 as $index => $row2)
+                            @foreach($degree as $index => $row2)
                                 <option value ="{{$row2->degree_id}}" {{Input::get('degree_id')==$row2->degree_id?'selected':''}}> 
                                     {{$row2->degree_name}}
                                 </option>

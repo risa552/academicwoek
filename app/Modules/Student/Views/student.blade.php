@@ -30,6 +30,8 @@
                 <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>ลำดับที่</th>
+                                <th>รหัสนักศึกษา</th>
                                 <th>ชื่อนักศึกษา</th>
                                 <th>นามสกุล</th>
                                 <th>เบอร์โทรศัพท์</th>
@@ -43,6 +45,8 @@
                         <tbody>
                         @foreach($student as $index =>$student)
                             <tr>
+                                <td>{{$index+1}}</td>
+                                <td>{{$student->std_id}}</td>
                                 <td>{{$student->std_fname}}</td>
                                 <td>{{$student->std_lname}}</td>
                                 <td>{{$student->tel}}</td>

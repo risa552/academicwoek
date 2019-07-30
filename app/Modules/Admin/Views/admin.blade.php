@@ -1,16 +1,16 @@
 @extends('academic-layout') 
-@section('title','ผู้ดูแลระบบ')
+@section('title','ข้อมูลผู้ดูแลระบบ')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหาข้อมูลผูู้แลระบบ</div>
+                <div class="panel-heading">ค้นหาข้อมูลผู้ดูแลระบบ</div>
                 <div class="panel-body">
-                    <form action="/action_page.php">
+                    <form action="/admin">
                         <div class="form-group">
-                            <label for="email">รหัสผู้ดูแลระบบ</label>
-                            <input type="email" class="form-control" id="email">
+                            <label>ชื่อผู้ดูแลระบบ</label>
+                            <input type="text" class="form-control" name="keyword" value="{{Input::get('keyword')}}">
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
@@ -18,96 +18,45 @@
             </div>
             <!--<button type="submit" class="btn btn-info"><a href="#">ผู้ดูแลระบบ</a></button> -->
         </div> 
+
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    รายการผู้ดูแลระบบ
-                    <a href="/admin/fromadmin" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลผู้ดูแลระบบ</a>
+                    รายการข้อมูลผู้ดูแลระบบ
+                    <a href="/admin/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลผูู้แลระบบ</a>
                 </div>
-                <div class="panel-body">  
+                <div class="panel-body">
                 <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสผู้ดูแลระบบ</th>
+                                <th>ลำดับที่</th>
                                 <th>ชื่อ</th>
                                 <th>นามสกุล</th>
+                                <th>เบอร์โทรศัพท์</th>
                                 <th>เพศ</th>
-                                <th>เบอร์</th>
                                 <th>ที่อยู่</th>
-                                <th>Email</th>
+                                <th>e-mail</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($admin as $index => $admin)
                             <tr>
-                                <td>01</td>
-                                <td>เบียร์</td>
-                                <td>อิอิ</td>
-                                <td>ชาย</td>
-                                <td>08XXXXXXXX</td>
-                                <td>ราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</td>
-                                <td>b33@gmail.com</td>
+                                <td>{{$index+1}}</td>
+                                <td>{{$admin->first_name}}</td>
+                                <td>{{$admin->last_name}}</td>
+                                <td>{{$admin->tel}}</td>
+                                <td>{{$admin->sex}}</td>
+                                <td>{{$admin->house}}</td>
+                                <td>{{$admin->email}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/admin/editad"></a></button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
-                                                        </div>
-                                                        <div class="modal-body" style="color:#000;">
-                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
-                                                        </div>
-                                                        <div class="modal-footer" action="/action_page.php">
-                                                        <button type="submit" class="btn btn-info">Submit</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>    
-                                                </div>
-                                            </div>
+                                    <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/admin/{{$admin->id}}"></a>
+                                    <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/admin/{{$admin->id}}"></a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                            <td>02</td>
-                                <td>ช้าง</td>
-                                <td>จิบิ</td>
-                                <td>ชาย</td>
-                                <td>08XXXXXXXX</td>
-                                <td>ราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</td>
-                                <td>c33@gmail.com</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info"><a class="fa fa-pencil-square" aria-hidden="true" href="/admin/editad"></a></button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#flipFlop"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h4 class="modal-title" id="modalLabel">ยืนยันการลบ</h4>
-                                                        </div>
-                                                        <div class="modal-body" style="color:#000;">
-                                                        <p>ต้องการจะลบใช่หรือไม่ </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-info">Submit</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                     <!--<ul class="pagination">

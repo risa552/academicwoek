@@ -23,7 +23,10 @@
                 @endif
                 <div class="panel-body">
                 <div class="form-group">
-                <div class="form-group">
+                        <div class="form-group">
+                            <label for="email">รหัสนักศึกษา:</label>
+                            <input type="text" name="std_fname" class="form-control" value="{{isset($student)?$student->std_id:''}}"/>
+                        </div>
                         <div class="form-group">
                             <label for="email">ชื่อนักศึกษา:</label>
                             <input type="text" name="std_fname" class="form-control" value="{{isset($student)?$student->std_fname:''}}"/>

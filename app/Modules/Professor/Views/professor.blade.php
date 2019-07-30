@@ -32,7 +32,6 @@
                             <tr>
                                 <th>ลำดับที่</th>
                                 <th>ชื่อ</th>
-                                <th>นามสกุล</th>
                                 <th>เบอร์</th>
                                 <th>เพศ</th>
                                 <th>ที่อยู่</th>
@@ -44,8 +43,7 @@
                         @foreach($teacher as $index => $professor)
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{$professor->first_name}}</td>
-                                <td>{{$professor->last_name}}</td>
+                                <td>{{$professor->first_name}} {{$professor->last_name}}</td>
                                 <td>{{$professor->tel}}</td>
                                 <td>{{$professor->sex}}</td>
                                 <td>{{$professor->add}}</td>

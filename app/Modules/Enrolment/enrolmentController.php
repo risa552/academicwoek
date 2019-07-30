@@ -12,7 +12,7 @@ class EnrolmentController extends Controller
 {
     private $table_name = 'enrolment';
     private $table2 = 'student';
-    private $table3 = 'educationprogram';
+    private $table3 = 'program';
 
     public function index(Request $request)
     {
@@ -21,9 +21,9 @@ class EnrolmentController extends Controller
         $program_id =$request->get('program_id');
 
         $items = DB::table($this->table_name)
-        ->select('enrolment.*','student.std_fname','educationprogram.program_name')
+        ->select('enrolment.*','student.std_fname','program.program_name')
         ->leftJoin('student','enrolment.std_id','student.std_id')
-        ->leftJoin('educationprogram','enrolment.program_id','educationprogram.program_id')
+        ->leftJoin('program','enrolment.program_id','program.program_id')
         ->whereNull('enrolment.delete_at');
 
         if(!empty($keyword))

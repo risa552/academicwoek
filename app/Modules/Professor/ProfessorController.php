@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Input;
 use DB;
+use stdClass;
+use Hash;
 use App\Services\MyResponse;
+//use App\Services\CurrentUser;
 
 class ProfessorController extends Controller
 {
@@ -45,11 +48,20 @@ class ProfessorController extends Controller
             $sex = $request->get('sex');
             $add = $request->get('add');
             $email = $request->get('email');
+            $username = $request->get('username');
+            $password = $request->get('password');
 
-            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) )
+            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($username) &&!empty($password))
             {
-               
-                DB::table('teacher')->insert([
+                $users = DB::table('users')
+                ->where('username',$username)
+                ->where('user_type','USER_LEVEL_TEACHER')
+                ->where('status','Y')->first();
+                if(!empty($users)){
+                    return MyResponse::error('Username นี้มีในระบบแล้ว');
+                }
+
+                $id=DB::table('teacher')->insertGetId([
                     'first_name' =>$first_name,
                     'last_name' =>$last_name,
                     'tel' =>$tel,
@@ -57,6 +69,14 @@ class ProfessorController extends Controller
                     'Add' =>$add,
                     'email' =>$email,
                     'created_at' =>date('Y-m-d H:i:s'),
+                ]);
+                DB::table('users')->insert([
+                    'user_type' =>'USER_LEVEL_TEACHER',
+                    'user_id' =>$id,
+                    'username' =>$username,
+                    'password' =>Hash::make($password),
+                    'created_at' =>date('Y-m-d H:i:s'),
+                    'status' =>'Y'
                 ]);
                // print_r('teacher');exit;
                return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/professor');
@@ -70,9 +90,17 @@ class ProfessorController extends Controller
     {
         if(is_numeric($id))
         {
-            $professor = DB::table('teacher')->where('teach_id',$id)->first();
+            $professor = DB::table('teacher')
+            ->select('teacher.*','users.username')
+            ->leftJoin('users', function ($join) use($id) {
+                $join->on('users.user_id', '=', 'teacher.teach_id')
+                     ->where('user_type','USER_LEVEL_TEACHER')
+                     ->where('status','Y');
+            })
+            ->where('teach_id',$id)->first();
             if(!empty($professor))
             {
+               // print_r($professor);exit;
                 return view('professor::fromprofessor',[
                     'professor'=>$professor
                 ]);
@@ -80,6 +108,7 @@ class ProfessorController extends Controller
         }
         return view('data-not-found',['back_url'=>'/professor']);
     }
+
     public function update($id,Request $request)
     {
         if(is_numeric($id))
@@ -91,10 +120,19 @@ class ProfessorController extends Controller
             $sex = $request->get('sex');
             $Add = $request->get('add');
             $email = $request->get('email');
+            $username = $request->get('username');
+            $password = $request->get('password');
 
-            if(!empty($first_name) && !empty($last_name) && !empty($Tel) && !empty($sex) && !empty($Add) && !empty($email) )
+            if(!empty($first_name) && !empty($last_name) && !empty($Tel) && !empty($sex) && !empty($Add) && !empty($email))
             {
-               
+                $teacher = DB::table('teacher')
+            ->where('teach_id','!=',$id)
+            ->where('first_name',$first_name)
+            ->where('last_name',$last_name)
+            ->whereNull('delete_at')->first();
+            if(!empty($teacher)){
+                return MyResponse::error('ขออภัยข้อมูลนี้มีในระบบแล้วคะ');
+            }
                 DB::table('teacher')->where('teach_id',$id)->update([
                     'first_name' =>$first_name,
                     'last_name' =>$last_name,
@@ -104,6 +142,27 @@ class ProfessorController extends Controller
                     'email' =>$email,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
+                if(!empty($username))
+                {   
+                    $users = DB::table('users')
+                        ->where('username',$username)
+                        ->where('user_type','USER_LEVEL_TEACHER')
+                        ->where('user_id','!=',$id)
+                        ->where('status','Y')->first();
+                        if(!empty($users)){
+                            return MyResponse::error('Username นี้มีในระบบแล้ว');
+                        }else{
+                            DB::table('users')
+                            ->where('user_type','USER_LEVEL_TEACHER')
+                            ->where('user_id',$id)
+                            ->where('user_type','USER_LEVEL_TEACHER')
+                            ->where('status','Y')
+                            ->update([
+                                'username' =>$username,
+                                'password' =>Hash::make($password)
+                            ]);
+                        }
+                }
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/professor');
             }else{
                 return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ');

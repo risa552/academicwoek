@@ -22,24 +22,30 @@
                 @csrf()
                 @endif
                     <div class="panel-body">
-                        <th>ชื่อ : </th>
-                        <input type="text" name="first_name" class="form-control" value="{{isset($profressor)?$profressor->first_name:''}}"/>
-                        <th>นามสกุล:</th>
-                        <input type="text" name="last_name" class="form-control" value="{{isset($profressor)?$profressor->last_name:''}}"/> 
-                        <th>เบอร์:</th>
-                        <input type="text" name="tel" class="form-control" value="{{isset($profressor)?$profressor->Tel:''}}"/>  
-                        <th>เพศ:</th><br>
-                        <div class="form-group" >
-                        <input name="sex" type="radio" {{isset($profressor) && $profressor->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย<br>
+                        <label>ชื่อ : </label>
+                            <input type="text" name="first_name" class="form-control" value="{{isset($professor)?$professor->first_name:''}}"/>
+                        <label>นามสกุล:</label>
+                             <input type="text" name="last_name" class="form-control" value="{{isset($professor)?$professor->last_name:''}}"/> 
+                        <label>เบอร์:</label>
+                             <input type="text" name="tel" class="form-control" value="{{isset($professor)?$professor->tel:''}}"/>  
+                        <label>เพศ:</label>
+                            <div class="form-group" >
+                                <input name="sex" type="radio" {{isset($professor) && $professor->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
+                                <input name="sex" type="radio" {{isset($professor) && $professor->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
+                            </div>
+                        <label>ที่อยู่:</label>
+                            <input type="text" name="add" class="form-control" value="{{isset($professor)?$professor->add:''}}"/>
+                        <label>email:</label>
+                            <input type="text" name="email" class="form-control" value="{{isset($professor)?$professor->email:''}}"/> 
+                        <div class="form-group">
+                            <label>Username:</label>
+                                <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($professor)?$professor->username:''}}"/>
                         </div>
-                    <div class="form-group">
-                        <input name="sex" type="radio" {{isset($profressor) && $profressor->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
-                    </div>
-                        <th>ที่อยู่:</th>
-                        <input type="text" name="add" class="form-control" value="{{isset($profressor)?$profressor->Add:''}}"/>
-                        <th>email:</th>
-                        <input type="text" name="email" class="form-control" value="{{isset($profressor)?$profressor->email:''}}"/> 
-                    </div>
+                        <div class="form-group">
+                            <label>Password:</label>
+                                <input type="password" name="password" class="form-control" />
+                        </div>   
+                    </div>   
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>
         </div>

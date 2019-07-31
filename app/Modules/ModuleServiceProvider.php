@@ -23,5 +23,6 @@ class ModuleServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/Degree/Views','degree'); 
         $this->loadViewsFrom(__DIR__.'/Educate/Views','educate'); 
         $this->loadViewsFrom(__DIR__.'/Enrolment/Views','enrolment'); 
+        $this->loadViewsFrom(__DIR__.'/EnrolmentStudent/Views','enrostudent');
     }
 }

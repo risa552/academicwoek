@@ -51,8 +51,8 @@
                         <li class="sub-nav-menu"><a href="#">ข้อมูลการศึกษา</a></li>
                         <li class="sub-nav-menu"><a href="#">ตารางเรียน</a></li>
                         <li class="sub-nav-menu"><a href="#">ตารางสอบ</a></li>
-                        <li class="sub-nav-menu"><a href="/premission">สิทธิ์การใช้งาน</a></li>
                         <li class="sub-nav-menu"><a href="/exam">การส่งข้อสอบ</a></li>
+                        <li class="sub-nav-menu"><a href="/logout">ออกจากระบบ</a></li>
                     </ul>
                 </li>
             </ul>

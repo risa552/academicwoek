@@ -20,7 +20,7 @@ class StudygroupController extends Controller
         $bran_id =$request->get('bran_id');
         $degree_id =$request->get('degree_id');
 
-        $items = DB::table($this->table_name)
+        $group = DB::table($this->table_name)
         ->select('studygroup.*','branch.bran_name','degree.degree_name')
         ->leftJoin('branch','studygroup.bran_id','branch.bran_id')
         ->leftJoin('degree','studygroup.degree_id','degree.degree_id')
@@ -28,23 +28,23 @@ class StudygroupController extends Controller
 
         if(!empty($keyword))
         {
-            $items->where(function ($query) use($keyword){
+            $group->where(function ($query) use($keyword){
                 $query->where('group_name','LIKE','%'.$keyword.'%')
                       ->orwhere('year','LIKE','%'.$keyword.'%');
             });
         }
         if(is_numeric($bran_id))
         {
-            $items->where('studygroup.bran_id','=',$bran_id);
+            $group->where('studygroup.bran_id','=',$bran_id);
         }
         if(is_numeric($degree_id))
         {
-            $items->where('studygroup.degree_id','=',$degree_id);
+            $group->where('studygroup.degree_id','=',$degree_id);
         }
-        $items = $items->orderBy('studygroup.year','asc')->paginate(10);
+        $group = $group->orderBy('studygroup.year','asc')->paginate(10);
         $branch = DB::table($this->table2)->whereNull('delete_at')->get();
         $degree = DB::table($this->table3)->whereNull('delete_at')->get();
-        return view($this->table_name.'::list',compact('items','branch','degree'));
+        return view($this->table_name.'::list',compact('group','branch','degree'));
     }
     
     public function create()
@@ -63,10 +63,10 @@ class StudygroupController extends Controller
         
         if( !empty($group_name) && !empty($year) && !empty($bran_id) && !empty($degree_id))
         {
-            $items = DB::table($this->table_name)
+            $group = DB::table($this->table_name)
             ->where('group_name',$group_name)
             ->whereNull('delete_at')->first();
-            if(!empty($items))
+            if(!empty($group))
             {
                 return MyResponse::error('ขออภัยข้อมูลกลุ่มเรียนนี้มีอยู่ในระบบแล้ว');
             }   
@@ -88,13 +88,13 @@ class StudygroupController extends Controller
     {
         if(is_numeric($group_id))
         {
-            $items = DB::table($this->table_name)->where('group_id',$group_id)->first();
-            if(!empty($items))
+            $group = DB::table($this->table_name)->where('group_id',$group_id)->first();
+            if(!empty($group))
             {
                 $branch = DB::table($this->table2)->whereNull('delete_at')->get();
                 $degree = DB::table($this->table3)->whereNull('delete_at')->get();
                 return view($this->table_name.'::form',[
-                    'items'=>$items,
+                    'group'=>$group,
                     'branch'=>$branch,
                     'degree'=>$degree
                 ]);
@@ -114,11 +114,11 @@ class StudygroupController extends Controller
             
             if( !empty($group_name) && !empty($year) && !empty($bran_id) && !empty($degree_id))
             {
-                $items = DB::table($this->table_name)
+                $group = DB::table($this->table_name)
             ->where('group_id','!=',$group_id)
             ->where('group_name',$group_name)
             ->whereNull('delete_at')->first();
-            if(!empty($items)){
+            if(!empty($group)){
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
             }
                 DB::table($this->table_name)->where('group_id',$group_id)->update([

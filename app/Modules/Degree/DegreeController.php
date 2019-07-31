@@ -104,7 +104,14 @@ class DegreeController extends Controller
     public function destroy($degree_id)
     {
         if(is_numeric($degree_id))
-        {
+        {   
+            $exists = DB::table('studygroup')
+            ->where('degree_id',$degree_id)
+            ->whereNull('delete_at')->first();
+            if(!empty($exists))
+            {
+                return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
+            }   
             DB::table('degree')->where('degree_id',$degree_id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);

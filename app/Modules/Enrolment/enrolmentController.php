@@ -21,7 +21,7 @@ class EnrolmentController extends Controller
         $program_id =$request->get('program_id');
 
         $items = DB::table($this->table_name)
-        ->select('enrolment.*','student.std_fname','program.program_id')
+        ->select('enrolment.*','student.std_fname','program.program_name')
         ->leftJoin('student','enrolment.std_id','student.std_id')
         ->leftJoin('program','enrolment.program_id','program.program_id')
         ->whereNull('enrolment.delete_at');

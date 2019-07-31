@@ -3,19 +3,25 @@
 @section('content')
 <div class="well">
     <div class="row">
-         <div class="col-md-12">
-            <div class="well" style="background-color:#33d9b2;">
-            <div class="media">
-                <div class="media-left media-middle">
-                    <img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:90px">
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">ข้อมูลนักศึกษา</h4>
-                    <p>
-                    ห้อง BIT15942N สาขา เทคโนโลยีสารสนเทศ คณะ บริหาร</p>
-                </div>
+         <div class="col-md-8">
+            <div style="background-color:#33d9b2;">
+               <table class="table table-bordered" >
+                @foreach($history as $index => $hit)
+                    <tr>
+                        <td>
+                        <b>ชื่อนักศึกษา:</b> {{$hit->first_name}} {{$hit->last_name}}<br>
+                        <b>รหัสนักศึกษา:</b> {{$hit->number}}
+                        <b>กลุ่มเรียน:</b> {{$hit->group_name}}<br>
+                        <b>ระดับ:</b> {{$hit->degree_name}}
+                        <b>สาขาวิชา:</b> {{$hit->bran_name}}<br>
+                        <b>หลักสูตร:</b> {{$hit->cou_name}}
+                        </td>
+                    </tr>
+                @endforeach
+                </table>
             </div>
-            </div>
+        </div>
+        <div class="col-md-12">
             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">รายการลงทะเบียนนักศึกษา</button>
                 <div id="demo" class="collapse in">
                 <form class="form-ajax" id="program_open" action="/enrostudent" method="POST">
@@ -62,7 +68,8 @@
                             <th>ชื่อวิชา</th>
                             <th>หน่วยกิต</th>
                             <th>ตารางเรียน</th>
-                            <th>คารางสอบ</th>
+                            <th>อาจารย์ผู้สอน</th>
+                            <th>ตารางสอบ</th>
                         </tr>
                     </thead>
                     <tbody>

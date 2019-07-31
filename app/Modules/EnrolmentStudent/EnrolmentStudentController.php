@@ -56,8 +56,26 @@ class EnrolmentStudentController extends Controller
         ->whereNull('subject.delete_at')
         ->whereNull('enrolment.delete_at')->get();
 
+        $history = DB::table('student')
+        ->select('student.first_name',
+        'student.last_name',
+        'student.number',
+        'course.cou_name',
+        'branch.bran_name',
+        'studygroup.group_name',
+        'degree.degree_name')
+        ->leftJoin('studygroup','student.group_id','studygroup.group_id')
+        ->rightJoin('branch','studygroup.bran_id','branch.bran_id')
+        ->rightJoin('degree','studygroup.degree_id','degree.degree_id')
+        ->rightJoin('course','branch.cou_id','course.cou_id')
+        ->where('studygroup.group_id',$user->group_id)
+        ->whereNull('studygroup.delete_at')
+        ->whereNull('branch.delete_at')
+        ->whereNull('degree.delete_at')
+        ->whereNull('course.delete_at')
+        ->whereNull('student.delete_at')->get();
         
-        return view ('enrostudent::list',compact('program_open','program_selected'));
+        return view ('enrostudent::list',compact('program_open','program_selected','history'));
     }
 
     public function store(Request $request)

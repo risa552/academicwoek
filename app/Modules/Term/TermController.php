@@ -103,6 +103,13 @@ class TermController extends Controller
     {
         if(is_numeric($term_id))
         {
+            $exists1 = DB::table('program')
+            ->where('term_id',$term_id)
+            ->whereNull('delete_at')->first();
+            if(!empty($exists1))
+            {
+                return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
+            }   
             DB::table('term')->where('term_id',$term_id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);

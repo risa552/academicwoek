@@ -134,7 +134,14 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         if(is_numeric($id))
-        {
+        { 
+            $exists1 = DB::table('program')
+            ->where('sub_id',$id)
+            ->whereNull('delete_at')->first();
+            if(!empty($exists1))
+            {
+                return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
+            }   
             DB::table($this->table_name)->where('sub_id',$id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);

@@ -175,6 +175,13 @@ class ProfessorController extends Controller
     {
         if(is_numeric($id))
         {
+            $exists1 = DB::table('program')
+            ->where('teach_id',$id)
+            ->whereNull('delete_at')->first();
+            if(!empty($exists1))
+            {
+                return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
+            }   
             DB::table('teacher')->where('teach_id',$id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);

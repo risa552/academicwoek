@@ -8,9 +8,9 @@
                  <a herf="/student" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     @if(isset($student))
-                    นักศึกษา : {{$student->std_fname}}
+                นักศึกษา : {{$student->first_name}}
                     @else
-                    เพิ่มข้อมูลนักศึกษา
+                เพิ่มข้อมูลนักศึกษา
                     @endif
                 </div>
                 @if(isset($student))
@@ -23,17 +23,16 @@
                 @endif
                 <div class="panel-body">
                 <div class="form-group">
-                        <div class="form-group">
                             <label for="email">รหัสนักศึกษา:</label>
-                            <input type="text" name="name" class="form-control" value="{{isset($student)?$student->name:''}}"/>
+                            <input type="text" name="number" class="form-control" value="{{isset($student)?$student->number:''}}"/>
                         </div>
                         <div class="form-group">
                             <label for="email">ชื่อนักศึกษา:</label>
-                            <input type="text" name="std_fname" class="form-control" value="{{isset($student)?$student->std_fname:''}}"/>
+                            <input type="text" name="first_name" class="form-control" value="{{isset($student)?$student->first_name:''}}"/>
                         </div>
                         <div class="form-group">
                             <label for="pwd">นามสกุล:</label>
-                            <input type="text" name="std_lname" class="form-control" value="{{isset($student)?$student->std_lname:''}}"/>
+                            <input type="text" name="last_name" class="form-control" value="{{isset($student)?$student->last_name:''}}"/>
                         </div>
                         <div class="form-group">
                             <label for="pwd">เบอร์โทรศัพท์:</label>
@@ -61,15 +60,23 @@
                                         ทั้งหมด
                                     </option>
                                 @foreach($studygroup as $index => $row2)
-                                    <option value ="{{$row2->degree_id}}" {{Input::get('group_id')==$row2->group_id?'stlected':''}}>
+                                    <option value ="{{$row2->group_id}}" {{Input::get('group_id')==$row2->group_id?'stlected':''}}>
                                         {{$row2->group_name}}
                                     </option>
                                 @endforeach
                                 </select>
-                    </div>
+                        </div>
+                        <div class="form-group">
+                            <th>Username:</th>
+                            <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($student)?$student->username:''}}"/>
+                        </div>
+                        <div class="form-group">
+                            <th>Password:</th>
+                            <input type="password" name="password" class="form-control" />
+                        </div>  
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>
-        </div>
+         </div>
     </div>  
 </div>
 

@@ -23,7 +23,8 @@ class TermController extends Controller
         if(!empty($keyword)){
             $term->where(function ($query) use($keyword){
                 $query->where('term_name','LIKE','%'.$keyword.'%')
-                      ->orwhere('year','LIKE','%'.$keyword.'%');
+                      ->orwhere('year','LIKE','%'.$keyword.'%')
+                      ->orwhere('date','LIKE','%'.$keyword.'%');
             });
         }
         $term = $term->paginate(10);
@@ -44,13 +45,15 @@ class TermController extends Controller
         {
             $term_name = $request->get('term_name');
             $year = $request->get('year');
+            $date = $request->get('date');
 
-            if(!empty($term_name) && !empty($year) )
+            if(!empty($term_name) && !empty($year) && !empty($date))
             {
                
                 DB::table('term')->insert([
                     'term_name' =>$term_name,
                     'year' =>$year,
+                    'date' =>$date,
                     'created_at' =>date('Y-m-d H:i:s'),
                 ]);
                // print_r('term');exit;
@@ -82,13 +85,15 @@ class TermController extends Controller
             
             $term_name = $request->get('term_name');
             $year = $request->get('year');
+            $date = $request->get('date');
 
-            if(!empty($term_name) && !empty($year) )
+            if(!empty($term_name) && !empty($year) && !empty($date) )
             {
                
                 DB::table('term')->where('term_id',$term_id)->update([
                     'term_name' =>$term_name,
                     'year' =>$year,
+                    'date' =>$date,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/term');

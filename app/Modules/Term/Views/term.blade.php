@@ -33,6 +33,7 @@
                                 <th>ลำดับที่</th>
                                 <th>ชื่อภาคเรียน</th>
                                 <th>ปีการศึกษา</th>
+                                <th>วันเปิดภาคการศึกษา</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -42,6 +43,7 @@
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->term_name}}</td>
                                 <td>{{$row->year}}</td>
+                                <td>{{$row->date}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/term/{{$row->term_id}}"></a>

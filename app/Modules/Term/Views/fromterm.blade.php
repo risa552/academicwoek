@@ -35,6 +35,10 @@
                             @endfor
                         </select>
                     </div>
+                    <div class="form-group">
+                            <label for="pwd">วันเปิดภาคการศึกษา:</label>
+                            <input type="text" name="date" class="form-control" value="{{isset($student)?$student->date:''}}"/>
+                        </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>
         </div>

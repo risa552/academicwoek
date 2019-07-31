@@ -18,34 +18,41 @@
             </div>
             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">รายการลงทะเบียนนักศึกษา</button>
                 <div id="demo" class="collapse in">
+                <form class="form-ajax" id="program_open" action="/enrostudent" method="POST">
                     <table class="table table-bordered" >
                         <thead style="background-color:#a4b4fb">
                             <tr>
                                 <th>รหัสวิชา</th>
                                 <th>ชื่อวิชา</th>
                                 <th>หน่วยกิต</th>
-                                <th>sec.</th>
                                 <th>ตารางเรียน</th>
                                 <th>อาจารย์ผู้สอน</th>
-                                <th>ตารางสอบ</th>
+                                <!--<th>ตารางสอบ</th>-->
                                 <th>ลบ</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($program_open as $index =>$row)
                             <tr>
-                                <td>309-11-04[54]</td>
-                                <td>Computer Mathematics</td>
-                                <td>3 (3-0-6)</td>
-                                <td>1</td>
-                                <td>จ(8:00-12:00) 201003</td>
-                                <td>อ. จงกลนี ลิ้มประภัสสร</td>
-                                <td></td>
-                                <td><i class="fa fa-times btn btn-danger" aria-hidden="true"></i></td>
+                                <td>
+                                <input type="hidden" name="program_id[]" value="{{$row->program_id}}"/>
+                                {{$row->sub_code}}</td>
+                                <td>{{$row->sub_name}}</td>
+                                <td>{{$row->credit}}</td>
+                                <td>{{$row->class}} {{$row->room}}</td>
+                                <td>{{$row->first_name}} {{$row->last_name}}</td>
+                                <td>
+                                    <a class="remove-row" href="javascript:;"><i class="fa fa-times btn btn-danger" aria-hidden="true"></i></a>
+                                </td>
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
+                </form>
                 </div>
-            <a class="btn btn-info pull-right">ยืนยัน</a>
+            @if(!$program_open->isEmpty())
+            <a id="program_open_btn" href="javascript:;" class="btn btn-info pull-right">ยืนยัน</a>
+            @endif
             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row">รายวิชาที่ลงทะเบียนไปแล้ว</button>
             <div id="row" class="collapse in">
                 <table class="table table-bordered">
@@ -54,22 +61,21 @@
                             <th>รหัสวิชา</th>
                             <th>ชื่อวิชา</th>
                             <th>หน่วยกิต</th>
-                            <th>sec.</th>
-                            <th>ถอน</th>
                             <th>ตารางเรียน</th>
                             <th>คารางสอบ</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>306-11-06 [54]</td>
-                            <td>Computer Technology and Operating System</td>
-                            <td>3 (2-2-5)</td>
-                            <td>1</td>
-                            <td><i class="fa fa-times btn btn-danger" aria-hidden="true"></i></td>
-                            <td>อ.(8:00-12:00) 201003</td>
-                            <td></td>
-                        </tr>
+                    @foreach($program_selected as $index =>$row)
+                            <tr>
+                                <td>{{$row->sub_code}}</td>
+                                <td>{{$row->sub_name}}</td>
+                                <td>{{$row->credit}}</td>
+                                <td>{{$row->class}} {{$row->room}}</td>
+                                <td>{{$row->first_name}} {{$row->last_name}}</td>
+                                <td></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -78,3 +84,21 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+$(function(){
+    $('.remove-row').on('click',function(e){
+        e.preventDefault();
+        if(confirm('ท่านต้องการจะลบรายการนี้ใช่หรือไม่'))
+        {
+            $(this).parent().parent().remove();
+        }
+    });
+    $('#program_open_btn').on('click',function(e){
+        e.preventDefault();
+        $('#program_open').submit();
+    })
+})
+</script>
+@endpush

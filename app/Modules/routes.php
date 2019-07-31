@@ -23,6 +23,7 @@ Route::prefix('')->group(function ()
       Route::resource('/student', '\App\Modules\Student\StudentController');
       Route::resource('/admin', '\App\Modules\Admin\AdminController');
       Route::Get('/enrostudent','\App\Modules\EnrolmentStudent\EnrolmentStudentController@index');
+      Route::POST('/enrostudent','\App\Modules\EnrolmentStudent\EnrolmentStudentController@store');
 
     });
 });

@@ -29,10 +29,10 @@
                         <thead>
                             <tr>
                                 <th>ลำดับที่</th>
-                                <th>ชื่อข้อสอบ</th>
                                 <th>วันเดือนปีที่ส่งข้อสอบ</th>
                                 <th>รหัสวิชา</th>
-                                <!--<th>ไฟล์ข้อสอบ</th> -->
+                                <th>ชื่อวิชา</th>
+                                <th>ไฟล์ข้อสอบ</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -40,10 +40,11 @@
                         @foreach($exam as $index => $row)
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{$row->first_name}}</td>
-                                <td>{{$row->last_name}}</td>
-                                <td>{{$row->tel}}</td>
-                               <!-- <td>{{$row->sex}}</td> -->
+                                <td>{{$row->created_at}}</td>
+                                <td>{{$row->sub_cord}}</td>
+                                <td>{{$row->sub_name}}</td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group">
                                         <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/exam/{{$row->exam_id}}"></a>

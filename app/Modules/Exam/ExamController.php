@@ -10,39 +10,57 @@ use App\Services\MyResponse;
 
 class ExamController extends Controller
 {
+    private $table_name = 'subject';
+
     public function index(Request $request)
     {
         $keyword =$request->get('keyword');
+        $sub_id = $request->get('sub_id');
         $exam = DB::table('exam')
-        ->whereNull('delete_at');
+        ->select('exam.*',
+        'subject.sub_code',
+        'subject.sub_name',
+        'teacher.first_name',
+        'teacher.last_name')
+        ->leftJoin('subject','exam.sub_id','subject.sub_id')
+        ->whereNull('exam.delete_at');
+
         if(!empty($keyword)){
             $exam->where(function ($query) use($keyword){
                 $query->where('exam_name','LIKE','%'.$keyword.'%')
                       ->orwhere('dat','LIKE','%'.$keyword.'%');
             });
         }
+        if(is_numeric($sub_id))
+        {
+            $exam->where('exam.sub_id','=',$sub_id);
+        } 
         $exam = $exam->paginate(10);
-        return view('exam::exam',[
-            'exam'=>$exam
-        ]);
+        $items = DB::table($this->table_name)->whereNull('delete_at')->get();
+       
+        return view('exam::exam',compact('exam','items'));
     }
     
     public function create()
     {
-        return view('exam::fromexam');
+        $items = DB::table($this->table_name)->whereNull('delete_at')->get();
+        return view('exam::fromexam',compact('items'));
     }
     
     public function store(Request $request)
     {
-        $exam_name = $request->get('exam_name');
         $sub_id = $request->get('sub_id');
+        $sub_code = $request->get('sub_code');
+        $sub_name = $request->get('sub_name');
         
-        if( !empty($exam_name) &&  !empty($sub_id))
+        
+        if(!empty($sub_id) && !empty($sub_code) && !empty($sub_name) )
         {
             DB::table('exam')->insert([
-                'exam_name' =>$exam_name,
-                'date' =>date('Y-m-d H:i:s'),
                 'sub_id'=>$sub_id,
+                'sub_code'=>$sub_code,
+                'sub_name'=>$sub_name,
+                'created_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/exam');
         }else{

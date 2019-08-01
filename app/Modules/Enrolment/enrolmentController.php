@@ -63,15 +63,15 @@ class EnrolmentController extends Controller
         $grade = $request->get('grade');
         $status = $request->get('status');
         $program_id = $request->get('program_id');
-        if( !empty($std_id) && !empty($first_name)&& !empty($last_name) && !empty($number)  && !empty($grade) && !empty($status) && !empty($program_id))
+        if(!empty($std_id)&& !empty($first_name) && !empty($last_name) && !empty($number)  && !empty($grade) && !empty($status) && !empty($program_id))
         {
-          /*  $items = DB::table($this->table_name)
+            $items = DB::table($this->table_name)
             ->where('program_id',$program_id)
             ->whereNull('delete_at')->first();
             if(!empty($items))
             {
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
-            }   */
+            }   
             DB::table($this->table_name)->insert([
                 
                 'std_id'=>$std_id,
@@ -84,6 +84,7 @@ class EnrolmentController extends Controller
                 'created_at' =>date('Y-m-d H:i:s'),
                 //'created_at' =>date('Y-m-d H::i::s'),
             ]);
+                
             return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/enrolment');
         }else{
             return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ');
@@ -121,15 +122,15 @@ class EnrolmentController extends Controller
             $status = $request->get('status');
             $program_id = $request->get('program_id');
             
-            if( !empty($std_id) && !empty($first_name) && !empty($last_name) && !empty($number) && !empty($grade) && !empty($status) && !empty($program_id))    
+            if(!empty($std_id) && !empty($first_name) && !empty($last_name) && !empty($number) && !empty($grade) && !empty($status) && !empty($program_id))    
             {
-              /*  $items = DB::table($this->table_name)
+                $items = DB::table($this->table_name)
             ->where('enro_id','!=',$enro_id)
             ->where('program_id',$program_id)
             ->whereNull('delete_at')->first();
             if(!empty($items)){
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
-            }*/
+            }
                 DB::table($this->table_name)->where('enro_id',$enro_id)->update([
                    
                     'std_id'=>$std_id,

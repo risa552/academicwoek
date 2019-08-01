@@ -29,6 +29,7 @@
                 <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>ลำดับที่</th>
                                 <th>รหัสนักศึกษา</th>
                                 <th>ชื่อนักศึกษา</th>
                                 <th>เกรด</th>
@@ -40,6 +41,7 @@
                         <tbody>
                         @foreach($items as $index => $row)
                         <tr>
+                                <td>{{$index+1}}</td>
                                 <td>{{$row->number}}</td>
                                 <td>{{$row->first_name}} {{$row->last_name}}</td>
                                 <td>{{$row->grade}}</td>

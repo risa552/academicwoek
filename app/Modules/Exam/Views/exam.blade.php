@@ -1,4 +1,4 @@
-@extends('professor-layout') 
+@extends('academic-layout') 
 @section('title','การส่งข้อสอบ')
 @section('content')
 <div class="container">

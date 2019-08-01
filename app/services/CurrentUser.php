@@ -32,4 +32,19 @@ class CurrentUser
         }
         return null;
     }
+    public static function menu(){
+        if(Auth::check()){
+            $user = Auth::user();
+            if($user->user_type===MyConst::$USER_LEVEL_ADMIN){
+                return view('menu-admin');
+            }
+            elseif($user->user_type===MyConst::$USER_LEVEL_TEACHER){
+                return view('menu-professor');
+            }
+            elseif($user->user_type===MyConst::$USER_LEVEL_STUDENT){
+                return view('menu-student');
+            }
+        }
+        return '';
+    }
 }

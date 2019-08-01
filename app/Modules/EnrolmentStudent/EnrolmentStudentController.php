@@ -28,9 +28,10 @@ class EnrolmentStudentController extends Controller
         ->rightJoin('studygroup','program.bran_id','studygroup.bran_id')
         ->where('studygroup.group_id',$user->group_id)
         ->whereNull('studygroup.delete_at')
-        ->whereNotExists(function ($query) {
+        ->whereNotExists(function ($query) use($user) {
             $query->select(DB::raw(1))
                   ->from('enrolment')
+                  ->where('enrolment.std_id',$user->std_id)
                   ->whereRaw('program.program_id = enrolment.program_id');
         })
         ->whereNull('subject.delete_at')
@@ -52,8 +53,10 @@ class EnrolmentStudentController extends Controller
         ->leftJoin('teacher','program.teach_id','teacher.teach_id')
         ->rightJoin('studygroup','program.bran_id','studygroup.bran_id')
         ->where('studygroup.group_id',$user->group_id)
+        ->where('enrolment.std_id',$user->std_id)
         ->whereNull('studygroup.delete_at')
         ->whereNull('subject.delete_at')
+        ->where('enrolment.status','!=','ถอน')
         ->whereNull('enrolment.delete_at')->get();
 
         $history = DB::table('student')
@@ -91,9 +94,10 @@ class EnrolmentStudentController extends Controller
         ->rightJoin('studygroup','program.bran_id','studygroup.bran_id')
         ->where('studygroup.group_id',$user->group_id)
         ->whereNull('studygroup.delete_at')
-        ->whereNotExists(function ($query) {
+        ->whereNotExists(function ($query) use($user) {
             $query->select(DB::raw(1))
                   ->from('enrolment')
+                  ->where('enrolment.std_id',$user->std_id)
                   ->whereRaw('program.program_id = enrolment.program_id');
         })
         ->whereNull('program.delete_at')->get();

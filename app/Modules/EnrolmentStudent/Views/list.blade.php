@@ -1,4 +1,4 @@
-@extends('student-layout') 
+@extends('academic-layout') 
 @section('title',' ข้อมูลลงทะเบียน')
 @section('content')
 <div class="well">

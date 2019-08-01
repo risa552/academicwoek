@@ -8,7 +8,7 @@
             <a herf="/enrolment" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     @if(isset($student))
-                    ลงทะเบียน : {{$student[0]->number}}
+                    ข้อมูลลงทะเบียน : {{$student[0]->number}}
                     @else
                     เพิ่มข้อมูลลงทะเบียน
                     @endif
@@ -48,8 +48,8 @@
                                 <label >สถานะ:</label>
                                 <select  name="status" class="form-control">
                                     <option {{isset($items) && $items->status=='ปกติ'?' selected ':''}} value="ปกติ">ปกติ</option>
-                                    <option {{isset($items) && $items->status=='เพิ่ม '?' selected ':''}} value="เพิ่ม">เพิ่ม</option>
-                                    <option {{isset($items) && $items->status=='ถอน '?' selected ':''}} value="ถอน">ถอน</option>
+                                    <option {{isset($items) && $items->status=='เพิ่ม'?' selected ':''}} value="เพิ่ม">เพิ่ม</option>
+                                    <option {{isset($items) && $items->status=='ถอน'?' selected ':''}} value="ถอน">ถอน</option>
                                 </select>
                             </div>
                             <div class="form-group">

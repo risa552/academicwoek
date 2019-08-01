@@ -38,13 +38,11 @@
                             <label for="pwd">เบอร์โทรศัพท์:</label>
                             <input type="text" name="tel" class="form-control" value="{{isset($student)?$student->tel:''}}"/>
                         </div>
-                        <div class="form-group">
-                            <label for="pwd">เพศ:</label>
-                            <select  name="sex" class="form-control">
-                            <option {{isset($student) && $student->sex=='ชาย'?' selected ':''}} value="ชาย">ชาย</option>
-                            <option {{isset($student) && $student->sex=='หญิง'?' selected ':''}} value="หญิง">หญิง</option>
-                        </select>
-                        </div>
+                        <label>เพศ:</label>
+                            <div class="form-group" >
+                                <input name="sex" type="radio" {{isset($professor) && $professor->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
+                                <input name="sex" type="radio" {{isset($professor) && $professor->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
+                            </div>
                         <div class="form-group">
                             <label for="pwd">ที่อยู่:</label>
                             <input type="text" name="add" class="form-control" value="{{isset($student)?$student->add:''}}"/>

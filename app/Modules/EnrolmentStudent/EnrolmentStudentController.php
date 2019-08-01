@@ -68,7 +68,7 @@ class EnrolmentStudentController extends Controller
         ->rightJoin('branch','studygroup.bran_id','branch.bran_id')
         ->rightJoin('degree','studygroup.degree_id','degree.degree_id')
         ->rightJoin('course','branch.cou_id','course.cou_id')
-        ->where('studygroup.group_id',$user->group_id)
+        ->where('student.std_id',$user->std_id)
         ->whereNull('studygroup.delete_at')
         ->whereNull('branch.delete_at')
         ->whereNull('degree.delete_at')

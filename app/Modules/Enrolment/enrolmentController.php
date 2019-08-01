@@ -21,16 +21,16 @@ class EnrolmentController extends Controller
         $program_id =$request->get('program_id');
 
         $items = DB::table($this->table_name)
-        ->select('enrolment.*','student.std_fname','program.program_name')
-        ->leftJoin('student','enrolment.std_id','student.std_id')
+        ->select('enrolment.*','student.first_name','student.last_name','program.program_id','student.number')
+        ->rightJoin('student','enrolment.std_id','student.std_id')
         ->leftJoin('program','enrolment.program_id','program.program_id')
-        ->whereNull('enrolment.delete_at');
+        ->whereNull('enrolment.delete_at')
+        ->whereNull('student.delete_at');
 
         if(!empty($keyword))
         {
             $items->where(function ($query) use($keyword){
-                $query->where('status','LIKE','%'.$keyword.'%')
-                      ->orwhere('year','LIKE','%'.$keyword.'%');
+                $query->where('status','LIKE','%'.$keyword.'%');
             });
         }
         if(is_numeric($std_id))
@@ -41,7 +41,7 @@ class EnrolmentController extends Controller
         {
             $items->where('enrolment.program_id','=',$program_id);
         }
-        $items = $items->orderBy('enrolment.year','asc')->paginate(10);
+        $items = $items->orderBy('enrolment.created_at','asc')->paginate(10);
         $student = DB::table($this->table2)->whereNull('delete_at')->get();
         $program = DB::table($this->table3)->whereNull('delete_at')->get();
         return view($this->table_name.'::list',compact('items','student','program'));
@@ -57,27 +57,29 @@ class EnrolmentController extends Controller
     public function store(Request $request)
     {
         $std_id = $request->get('std_id');
-        $std_fname = $request->get('std_fname');
+        $number = $request->get('number');
+        $first_name = $request->get('first_name');
+        $last_name = $request->get('last_name');
         $grade = $request->get('grade');
         $status = $request->get('status');
-        $year = $request->get('year');
         $program_id = $request->get('program_id');
-        if( !empty($std_id) && !empty($std_fname) && !empty($grade) && !empty($status) && !empty($year) && !empty($program_id))
+        if( !empty($std_id) && !empty($first_name)&& !empty($last_name) && !empty($number)  && !empty($grade) && !empty($status) && !empty($program_id))
         {
-            $items = DB::table($this->table_name)
+          /*  $items = DB::table($this->table_name)
             ->where('program_id',$program_id)
             ->whereNull('delete_at')->first();
             if(!empty($items))
             {
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
-            }   
+            }   */
             DB::table($this->table_name)->insert([
                 
                 'std_id'=>$std_id,
-                'std_fname'=>$std_fname,
+                'number'=>$number,
+                'first_name'=>$first_name,
+                'last_name'=>$last_name,
                 'grade'=>$grade,
                 'status'=>$status,
-                'year'=>$year,
                 'program_id'=>$program_id,
                 'created_at' =>date('Y-m-d H:i:s'),
                 //'created_at' =>date('Y-m-d H::i::s'),
@@ -112,28 +114,30 @@ class EnrolmentController extends Controller
         if(is_numeric($enro_id))
         {
             $std_id = $request->get('std_id');
-            $std_fname = $request->get('std_fname');
+            $number = $request->get('number');
+            $first_name = $request->get('first_name');
+            $last_name = $request->get('last_name');
             $grade = $request->get('grade');
             $status = $request->get('status');
-            $year = $request->get('year');
             $program_id = $request->get('program_id');
             
-            if( !empty($std_id) && !empty($std_fname) && !empty($grade) && !empty($status) && !empty($year) && !empty($program_id))    
+            if( !empty($std_id) && !empty($first_name) && !empty($last_name) && !empty($number) && !empty($grade) && !empty($status) && !empty($program_id))    
             {
-                $items = DB::table($this->table_name)
+              /*  $items = DB::table($this->table_name)
             ->where('enro_id','!=',$enro_id)
             ->where('program_id',$program_id)
             ->whereNull('delete_at')->first();
             if(!empty($items)){
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
-            }
+            }*/
                 DB::table($this->table_name)->where('enro_id',$enro_id)->update([
                    
                     'std_id'=>$std_id,
-                    'std_fname'=>$std_fname,
+                    'number'=>$number,
+                    'first_name'=>$first_name,
+                    'last_name'=>$last_name,
                     'grade'=>$grade,
                     'status'=>$status,
-                    'year'=>$year,
                     'program_id'=>$program_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);

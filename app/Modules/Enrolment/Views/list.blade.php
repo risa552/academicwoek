@@ -9,7 +9,7 @@
                 <div class="panel-body">
                     <form action="/enrolment">
                         <div class="form-group">
-                            <label>วันที่ลงทะเบียน</label>
+                            <label>ชื่อนักศึกษา</label>
                             <input type="text" class="form-control" name="keyword" value="{{Input::get('keyword')}}">
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
@@ -33,7 +33,6 @@
                                 <th>ชื่อนักศึกษา</th>
                                 <th>เกรด</th>
                                 <th>สถานะ</th>
-                                <th>วันที่ ลงทะเบียน</th>
                                 <th>แผนการเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
@@ -41,11 +40,10 @@
                         <tbody>
                         @foreach($items as $index => $row)
                         <tr>
-                                <td>{{$row->std_id}}</td>
-                                <td>{{$row->std_fname}}</td>
+                                <td>{{$row->number}}</td>
+                                <td>{{$row->first_name}} {{$row->last_name}}</td>
                                 <td>{{$row->grade}}</td>
                                 <td>{{$row->status}}</td>
-                                <td>{{$row->year}}</td>
                                 <td>{{$row->program_id}}</td>
                                 <td>
                                     <div class="btn-group">

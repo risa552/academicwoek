@@ -8,6 +8,8 @@ Route::prefix('')->group(function ()
     Route::group(['middleware'=>['auth']], function()
     {
       Route::Get('/','\App\Modules\Home\HomeController@index');
+      Route::POST('/upload','\App\Modules\Home\UploadController@store');
+      Route::POST('/upload-exam','\App\Modules\Home\UploadController@exam');
       Route::resource('/professor', '\App\Modules\Professor\ProfessorController');
       Route::resource('/studygroup', '\App\Modules\Studygroup\StudygroupController');
       Route::resource('/course', '\App\Modules\Course\CourseController');

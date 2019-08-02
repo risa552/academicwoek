@@ -24,6 +24,8 @@ Route::prefix('')->group(function ()
       Route::resource('/admin', '\App\Modules\Admin\AdminController');
       Route::Get('/enrostudent','\App\Modules\EnrolmentStudent\EnrolmentStudentController@index');
       Route::POST('/enrostudent','\App\Modules\EnrolmentStudent\EnrolmentStudentController@store');
+      Route::Get('/grade','\App\Modules\Grade\GradeController@index');
+      Route::Get('/examprofessor','\App\Modules\ExamProfessor\ExamProfessorController@index');
 
     });
 });

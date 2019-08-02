@@ -3,7 +3,35 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10">
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">ค้นหาสาขาวิชา</div>
+            <div class="panel-body">
+                <form action="/examprofessor">
+                    <div class="form-group">
+                        <label for="keyword">สาขาวิชา</label>
+                        <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}">
+                    </div>
+                    <div class="form-group">
+                        <label >ภาคเรียน:</label>
+                        <select style="width:150px;" name="term_id">
+                            <option value="all">
+                                ทั้งหมด
+                            </option>
+                        @foreach($rom as $index => $row2)
+                            <option value ="{{$row2->term_id}}" {{Input::get('term_id')==$row2->term_id?'selected':''}}>
+                                {{$row2->term_name}}
+                            </option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-default">ยืนยัน</button>
+                </form>
+            </div>
+        </div>
+    </div> 
+
+        <div class="col-md-9">
         <div class="panel panel-default">
                 <div class="panel-heading">
                 รายการการส่งข้อสอบ

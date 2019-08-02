@@ -41,10 +41,9 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->created_at}}</td>
-                                <td>{{$row->sub_cord}}</td>
+                                <td>{{$row->sub_code}}</td>
                                 <td>{{$row->sub_name}}</td>
-                                <td></td>
-                                <td></td>
+                                <td><a target="_blank" href="{{$row->file}}">{{$row->file}}</a></td>
                                 <td>
                                     <div class="btn-group">
                                         <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/exam/{{$row->exam_id}}"></a>

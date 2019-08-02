@@ -16,29 +16,28 @@ class ExamController extends Controller
     {
         $keyword =$request->get('keyword');
         $sub_id = $request->get('sub_id');
-        $exam = DB::table('exam')
-        ->select('exam.*',
+        $exam = DB::table('program')
+        ->select('program.program_id',
         'subject.sub_code',
         'subject.sub_name',
         'teacher.first_name',
-        'teacher.last_name')
-        ->leftJoin('subject','exam.sub_id','subject.sub_id')
-        ->whereNull('exam.delete_at');
-
-        if(!empty($keyword)){
-            $exam->where(function ($query) use($keyword){
-                $query->where('exam_name','LIKE','%'.$keyword.'%')
-                      ->orwhere('dat','LIKE','%'.$keyword.'%');
-            });
-        }
-        if(is_numeric($sub_id))
-        {
-            $exam->where('exam.sub_id','=',$sub_id);
-        } 
-        $exam = $exam->paginate(10);
-        $items = DB::table($this->table_name)->whereNull('delete_at')->get();
+        'teacher.last_name',
+        'exam.file',
+        'exam.exam_id',
+        'exam.created_at')
+        ->leftJoin('subject','program.sub_id','subject.sub_id')
+        ->leftJoin('exam','program.program_id','exam.program_id')
+        ->leftJoin('teacher','program.teach_id','teacher.teach_id')
+        ->whereExists(function ($query) {
+            $query->select(DB::raw(1))
+                  ->from('term')
+                  ->where('startdate','<=',date('Y-m-d'))
+                  ->where('enddate','>=',date('Y-m-d'))
+                  ->whereRaw('program.term_id = term.term_id');
+        })
+        ->whereNull('program.delete_at')->get();
        
-        return view('exam::exam',compact('exam','items'));
+        return view('exam::exam',compact('exam'));
     }
     
     public function create()

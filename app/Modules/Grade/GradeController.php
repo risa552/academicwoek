@@ -23,7 +23,8 @@ class GradeController extends Controller
         'subject.sub_name',
         'student.first_name',
         'student.last_name',
-        'enrolment.grade')
+        'enrolment.enro_id',
+        'enrolment.grade',)
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->leftJoin('enrolment','enrolment.program_id','program.program_id')
         ->rightJoin('student','enrolment.std_id','student.std_id')
@@ -53,5 +54,18 @@ class GradeController extends Controller
         $grade = $grade->get();
         $rom = DB::table('term')->whereNull('delete_at')->get();
         return view('grade::form',compact('grade','rom'));
+    }
+
+    public function store(Request $request)
+    {
+        $grade = $request->get('grade');
+        if(!empty($grade) && is_array($grade))
+        {
+            foreach($grade as $enro_id=>$g)
+           DB::table('enrolment')->where('enro_id',$enro_id)->update([
+                'grade'=>$g,
+            ]);
+        }
+        return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/grade');
     }
 }

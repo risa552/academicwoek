@@ -50,7 +50,6 @@ class ProfessorController extends Controller
             $email = $request->get('email');
             $username = $request->get('username');
             $password = $request->get('password');
-
             if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($username) &&!empty($password))
             {
                 $users = DB::table('users')

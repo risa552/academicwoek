@@ -6,11 +6,12 @@
                 </a>
             </div>
             <ul class="nav navbar-nav pull-right" style="margin-top: 11px">
-                <li class="nav-menu"><a href="/">หน้าแรก</a></li>
+                <li class="nav-menu"><a href="#">หน้าแรก</a></li>
+                <li class="nav-menu"><a href="#">ตารางสอน</a></li>
                 <!--<li class="nav-menu"><a href="/enrostudent">ลงทะเบียน</a></li>
                 <li class="nav-menu"><a href="#">ข้อมูลทั่วไป</a></li>-->
-                <li class="nav-menu"><a href="#">ตารางสอน</a></li>
                 <li class="nav-menu"><a href="#">ตารางสอบ</a></li>
+                <li class="nav-menu"><a href="#">ออกเกรด</a></li>
                 <li class="nav-menu"><a href="#">ข้อสอบ</a></li>
                <!-- <li class="dropdown nav-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">

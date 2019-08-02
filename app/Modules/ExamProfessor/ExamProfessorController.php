@@ -11,12 +11,15 @@ use App\Services\MyResponse;
 
 class ExamProfessorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-       
+        $keyword = $request->get('keyword');
+        $term_id =$request->get('term_id');
+
         $user=CurrentUser::user();
         $exam = DB::table('program')
         ->select('program.program_id',
+        'program.term_id',
         'subject.sub_code',
         'subject.sub_name',
         'teacher.first_name',
@@ -34,8 +37,20 @@ class ExamProfessorController extends Controller
                   ->whereRaw('program.term_id = term.term_id');
         })
         ->where('program.teach_id',$user->teach_id)
-        ->whereNull('program.delete_at')->get();
+        ->whereNull('program.delete_at');
+
+        if(!empty($keyword)){
+            $exam->where(function ($query) use($keyword){
+                $query->where('term_id','LIKE','%'.$keyword.'%');
+            });
+        }
+        if(is_numeric($term_id))
+        {
+            $exam->where('program.term_id','=',$term_id);
+        }
           //  print_r($exam);exit;
-        return view('examprofessor::form',compact('exam'));
+        $exam = $exam->get();
+        $rom = DB::table('term')->whereNull('delete_at')->get();
+        return view('examprofessor::form',compact('exam','rom'));
     }
 }

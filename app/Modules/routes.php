@@ -29,6 +29,7 @@ Route::prefix('')->group(function ()
       Route::Get('/grade','\App\Modules\Grade\GradeController@index');
       Route::POST('/grade','\App\Modules\Grade\GradeController@store');
       Route::Get('/examprofessor','\App\Modules\ExamProfessor\ExamProfessorController@index');
+      Route::Get('/history','\App\Modules\History\HistoryController@index');
 
     });
 });

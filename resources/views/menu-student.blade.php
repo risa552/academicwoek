@@ -8,7 +8,7 @@
             <ul class="nav navbar-nav pull-right" style="margin-top: 11px">
                 <li class="nav-menu"><a href="#">หน้าแรก</a></li>
                 <li class="nav-menu"><a href="/enrostudent">ลงทะเบียน</a></li>
-                <li class="nav-menu"><a href="#">ข้อมูลทั่วไป</a></li>
+                <li class="nav-menu"><a href="/history">ข้อมูลทั่วไป</a></li>
                 <li class="nav-menu"><a href="#">ข้อมูลการศึกษา</a></li>
                 <li class="nav-menu"><a href="#">ตารางเรียน</a></li>
                 <li class="nav-menu"><a href="#">ตารางสอบ</a></li>

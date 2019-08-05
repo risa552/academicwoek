@@ -54,7 +54,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <button class="bth" style="margin-left:700px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
+                    <button class="bth" style="margin-left:600px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </div>
             </div>
         </div>

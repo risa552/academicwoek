@@ -21,10 +21,11 @@ class EnrolmentStudentController extends Controller
         'subject.credit',
         'subject.theory',
         'subject.practice',
+        'subject.teach_id',
         'teacher.first_name',
         'teacher.last_name')
-        ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->leftJoin('teacher','program.teach_id','teacher.teach_id')
+        ->leftJoin('subject','program.sub_id','subject.sub_id','subject.teach_id')
+        ->rightJoin('teacher','subject.teach_id','teacher.teach_id')
         ->rightJoin('studygroup','program.bran_id','studygroup.bran_id')
         ->where('studygroup.group_id',$user->group_id)
         ->whereNull('studygroup.delete_at')
@@ -34,6 +35,7 @@ class EnrolmentStudentController extends Controller
                   ->where('enrolment.std_id',$user->std_id)
                   ->whereRaw('program.program_id = enrolment.program_id');
         })
+    
         ->whereNull('subject.delete_at')
         ->whereNull('program.delete_at')->get();
 
@@ -49,8 +51,8 @@ class EnrolmentStudentController extends Controller
         'teacher.first_name',
         'teacher.last_name')
         ->leftJoin('program','enrolment.program_id','program.program_id')
-        ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->leftJoin('teacher','program.teach_id','teacher.teach_id')
+        ->leftJoin('subject','program.sub_id','subject.sub_id','subject.teach_id')
+        ->rightJoin('teacher','subject.teach_id','teacher.teach_id')
         ->rightJoin('studygroup','program.bran_id','studygroup.bran_id')
         ->where('studygroup.group_id',$user->group_id)
         ->where('enrolment.std_id',$user->std_id)
@@ -113,6 +115,7 @@ class EnrolmentStudentController extends Controller
                 'status'=> in_array($pro->program_id,$program_selected)?'ปกติ':'ถอน',
                 'std_id'=>$user->std_id,
                 'program_id'=>$pro->program_id,
+                'sub_id'=>$pro->sub_id,
                 'created_at'=>date('Y-m-d H:i:s'),
             ];
         }

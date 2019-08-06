@@ -43,7 +43,7 @@
                             </option>
                         @foreach($items3 as $index => $row2)
                             <option value ="{{$row2->term_id}}" {{isset($items)&& $items->term_id==$row2->term_id?'selected':''}}>
-                                {{$row2->term_name}}
+                                {{$row2->term_name}}/{{$row2->year}}
                             </option>
                         @endforeach
                         </select>
@@ -57,19 +57,6 @@
                         @foreach($items4 as $index => $row3)
                             <option value ="{{$row3->sub_id}}" {{isset($items)&& $items->sub_id==$row3->sub_id?'selected':''}}>
                                 {{$row3->sub_name}}
-                            </option>
-                        @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label >อาจารย์:</label>
-                        <select name="teach_id">
-                            <option value="all">
-                                ทั้งหมด
-                            </option>
-                        @foreach($items5 as $index => $row4)
-                            <option value ="{{$row4->teach_id}}" {{isset($items)&& $items->teach_id==$row4->teach_id?'selected':''}}>
-                                {{$row4->first_name}}  {{$row4->last_name}} 
                             </option>
                         @endforeach
                         </select>

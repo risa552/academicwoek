@@ -14,7 +14,6 @@ class ProgramController extends Controller
     private $table2 = 'branch';
     private $table3 = 'term';
     private $table4 = 'subject';
-    private $table5 = 'teacher';
 
     public function index(Request $request)
     {
@@ -23,14 +22,12 @@ class ProgramController extends Controller
         $bran_id =$request->get('bran_id');
         $term_id =$request->get('term_id');
         $sub_id =$request->get('sub_id');
-        $teach_id =$request->get('teach_id');
         
         $items = DB::table($this->table_name)
-        ->select('program.*','branch.bran_name','term.term_name','subject.sub_name','teacher.first_name','teacher.last_name')
+        ->select('program.*','branch.bran_name','term.term_name','term.year','subject.sub_name')
         ->leftJoin('branch','program.bran_id','branch.bran_id')
         ->leftJoin('term','program.term_id','term.term_id')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->leftJoin('teacher','program.teach_id','teacher.teach_id')
         ->whereNull('program.delete_at');
 
         if(!empty($keyword)){
@@ -51,16 +48,11 @@ class ProgramController extends Controller
         {
             $items->where('program.sub_id','=',$sub_id);
         }
-        if(is_numeric($teach_id))
-        {
-            $items->where('program.teach_id','=',$teach_id);
-        }
         $items = $items->paginate(10);
         $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
         $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
         $items4 = DB::table($this->table4)->whereNull('delete_at')->get();
-        $items5 = DB::table($this->table5)->whereNull('delete_at')->get();
-        return view('program::program',compact('items','items2','items3','items4','items5'));
+        return view('program::program',compact('items','items2','items3','items4'));
     }
 
     public function create()
@@ -68,8 +60,7 @@ class ProgramController extends Controller
         $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
         $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
         $items4 = DB::table($this->table4)->whereNull('delete_at')->get();
-        $items5 = DB::table($this->table5)->whereNull('delete_at')->get();
-        return view('program::fromprogrom',compact('items2','items3','items4','items5'));
+        return view('program::fromprogrom',compact('items2','items3','items4'));
     
     }
 
@@ -78,18 +69,16 @@ class ProgramController extends Controller
             $bran_id = $request->get('bran_id');
             $term_id = $request->get('term_id');
             $sub_id = $request->get('sub_id');
-            $teach_id = $request->get('teach_id');
             $class = $request->get('class');
             $room = $request->get('room');
 
-            if(!empty($bran_id) && !empty($term_id) && !empty($sub_id) && !empty($teach_id) && !empty($class) && !empty($room))
+            if(!empty($bran_id) && !empty($term_id) && !empty($sub_id) && !empty($class) && !empty($room))
             { 
 
                 DB::table($this->table_name)->insert([
                     'bran_id' =>$bran_id,
                     'term_id' =>$term_id,
                     'sub_id' =>$sub_id,
-                    'teach_id' =>$teach_id,
                     'class' =>$class,
                     'room' =>$room,
                     'created_at' =>date('Y-m-d H:i:s'),
@@ -110,13 +99,11 @@ class ProgramController extends Controller
                 $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
                 $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
                 $items4 = DB::table($this->table4)->whereNull('delete_at')->get();
-                $items5 = DB::table($this->table5)->whereNull('delete_at')->get();
                 return view('program::fromprogrom',[
                     'items'=>$items,
                     'items2'=>$items2,
                     'items3'=>$items3,
                     'items4'=>$items4,
-                    'items5'=>$items5,
                 ]);
             }
         }
@@ -129,11 +116,10 @@ class ProgramController extends Controller
             $bran_id = $request->get('bran_id');
             $term_id = $request->get('term_id');
             $sub_id = $request->get('sub_id');
-            $teach_id = $request->get('teach_id');
             $class = $request->get('class');
             $room = $request->get('room');
 
-            if( !empty($bran_id) && !empty($term_id) && !empty($sub_id) && !empty($teach_id) && !empty($class) && !empty($room))
+            if( !empty($bran_id) && !empty($term_id) && !empty($sub_id) && !empty($class) && !empty($room))
             {
                /* $items = DB::table($this->table_name)
                 ->where('program_id','!=',$id)
@@ -145,7 +131,6 @@ class ProgramController extends Controller
                     'bran_id' =>$bran_id,
                     'term_id' =>$term_id,
                     'sub_id' =>$sub_id,
-                    'teach_id' =>$teach_id,
                     'class' =>$class,
                     'room' =>$room,
                     'updated_at' =>date('Y-m-d H:i:s'),

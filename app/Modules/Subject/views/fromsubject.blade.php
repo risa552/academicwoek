@@ -22,6 +22,10 @@
                 @csrf()
                 @endif
                 <div class="panel-body">
+                         <div class="form-group">
+                            <label>รหัสวิชา:</label>
+                            <input type="text" name="sub_code" class="form-control" value="{{isset($items)?$items->sub_code:''}}"/>
+                        </div>
                         <div class="form-group">
                             <label>ชื่อวิชา:</label>
                             <input type="text" name="sub_name" class="form-control" value="{{isset($items)?$items->sub_name:''}}"/>
@@ -47,6 +51,19 @@
                             @foreach($items2 as $index => $row1)
                                 <option value ="{{$row1->subgroup_id}}" {{isset($items)&& $items->subgroup_id==$row1->subgroup_id?'selected':''}}>
                                     {{$row1->subgroup_id}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label >อาจารย์:</label>
+                            <select name="teach_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($items3 as $index => $row2)
+                                <option value ="{{$row2->teach_id}}" {{isset($items)&& $items->teach_id==$row2->teach_id?'selected':''}}>
+                                    {{$row2->first_name}} {{$row2->last_name}}
                                 </option>
                             @endforeach
                             </select>

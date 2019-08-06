@@ -13,31 +13,31 @@
                             <input type="text" class="form-control" name="keyword" value="{{Input::get('keyword')}}">
                         </div>
                         <div>
-                                <label >วิชา:</label>
-                                <select name="sub_id">
+                                <label >ภาคเรียน:</label>
+                                <select name="term_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
-                                @foreach($subject as $index => $row3)
-                                    <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'stlected':''}}>
-                                        {{$row3->sub_name}}
+                                @foreach($terms as $index => $row3)
+                                    <option value ="{{$row3->term_id}}" {{Input::get('term_id')==$row3->term_id?'stlected':''}}>
+                                        {{$row3->term_name}}/{{$row3->year}}
                                     </option>
                                 @endforeach
                                 </select>
                         </div>
-                        <div class="form-group">
-                                <label >แผนการเรียน:</label>
-                                <select name="program_id">
+                        <div>
+                                <label >ภาคเรียน:</label>
+                                <select name="term_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
-                                @foreach($program as $index => $row2)
-                                    <option value ="{{$row2->program_id}}" {{Input::get('program_id')==$row2->program_id?'stlected':''}}>
-                                        {{$row2->program_id}}
+                                @foreach($terms as $index => $row3)
+                                    <option value ="{{$row3->term_id}}" {{Input::get('term_id')==$row3->term_id?'stlected':''}}>
+                                        {{$row3->term_name}}/{{$row3->year}}
                                     </option>
                                 @endforeach
                                 </select>
-                        </div> 
+                        </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -48,22 +48,7 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                <form action="/enrolment">
-                            <div>
-                                <label >ชื่อนักศึกษา:</label>
-                                <select name="std_id">
-                                    <option value="all">
-                                        ทั้งหมด
-                                    </option>
-                                @foreach($student as $index => $row1)
-                                    <option value ="{{$row1->std_id}}" {{Input::get('std_id')==$row1->std_id?'stlected':''}}>
-                                        {{$row1->first_name}} {{$row1->last_name}}
-                                    </option>
-                                @endforeach
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-default">ยืนยัน</button>
-                </form>
+                รายการข้อมูลลงทะเบียน
                 </div>
         <div class="panel-body">  
             <table class="table table-striped">
@@ -72,11 +57,7 @@
                                 <th>ลำดับที่</th>
                                 <th>รหัสนักศึกษา</th>
                                 <th>ชื่อนักศึกษา</th>
-                                <th>วิชา</th>
-                                <th>เกรด</th>
-                                <th>สถานะ</th>
-                                <th>แผนการเรียน</th>
-                                <th style="width:110px">แก้ไขรายการ</th>
+                                <th style="width:150px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,14 +66,11 @@
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->number}}</td>
                                 <td>{{$row->first_name}} {{$row->last_name}}</td>
-                                <td>{{$row->sub_name}}</td>
-                                <td>{{$row->grade}}</td>
-                                <td>{{$row->status}}</td>
-                                <td>{{$row->program_id}}</td>
                                 <td>
                                     <div class="btn-group">
-                                       <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/enrolment/{{$row->enro_id}}"></a>
-                                       <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/enrolment/{{$row->enro_id}}"></a>
+                                       <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="#"></a>
+                                       <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="#"></a>
+                                       <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="#"></a>
                                     </div>
                                 </td>
                             </tr>

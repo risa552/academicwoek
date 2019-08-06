@@ -20,14 +20,11 @@ class ExamController extends Controller
         ->select('program.program_id',
         'subject.sub_code',
         'subject.sub_name',
-        'teacher.first_name',
-        'teacher.last_name',
         'exam.file',
         'exam.exam_id',
         'exam.created_at')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->leftJoin('exam','program.program_id','exam.program_id')
-        ->leftJoin('teacher','program.teach_id','teacher.teach_id')
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')

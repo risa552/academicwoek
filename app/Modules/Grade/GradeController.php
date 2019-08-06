@@ -29,7 +29,7 @@ class GradeController extends Controller
         ->leftJoin('enrolment','enrolment.program_id','program.program_id')
         ->rightJoin('student','enrolment.std_id','student.std_id')
     
-        ->where('program.teach_id',$user->teach_id)
+        ->where('subject.teach_id',$user->teach_id)
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')

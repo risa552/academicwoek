@@ -37,8 +37,10 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>วิชา</th>
+                                    <th>รหัสวิชา</th>
+                                    <th>ชื่อวิชา</th>
                                     <th>นักศึกษา</th>
+                                    <th>คะแนน</th>
                                     <th>เกรด</th>
                                 </tr>
                             </thead>
@@ -46,10 +48,13 @@
                             @foreach($grade as $index => $row)
                                 <tr>
                                     <td>{{$row->sub_code}}</td>
+                                    <td>{{$row->sub_name}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
                                     <td>
                                     <input type="text" value="{{$row->grade}}" name="grade[{{$row->enro_id}}]"/>
                                     </td>
+                                    <td><input type="text"/></td>
+
                                 </tr>
                             @endforeach
                             </tbody>

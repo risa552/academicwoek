@@ -8,19 +8,36 @@
                 <div class="panel-heading">ค้นหาข้อมูลลงทะเบียน</div>
                 <div class="panel-body">
                     <form action="/enrolment">
-                    <div>
-                   <label >ชื่อนักศึกษา:</label>
-                                <select name="std_id">
+                        <div class="form-group">
+                            <label>ชื่อนักศึกษา</label>
+                            <input type="text" class="form-control" name="keyword" value="{{Input::get('keyword')}}">
+                        </div>
+                        <div>
+                                <label >วิชา:</label>
+                                <select name="sub_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
-                                @foreach($student as $index => $row1)
-                                    <option value ="{{$row1->std_id}}" {{Input::get('std_id')==$row1->std_id?'stlected':''}}>
-                                        {{$row1->first_name}} {{$row1->last_name}}
+                                @foreach($subject as $index => $row3)
+                                    <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'stlected':''}}>
+                                        {{$row3->sub_name}}
                                     </option>
                                 @endforeach
                                 </select>
-                    </div>
+                        </div>
+                        <div class="form-group">
+                                <label >แผนการเรียน:</label>
+                                <select name="program_id">
+                                    <option value="all">
+                                        ทั้งหมด
+                                    </option>
+                                @foreach($program as $index => $row2)
+                                    <option value ="{{$row2->program_id}}" {{Input::get('program_id')==$row2->program_id?'stlected':''}}>
+                                        {{$row2->program_id}}
+                                    </option>
+                                @endforeach
+                                </select>
+                        </div> 
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -31,9 +48,9 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <form action="/enrolment">
-                   <div>
-                        <label >ชื่อนักศึกษา:</label>
+                <form action="/enrolment">
+                            <div>
+                                <label >ชื่อนักศึกษา:</label>
                                 <select name="std_id">
                                     <option value="all">
                                         ทั้งหมด
@@ -44,13 +61,12 @@
                                     </option>
                                 @endforeach
                                 </select>
-                        <button type="submit" class="btn btn-default">ยืนยัน</button>
-
-                    </div>
-                    </form>
+                            </div>
+                            <button type="submit" class="btn btn-default">ยืนยัน</button>
+                </form>
                 </div>
-                    <div class="panel-body">  
-                         <table class="table table-striped">
+        <div class="panel-body">  
+            <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>ลำดับที่</th>

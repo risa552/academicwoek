@@ -39,6 +39,19 @@
                                 @endforeach
                                 </select>
                             </div>
+                            <div>
+                                <label >วิชา:</label>
+                                <select name="sub_id">
+                                    <option value="all">
+                                        ทั้งหมด
+                                    </option>
+                                @foreach($subject as $index => $row3)
+                                    <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'stlected':''}}>
+                                        {{$row3->sub_name}}
+                                    </option>
+                                @endforeach
+                                </select>
+                            </div>
                             <div class="panel-body">
                             <div>
                                 <label >เกรด:</label>

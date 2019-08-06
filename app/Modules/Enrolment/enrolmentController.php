@@ -13,16 +13,19 @@ class EnrolmentController extends Controller
     private $table_name = 'enrolment';
     private $table2 = 'student';
     private $table3 = 'program';
+    private $table4 = 'subject';
 
     public function index(Request $request)
     {
         $keyword =$request->get('keyword');
         $std_id =$request->get('std_id');
         $program_id =$request->get('program_id');
+        $sub_id =$request->get('sub_id');
 
         $items = DB::table($this->table_name)
-        ->select('enrolment.*','student.first_name','student.last_name','program.program_id','student.number')
+        ->select('enrolment.*','student.first_name','student.last_name','program.program_id','student.number','subject.sub_name')
         ->rightJoin('student','enrolment.std_id','student.std_id')
+        ->rightJoin('subject','enrolment.sub_id','subject.sub_id')
         ->leftJoin('program','enrolment.program_id','program.program_id')
         ->whereNull('enrolment.delete_at')
         ->whereNull('student.delete_at');
@@ -41,17 +44,23 @@ class EnrolmentController extends Controller
         {
             $items->where('enrolment.program_id','=',$program_id);
         }
+        if(is_numeric($sub_id))
+        {
+            $items->where('enrolment.sub_id','=',$sub_id);
+        }
         $items = $items->orderBy('enrolment.created_at','asc')->paginate(10);
         $student = DB::table($this->table2)->whereNull('delete_at')->get();
         $program = DB::table($this->table3)->whereNull('delete_at')->get();
-        return view($this->table_name.'::list',compact('items','student','program'));
+        $subject = DB::table($this->table4)->whereNull('delete_at')->get();
+        return view($this->table_name.'::list',compact('items','student','program','subject'));
     }
     
     public function create()
     {
         $student = DB::table($this->table2)->whereNull('delete_at')->get();
         $program = DB::table($this->table3)->whereNull('delete_at')->get();
-        return view($this->table_name.'::form',compact('student','program'));
+        $subject = DB::table($this->table4)->whereNull('delete_at')->get();
+        return view($this->table_name.'::form',compact('student','program','subject'));
     }
     
     public function store(Request $request)
@@ -60,10 +69,11 @@ class EnrolmentController extends Controller
         $number = $request->get('number');
         $first_name = $request->get('first_name');
         $last_name = $request->get('last_name');
+        $sub_id = $request->get('sub_id');
         $grade = $request->get('grade');
         $status = $request->get('status');
         $program_id = $request->get('program_id');
-        if(!empty($std_id)&& !empty($first_name) && !empty($last_name) && !empty($number)  && !empty($grade) && !empty($status) && !empty($program_id))
+        if(!empty($std_id)&& !empty($first_name) && !empty($last_name) && !empty($number)  && !empty($grade) && !empty($sub_id) && !empty($status) && !empty($program_id))
         {
             $items = DB::table($this->table_name)
             ->where('program_id',$program_id)
@@ -78,6 +88,7 @@ class EnrolmentController extends Controller
                 'number'=>$number,
                 'first_name'=>$first_name,
                 'last_name'=>$last_name,
+                'sub_id'=>$sub_id,
                 'grade'=>$grade,
                 'status'=>$status,
                 'program_id'=>$program_id,
@@ -100,10 +111,12 @@ class EnrolmentController extends Controller
             {
                 $student = DB::table($this->table2)->whereNull('delete_at')->get();
                 $program = DB::table($this->table3)->whereNull('delete_at')->get();
+                $subject = DB::table($this->table4)->whereNull('delete_at')->get();
                 return view($this->table_name.'::form',[
                     'items'=>$items,
                     'student'=>$student,
-                    'program'=>$program
+                    'program'=>$program,
+                    'subject'=>$subject
                 ]);
             }
         }
@@ -118,11 +131,12 @@ class EnrolmentController extends Controller
             $number = $request->get('number');
             $first_name = $request->get('first_name');
             $last_name = $request->get('last_name');
+            $sub_id = $request->get('sub_id');
             $grade = $request->get('grade');
             $status = $request->get('status');
             $program_id = $request->get('program_id');
             
-            if(!empty($std_id) && !empty($first_name) && !empty($last_name) && !empty($number) && !empty($grade) && !empty($status) && !empty($program_id))    
+            if(!empty($std_id) && !empty($first_name) && !empty($last_name) && !empty($number) && !empty($grade) && !empty($sub_id) && !empty($status) && !empty($program_id))    
             {
                 $items = DB::table($this->table_name)
             ->where('enro_id','!=',$enro_id)
@@ -137,6 +151,7 @@ class EnrolmentController extends Controller
                     'number'=>$number,
                     'first_name'=>$first_name,
                     'last_name'=>$last_name,
+                    'sub_id'=>$sub_id,
                     'grade'=>$grade,
                     'status'=>$status,
                     'program_id'=>$program_id,

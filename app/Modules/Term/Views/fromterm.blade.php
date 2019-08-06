@@ -24,9 +24,9 @@
                 <div class="panel-body">
                         <th>ชื่อภาคเรียน : </th>
                         <select  name="term_name" class="form-control">
-                            <option {{isset($term) && $term->term_name=='ภาคเรียนที่ 1'?' selected ':''}} value="ภาคเรียนที่ 1">ภาคเรียนที่ 1</option>
-                            <option {{isset($term) && $term->term_name=='ภาคเรียนที่ 2'?' selected ':''}} value="ภาคเรียนที่ 2">ภาคเรียนที่ 2</option>
-                            <option {{isset($term) && $term->term_name=='ภาคเรียนที่ 3'?' selected ':''}} value="ภาคเรียนที่ 3">ภาคเรียนที่ 3</option>
+                            <option {{isset($term) && $term->term_name==' 1'?' selected ':''}} value=" 1"> 1</option>
+                            <option {{isset($term) && $term->term_name==' 2'?' selected ':''}} value=" 2"> 2</option>
+                            <option {{isset($term) && $term->term_name==' 3'?' selected ':''}} value=" 3"> 3</option>
                         </select>
                         <th>ปีการศึกษา:</th>
                         <select  name="year" class="form-control">

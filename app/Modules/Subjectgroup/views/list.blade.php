@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหากลุ่มวิช</div>
+                <div class="panel-heading">ค้นหากลุ่มวิชา</div>
                 <div class="panel-body">
                     <form action="/subjectgroup">
                         <div class="form-group">

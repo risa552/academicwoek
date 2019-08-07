@@ -31,10 +31,8 @@
                         <thead>
                             <tr>
                                 <th>ลำดับที่</th>
-                                <th>ชื่อ</th>
+                                <th>ชื่ออาจารย์</th>
                                 <th>เบอร์</th>
-                                <th>เพศ</th>
-                                <th>ที่อยู่</th>
                                 <th>E-mail</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
@@ -45,8 +43,6 @@
                                 <td>{{$index+1}}</td>
                                 <td>{{$professor->first_name}} {{$professor->last_name}}</td>
                                 <td>{{$professor->tel}}</td>
-                                <td>{{$professor->sex}}</td>
-                                <td>{{$professor->add}}</td>
                                 <td>{{$professor->email}}</td>
                                 <td>
                                     <div class="btn-group">

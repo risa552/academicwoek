@@ -7,14 +7,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading">ค้นหาข้อมูลระดับ</div>
                 <div class="panel-body">
-                    <form action="/action_page.php">
+                <form action="/degree">
                         <div class="form-group">
-                            <label for="email">รหัสระดับ</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">ชื่อระดับ</label>
-                            <input type="email" class="form-control" id="email">
+                            <label>ชื่อระดับ</label>
+                            <input type="text" class="form-control" name="keyword" value="{{Input::get('keyword')}}">
                         </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>

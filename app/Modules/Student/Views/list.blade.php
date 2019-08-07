@@ -45,11 +45,7 @@
                                 <th>ลำดับที่</th>
                                 <th>รหัสนักศึกษา</th>
                                 <th>ชื่อนักศึกษา</th>
-                                <th>นามสกุล</th>
                                 <th>เบอร์โทรศัพท์</th>
-                                <th>เพศ</th>
-                                <th>ที่อยู่</th>
-                                <th>email</th>
                                 <th>กลุ่มเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
@@ -59,12 +55,8 @@
                         <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->number}}</td>
-                                <td>{{$row->first_name}}</td>
-                                <td>{{$row->last_name}}</td>
+                                <td>{{$row->first_name}} {{$row->last_name}}</td>
                                 <td>{{$row->tel}}</td>
-                                <td>{{$row->sex}}</td>
-                                <td>{{$row->add}}</td>
-                                <td>{{$row->email}}</td>
                                 <td>{{$row->group_name}}</td>
                                 <td>
                                     <div class="btn-group">

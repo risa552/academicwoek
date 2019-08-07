@@ -9,7 +9,7 @@
                         @if(isset($subjectgroup))
                         กลุ่มวิชา : {{$subjectgroup->subgroup_name}}
                         @else
-                        เพิ่มกลุ่มเรียน
+                        เพิ่มกลุ่มวิชา
                         @endif
                 </div>
                     @if(isset($subjectgroup))

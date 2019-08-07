@@ -25,19 +25,7 @@
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label >แผนการเรียน:</label>
-                                <select style="width:150px;" name="program_id">
-                                    <option value="all">
-                                        ทั้งหมด
-                                    </option>
-                                @foreach($items3 as $index => $row2)
-                                    <option value ="{{$row2->program_id}}" {{Input::get('program_id')==$row2->program_id?'stlected':''}}>
-                                        {{$row2->program_id}}
-                                    </option>
-                                @endforeach
-                                </select>
-                            </div>
+                          
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -57,7 +45,6 @@
                                 <th>ลำดับที่</th>
                                 <th>ชื่อสาขาวิชา</th>
                                 <th>หลักสูตร</th>
-                                <th>แผนการเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -67,7 +54,6 @@
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->bran_name}}</td>
                                     <td>{{$row->cou_name}}</td>
-                                    <td>{{$row->program_id}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/branch/{{$row->bran_id}}"></a>

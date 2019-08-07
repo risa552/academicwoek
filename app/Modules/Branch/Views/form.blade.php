@@ -38,19 +38,6 @@
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label >แผนการเรียน:</label>
-                                <select style="width:150px;" name="program_id">
-                                    <option value="all">
-                                        ทั้งหมด
-                                    </option>
-                                @foreach($items3 as $index => $row2)
-                                    <option value ="{{$row2->program_id}}" {{isset($items)&& $items->program_id==$row2->program_id?'selected':''}}>
-                                        {{$row2->program_id}}
-                                    </option>
-                                @endforeach
-                                </select>
-                            </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
 
                     </div>

@@ -26,7 +26,7 @@
                                 </select>
                         </div>
                         <div>
-                                <label >ภาคเรียน:</label>
+                                <label >สาขา:</label>
                                 <select name="term_id">
                                     <option value="all">
                                         ทั้งหมด

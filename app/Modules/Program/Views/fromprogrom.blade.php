@@ -61,22 +61,6 @@
                         @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>คาบเรียน : </label>
-                        <select  name="class" class="form-control">
-                            <option {{isset($items) && $items->class=='8:00-12:00'?' selected ':''}} value="8:00-12:00">8:00-12:00</option>
-                            <option {{isset($items) && $items->class=='9:00-12:00'?' selected ':''}} value="9:00-12:00">9:00-12:00</option>
-                            <option {{isset($items) && $items->class=='13:00-16:00'?' selected ':''}} value="13:00-16:00">13:00-16:00</option>
-                            <option {{isset($items) && $items->class=='13:00-17:00'?' selected ':''}} value="13:00-17:00">13:00-17:00</option>
-                            <option {{isset($items) && $items->class=='13:00-18:00'?' selected ':''}} value="13:00-18:00">13:00-18:00</option>
-                            <option {{isset($items) && $items->class=='18:00-20:00'?' selected ':''}} value="18:00-20:00">18:00-20:00</option>
-                        </select>
-                        <!--<input type="text" name="class" class="form-control" value="{{isset($items)?$items->class:''}}"/>-->
-                    </div>
-                    <div class="form-group">
-                        <label>ห้องเรียน : </label>
-                        <input type="text" name="room" class="form-control" value="{{isset($items)?$items->room:''}}"/>
-                    </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>
         </div>

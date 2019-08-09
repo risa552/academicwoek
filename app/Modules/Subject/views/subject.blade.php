@@ -49,7 +49,6 @@
                                 <th>ชั่วโมงปฎิบัติ</th>
                                 <th>ชั่วโมงทฤษฎี</th>
                                 <th>กลุ่มวิชา</th>
-                                <th>อาจารย์</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -63,7 +62,6 @@
                                 <td>{{$row->theory}}</td>
                                 <td>{{$row->practice}}</td>
                                 <td>{{$row->subgroup_name}}</td>
-                                <td>{{$row->first_name}} {{$row->last_name}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/subject/{{$row->sub_id}}"></a>

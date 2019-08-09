@@ -71,8 +71,6 @@
                                 <th>สาขา</th>
                                 <th>ภาคเรียน</th>
                                 <th>วิชา</th>
-                                <th>คาบเรียน</th>
-                                <th>ห้องเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -83,8 +81,6 @@
                                     <td>{{$row->bran_name}}</td>
                                     <td>{{$row->term_name}}/{{$row->year}}</td>
                                     <td>{{$row->sub_name}}</td>
-                                    <td>{{$row->class}}</td>
-                                    <td>{{$row->room}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/program/{{$row->program_id}}"></a>

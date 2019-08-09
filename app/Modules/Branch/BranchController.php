@@ -12,18 +12,15 @@ class BranchController extends Controller
 {
     private $table_name = 'branch';
     private $table2 = 'course';
-    private $table3 = 'program';
 
     public function index(Request $request)
     {
         $keyword =$request->get('keyword');
         $cou_id =$request->get('cou_id');
-        $program_id =$request->get('program_id');
 
         $items = DB::table($this->table_name)
-        ->select('branch.*','course.cou_name','program.program_id')
+        ->select('branch.*','course.cou_name')
         ->leftJoin('course','branch.cou_id','course.cou_id')
-        ->leftJoin('program','branch.program_id','program.program_id')
         ->whereNull('branch.delete_at');
 
         if(!empty($keyword))
@@ -36,28 +33,22 @@ class BranchController extends Controller
         {
             $items->where('branch.cou_id','=',$cou_id);
         }
-        if(is_numeric($program_id))
-        {
-            $items->where('branch.program_id','=',$program_id);
-        }
+       
         $items = $items->orderBy('bran_name','asc')->paginate(10);
         $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
-        $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
-        return view($this->table_name.'::list',compact('items','items2','items3'));
+        return view($this->table_name.'::list',compact('items','items2'));
     }
     
     public function create()
     {
         $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
-        $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
-        return view($this->table_name.'::form',compact('items2','items3'));
+        return view($this->table_name.'::form',compact('items2'));
     }
     
     public function store(Request $request)
     {
         $bran_name = $request->get('bran_name');
         $cou_id = $request->get('cou_id');
-        $program_id = $request->get('program_id');
         
         if( !empty($bran_name) && !empty($cou_id) && !empty($program_id))
         {
@@ -71,7 +62,6 @@ class BranchController extends Controller
             DB::table($this->table_name)->insert([
                 'bran_name' =>$bran_name,
                 'cou_id' =>$cou_id,
-                'program_id' =>$program_id,
                 'created_at' =>date('Y-m-d H:i:s'),
                 //'created_at' =>date('Y-m-d H::i::s'),
             ]);
@@ -89,11 +79,9 @@ class BranchController extends Controller
             if(!empty($items))
             {
                 $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
-                $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
                 return view($this->table_name.'::form',[
                     'items'=>$items,
                     'items2'=>$items2,
-                    'items3'=>$items3,
                 ]);
             }
         }
@@ -106,9 +94,8 @@ class BranchController extends Controller
         {
             $bran_name = $request->get('bran_name');
             $cou_id = $request->get('cou_id');
-            $program_id = $request->get('program_id');
             
-            if( !empty($bran_name) && !empty($cou_id) && !empty($program_id))
+            if( !empty($bran_name) && !empty($cou_id) )
             {
                 $items = DB::table($this->table_name)
                     ->where('bran_id','!=',$id)
@@ -120,7 +107,6 @@ class BranchController extends Controller
                 DB::table($this->table_name)->where('bran_id',$id)->update([
                     'bran_name' =>$bran_name,
                     'cou_id' =>$cou_id,
-                    'program_id' =>$program_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/branch');

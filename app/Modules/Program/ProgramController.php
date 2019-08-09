@@ -32,8 +32,7 @@ class ProgramController extends Controller
 
         if(!empty($keyword)){
             $items->where(function ($query) use($keyword){
-               $query->where('class','LIKE','%'.$keyword.'%')
-                     ->orwhere('room','LIKE','%'.$keyword.'%');
+              
             });
         }
         if(is_numeric($bran_id))
@@ -69,18 +68,14 @@ class ProgramController extends Controller
             $bran_id = $request->get('bran_id');
             $term_id = $request->get('term_id');
             $sub_id = $request->get('sub_id');
-            $class = $request->get('class');
-            $room = $request->get('room');
 
-            if(!empty($bran_id) && !empty($term_id) && !empty($sub_id) && !empty($class) && !empty($room))
+            if(!empty($bran_id) && !empty($term_id) && !empty($sub_id) )
             { 
 
                 DB::table($this->table_name)->insert([
                     'bran_id' =>$bran_id,
                     'term_id' =>$term_id,
                     'sub_id' =>$sub_id,
-                    'class' =>$class,
-                    'room' =>$room,
                     'created_at' =>date('Y-m-d H:i:s'),
                 ]);
                return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/program');
@@ -116,10 +111,8 @@ class ProgramController extends Controller
             $bran_id = $request->get('bran_id');
             $term_id = $request->get('term_id');
             $sub_id = $request->get('sub_id');
-            $class = $request->get('class');
-            $room = $request->get('room');
 
-            if( !empty($bran_id) && !empty($term_id) && !empty($sub_id) && !empty($class) && !empty($room))
+            if( !empty($bran_id) && !empty($term_id) && !empty($sub_id) )
             {
                /* $items = DB::table($this->table_name)
                 ->where('program_id','!=',$id)
@@ -131,8 +124,6 @@ class ProgramController extends Controller
                     'bran_id' =>$bran_id,
                     'term_id' =>$term_id,
                     'sub_id' =>$sub_id,
-                    'class' =>$class,
-                    'room' =>$room,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/program');

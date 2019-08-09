@@ -43,7 +43,7 @@
                             <input type="text" name="practice" class="form-control" value="{{isset($items)?$items->practice:''}}"/>
                         </div>
                         <div class="form-group">
-                            <label >กลุ่มเรียน:</label>
+                            <label >กลุ่มวิชา:</label>
                             <select name="subgroup_id">
                                 <option value="all">
                                     ทั้งหมด
@@ -51,19 +51,6 @@
                             @foreach($items2 as $index => $row1)
                                 <option value ="{{$row1->subgroup_id}}" {{isset($items)&& $items->subgroup_id==$row1->subgroup_id?'selected':''}}>
                                     {{$row1->subgroup_id}}
-                                </option>
-                            @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label >อาจารย์:</label>
-                            <select name="teach_id">
-                                <option value="all">
-                                    ทั้งหมด
-                                </option>
-                            @foreach($items3 as $index => $row2)
-                                <option value ="{{$row2->teach_id}}" {{isset($items)&& $items->teach_id==$row2->teach_id?'selected':''}}>
-                                    {{$row2->first_name}} {{$row2->last_name}}
                                 </option>
                             @endforeach
                             </select>

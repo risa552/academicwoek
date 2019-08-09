@@ -26,7 +26,7 @@ class CourseController extends Controller
         }
         $course = $course->paginate(10);
         return view('course::course',[
-            'course'=>$course
+            'course'=>$course,
         ]);
     }
 
@@ -41,12 +41,14 @@ class CourseController extends Controller
         
         {
             $cou_name = $request->get('cou_name');
+            $year = $request->get('year');
 
-            if(!empty($cou_name) )
+            if(!empty($cou_name)&& !empty($year) )
             {
                 
                 DB::table('course')->insert([
                     'cou_name' =>$cou_name,
+                    'year' =>$year,
                     'created_at' =>date('Y-m-d H:i:s'),
                 ]);
                // print_r('course');exit;
@@ -65,7 +67,8 @@ class CourseController extends Controller
             if(!empty($course))
             {
                 return view('course::fromcourse',[
-                    'course'=>$course
+                    'course'=>$course,
+                    'year'=>$year
                 ]);
             }
         }
@@ -77,8 +80,9 @@ class CourseController extends Controller
         {
             
             $cou_name = $request->get('cou_name');
+            $year = $request->get('year');
 
-            if(!empty($cou_name) )
+            if(!empty($cou_name) && !empty($year) )
             {
                
                 DB::table('course')->where('cou_id',$cou_id)->update([

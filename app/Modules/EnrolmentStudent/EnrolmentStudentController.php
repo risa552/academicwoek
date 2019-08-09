@@ -21,11 +21,12 @@ class EnrolmentStudentController extends Controller
         'subject.credit',
         'subject.theory',
         'subject.practice',
-        'subject.teach_id',
+        'educate.educate_id',
         'teacher.first_name',
         'teacher.last_name')
-        ->leftJoin('subject','program.sub_id','subject.sub_id','subject.teach_id')
-        ->rightJoin('teacher','subject.teach_id','teacher.teach_id')
+        ->leftJoin('subject','program.sub_id','subject.sub_id')
+        ->rightJoin('educate','educate.sub_id','subject.sub_id')
+        ->rightJoin('teacher','educate.teach_id','teacher.teach_id')
         ->rightJoin('studygroup','program.bran_id','studygroup.bran_id')
         ->where('studygroup.group_id',$user->group_id)
         ->whereNull('studygroup.delete_at')
@@ -35,29 +36,30 @@ class EnrolmentStudentController extends Controller
                   ->where('enrolment.std_id',$user->std_id)
                   ->whereRaw('program.program_id = enrolment.program_id');
         })
-    
         ->whereNull('subject.delete_at')
         ->whereNull('program.delete_at')->get();
 
         $program_selected = DB::table('enrolment')
         ->select('enrolment.*',
-        'program.class',
-        'program.room',
+        'program.program_id',
         'subject.sub_name',
         'subject.sub_code',
         'subject.credit',
         'subject.theory',
         'subject.practice',
+        'educate.educate_id',
         'teacher.first_name',
         'teacher.last_name')
         ->leftJoin('program','enrolment.program_id','program.program_id')
-        ->leftJoin('subject','program.sub_id','subject.sub_id','subject.teach_id')
-        ->rightJoin('teacher','subject.teach_id','teacher.teach_id')
+        ->leftJoin('subject','program.sub_id','subject.sub_id')
+        ->rightJoin('educate','educate.sub_id','subject.sub_id')
+        ->rightJoin('teacher','educate.teach_id','teacher.teach_id')
         ->rightJoin('studygroup','program.bran_id','studygroup.bran_id')
         ->where('studygroup.group_id',$user->group_id)
         ->where('enrolment.std_id',$user->std_id)
         ->whereNull('studygroup.delete_at')
         ->whereNull('subject.delete_at')
+        ->whereNull('educate.delete_at')
         ->where('enrolment.status','!=','ถอน')
         ->whereNull('enrolment.delete_at')->get();
 

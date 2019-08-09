@@ -52,7 +52,6 @@
                                     <th>รหัสวิชา</th>
                                     <th>ชื่อวิชา</th>
                                     <th>หน่วยกิต</th>
-                                    <th>ตารางเรียน</th>
                                     <th>อาจารย์ผู้สอน</th>
                                     <!--<th>ตารางสอบ</th>-->
                                     <th>ลบ</th>
@@ -66,7 +65,6 @@
                                     {{$row->sub_code}}</td>
                                     <td>{{$row->sub_name}}</td>
                                     <td>{{$row->credit}}</td>
-                                    <td>{{$row->class}} {{$row->room}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
                                     <td>
                                         <a class="remove-row" href="javascript:;"><i class="fa fa-times btn btn-danger" aria-hidden="true"></i></a>
@@ -88,9 +86,7 @@
                                 <th>รหัสวิชา</th>
                                 <th>ชื่อวิชา</th>
                                 <th>หน่วยกิต</th>
-                                <th>ตารางเรียน</th>
                                 <th>อาจารย์ผู้สอน</th>
-                                <th>ตารางสอบ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,9 +95,7 @@
                                     <td>{{$row->sub_code}}</td>
                                     <td>{{$row->sub_name}}</td>
                                     <td>{{$row->credit}}</td>
-                                    <td>{{$row->class}} {{$row->room}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
-                                    <td></td>
                                 </tr>
                             @endforeach
                         </tbody>

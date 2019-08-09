@@ -5,11 +5,11 @@
     <div class="row">
     <div class="col-md-3">
         <div class="panel panel-default">
-            <div class="panel-heading">ค้นหาสาขาวิชา</div>
+            <div class="panel-heading">ค้นหาข้อสอบ</div>
             <div class="panel-body">
                 <form action="/examprofessor">
                     <div class="form-group">
-                        <label for="keyword">สาขาวิชา</label>
+                        <label for="keyword"></label>
                         <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}">
                     </div>
                     <div class="form-group">

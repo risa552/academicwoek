@@ -13,7 +13,7 @@
                             <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}" >
                         </div>
                         <div class="form-group">
-                            <label >กลุ่มเรียน:</label>
+                            <label >กลุ่มวิชา:</label>
                             <select name="subgroup_id">
                                 <option value="all">
                                     ทั้งหมด

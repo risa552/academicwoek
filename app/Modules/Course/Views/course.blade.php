@@ -31,6 +31,7 @@
                             <tr>
                                 <th>ลำดับที่</th>
                                 <th>ชื่อหลักสูตร</th>
+                                <th>ปีที่ปรับปรุง</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -39,6 +40,7 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$course->cou_name}}</td>
+                                <td>{{$course->year}}</td>
                                 <td>
                                     <div class="btn-group">
                                     <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/course/{{$course->cou_id}}"></a>

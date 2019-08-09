@@ -17,16 +17,20 @@ class GradeController extends Controller
         $term_id = $request->get('term_id');
 
         $user=CurrentUser::user();
-        $grade = DB::table('program')
-        ->select('program.program_id',
+        $grade = DB::table('educate')
+        ->select('educate.teach_id',
         'subject.sub_code',
         'subject.sub_name',
         'student.first_name',
         'student.last_name',
         'enrolment.enro_id',
-        'enrolment.grade')
+        'enrolment.grade',
+        'program.term_id')
+        ->leftjoin('program', function ($join) {
+            $join->on('program.term_id', '=', 'educate.term_id')
+                 ->on('program.sub_id', '=', 'educate.sub_id');
+        })
         ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->leftJoin('educate','educate.educate_id','educate.sub_id','educate.teach_id')
         ->leftJoin('enrolment','enrolment.program_id','program.program_id')
         ->rightJoin('student','enrolment.std_id','student.std_id')
     

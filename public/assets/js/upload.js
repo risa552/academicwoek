@@ -6,6 +6,7 @@
         var url = $el.attr('data-url');
         var callback = $el.attr('data-callback');
         var programid = $el.attr('data-programid');
+        var term = $el.attr('data-term');
         new ss.SimpleUpload({
             button: $el.get(0),
             url: url,
@@ -14,7 +15,7 @@
             multipart: true,
             multiple: false,
             responseType: 'json',
-            data:{'_token':token,program_id:programid},
+            data:{'_token':token,program_id:programid,term:term},
             onComplete: function( filename, response )
             {
                 if(response.status!=200)
@@ -29,5 +30,7 @@
             }
         });
     }
-    $('.upload-file').upload();
+    $('.upload-file').each(function(e){
+        $(this).upload();
+    })
 }( jQuery ));

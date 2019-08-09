@@ -12,19 +12,16 @@ class SubjectController extends Controller
 {
     private $table_name = 'subject';
     private $table2 = 'subjectgroup';
-    private $table3 = 'teacher';
 
     public function index(Request $request)
     {
         
         $keyword =$request->get('keyword');
         $subgroup_id =$request->get('subgroup_id');
-        $teach_id =$request->get('teach_id');
         
         $items = DB::table($this->table_name)
-        ->select('subject.*','subjectgroup.subgroup_name','teacher.first_name','teacher.last_name')
+        ->select('subject.*','subjectgroup.subgroup_name')
         ->leftJoin('subjectgroup','subject.subgroup_id','subjectgroup.subgroup_id')
-        ->leftJoin('teacher','subject.teach_id','teacher.teach_id')
         ->whereNull('subject.delete_at');
 
         if(!empty($keyword)){
@@ -39,21 +36,15 @@ class SubjectController extends Controller
         {
             $items->where('subject.subgroup_id','=',$subgroup_id);
         }
-        if(is_numeric($teach_id))
-        {
-            $items->where('subject.teach_id','=',$teach_id);
-        }
         $items = $items->paginate(10);
         $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
-        $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
-        return view($this->table_name.'::subject',compact('items','items2','items3'));
+        return view($this->table_name.'::subject',compact('items','items2'));
     }
 
     public function create()
     {
         $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
-        $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
-        return view($this->table_name.'::fromsubject',compact('items2','items3'));
+        return view($this->table_name.'::fromsubject',compact('items2'));
     }
 
     public function store(Request $request)
@@ -64,9 +55,8 @@ class SubjectController extends Controller
             $theory = $request->get('theory');
             $practice = $request->get('practice');
             $subgroup_id = $request->get('subgroup_id');
-            $teach_id = $request->get('teach_id');
             
-            if(!empty($sub_name) && !empty($credit) && !empty($sub_code) && !empty($theory) && !empty($practice)  && !empty($subgroup_id) && !empty($teach_id) )
+            if(!empty($sub_name) && !empty($credit) && !empty($sub_code) && !empty($theory) && !empty($practice)  && !empty($subgroup_id) )
             {
                 $items = DB::table($this->table_name)
                 ->where('sub_name',$sub_name)
@@ -82,7 +72,6 @@ class SubjectController extends Controller
                     'theory' =>$theory,
                     'practice' =>$practice,
                     'subgroup_id' =>$subgroup_id,
-                    'teach_id' =>$teach_id,
                     'created_at' =>date('Y-m-d H:i:s'),
                 ]);
                //print_r('subject');exit;
@@ -100,11 +89,9 @@ class SubjectController extends Controller
             if(!empty($items))
             {
                 $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
-                $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
                 return view($this->table_name.'::fromsubject',[
                     'items'=>$items,
                     'items2'=>$items2,
-                    'items3'=>$items3,
                 ]);
             }
         }
@@ -121,9 +108,8 @@ class SubjectController extends Controller
             $theory = $request->get('theory');
             $practice = $request->get('practice');
             $subgroup_id = $request->get('subgroup_id');
-            $teach_id = $request->get('teach_id');
             
-            if(!empty($sub_name) && !empty($credit) && !empty($sub_code) && !empty($theory) && !empty($practice)  && !empty($subgroup_id) && !empty($teach_id) )
+            if(!empty($sub_name) && !empty($credit) && !empty($sub_code) && !empty($theory) && !empty($practice)  && !empty($subgroup_id) )
             {
                 $items = DB::table($this->table_name)
                     ->where('sub_id','!=',$id)
@@ -139,7 +125,6 @@ class SubjectController extends Controller
                     'theory' =>$theory,
                     'practice' =>$practice,
                     'subgroup_id' =>$subgroup_id,
-                    'teach_id' =>$teach_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/subject');

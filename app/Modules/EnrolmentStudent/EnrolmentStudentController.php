@@ -117,7 +117,7 @@ class EnrolmentStudentController extends Controller
                 'status'=> in_array($pro->program_id,$program_selected)?'ปกติ':'ถอน',
                 'std_id'=>$user->std_id,
                 'program_id'=>$pro->program_id,
-                'sub_id'=>$pro->sub_id,
+               // 'sub_id'=>$pro->sub_id,
                 'created_at'=>date('Y-m-d H:i:s'),
             ];
         }

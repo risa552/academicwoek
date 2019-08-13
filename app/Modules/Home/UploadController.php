@@ -45,6 +45,7 @@ class UploadController extends Controller
         $extension = $request->file('userfile')->getClientOriginalExtension(); // getting image extension
         $extension = strtolower($extension);
         $program_id = $request->get('program_id');
+        $term = $request->get('term');
         
         if (!in_array($extension, $valid_file_extensions))
         {
@@ -53,11 +54,11 @@ class UploadController extends Controller
                 'message'=>'ขออภัย ไฟล์ที่ท่านเลือกไม่ได้รับอนุญาตให้อัพโหลดค่ะ ค่ะ'
             ];
         }
-        if($_FILES['userfile']['size'] > 10485760) // 10 mb
+        if($_FILES['userfile']['size'] > 2485760) // 2 mb
         {
             return [
                 'status' => 500,
-                'message'=>'ขออภัย อนุญาตให้ Upload ไฟล์ได้สูงสุด 10MB ค่ะ'
+                'message'=>'ขออภัย อนุญาตให้ Upload ไฟล์ได้สูงสุด 2MB ค่ะ'
             ];
         }
 
@@ -67,12 +68,12 @@ class UploadController extends Controller
         $exam= DB::table('exam')->where('program_id',$program_id)->first();
         if(!empty($exam)){
             DB::table('exam')->where('program_id',$program_id)->update([
-                'file'=> '/' . $dir_temp . $filename,
+                $term=> '/' . $dir_temp . $filename,
                 'updated_at'=>date('Y-m-d H:i:s')
             ]);
         }else {
             DB::table('exam')->insert([
-                'file'=> '/' . $dir_temp . $filename,
+                $term => '/' . $dir_temp . $filename,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'program_id'=>$program_id
             ]);

@@ -42,8 +42,10 @@
                             <tr>
                                 <th>รหัสวิชา</th>
                                 <th>ชื่อวิชา</th>
-                                <th>ไฟล์ข้อสอบ</th>
-                                <th style="width:110px">ส่งข้อสอบ</th>
+                                <th>ไฟล์ข้อสอบกลางภาค</th>
+                                <th></th>
+                                <th>ไฟล์ข้อสอบปลายภาค</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,10 +53,16 @@
                                 <tr>
                                     <td>{{$row->sub_code}}</td>
                                     <td>{{$row->sub_name}}</td>
-                                    <td><a target="_blank" href="{{$row->file}}">{{$row->file}}</a></td>
+                                    <td><a target="_blank" href="{{$row->file_mid}}">{{$row->file_mid}}</a></td>
                                     <td>
-                                        <button type="button" data-programid="{{$row->program_id}}" data-ext="doc,docx,xls,xlsx,pdf" data-url="/upload-exam" data-callback="exam_success" class="btn btn-default upload-file">
-                                            เลือกไฟล์
+                                        <button type="button" data-term="file_mid" data-programid="{{$row->program_id}}" data-ext="doc,docx,xls,xlsx,pdf" data-url="/upload-exam" data-callback="exam_success" class="btn btn-default upload-file">
+                                        <i class="fa fa-file-text" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td><a target="_blank" href="{{$row->file_final}}">{{$row->file_final}}</a></td>
+                                     <td>
+                                        <button type="button"  data-term="file_final" data-programid="{{$row->program_id}}" data-ext="doc,docx,xls,xlsx,pdf" data-url="/upload-exam" data-callback="exam_success" class="btn btn-default upload-file">
+                                        <i class="fa fa-file-text" aria-hidden="true"></i>
                                         </button>
                                     </td>
                                 </tr>

@@ -32,8 +32,8 @@
                     รายงาน<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="sub-nav-menu"><a href="#">ภาระการสอน</a></li>
-                        <li class="sub-nav-menu"><a href="#">แผนการเรียน</a></li>
+                        <li class="sub-nav-menu"><a href="/pedagogy">ภาระการสอน</a></li>
+                        <li class="sub-nav-menu"><a href="/plan">แผนการเรียน</a></li>
                     </ul>
                 </li>
                 <li class="dropdown nav-menu">                

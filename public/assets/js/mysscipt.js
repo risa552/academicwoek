@@ -77,4 +77,21 @@ $(function(){
             Helper.ajax (url,method,data,callback)
         }
     });
+    $('.score-grade').on('keyup',function(e){
+        e.preventDefault();
+        var score = parseInt($(this).val(),10);
+        var grade = $(this).parent().find(".grade-input");
+        $(grade).val('');
+        if(!isNaN(score)){
+            if(score >= 80) $(grade).val('A');
+            else if(score >= 75) $(grade).val('B+');
+            else if(score >= 70) $(grade).val('B');
+            else if(score >= 65) $(grade).val('C+');
+            else if(score >= 60) $(grade).val('C');
+            else if(score >= 55) $(grade).val('D+');
+            else if(score >= 50) $(grade).val('D');
+            else $(grade).val('F');
+        }
+        
+    });
 });

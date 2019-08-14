@@ -14,9 +14,22 @@
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
-                            @foreach($rom as $index => $row2)
+                            @foreach($rom1 as $index => $row2)
                                 <option value ="{{$row2->teach_id}}" {{Input::get('teach_id')==$row2->teach_id?'selected':''}}>
                                     {{$row2->first_name}} {{$row2->last_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                    </div>
+                    <div class="form-group">
+                            <label >ภาคเรียน:</label>
+                            <select name="term_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($rom2 as $index => $row2)
+                                <option value ="{{$row2->term_id}}" {{Input::get('term_id')==$row2->term_id?'selected':''}}>
+                                    {{$row2->term_name}}
                                 </option>
                             @endforeach
                             </select>
@@ -30,9 +43,10 @@
         <form class="form-ajax" method="POST" action="/pedagogy">
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                    รายการการออกเกรด
-                    </div>
+                <div class="panel-heading">
+                    รายการข้อมูลภาระการสอน
+                    <a href="/pedagogy/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> ข้อมูลภาระการสอน</a>
+                </div>
                     <div class="panel-body">
                         <table class="table table-striped">
                             <thead>
@@ -41,6 +55,9 @@
                                     <th>ชื่ออาจารย์</th>
                                     <th>รหัสวิชา</th>
                                     <th>ชื่อวิชา</th>
+                                    <th>หน่วยกิต</th>
+                                    <th>ชั่วโมงทฤษฎี</th>
+                                    <th>ชั่วโมงปฎิบัติ</th>
                                     <th>กลุ่มเรียน</th>
                                 </tr>
                             </thead>
@@ -51,13 +68,16 @@
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
                                     <td>{{$row->sub_code}}</td>
                                     <td>{{$row->sub_name}}</td>
+                                    <td>{{$row->credit}}</td>
+                                    <td>{{$row->theory}}</td>
+                                    <td>{{$row->practice}}</td>
                                     <td>{{$row->group_name}}</td>
                                     <td>
-                                    <input type="text" value="{{$row->pedagogy}}">
-                                    <body onLoad="window.print()">
+                                    <div class="btn-group">
+                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/pedagogy/{{$row->educate_id}}"></a>
+                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/pedagogy/{{$row->educate_id}}"></a>
+                                    </div>
                                     </td>
-                                    <td><input type="text"/></td>
-
                                 </tr>
                             @endforeach
                             </tbody>

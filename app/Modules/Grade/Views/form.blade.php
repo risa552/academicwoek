@@ -40,8 +40,8 @@
                                     <th>รหัสวิชา</th>
                                     <th>ชื่อวิชา</th>
                                     <th>นักศึกษา</th>
-                                    <th>คะแนน</th>
-                                    <th>เกรด</th>
+                                    <th>คะแนน/เกรด</th>
+                                   <!-- <th>คะแนน/เกรด</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,10 +51,12 @@
                                     <td>{{$row->sub_name}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
                                     <td>
-                                    <input type="text" value="{{$row->grade}}" name="grade[{{$row->enro_id}}]"/>
+                                        <input type="text" value="{{$row->score}}" name="score[{{$row->enro_id}}]"  style="width:100px;" class="score-grade"/>
+                                        <input type="text" readonly style="width:100px;" value="{{$row->grade}}" name="grade[{{$row->enro_id}}]" class="grade-input"/>
                                     </td>
-                                    <td><input type="text"/></td>
-
+                                    <!--<td>
+                                    <input type="text" style="width:100px;" value="{{$row->grade}}" name="grade[{{$row->enro_id}}]"/>
+                                    </td>-->
                                 </tr>
                             @endforeach
                             </tbody>

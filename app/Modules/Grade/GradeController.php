@@ -15,6 +15,7 @@ class GradeController extends Controller
     {
         $keyword = $request->get('keyword');
         $term_id = $request->get('term_id');
+       // $score = $request->get('score');
 
         $user=CurrentUser::user();
         $grade = DB::table('educate')
@@ -24,6 +25,7 @@ class GradeController extends Controller
         'student.first_name',
         'student.last_name',
         'enrolment.enro_id',
+        'enrolment.score',
         'enrolment.grade',
         'program.term_id')
         ->leftjoin('program', function ($join) {
@@ -55,7 +57,24 @@ class GradeController extends Controller
         {
             $grade->where('program.term_id','=',$term_id);
         }
-         // print_r($grade);exit;
+        /*if($score >= 80){
+            $grade ="A";
+        }elseif($score >= 75){
+            $grade ="B+";
+        }elseif($score >= 70){
+            $grade ="B";
+        }elseif($score >= 65){
+            $grade ="C+";
+        }elseif($score >= 60){
+            $grade ="C";
+        }elseif($score >= 55){
+            $grade ="D+";
+        }elseif($score >= 50){
+            $grade ="D";
+        }else{
+            $grade ="F";
+        };
+          //print_r($g1);exit;*/
         $grade = $grade->get();
         $rom = DB::table('term')->whereNull('delete_at')->get();
         return view('grade::form',compact('grade','rom'));
@@ -63,14 +82,19 @@ class GradeController extends Controller
 
     public function store(Request $request)
     {
+        $score = $request->get('score');
         $grade = $request->get('grade');
-        if(!empty($grade) && is_array($grade))
+        if(!empty($grade) && is_array($grade) && !empty($score) && is_array($score))
         {
             foreach($grade as $enro_id=>$g)
            DB::table('enrolment')->where('enro_id',$enro_id)->update([
                 'grade'=>$g,
             ]);
-        }
+            foreach($score as $enro_id=>$s)
+            DB::table('enrolment')->where('enro_id',$enro_id)->update([
+                 'score'=>$s,
+             ]);
+        }  
         return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/grade');
     }
 }

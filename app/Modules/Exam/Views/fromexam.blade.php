@@ -7,7 +7,7 @@
             <div class="panel panel-default">  
                 <div class="panel-heading">เพิ่มข้อมูลข้อสอบ</div>
                 @if(isset($exam))
-                    ข้อสอบ {{$exam->exam_-name}}
+                    ข้อสอบ {{$exam->sub_name}}
                     @else
                 @endif
                 @if(isset($exam))

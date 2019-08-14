@@ -24,7 +24,7 @@
                                     </option>
                                 @endforeach
                                 </select>
-                            </div>
+                        </div>
                           
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>

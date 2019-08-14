@@ -20,7 +20,8 @@ class ExamController extends Controller
         ->select('program.program_id',
         'subject.sub_code',
         'subject.sub_name',
-        'exam.file',
+        'exam.file_mid',
+        'exam.file_final',
         'exam.exam_id',
         'exam.created_at')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
@@ -32,9 +33,18 @@ class ExamController extends Controller
                   ->where('enddate','>=',date('Y-m-d'))
                   ->whereRaw('program.term_id = term.term_id');
         })
-        ->whereNull('program.delete_at')->get();
-       
-        return view('exam::exam',compact('exam'));
+        ->whereNull('program.delete_at');
+        if(!empty($keyword)){
+            $exam->where(function ($query) use($keyword){
+                $query->where('sub_name','LIKE','%'.$keyword.'%');
+            });
+        }
+        if(is_numeric($sub_id)){
+            $exam->where('program.sub_id','=',$sub_id);
+        }
+        $exam = $exam->get();
+        $items = DB::table($this->table_name)->whereNull('delete_at')->get();       
+        return view('exam::exam',compact('exam','items'));
     }
     
     public function create()

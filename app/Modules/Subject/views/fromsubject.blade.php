@@ -50,7 +50,7 @@
                                 </option>
                             @foreach($items2 as $index => $row1)
                                 <option value ="{{$row1->subgroup_id}}" {{isset($items)&& $items->subgroup_id==$row1->subgroup_id?'selected':''}}>
-                                    {{$row1->subgroup_id}}
+                                    {{$row1->subgroup_name}}
                                 </option>
                             @endforeach
                             </select>

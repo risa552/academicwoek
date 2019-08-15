@@ -50,7 +50,7 @@ class BranchController extends Controller
         $bran_name = $request->get('bran_name');
         $cou_id = $request->get('cou_id');
         
-        if( !empty($bran_name) && !empty($cou_id) && !empty($program_id))
+        if( !empty($bran_name) && !empty($cou_id))
         {
             $items = DB::table($this->table_name)
             ->where('bran_name',$bran_name)

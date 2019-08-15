@@ -15,7 +15,8 @@ class GradeController extends Controller
     {
         $keyword = $request->get('keyword');
         $term_id = $request->get('term_id');
-       // $score = $request->get('score');
+        $sub_id = $request->get('sub_id');
+        $group_id = $request->get('group_id');
 
         $user=CurrentUser::user();
         $grade = DB::table('educate')
@@ -27,7 +28,8 @@ class GradeController extends Controller
         'enrolment.enro_id',
         'enrolment.score',
         'enrolment.grade',
-        'program.term_id')
+        'program.term_id',
+        'studygroup.group_name')
         ->leftjoin('program', function ($join) {
             $join->on('program.term_id', '=', 'educate.term_id')
                  ->on('program.sub_id', '=', 'educate.sub_id');
@@ -35,6 +37,7 @@ class GradeController extends Controller
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->leftJoin('enrolment','enrolment.program_id','program.program_id')
         ->rightJoin('student','enrolment.std_id','student.std_id')
+        ->leftJoin('studygroup','studygroup.group_id','student.group_id')
     
         ->where('educate.teach_id',$user->teach_id)
         ->whereExists(function ($query) {
@@ -57,27 +60,20 @@ class GradeController extends Controller
         {
             $grade->where('program.term_id','=',$term_id);
         }
-        /*if($score >= 80){
-            $grade ="A";
-        }elseif($score >= 75){
-            $grade ="B+";
-        }elseif($score >= 70){
-            $grade ="B";
-        }elseif($score >= 65){
-            $grade ="C+";
-        }elseif($score >= 60){
-            $grade ="C";
-        }elseif($score >= 55){
-            $grade ="D+";
-        }elseif($score >= 50){
-            $grade ="D";
-        }else{
-            $grade ="F";
-        };
+        if(is_numeric($sub_id))
+        {
+            $grade->where('program.sub_id','=',$sub_id);
+        }
+        if(is_numeric($group_id))
+        {
+            $grade->where('student.group_id','=',$group_id);
+        }
           //print_r($g1);exit;*/
         $grade = $grade->get();
         $rom = DB::table('term')->whereNull('delete_at')->get();
-        return view('grade::form',compact('grade','rom'));
+        $rom1 = DB::table('subject')->whereNull('delete_at')->get();
+        $rom2 = DB::table('studygroup')->whereNull('delete_at')->get();
+        return view('grade::form',compact('grade','rom','rom1','rom2'));
     }
 
     public function store(Request $request)

@@ -21,12 +21,12 @@ class ModuleServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/Branch/Views','branch'); 
         $this->loadViewsFrom(__DIR__.'/Admin/Views','admin'); 
         $this->loadViewsFrom(__DIR__.'/Degree/Views','degree'); 
-        //$this->loadViewsFrom(__DIR__.'/Educate/Views','educate'); 
+        $this->loadViewsFrom(__DIR__.'/Educate/Views','educate'); 
         $this->loadViewsFrom(__DIR__.'/Enrolment/Views','enrolment'); 
         $this->loadViewsFrom(__DIR__.'/EnrolmentStudent/Views','enrostudent');
         $this->loadViewsFrom(__DIR__.'/Grade/Views','grade');
         $this->loadViewsFrom(__DIR__.'/ExamProfessor/Views','examprofessor');
         $this->loadViewsFrom(__DIR__.'/History/Views','history');
-        $this->loadViewsFrom(__DIR__.'/Pedagogy/Views','pedagogy');
+        //$this->loadViewsFrom(__DIR__.'/Pedagogy/Views','pedagogy');
     }
 }

@@ -9,6 +9,19 @@
                 <div class="panel-body">
                     <form action="/grade">
                     <div class="form-group">
+                            <label >ชื่อวิชา:</label>
+                            <select name="sub_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($rom1 as $index => $row3)
+                                <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'selected':''}}>
+                                    {{$row3->sub_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                    </div>
+                    <div class="form-group">
                             <label >ภาคเรียน:</label>
                             <select name="term_id">
                                 <option value="all">
@@ -17,6 +30,19 @@
                             @foreach($rom as $index => $row2)
                                 <option value ="{{$row2->term_id}}" {{Input::get('term_id')==$row2->term_id?'selected':''}}>
                                     {{$row2->term_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                    </div>
+                    <div class="form-group">
+                            <label >กลุ่มเรียน:</label>
+                            <select name="group_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($rom2 as $index => $row4)
+                                <option value ="{{$row4->group_id}}" {{Input::get('group_id')==$row4->group_id?'selected':''}}>
+                                    {{$row4->group_name}}
                                 </option>
                             @endforeach
                             </select>

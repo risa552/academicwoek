@@ -30,7 +30,7 @@ Route::prefix('')->group(function ()
       Route::POST('/grade','\App\Modules\Grade\GradeController@store');
       Route::Get('/examprofessor','\App\Modules\ExamProfessor\ExamProfessorController@index');
       Route::Get('/history','\App\Modules\History\HistoryController@index');
-      Route::resource('/pedagogy','\App\Modules\Pedagogy\PedagogyController');
+      Route::resource('/educate','\App\Modules\Educate\EducateController');
       Route::Get('/plan','\App\Modules\Plan\PlanController@index');
     });
 });

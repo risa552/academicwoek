@@ -135,9 +135,9 @@ class SubjectController extends Controller
         return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
     
-    public function destroy($educate_id)
+    public function destroy($id)
     {
-        if(is_numeric($educate_id))
+        if(is_numeric($id))
         { 
             $exists1 = DB::table('program')
             ->where('sub_id',$id)

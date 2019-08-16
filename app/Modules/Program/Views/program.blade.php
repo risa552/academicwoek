@@ -71,7 +71,7 @@
                                 <th>สาขา</th>
                                 <th>ภาคเรียน</th>
                                 <th>วิชา</th>
-                                <th style="width:110px">แก้ไขรายการ</th>
+                                <th style="width:150px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,6 +83,7 @@
                                     <td>{{$row->sub_name}}</td>
                                     <td>
                                         <div class="btn-group">
+                                            <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/program/plan"></a>
                                             <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/program/{{$row->program_id}}"></a>
                                             <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/program/{{$row->program_id}}"></a>
                                         </div>

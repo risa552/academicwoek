@@ -152,4 +152,8 @@ class ProgramController extends Controller
         }
         return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
+   /*public function  plan()
+    {
+        return view('program::fromprogrom');
+    }*/
 }

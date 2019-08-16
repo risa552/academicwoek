@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">ค้นหาแผนการเรียน</div>
                 <div class="panel-body">
-                    <form action="/program">
+                    <form action="/educate">
                     <div class="form-group">
                         <label >ภาคเรียน:</label>
                         <select style="width:150px;" name="term_id">
@@ -40,29 +40,14 @@
                             <option value="all">
                                 ทั้งหมด
                             </option>
-                        @foreach($subject as $index => $row3)
+                        @foreach($sub as $index => $row3)
                             <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'selected':''}}>
                                 {{$row3->sub_name}}
                             </option>
                         @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>กลุ่มเรียน:</label>
-                        <select style="widht:150px;" name="group_id">
-                            <option value="all">
-                                ทั้งหมด
-                            </option>
-                        @foreach($studygroup as $index => $row4)
-                            <!--<option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'selected':''}}>
-                               {{$row3->sub_name}}
-                            </option>-->
-                            <option value ="{{$row4->group_id}}" {{Input::get('group_id')==$row4->group_id?'selected':''}}>
-                              {{$row4->group_name}}
-                            </option>
-                        @endforeach
-                        </select>
-                    </div>
+                    
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -73,7 +58,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     รายการข้อมูลภาระการสอน
-                    <a href="#" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลภาระการสอน</a>
                 </div>
                 <div class="panel-body">  
                     <table class="table table-striped">
@@ -82,7 +66,7 @@
                                 <th>ลำดับที่</th>
                                 <th>อาจารย์</th>
                                 <th>วิชา</th>
-                                <th>กลุ่มเรียน</th>
+                                <th>ภาคเรียน</th>
                                 <th style="width:150px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -92,12 +76,16 @@
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
                                     <td>{{$row->sub_code}} {{$row->sub_name}}</td>
-                                    <td>{{$row->group_name}}</td>
+                                    <td>{{$row1->term_name}}/{{$row1->year}}</td>
+                                    
+                                    <!--<td>{{$row->first_name}} {{$row->last_name}}</td>
+                                    <td>{{$row->sub_code}} {{$row->sub_name}}</td>
+                                    <td>{{$row1->term_name}}/{{$row1->year}}</td>-->
                                     <td>
                                         <div class="btn-group">
                                             <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="#"></a>
-                                            <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="#"></a>
-                                            <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="#"></a>
+                                            <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/educate/{{$row->program_id}}"></a>
+                                            <!--<a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/educate/{{$row->educate_id}}"></a>-->
                                         </div>
                                     </td>
                                 </tr>

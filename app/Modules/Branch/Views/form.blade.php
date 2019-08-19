@@ -23,7 +23,7 @@
                 @endif
                     <div class="panel-body">
                         <label >ชื่อสาขา:</label>
-                        <input type="text" name="bran_name" class="form-control" value="{{isset($branch)?$items->bran_name:''}}"/>
+                        <input type="text" name="bran_name" class="form-control" value="{{isset($items)?$items->bran_name:''}}"/>
                         </div>
                         <div class="form-group">
                             <label >หลักสูตร:</label>

@@ -47,7 +47,19 @@
                         @endforeach
                         </select>
                     </div>
-                    
+                    <div class="form-group">
+                        <label >สาขา:</label>
+                        <select style="width:150px;" name="bran_id">
+                            <option value="all">
+                                ทั้งหมด
+                            </option>
+                        @foreach($bran as $index => $row4)
+                            <option value ="{{$row4->bran_id}}" {{Input::get('bran_id')==$row4->bran_id?'selected':''}}>
+                                {{$row4->bran_name}}
+                            </option>
+                        @endforeach
+                        </select>
+                    </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -76,7 +88,8 @@
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
                                     <td>{{$row->sub_code}} {{$row->sub_name}}</td>
-                                    <td>{{$row1->term_name}}/{{$row1->year}}</td>
+                                    <td>{{$row->term_name}}/{{$row->year}}</td>
+                                    <td>{{$row->bran_name}}</td>
                                     
                                     <!--<td>{{$row->first_name}} {{$row->last_name}}</td>
                                     <td>{{$row->sub_code}} {{$row->sub_name}}</td>

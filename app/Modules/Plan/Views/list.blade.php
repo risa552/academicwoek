@@ -10,7 +10,7 @@
                     <form action="/plan">
                     <div class="form-group">
                             <label >ภาคเรียน:</label>
-                            <select name="term"์>
+                            <select name="term_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
@@ -30,34 +30,35 @@
         <form class="form-ajax" method="POST" action="/plan">
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <!--<div class="panel-heading">
                      รายงานภาระการสอน
-                    <a href="#" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลภาระการสอน</a>
-                    </div>
+                   <!-- <a href="#" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลภาระการสอน</a>
+                    </div>-->
                     <div class="panel-body">
-                        <table class="table table-striped">
+                        <p style="padding-left:250px;">มหาวิทยาลัยราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</p>
+                        <p style="padding-left:150px;">บัญชีภาระการสอนส่วนบุคคลสาขาวิชาสารสนเทศและคอมพิวเตอร์ธูรกิจ</p>
+                        <p style="padding-left:250px;">ประจำภาคการศึกษาที่ {{$row2->term_name}}ปีการศึกษา {{$row2->year}} </p>
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>ลำดับ</th>
-                                    <th>อาจารย์</th>
+                                    <th style="height:28px; width:40px;">ลำดับ</th>
+                                    <th style="height:25px; width:40px; padding-right:250px;">อาจารย์</th>
+                                    <th style="height:25px; width:100px;">รหัสวิชา</th>
                                     <th>วิชา</th>
-                                    <th>ภาคเรียน</th>
-                                    <th style="width:150px">แก้ไขรายการ</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($items as $index => $row)
                                 <tr>
                                     <td>{{$index+1}}</td>
-                                    
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
-                                    <td>{{$row->sub_code}} {{$row->sub_name}}</td>
-                                    <td>{{$row2->term_name}}/{{$row2->year}}</td>
-                                    <td>
+                                    <td>{{$row->sub_code}}</td>
+                                    <td> {{$row->sub_name}}</td>
+                                    <!--<td>
                                         <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="#"></a>
                                             <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="#"></a>
                                             <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="#"></a>
-                                   </td>
+                                   </td>-->
                                 </tr>
                             @endforeach
                             </tbody>

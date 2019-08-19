@@ -17,6 +17,7 @@ class EducateController extends Controller
         $sub_id = $request->get('sub_id');
         $teach_id = $request->get('teach_id');
         $term_id = $request->get('term_id');
+        $bran_id = $request->get('bran_id');
       
         $items = DB::table('program')
         ->select('program.*',
@@ -24,11 +25,17 @@ class EducateController extends Controller
         'teacher.last_name',
         'subject.sub_code',
         'subject.sub_name',
-        'educate.educate_id')
+        'educate.educate_id',
+        'branch.bran_name',
+        'term.term_name',
+        'term.year')
        
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->leftJoin('educate','subject.sub_id','educate.sub_id')
         ->leftJoin('teacher','educate.teach_id','teacher.teach_id')
+        ->leftJoin('branch','program.bran_id','branch.bran_id')
+        ->leftJoin('term','program.term_id','term.term_id')
+
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')
@@ -55,12 +62,17 @@ class EducateController extends Controller
         {
             $items->where('program.term_id','=',$term_id);
         }
+        if(is_numeric($bran_id))
+        {
+            $items->where('program.bran_id','=',$bran_id);
+        }
         $items = $items->orderBy('teacher.first_name')->get();
         $sub = DB::table('subject')->whereNull('delete_at')->get();
         $teacher = DB::table('teacher')->whereNull('delete_at')->get();
         $term = DB::table('term')->whereNull('delete_at')->get();
+        $bran = DB::table('branch')->whereNull('delete_at')->get();
        
-        return view('educate::list',compact('items','teacher','sub','term'));
+        return view('educate::list',compact('items','teacher','sub','term','bran'));
     }
 
     public function create()

@@ -59,8 +59,9 @@ class PlanController extends Controller
         $sub = DB::table('subject')->whereNull('delete_at')->get();
         $teacher = DB::table('teacher')->whereNull('delete_at')->get();
         $term = DB::table('term')->whereNull('delete_at')->get();
-       
-        return view('plan::list',compact('items','teacher','sub','term'));
+        $terms = DB::table('term')->where('term_id',$term_id)->first();
+
+        return view('plan::list',compact('items','teacher','sub','term','terms'));
     }
 
     public function create()

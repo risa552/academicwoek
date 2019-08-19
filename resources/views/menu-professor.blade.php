@@ -14,7 +14,7 @@
                     รายงาน<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="sub-nav-menu"><a href="#">รายงานเกรด</a></li>
+                        <li class="sub-nav-menu"><a href="/ggrade">รายงานเกรด</a></li>
                         <li class="sub-nav-menu"><a href="#">รายงานข้อสอบ</a></li>
                     </ul>
                 </li>

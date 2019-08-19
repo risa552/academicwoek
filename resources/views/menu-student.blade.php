@@ -15,7 +15,7 @@
                     รายงาน<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="sub-nav-menu"><a href="#">รายงานเกรด</a></li>
+                        <li class="sub-nav-menu"><a href="/Sgrade">รายงานเกรด</a></li>
                         <li class="sub-nav-menu"><a href="#">การลงทะเบียน</a></li>
                     </ul>
                 </li>

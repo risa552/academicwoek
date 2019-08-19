@@ -17,7 +17,7 @@ class GgradeController extends Controller
     {
         $keyword = $request->get('keyword');
         $term_id = $request->get('term_id');
-        $sub_id = $request->get('sub_id');
+        $sub_id = $request->get('sub');
         $group_id = $request->get('group_id');
 
         $user=CurrentUser::user();

@@ -32,6 +32,7 @@ Route::prefix('')->group(function ()
       Route::Get('/history','\App\Modules\History\HistoryController@index');
       Route::resource('/educate','\App\Modules\Educate\EducateController');
       Route::resource('/ggrade','\App\Modules\Ggrade\GgradeController');
+      Route::resource('/sgrade','\App\Modules\Sgrade\SgradeController');
     });
 });
 ?>

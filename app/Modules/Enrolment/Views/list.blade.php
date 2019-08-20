@@ -27,13 +27,13 @@
                         </div>
                         <div>
                                 <label >สาขา:</label>
-                                <select name="term_id">
+                                <select name="bran_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
-                                @foreach($terms as $index => $row3)
-                                    <option value ="{{$row3->term_id}}" {{Input::get('term_id')==$row3->term_id?'stlected':''}}>
-                                        {{$row3->term_name}}/{{$row3->year}}
+                                @foreach($bran as $index => $row3)
+                                    <option value ="{{$row3->bran_id}}" {{Input::get('bran_id')==$row3->bran_id?'stlected':''}}>
+                                        {{$row3->bran_name}}
                                     </option>
                                 @endforeach
                                 </select>

@@ -33,6 +33,7 @@ Route::prefix('')->group(function ()
       Route::resource('/educate','\App\Modules\Educate\EducateController');
       Route::resource('/ggrade','\App\Modules\Ggrade\GgradeController');
       Route::resource('/sgrade','\App\Modules\Sgrade\SgradeController');
+      Route::resource('/plan','\App\Modules\Plan\PlanController');
     });
 });
 ?>

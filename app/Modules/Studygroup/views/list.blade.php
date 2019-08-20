@@ -38,6 +38,19 @@
                             @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label >อาจารย์ :</label>
+                            <select style="width:150px;" name="teach_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($teach as $index => $teacher)
+                                <option value ="{{$teacher->teach_id}}" {{Input::get('teach_id')==$teacher->teach_id?'selected':''}}> 
+                                    {{$teacher->first_name}} {{$teacher->last_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -60,6 +73,7 @@
                                 <th>วัน/เดือน/ปี ที่เข้า</th>
                                 <th>สาขา</th>
                                 <th>ระดับ</th>
+                                <th>อาจารย์</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -71,6 +85,7 @@
                                 <td>{{$row->year}}</td>
                                 <td>{{$row->bran_name}}</td>
                                 <td>{{$row->degree_name}}</td>
+                                <td>{{$row->first_name}} {{$row->last_name}}</td>
                                 <td>
                                     <div class="btn-group">
                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/studygroup/{{$row->group_id}}"></a>

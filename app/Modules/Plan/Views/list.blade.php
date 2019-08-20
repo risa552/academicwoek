@@ -21,6 +21,19 @@
                             @endforeach
                             </select>
                     </div>
+                    <div class="form-group">
+                        <label >สาขา:</label>
+                        <select name="bran_id">
+                            <option value="all">
+                                ทั้งหมด
+                            </option>
+                        @foreach($bran as $index => $row3)
+                            <option value ="{{$row3->bran_id}}" {{Input::get('bran_id')==$row3->bran_id?'selected':''}}>
+                                {{$row3->bran_name}}
+                            </option>
+                        @endforeach
+                        </select>
+                    </div>
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>

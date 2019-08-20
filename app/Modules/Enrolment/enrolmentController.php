@@ -77,7 +77,7 @@ class EnrolmentController extends Controller
         $program = DB::table($this->table3)->whereNull('delete_at')->get();
         $subject = DB::table($this->table4)->whereNull('delete_at')->get();*/
         
-        return view($this->table_name.'::list',compact('items','terms','term_current'));
+        return view($this->table_name.'::list',compact('items','terms','term_current','bran'));
     }
     
     public function create()

@@ -59,6 +59,19 @@
                                 @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label >อาจารย์:</label>
+                                <select style="width:150px;" name="teach_id">
+                                    <option value="all">
+                                        ทั้งหมด
+                                    </option>
+                                @foreach($teach as $index => $teacher)
+                                    <option value ="{{$teacher->teach_id}}" {{isset($group)&& $group->teach_id==$teacher->teach_id?'selected':''}}>
+                                        {{$teacher->first_name}}  {{$teacher->last_name}}
+                                    </option>
+                                @endforeach
+                                </select>
+                            </div>
                         <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                     </div>
                 </form>

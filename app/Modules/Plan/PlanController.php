@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Input;
 use DB;
 use App\Services\MyResponse;
+use App\Services\CurrentUser;
+
 
 class PlanController extends Controller
 {
@@ -17,6 +19,8 @@ class PlanController extends Controller
         $sub_id = $request->get('sub_id');
         $teach_id = $request->get('teach_id');
         $term_id = $request->get('term_id');
+        $bran_id = $request->get('bran_id');
+       // $user=CurrentUser::user();
       
         $items = DB::table('program')
         ->select('program.*',
@@ -24,11 +28,17 @@ class PlanController extends Controller
         'teacher.last_name',
         'subject.sub_code',
         'subject.sub_name',
-        'educate.educate_id')
+        'educate.educate_id',
+        'term.term_name',
+        'term.year',
+        'branch.bran_name')
        
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->leftJoin('educate','subject.sub_id','educate.sub_id')
         ->leftJoin('teacher','educate.teach_id','teacher.teach_id')
+        ->leftJoin('term','program.term_id','term.term_id')
+        ->leftJoin('branch','program.bran_id','branch.bran_id')
+        ->where('program.bran_id','=',$bran_id)
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')
@@ -55,13 +65,18 @@ class PlanController extends Controller
         {
             $items->where('program.term_id','=',$term_id);
         }
+        if(is_numeric($bran_id))
+        {
+            $items->where('program.bran_id','=',$bran_id);
+        }
         $items = $items->orderBy('teacher.first_name')->get();
         $sub = DB::table('subject')->whereNull('delete_at')->get();
         $teacher = DB::table('teacher')->whereNull('delete_at')->get();
         $term = DB::table('term')->whereNull('delete_at')->get();
+        $bran = DB::table('branch')->whereNull('delete_at')->get();
         $terms = DB::table('term')->where('term_id',$term_id)->first();
 
-        return view('plan::list',compact('items','teacher','sub','term','terms'));
+        return view('plan::list',compact('items','teacher','sub','term','terms','bran'));
     }
 
     public function create()

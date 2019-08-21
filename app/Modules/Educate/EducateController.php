@@ -25,6 +25,8 @@ class EducateController extends Controller
         'teacher.last_name',
         'subject.sub_code',
         'subject.sub_name',
+        'subject.theory',
+        'subject.practice',
         'educate.educate_id',
         'branch.bran_name',
         'term.term_name',
@@ -35,7 +37,7 @@ class EducateController extends Controller
         ->leftJoin('teacher','educate.teach_id','teacher.teach_id')
         ->leftJoin('branch','program.bran_id','branch.bran_id')
         ->leftJoin('term','program.term_id','term.term_id')
-
+        ->where('educate.bran_id',$bran_id)
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')
@@ -68,19 +70,20 @@ class EducateController extends Controller
         }
         $items = $items->orderBy('teacher.first_name')->get();
         $sub = DB::table('subject')->whereNull('delete_at')->get();
-        $teacher = DB::table('teacher')->whereNull('delete_at')->get();
+        $teachers = DB::table('teacher')->whereNull('delete_at')->get();
         $term = DB::table('term')->whereNull('delete_at')->get();
         $bran = DB::table('branch')->whereNull('delete_at')->get();
-       
-        return view('educate::list',compact('items','teacher','sub','term','bran'));
+       //dd($items);
+        return view('educate::list',compact('items','teachers','sub','term','bran'));
     }
 
     public function create()
     {
-        $teacher = DB::table('teacher')->whereNull('delete_at')->get();
+        $teachers = DB::table('teacher')->whereNull('delete_at')->get();
         $sub = DB::table('subject')->whereNull('delete_at')->get();
+        $bran = DB::table('branch')->whereNull('delete_at')->get();
         $term = DB::table('term')->whereNull('delete_at')->get();
-        return view('educate::form',compact('teacher','sub','term'));
+        return view('educate::form',compact('teachers','sub','term','bran'));
     }
 
     public function store(Request $request)
@@ -88,13 +91,15 @@ class EducateController extends Controller
         $teach_id = $request->get('teach_id');
         $sub_id = $request->get('sub_id');
         $term_id = $request->get('term_id');
+        $bran_id = $request->get('bran_id');
 
-        if(!empty($teach_id) && !empty($sub_id) && !empty($term_id))
+        if(!empty($teach_id) && !empty($sub_id) && !empty($term_id) && !empty($bran_id))
         { 
             DB::table('educate')->insertGetid([
                 'teach_id' =>$teach_id,
                 'sub_id' =>$sub_id,
                 'term_id' =>$term_id,
+                'bran_id' =>$bran_id,
                 'created_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/educate');
@@ -106,7 +111,7 @@ class EducateController extends Controller
     public function show($id,Request $request)
     {
         if(is_numeric($id))
-        {
+        { 
             $item = DB::table('program')
             ->select('program.*',
             'subject.sub_id',
@@ -114,9 +119,12 @@ class EducateController extends Controller
             'subject.sub_name',
             'term.term_id',
             'term.term_name',
-            'term.year')
+            'term.year',
+            'branch.bran_id',
+            'branch.bran_name')
            
             ->leftJoin('subject','program.sub_id','subject.sub_id')
+            ->leftJoin('branch','program.bran_id','branch.bran_id')
             ->leftJoin('term','program.term_id','term.term_id')
             ->where('startdate','<=',date('Y-m-d'))
             ->where('enddate','>=',date('Y-m-d'))
@@ -126,8 +134,9 @@ class EducateController extends Controller
                 ->select('teach_id','educate_id')
                 ->where('sub_id',$item->sub_id)
                 ->where('term_id',$item->term_id)
+                ->where('bran_id',$item->bran_id)
                 ->whereNull('delete_at')->first();
-
+                //dd($teacher);
                 $teachers = DB::table('teacher')->whereNull('delete_at')->get();
                 return view('educate::form',[
                     'item'=>$item,
@@ -135,8 +144,6 @@ class EducateController extends Controller
                     'teachers'=>$teachers,
                 ]);
             }
-            
-           
         }
         return view('data-not-found',['back_url'=>'/educate']);
     }
@@ -147,8 +154,9 @@ class EducateController extends Controller
             $teach_id = $request->get('teach_id');
             $sub_id = $request->get('sub_id');
             $term_id = $request->get('term_id');
+            $bran_id = $request->get('bran_id');
 
-            if(!empty($teach_id) && !empty($sub_id) && !empty($term_id) )
+            if(!empty($teach_id) && !empty($sub_id) && !empty($term_id) && !empty($bran_id) )
             {
                /* $items = DB::table($this->table_name)
                 ->where('program_id','!=',$id)
@@ -160,6 +168,7 @@ class EducateController extends Controller
                     'teach_id' =>$teach_id,
                     'sub_id' =>$sub_id,
                     'term_id' =>$term_id,
+                    'bran_id' =>$bran_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/educate');

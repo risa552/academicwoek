@@ -27,7 +27,16 @@
                 </li>
                 <li class="nav-menu"><a href="/program">แผนการเรียน</a></li>
                 <li class="nav-menu"><a href="/exam">การส่งข้อสอบ</a></li>
-                <li class="nav-menu"><a href="/educate">ภาระการสอน</a></li>
+                <!--<li class="nav-menu"><a href="/educate">ภาระการสอน</a></li>-->
+                <li class="dropdown nav-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                    ภาระการสอน<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="sub-nav-menu"><a href="/educate">ภาระการสอน</a></li>
+                        <li class="sub-nav-menu"><a href="/plan">รายงานภาระการสอน</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown nav-menu">                
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                         <i class="fa fa-user" aria-hidden="true">{{CurrentUser::user()->first_name}} </i><span class="caret"></span>

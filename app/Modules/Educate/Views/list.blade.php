@@ -27,7 +27,7 @@
                             <option value="all">
                                 ทั้งหมด
                             </option>
-                        @foreach($teacher as $index => $row2)
+                        @foreach($teachers as $index => $row2)
                             <option value ="{{$row2->teach_id}}" {{Input::get('teach_id')==$row2->teach_id?'selected':''}}>
                                 {{$row2->first_name}} {{$row2->last_name}}
                             </option>
@@ -79,6 +79,7 @@
                                 <th>อาจารย์</th>
                                 <th>วิชา</th>
                                 <th>ภาคเรียน</th>
+                                <th>สาขา</th>
                                 <th style="width:150px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -105,6 +106,45 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+        <div class="panel panel-default">
+                <div class="panel-body">
+                    <p style="padding-left:450px;">มหาวิทยาลัยราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</p>
+                    <p style="padding-left:400px;">บัญชีภาระการสอนส่วนบุคคลสาขาวิชาสารสนเทศและคอมพิวเตอร์ธูรกิจ</p>
+                    <p style="padding-left:450px;">ประจำภาคการศึกษาที่ {{$row1->term_name}}ปีการศึกษา {{$row1->year}} </p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="height:28px; width:40px;">ลำดับ</th>
+                                <th style="height:25px; width:40px; padding-right:250px;">อาจารย์</th>
+                                <th style="height:25px; width:100px;">รหัสวิชา</th>
+                                <th>วิชา</th>
+                                <th>ป.ตรี</th>
+                                <th>ปวส.</th>
+                                <th>ชม.ทฤษฏี</th>
+                                <th>ชม.ปฏิบัติ</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($items as $index => $row)
+                            <tr>
+                                <td>{{$index+1}}</td>
+                                <td>{{$row->first_name}} {{$row->last_name}}</td>
+                                <td>{{$row->sub_code}}</td>
+                                <td> {{$row->sub_name}}</td>
+                                <td></td>
+                                <td></td>
+                                <td> {{$row->theory}}</td>
+                                <td> {{$row->practice}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <a  class="btn btn-default fa fa-print pull-right" aria-hidden="true"></a>
                 </div>
             </div>
         </div>

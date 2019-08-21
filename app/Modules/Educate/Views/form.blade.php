@@ -19,6 +19,7 @@
                 @endif
                 <input type="hidden" value="{{$item->sub_id}}" name="sub_id">
                 <input type="hidden" value="{{$item->term_id}}" name="term_id">
+                <input type="hidden" value="{{$item->bran_id}}" name="bran_id">
 
                 <div class="panel-body">
                     <div class="form-group">
@@ -29,6 +30,9 @@
                     </div>
                     <div class="form-group">
                         <label >ภาคเรียน : {{$item->term_name}}/{{$item->year}}</label>
+                    </div>
+                    <div class="form-group">
+                        <label >สาขา : {{$item->bran_name}}</label>
                     </div>
                     <div class="form-group">
                         <label >อาจารย์:</label>

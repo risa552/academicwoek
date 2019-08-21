@@ -1,11 +1,11 @@
 @extends('academic-layout') 
-@section('title','รายงานแผนการเรียน')
+@section('title','รายงานภาระการสอน')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหาข้อมูลแผนการเรียน</div>
+                <div class="panel-heading">ค้นหาข้อมูลภาระการสอน</div>
                 <div class="panel-body">
                     <form action="/plan">
                     <div class="form-group">
@@ -55,9 +55,14 @@
                             <thead>
                                 <tr>
                                     <th style="height:28px; width:40px;">ลำดับ</th>
-                                    <th style="height:25px; width:40px; padding-right:250px;">อาจารย์</th>
+                                    <th style="height:25px; width:40px; padding-right:150px;">อาจารย์</th>
                                     <th style="height:25px; width:100px;">รหัสวิชา</th>
                                     <th>วิชา</th>
+                                    <th>ป.ตรี</th>
+                                    <th>ปวส.</th>
+                                    <th>ชม.ทฤษฏี</th>
+                                    <th>ชม.ปฏิบัติ</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,6 +72,10 @@
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
                                     <td>{{$row->sub_code}}</td>
                                     <td> {{$row->sub_name}}</td>
+                                    <td></td>
+                                    <td>คธ.16021N</td>
+                                    <td> {{$row->theory}}</td>
+                                    <td> {{$row->practice}}</td>
                                     <!--<td>
                                         <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="#"></a>
                                             <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="#"></a>
@@ -76,6 +85,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <a  class="btn btn-default fa fa-print pull-right" aria-hidden="true"></a>
                     </div>
                 </div>
             </div>

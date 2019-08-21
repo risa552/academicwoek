@@ -28,6 +28,8 @@ class PlanController extends Controller
         'teacher.last_name',
         'subject.sub_code',
         'subject.sub_name',
+        'subject.theory',
+        'subject.practice',
         'educate.educate_id',
         'term.term_name',
         'term.year',
@@ -38,7 +40,7 @@ class PlanController extends Controller
         ->leftJoin('teacher','educate.teach_id','teacher.teach_id')
         ->leftJoin('term','program.term_id','term.term_id')
         ->leftJoin('branch','program.bran_id','branch.bran_id')
-        ->where('program.bran_id','=',$bran_id)
+        ->where('educate.bran_id',$bran_id)
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')

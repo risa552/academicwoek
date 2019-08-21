@@ -58,10 +58,10 @@
             <div class="col-md-9">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-             รายงานเกรดนักศึกษา : {{$row3->sub_name}}     
+             รายงานเกรดนักศึกษา <!--: {{$row3->sub_name}}     -->
                     </div>
                     <div class="panel-body">
-                        <table class="table table-striped">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>ลำดับ</th>

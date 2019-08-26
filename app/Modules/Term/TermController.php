@@ -42,8 +42,6 @@ class TermController extends Controller
 
     public function store(Request $request)
     {
-        
-        {
             $term_name = $request->get('term_name');
             $year = $request->get('year');
             $startdate = $request->get('startdate');
@@ -51,7 +49,6 @@ class TermController extends Controller
 
             if(!empty($term_name) && !empty($year) && !empty($startdate) && !empty($enddate))
             {
-               
                 DB::table('term')->insert([
                     'term_name' =>$term_name,
                     'year' =>$year,
@@ -65,7 +62,6 @@ class TermController extends Controller
                 return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ'); 
             }
         }   
-    }
 
     public function show($term_id,Request $request)
     {

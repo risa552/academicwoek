@@ -21,7 +21,7 @@ class GradeController extends Controller
         $user=CurrentUser::user();
         $grade = DB::table('educate')
         ->select('educate.teach_id',
-        'subject.sub_code',
+        'subject.sub_code', 
         'subject.sub_name',
         'student.first_name',
         'student.last_name',

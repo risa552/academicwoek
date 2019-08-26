@@ -81,7 +81,7 @@ class EnrolmentStudentController extends Controller
         ->whereNull('degree.delete_at')
         ->whereNull('course.delete_at')
         ->whereNull('student.delete_at')->get();
-        
+        //print_r($history);exit;
         return view ('enrostudent::list',compact('program_open','program_selected','history'));
     }
 

@@ -22,9 +22,19 @@ class ProgramController extends Controller
         $bran_id =$request->get('bran_id');
         $term_id =$request->get('term_id');
         $sub_id =$request->get('sub_id');
-        
+
+        if(empty($bran_id)){
+            $bran_id=1;
+        }
         $items = DB::table($this->table_name)
-        ->select('program.*','branch.bran_name','term.term_name','term.year','subject.sub_name')
+        ->select('program.*',
+        'branch.bran_name',
+        'term.term_name',
+        'term.year',
+        'subject.sub_name',
+        'subject.sub_code',
+        'subject.theory',
+        'subject.practice')
         ->leftJoin('branch','program.bran_id','branch.bran_id')
         ->leftJoin('term','program.term_id','term.term_id')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
@@ -47,11 +57,64 @@ class ProgramController extends Controller
         {
             $items->where('program.sub_id','=',$sub_id);
         }
-        $items = $items->paginate(10);
+        $items = $items->get();
+        // $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
+        // $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
+        // $items4 = DB::table($this->table4)->whereNull('delete_at')->get();
+
+        $shows = DB::table('branch')
+        ->select('branch.*',
+        'term.term_name',
+        'term.year',
+        'program.program_id',
+        'program.term_id',
+        'program.sub_id',
+        'subject.sub_name',
+        'subject.sub_code',
+        'subject.theory',
+        'subject.practice')
+        ->leftJoin('program','branch.bran_id','program.bran_id')
+        ->leftJoin('term','program.term_id','term.term_id')
+        ->leftJoin('subject','program.sub_id','subject.sub_id')
+        ->where('program.bran_id',$bran_id)
+        ->whereNull('program.delete_at')
+        ->orderBy('term.year')
+        ->orderBy('term.term_name')
+        ->get();
+       // print_r($bran_id);exit;
+
+        $programs = [];
+        $years = [];
+        if(!empty($shows))
+        {
+            $branche = $shows[0]->bran_name;
+
+            foreach($shows as $index=> $item)
+            {
+                if(!in_array($item->year,$years))  $years[] = $item->year;
+                $key_term = $item->year;
+                if(!isset($programs[$key_term][$item->term_name]))
+                {
+                    $programs[$key_term][$item->term_name] = [];
+                    $programs[$key_term][$item->term_name]['name']       = $item->term_name.'/'.$item->year;
+                    $programs[$key_term][$item->term_name]['numyear']    = count($years);
+                    $programs[$key_term][$item->term_name]['subjects']   = [];
+                    $programs[$key_term][$item->term_name]['subjects'][] = $item;
+                }
+                else
+                {
+
+                    $programs[$key_term][$item->term_name]['subjects'][] = $item;
+                }
+            }
+        }
+       // print_r($branche);exit;
+       // $items = $items->paginate(10);
         $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
         $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
         $items4 = DB::table($this->table4)->whereNull('delete_at')->get();
-        return view('program::program',compact('items','items2','items3','items4'));
+        //dd($show);
+        return view('program::program',compact('items','items2','items3','items4','programs','branche'));
     }
 
     public function create()

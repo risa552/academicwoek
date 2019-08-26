@@ -9,8 +9,8 @@
 .header-panal{background: #AED6F1!important;color:#21618C!important;}
 .thead-light{background: #509de4;}
 .btn-group{color:#fff!important;}
-.table-bordered>thead>tr>th { border: 2px solid #000;}
-.table-bordered>thead:first-child>tr:first-child>th {border-top: 2px solid #000;}
+.table-bordered>thead>tr>th { border: 1px solid #000;}
+.table-bordered>thead:first-child>tr:first-child>th {border-top: 1px solid #000;}
 .table-bordered>tbody>tr>td { border: 1px solid #000;}
 
 

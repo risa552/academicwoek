@@ -112,34 +112,63 @@
         <div class="col-md-12">
         <div class="panel panel-default">
                 <div class="panel-body">
-                    <p style="padding-left:450px;">มหาวิทยาลัยราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</p>
-                    <p style="padding-left:400px;">บัญชีภาระการสอนส่วนบุคคลสาขาวิชาสารสนเทศและคอมพิวเตอร์ธูรกิจ</p>
-                    <p style="padding-left:450px;">ประจำภาคการศึกษาที่ {{$row1->term_name}}ปีการศึกษา {{$row1->year}} </p>
+                    <p style="text-align:center;">มหาวิทยาลัยราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</p>
+                    <p style="text-align:center;">บัญชีภาระการสอนส่วนบุคคลสาขาวิชาสารสนเทศและคอมพิวเตอร์ธูรกิจ</p>
+                    <p style="text-align:center;">ประจำภาคการศึกษาที่ {{$row1->term_name}}ปีการศึกษา {{$row1->year}} </p>
+                    <p style="text-align:center;">(จำนวนคาบต่อสัปดาห์ ท = ทฤษฏี, ป = ปฏิบัติ)</p>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th style="height:28px; width:40px;">ลำดับ</th>
-                                <th style="height:25px; width:40px; padding-right:250px;">อาจารย์</th>
-                                <th style="height:25px; width:100px;">รหัสวิชา</th>
-                                <th>วิชา</th>
+                                <th rowspan=4 style="text-align:center;">ลำดับ</th>
+                                <th rowspan=4 style="height:25px; width:40px; padding-right:100px;text-align:center;">อาจารย์</th>
+                                <th colspan=2 rowspan=2 style="text-align:center;">รายวิชา</th>
+                                <th colspan=2 rowspan=2 style="text-align:center;">ห้องเรียน</th>
+                                <th colspan=15  style="text-align:center;">จำนวนคาบ</th>
+                                <th rowspan=4 >ลายเซ็นรับทราบ</th>
+                                <th rowspan=4>วดป.ส่งข้อสอบกลางภาค</th>
+                                <th rowspan=4>วดป.ส่งข้อสอบปลายภาค</th>
+                            </tr>
+                            <tr>
+                                <th colspan=4 style="text-align:center;">รอบเช้า</th>
+                                <th colspan=4 style="text-align:center;">สมทบ</th>
+                                <th colspan=4 style="text-align:center;">รวมทั้งสิ้น</th>
+                            </tr>
+                            <tr>
+                                <th rowspan=2 style="height:25px; width:100px;">รหัสวิชา</th>
+                                <th rowspan=2>วิชา</th>
+                                <th rowspan=2>ป.ตรี</th>
+                                <th rowspan=2>ปวส.</th>
+                                <th rowspan=2>ท</th>
+                                <th rowspan=2>ป</th>
+                                <th colspan=2 style="text-align:center;">รวม</th>
+                                <th rowspan=2>ท</th>
+                                <th rowspan=2>ป</th>
+                                <th colspan=2 style="text-align:center;">รวม</th>
+                                <th rowspan=2>ท</th>
+                                <th rowspan=2>ป</th>
+                                <th colspan=2 style="text-align:center;">รวม</th>
+                            </tr>
+                            <tr>
+                                
+                                <th>ปวส.</th>
                                 <th>ป.ตรี</th>
                                 <th>ปวส.</th>
-                                <th>ชม.ทฤษฏี</th>
-                                <th>ชม.ปฏิบัติ</th>
-
+                                <th>ป.ตรี</th>
+                                <th>ปวส.</th>
+                                <th>ป.ตรี</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($items as $index => $row)
+                        @foreach($items as $index => $roww)
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{$row->first_name}} {{$row->last_name}}</td>
-                                <td>{{$row->sub_code}}</td>
-                                <td> {{$row->sub_name}}</td>
+                                <td>{{$roww->first_name}} {{$roww->last_name}}</td>
+                                <td>{{$roww->sub_code}}</td>
+                                <td> {{$roww->sub_name}}</td>
                                 <td></td>
                                 <td></td>
-                                <td> {{$row->theory}}</td>
-                                <td> {{$row->practice}}</td>
+                                <td> {{$roww->theory}}</td>
+                                <td> {{$roww->practice}}</td>
                             </tr>
                         @endforeach
                         </tbody>

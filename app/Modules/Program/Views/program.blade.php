@@ -8,10 +8,10 @@
                 <div class="panel-heading">ค้นหาแผนการเรียน</div>
                 <div class="panel-body">
                     <form action="/program">
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="keyword">แผนการเรียน</label>
                             <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}">
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label >สาขา:</label>
                             <select style="width:150px;" name="bran_id">
@@ -38,7 +38,7 @@
                             @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                       <!-- <div class="form-group">
                             <label >วิชา:</label>
                             <select style="width:150px;" name="sub_id">
                                 <option value="all">
@@ -50,7 +50,7 @@
                                 </option>
                             @endforeach
                             </select>
-                        </div>
+                        </div>-->
                         <button type="submit" class="btn btn-default">ยืนยัน</button>
                     </form>
                 </div>
@@ -107,8 +107,8 @@
             <div class="panel panel-default">
                 <form>
                 <div class="panel-body">
-                        <p style="padding-left:450px;">แผนการเรียน</p>
-                         <h1 style="border:1px solid #ccc;padding:5px;text-align:center;">สาขา : {{$branche}}</h1>
+                        <h5 style="text-align:center;">แผนการเรียน</h5>
+                         <h4 style="border:1px solid #ccc;padding:5px;text-align:center;">สาขา : {{$branche}}</h4>
                         
                         <table class="table table-bordered">  
                        @foreach($programs as $program)

@@ -1,5 +1,5 @@
 @extends('academic-layout') 
-@section('title','ข้อมูลแผนการเรียน')
+@section('title','ข้อมูลภาระการสอน')
 @section('content')
 <div class="container">
     <div class="row">
@@ -21,7 +21,7 @@
                         @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                   <!-- <div class="form-group">
                         <label >อาจารย์:</label>
                         <select style="width:150px;" name="teach_id">
                             <option value="all">
@@ -46,7 +46,7 @@
                             </option>
                         @endforeach
                         </select>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label >สาขา:</label>
                         <select style="width:150px;" name="bran_id">
@@ -113,17 +113,17 @@
         <div class="panel panel-default">
                 <div class="panel-body">
                     <p style="text-align:center;">มหาวิทยาลัยราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</p>
-                    <p style="text-align:center;">บัญชีภาระการสอนส่วนบุคคลสาขาวิชาสารสนเทศและคอมพิวเตอร์ธูรกิจ</p>
-                    <p style="text-align:center;">ประจำภาคการศึกษาที่ {{$row1->term_name}}ปีการศึกษา {{$row1->year}} </p>
+                    <p style="text-align:center;">บัญชีภาระการสอนส่วนบุคคลสาขา {{$row->bran_name}}</p>
+                    <p style="text-align:center;">ประจำภาคการศึกษาที่ {{$row->term_name}} ปีการศึกษา {{$row->year}} </p>
                     <p style="text-align:center;">(จำนวนคาบต่อสัปดาห์ ท = ทฤษฏี, ป = ปฏิบัติ)</p>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th rowspan=4 style="text-align:center;">ลำดับ</th>
-                                <th rowspan=4 style="height:25px; width:40px; padding-right:100px;text-align:center;">อาจารย์</th>
+                                <th rowspan=4 style="text-align:center;padding-right:100px;">อาจารย์</th>
                                 <th colspan=2 rowspan=2 style="text-align:center;">รายวิชา</th>
                                 <th colspan=2 rowspan=2 style="text-align:center;">ห้องเรียน</th>
-                                <th colspan=15  style="text-align:center;">จำนวนคาบ</th>
+                                <th colspan=12  style="text-align:center;">จำนวนคาบ</th>
                                 <th rowspan=4 >ลายเซ็นรับทราบ</th>
                                 <th rowspan=4>วดป.ส่งข้อสอบกลางภาค</th>
                                 <th rowspan=4>วดป.ส่งข้อสอบปลายภาค</th>
@@ -159,16 +159,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($items as $index => $roww)
+                        @foreach($list as $index => $roww)
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$roww->first_name}} {{$roww->last_name}}</td>
                                 <td>{{$roww->sub_code}}</td>
-                                <td> {{$roww->sub_name}}</td>
+                                <td>{{$roww->sub_name}}</td>
+                                <td>{{$roww->group_name}}</td>
+                                <td>{{$roww->group_name}} </td>
+                                <!-- <td>{{$roww->theory}}</td>
+                                <td>{{$roww->practice}}</td>
+                                <td>({{$roww->theory}}+{{$roww->practice}})</td>
+                                <td>({{$roww->theory}}+{{$roww->practice}})</td>
+                                <td>{{$roww->theory}}</td>
+                                <td>{{$roww->practice}}</td>
+                                <td>({{$roww->theory}}+{{$roww->practice}})</td>
+                                <td>({{$roww->theory}}+{{$roww->practice}})</td>
+                                <td>{{$roww->theory}}</td>
+                                <td>{{$roww->practice}}</td>
+                                <td>({{$roww->theory}}+{{$roww->practice}})</td>
+                                <td>({{$roww->theory}}+{{$roww->practice}})</td> -->
                                 <td></td>
                                 <td></td>
-                                <td> {{$roww->theory}}</td>
-                                <td> {{$roww->practice}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         @endforeach
                         </tbody>

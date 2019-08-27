@@ -58,7 +58,7 @@
                                         ทั้งหมด
                                     </option>
                                 @foreach($studygroup as $index => $row2)
-                                    <option value ="{{$row2->group_id}}" {{Input::get('group_id')==$row2->group_id?'stlected':''}}>
+                                    <option value ="{{$row2->group_id}}" {{isset($student)&& $student->group_id==$row2->group_id?'selected':''}}>
                                         {{$row2->group_name}}
                                     </option>
                                 @endforeach

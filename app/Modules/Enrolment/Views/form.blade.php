@@ -33,7 +33,7 @@
                                         ทั้งหมด
                                     </option>
                                 @foreach($student as $index => $row1)
-                                    <option value ="{{$row1->std_id}}" {{Input::get('std_id')==$row1->std_id?'stlected':''}}>
+                                    <option value ="{{$row1->std_id}}" {{isset($student)&& $student->std_id==$row1->std_id?'selected':''}}>
                                         {{$row1->first_name}} {{$row1->last_name}}
                                     </option>
                                 @endforeach
@@ -46,7 +46,7 @@
                                         ทั้งหมด
                                     </option>
                                 @foreach($subject as $index => $row3)
-                                    <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'stlected':''}}>
+                                    <option value ="{{$row3->sub_id}}" {{isset($student)&& $student->sub_id==$row3->sub_id?'selected':''}}>
                                         {{$row3->sub_name}}
                                     </option>
                                 @endforeach
@@ -72,7 +72,7 @@
                                         ทั้งหมด
                                     </option>
                                 @foreach($program as $index => $row2)
-                                    <option value ="{{$row2->program_id}}" {{Input::get('program_id')==$row2->program_id?'stlected':''}}>
+                                    <option value ="{{$row2->program_id}}" {{isset($student)&& $student->program_id==$row2->program_id?'selected':''}}>
                                         {{$row2->program_id}}
                                     </option>
                                 @endforeach

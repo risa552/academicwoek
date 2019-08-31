@@ -46,7 +46,7 @@
                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">รายการลงทะเบียนนักศึกษา</button>
                     <div id="demo" class="collapse in">
                     <form class="form-ajax" id="program_open" action="/enrostudent" method="POST">
-                        <table class="table table-bordered" >
+                        <table class="table table-striped" >
                             <thead style="background-color:#a4b4fb">
                                 <tr>
                                     <th>รหัสวิชา</th>
@@ -80,7 +80,7 @@
                 @endif
                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row">รายวิชาที่ลงทะเบียนไปแล้ว</button>
                 <div id="row" class="collapse in">
-                    <table class="table table-bordered">
+                    <table class="table table-striped">
                         <thead style="background-color:#a4b4fb">
                             <tr>
                                 <th>รหัสวิชา</th>

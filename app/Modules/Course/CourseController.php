@@ -67,8 +67,7 @@ class CourseController extends Controller
             if(!empty($course))
             {
                 return view('course::fromcourse',[
-                    'course'=>$course,
-                    'year'=>$year
+                    'course'=>$course
                 ]);
             }
         }
@@ -87,6 +86,7 @@ class CourseController extends Controller
                
                 DB::table('course')->where('cou_id',$cou_id)->update([
                     'cou_name' =>$cou_name,
+                    'year' =>$year,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/course');

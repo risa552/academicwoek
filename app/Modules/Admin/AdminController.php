@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Input;
 use DB;
+use Hash;
 use App\Services\MyResponse;
 
 class AdminController extends Controller
@@ -51,11 +52,27 @@ class AdminController extends Controller
             $sex = $request->get('sex');
             $house = $request->get('house');
             $email = $request->get('email');
+            $username = $request->get('username');
+            $password = $request->get('password');
 
-            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($house) && !empty($email) )
+            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($house) && !empty($email) && !empty($username) && !empty($password))
             {
-                
-                DB::table('admin')->insert([
+                $admin = DB::table('admin')
+            ->where('first_name',$first_name)
+            ->where('last_name',$last_name)
+            ->whereNull('admin.delete_at')->first();
+            if(!empty($admin))
+            {
+                return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้วค่ะ');
+            }   
+            $users = DB ::table ('users')
+            ->where('username',$username)
+            ->where('user_type','USER_LEVEL_ADMIN')
+            ->where('status','Y')->first();
+            if(!empty($users)){
+                return MyResponse::error('Username นี้มีในระบบแล้วค่ะ');
+            }
+                $admin_id =DB::table('admin')->insertGetId([
                     'first_name' =>$first_name,
                     'last_name' =>$last_name,
                     'tel' =>$tel,
@@ -63,6 +80,15 @@ class AdminController extends Controller
                     'house' =>$house,
                     'email' =>$email,
                     'created_at' =>date('Y-m-d H:i:s'),
+                ]);
+                DB::table('users')
+                ->insert([
+                    'user_type' =>'USER_LEVEL_ADMIN',
+                    'user_id' =>$admin_id,
+                    'username' =>$username,
+                    'password' =>Hash::make($password),
+                    'created_at' =>date('Y-m-d H:i:s'),
+                    'status' =>'Y'
                 ]);
                // print_r('admin');exit;
                return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/admin');
@@ -76,7 +102,15 @@ class AdminController extends Controller
     {
         if(is_numeric($id))
         {
-            $admin = DB::table('admin')->where('id',$id)->first();
+            $admin = DB::table('admin')
+            ->select('admin.*','users.username')
+            ->leftJoin('users', function ($join) use ($admin_id) {
+                $join->on('users.user_id', '=', 'admin.admin_id')
+                    ->where('user_type','USER_LEVEL_ADMIN')
+                    ->where('status','Y');
+            })
+            ->where('admin_id',$admin_id)->first();
+            $admin = DB::table('admin')->where('admin_id',$id)->first();
             if(!empty($admin))
             {
                 return view('admin::fromadmin',[
@@ -97,11 +131,20 @@ class AdminController extends Controller
             $sex = $request->get('sex');
             $house = $request->get('house');
             $email = $request->get('email');
+            $username = $request->get('username');
+            $password = $request->get('password');
 
-            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($house) && !empty($email) )
+            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($house) && !empty($email) && !empty($username) && !empty($password))
             {
-               
-                DB::table('admin')->where('id',$id)->update([
+                $admin = DB::table('admin')
+                ->where('admin_id','!=',$admin_id)
+                ->where('first_name',$first_name)
+                ->where('last_name',$last_name)
+                ->whereNull('delete_at')->first();
+                if(!empty($items)){
+                    return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
+                }
+                DB::table('admin')->where('admin_id',$id)->update([
                     'first_name' =>$first_name,
                     'last_name' =>$last_name,
                     'tel' =>$tel,
@@ -110,6 +153,26 @@ class AdminController extends Controller
                     'email' =>$email,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
+                if(!empty($username)){
+                    $users = DB::table ('users')
+                        ->where('username',$username)
+                        ->where('user_type','USER_LEVEL_ADMIN')
+                        ->where('user_id','!=','admin_id')
+                        ->where('status','Y')->first();
+                    if(!empty($users)){
+                        return MyResponse::error ('username นี้มีในระบบแล้วค่ะ'); 
+                    }else{
+                        DB::table('users')
+                        ->where('user_type','USER_LEVEL_ADMIN')
+                        ->where('user_id',$admin_id)
+                        ->where('user_type','USER_LEVEL_ADMIN')
+                        ->where('status','Y')
+                        ->update([
+                            'username' =>$username,
+                            'password' =>Hash::make($password)
+                        ]);
+                    }
+                }
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/admin');
             }else{
                 return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ');
@@ -122,7 +185,7 @@ class AdminController extends Controller
     {
         if(is_numeric($id))
         {
-            DB::table('admin')->where('id',$id)->update([
+            DB::table('admin')->where('admin_id',$id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');

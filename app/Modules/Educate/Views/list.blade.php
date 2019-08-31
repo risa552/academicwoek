@@ -113,8 +113,8 @@
         <div class="panel panel-default">
                 <div class="panel-body">
                     <p style="text-align:center;">มหาวิทยาลัยราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</p>
-                    <p style="text-align:center;">บัญชีภาระการสอนส่วนบุคคลสาขา {{$row->bran_name}}</p>
-                    <p style="text-align:center;">ประจำภาคการศึกษาที่ {{$row->term_name}} ปีการศึกษา {{$row->year}} </p>
+                    <p style="text-align:center;">บัญชีภาระการสอนส่วนบุคคลสาขา </p>
+                    <p style="text-align:center;">ประจำภาคการศึกษาที่  ปีการศึกษา </p>
                     <p style="text-align:center;">(จำนวนคาบต่อสัปดาห์ ท = ทฤษฏี, ป = ปฏิบัติ)</p>
                     <table class="table table-bordered">
                         <thead>

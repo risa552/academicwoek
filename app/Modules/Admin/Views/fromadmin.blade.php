@@ -48,6 +48,14 @@
                         <th>e-mail : </th>
                         <input type="text" name="email" class="form-control" value="{{isset($admin)?$admin->email:''}}"/>
                     </div>
+                    <div class="form-group">
+                        <th>Username:</th>
+                        <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($admin)?$admin->username:''}}"/>
+                    </div>
+                    <div class="form-group">
+                        <th>Password:</th>
+                        <input type="password" name="password" class="form-control" />
+                    </div>  
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>
         </div>

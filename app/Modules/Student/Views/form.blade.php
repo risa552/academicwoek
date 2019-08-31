@@ -7,11 +7,11 @@
             <div class="panel panel-default"> 
                  <a herf="/student" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
-                    @if(isset($student))
-                นักศึกษา : {{$student->first_name}}
-                    @else
-                เพิ่มข้อมูลนักศึกษา
-                    @endif
+                        @if(isset($student))
+                    นักศึกษา : {{$student->first_name}}
+                        @else
+                    เพิ่มข้อมูลนักศึกษา
+                        @endif
                 </div>
                 @if(isset($student))
                 <form action="/student/{{$student->std_id}}" class="form-ajax" method="PUT">
@@ -74,7 +74,9 @@
                         </div>  
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>
-         </div>
+        </div>
+    
+    
     </div>  
 </div>
 

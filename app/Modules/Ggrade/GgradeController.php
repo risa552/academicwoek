@@ -17,15 +17,16 @@ class GgradeController extends Controller
     {
         $keyword = $request->get('keyword');
         $term_id = $request->get('term_id');
-        $sub_id = $request->get('sub');
+        $sub_id = $request->get('sub_id');
         $group_id = $request->get('group_id');
 
         $user=CurrentUser::user();
         $ggrade = DB::table('educate')
-        ->select('educate.teach_id',
+        ->select('educate.*',
         'subject.sub_name',
         'student.first_name',
         'student.last_name',
+        'student.number',
         'enrolment.enro_id',
         'enrolment.score',
         'enrolment.grade',
@@ -39,7 +40,6 @@ class GgradeController extends Controller
         ->leftJoin('enrolment','enrolment.program_id','program.program_id')
         ->rightJoin('student','enrolment.std_id','student.std_id')
         ->leftJoin('studygroup','studygroup.group_id','student.group_id')
-    
         ->where('educate.teach_id',$user->teach_id)
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
@@ -54,7 +54,9 @@ class GgradeController extends Controller
 
         if(!empty($keyword)){
             $ggrade->where(function ($query) use($keyword){
-                $query->where('term_id','LIKE','%'.$keyword.'%');
+                $query->where('first_name','LIKE','%'.$keyword.'%')
+                      ->orwhere('last_name','LIKE','%'.$keyword.'%')
+                      ->orwhere('number','LIKE','%'.$keyword.'%');
             });
         }
         if(is_numeric($term_id))
@@ -69,7 +71,7 @@ class GgradeController extends Controller
         {
             $ggrade->where('student.group_id','=',$group_id);
         }
-          //print_r($g1);exit;*/
+         // print_r($ggrade);exit;
         $ggrade = $ggrade->get();
         $rom = DB::table('term')->whereNull('delete_at')->get();
         $rom1 = DB::table('subject')->whereNull('delete_at')->get();

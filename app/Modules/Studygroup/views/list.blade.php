@@ -89,7 +89,8 @@
                                 <td>
                                     <div class="btn-group">
                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/studygroup/{{$row->group_id}}"></a>
-                                       <a class="fa fa-trash delete-group btn btn-danger" aria-hidden="true" href="/studygroup/{{$row->group_id}}"></a>
+                                       <!-- <a class="fa fa-trash delete-group btn btn-danger" aria-hidden="true" href="/studygroup/{{$row->group_id}}"></a> -->
+                                       <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/studygroup/{{$row->group_id}}"></a>
                                     </div>
                                 </td>
                             </tr>

@@ -13,7 +13,7 @@ class CurrentUser
             $user = Auth::user();
             if($user->user_type===MyConst::$USER_LEVEL_ADMIN){
                 $admin = DB::table('admin')
-                        ->where('id',$user->user_id)
+                        ->where('admin_id',$user->user_id)
                         ->first();
                 return $admin;
             }

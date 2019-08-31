@@ -11,7 +11,7 @@ use App\Services\MyResponse;
 class ProgramController extends Controller
 {
     private $table_name = 'program';
-    private $table2 = 'branch';
+    private $table2 = 'studygroup';
     private $table3 = 'term';
     private $table4 = 'subject';
 
@@ -19,23 +19,23 @@ class ProgramController extends Controller
     {
      
         $keyword =$request->get('keyword');
-        $bran_id =$request->get('bran_id');
+        $group_id =$request->get('group_id');
         $term_id =$request->get('term_id');
         $sub_id =$request->get('sub_id');
 
-        if(empty($bran_id)){
-            $bran_id=1;
-        }
+        // if(empty($)){
+        //     $bran_id=1;
+        // }
         $items = DB::table($this->table_name)
         ->select('program.*',
-        'branch.bran_name',
+        'studygroup.group_name',
         'term.term_name',
         'term.year',
         'subject.sub_name',
         'subject.sub_code',
         'subject.theory',
         'subject.practice')
-        ->leftJoin('branch','program.bran_id','branch.bran_id')
+        ->leftJoin('studygroup','program.group_id','studygroup.group_id')
         ->leftJoin('term','program.term_id','term.term_id')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->whereNull('program.delete_at');
@@ -45,9 +45,9 @@ class ProgramController extends Controller
               
             });
         }
-        if(is_numeric($bran_id))
+        if(is_numeric($group_id))
         {
-            $items->where('program.bran_id','=',$bran_id);
+            $items->where('program.group_id','=',$group_id);
         }
         if(is_numeric($term_id))
         {
@@ -62,21 +62,17 @@ class ProgramController extends Controller
         // $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
         // $items4 = DB::table($this->table4)->whereNull('delete_at')->get();
 
-        $shows = DB::table('branch')
-        ->select('branch.*',
-        'term.term_name',
-        'term.year',
-        'program.program_id',
-        'program.term_id',
-        'program.sub_id',
-        'subject.sub_name',
+        $shows = DB::table('term')
+        ->select('term.*',
         'subject.sub_code',
+        'subject.sub_name',
         'subject.theory',
-        'subject.practice')
-        ->leftJoin('program','branch.bran_id','program.bran_id')
-        ->leftJoin('term','program.term_id','term.term_id')
+        'subject.practice',
+        'branch.bran_name')
+        ->leftJoin('program','program.term_id','term.term_id')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->where('program.bran_id',$bran_id)
+        ->leftJoin('studygroup','program.group_id','studygroup.group_id')
+        ->leftJoin('branch','branch.bran_id','studygroup.bran_id')
         ->whereNull('program.delete_at')
         ->orderBy('term.year')
         ->orderBy('term.term_name')
@@ -128,15 +124,15 @@ class ProgramController extends Controller
 
     public function store(Request $request)
     {   
-            $bran_id = $request->get('bran_id');
+            $group_id = $request->get('group_id');
             $term_id = $request->get('term_id');
             $sub_id = $request->get('sub_id');
 
-            if(!empty($bran_id) && !empty($term_id) && !empty($sub_id) )
+            if(!empty($group_id) && !empty($term_id) && !empty($sub_id) )
             { 
 
                 DB::table($this->table_name)->insert([
-                    'bran_id' =>$bran_id,
+                    'group_id' =>$group_id,
                     'term_id' =>$term_id,
                     'sub_id' =>$sub_id,
                     'created_at' =>date('Y-m-d H:i:s'),
@@ -171,11 +167,11 @@ class ProgramController extends Controller
     {
         if(is_numeric($id))
         {
-            $bran_id = $request->get('bran_id');
+            $group_id = $request->get('group_id');
             $term_id = $request->get('term_id');
             $sub_id = $request->get('sub_id');
 
-            if( !empty($bran_id) && !empty($term_id) && !empty($sub_id) )
+            if( !empty($group_id) && !empty($term_id) && !empty($sub_id) )
             {
                /* $items = DB::table($this->table_name)
                 ->where('program_id','!=',$id)
@@ -184,7 +180,7 @@ class ProgramController extends Controller
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
             }*/
                 DB::table($this->table_name)->where('program_id',$id)->update([
-                    'bran_id' =>$bran_id,
+                    'group_id' =>$group_id,
                     'term_id' =>$term_id,
                     'sub_id' =>$sub_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
@@ -201,7 +197,7 @@ class ProgramController extends Controller
     {
         if(is_numeric($id))
         {
-            $exists1 = DB::table('enrolment')
+            $exists1 = DB::table('studygroup')
             ->where('program_id',$id)
             ->whereNull('delete_at')->first();
             if(!empty($exists1))

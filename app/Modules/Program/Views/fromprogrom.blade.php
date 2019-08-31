@@ -23,21 +23,21 @@
                 @endif
                 <div class="panel-body">
                     <div class="form-group">
-                        <label >สาขา:</label>
-                        <select name="bran_id">
+                        <label >กลุ่มเรียน:</label>
+                        <select style="width:150px;" name="group_id">
                             <option value="all">
                                 ทั้งหมด
                             </option>
                         @foreach($items2 as $index => $row1)
-                            <option value ="{{$row1->bran_id}}" {{isset($items)&& $items->bran_id==$row1->bran_id?'selected':''}}> 
-                                {{$row1->bran_name}}
+                            <option value ="{{$row1->group_id}}" {{isset($items)&& $items->group_id==$row1->group_id?'selected':''}}> 
+                                {{$row1->group_name}}
                             </option>
                         @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label >ภาคเรียน:</label>
-                        <select name="term_id">
+                        <select style="width:150px;" name="term_id">
                             <option value="all">
                                 ทั้งหมด
                             </option>
@@ -50,13 +50,13 @@
                     </div>
                     <div class="form-group">
                         <label >วิชา:</label>
-                        <select name="sub_id">
+                        <select style="width:150px;" name="sub_id">
                             <option value="all">
                                 ทั้งหมด
                             </option>
                         @foreach($items4 as $index => $row3)
                             <option value ="{{$row3->sub_id}}" {{isset($items)&& $items->sub_id==$row3->sub_id?'selected':''}}>
-                                {{$row3->sub_name}}
+                                     {{$row3->sub_code}}  {{$row3->sub_name}}
                             </option>
                         @endforeach
                         </select>

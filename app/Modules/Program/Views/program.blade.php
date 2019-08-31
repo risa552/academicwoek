@@ -13,14 +13,14 @@
                             <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}">
                         </div>-->
                         <div class="form-group">
-                            <label >สาขา:</label>
-                            <select style="width:150px;" name="bran_id">
+                            <label >กลุ่มเรียน:</label>
+                            <select style="width:150px;" name="group_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
                             @foreach($items2 as $index => $row1)
-                                <option value ="{{$row1->bran_id}}" {{Input::get('bran_id')==$row1->bran_id?'selected':''}}> 
-                                    {{$row1->bran_name}}
+                                <option value ="{{$row1->group_id}}" {{Input::get('group_id')==$row1->group_id?'selected':''}}> 
+                                    {{$row1->group_name}}
                                 </option>
                             @endforeach
                             </select>
@@ -68,7 +68,7 @@
                         <thead>
                             <tr>
                                 <th>ลำดับที่</th>
-                                <th>สาขา</th>
+                                <th>กลุ่มเรียน</th>
                                 <th>ภาคเรียน</th>
                                 <th>วิชา</th>
                                 <th style="width:150px">แก้ไขรายการ</th>
@@ -78,7 +78,7 @@
                             @foreach($items as $index => $row)
                                 <tr>
                                     <td>{{$index+1}}</td>
-                                    <td>{{$row->bran_name}}</td>
+                                    <td>{{$row->group_id}}</td>
                                     <td>{{$row->term_name}}/{{$row->year}}</td>
                                     <td>{{$row->sub_name}}</td>
                                     <td>

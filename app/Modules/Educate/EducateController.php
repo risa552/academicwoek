@@ -31,12 +31,13 @@ class EducateController extends Controller
         'subject.theory',
         'subject.practice',
         'branch.bran_name',
+        'branch.bran_id',
         'term.term_name',
         'term.year',
         'studygroup.group_name')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->leftJoin('branch','program.bran_id','branch.bran_id')
-        ->leftJoin('studygroup','branch.bran_id','studygroup.bran_id')
+        ->leftJoin('studygroup','program.group_id','studygroup.group_id')
+        ->leftJoin('branch','branch.bran_id','studygroup.bran_id')
         ->leftJoin('term','program.term_id','term.term_id')
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
@@ -66,9 +67,10 @@ class EducateController extends Controller
         }
         if(is_numeric($bran_id))
         {
-            $items->where('program.bran_id','=',$bran_id);
+            $items->where('studygroup.bran_id','=',$bran_id);
         }
         $items = $items->get();
+       // print_r($items);exit;
 
         $temp_educations = DB::table('educate')
             ->select(
@@ -110,10 +112,8 @@ class EducateController extends Controller
         // ส่วนตารางรายงาน
         $list = DB::table('program')
         ->select('program.*',
-        'enrolment.enro_id',
         'teacher.first_name',
         'teacher.last_name',
-        'student.std_id',
         'studygroup.group_name',
         'subject.sub_code',
         'subject.sub_name',
@@ -123,14 +123,13 @@ class EducateController extends Controller
         'term.year',
         'branch.bran_name')
         ->leftjoin('term','program.term_id','term.term_id')
-        ->leftjoin('branch','program.bran_id','branch.bran_id')
         ->leftjoin('subject','program.sub_id','subject.sub_id')
         ->leftjoin('educate','educate.sub_id','subject.sub_id')
-        ->leftjoin('enrolment','program.program_id','enrolment.program_id')
-        ->leftjoin('student','student.std_id','enrolment.std_id')
         ->leftjoin('teacher','educate.teach_id','teacher.teach_id')
-        ->leftjoin('studygroup','student.group_id','studygroup.group_id')
-        //->where('studygroup.bran_id',$bran_id)
+        ->leftjoin('studygroup','program.group_id','studygroup.group_id')
+        ->leftjoin('branch','studygroup.bran_id','branch.bran_id')
+        //->where('studygroup.bran_id',$bran_id) 
+       
         ->whereNull('program.delete_at')
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
@@ -196,7 +195,8 @@ class EducateController extends Controller
             'branch.bran_name')
            
             ->leftJoin('subject','program.sub_id','subject.sub_id')
-            ->leftJoin('branch','program.bran_id','branch.bran_id')
+            ->leftJoin('studygroup','program.group_id','studygroup.group_id')
+            ->leftJoin('branch','studygroup.bran_id','branch.bran_id')
             ->leftJoin('term','program.term_id','term.term_id')
             ->where('startdate','<=',date('Y-m-d'))
             ->where('enddate','>=',date('Y-m-d'))

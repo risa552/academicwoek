@@ -9,10 +9,6 @@
             <div class="panel-body">
                 <form action="/examprofessor">
                     <div class="form-group">
-                        <label for="keyword"></label>
-                        <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}">
-                    </div>
-                    <div class="form-group">
                         <label >ภาคเรียน:</label>
                         <select style="width:150px;" name="term_id">
                             <option value="all">

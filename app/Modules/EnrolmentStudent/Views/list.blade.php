@@ -61,7 +61,7 @@
                             @foreach($program_open as $index =>$row)
                                 <tr>
                                     <td>
-                                    <input type="hidden" name="program_id[]" value="{{$row->program_id}}"/>
+                                    <input type="hidden" name="subject_id[]" value="{{$row->sub_id}}"/>
                                     {{$row->sub_code}}</td>
                                     <td>{{$row->sub_name}}</td>
                                     <td>{{$row->credit}}</td>
@@ -75,7 +75,7 @@
                         </table>
                     </form>
                     </div>
-                @if(!$program_open->isEmpty())
+                @if(!empty($program_open))
                 <a id="program_open_btn" href="javascript:;" class="btn btn-info pull-right">ยืนยัน</a>
                 @endif
                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row">รายวิชาที่ลงทะเบียนไปแล้ว</button>

@@ -20,7 +20,7 @@ class GradeController extends Controller
 
         $user=CurrentUser::user();
         $grade = DB::table('educate')
-        ->select('educate.teach_id',
+        ->select('educate.*',
         'subject.sub_code', 
         'subject.sub_name',
         'student.first_name',
@@ -28,17 +28,15 @@ class GradeController extends Controller
         'enrolment.enro_id',
         'enrolment.score',
         'enrolment.grade',
-        'program.term_id',
         'studygroup.group_name')
         ->leftjoin('program', function ($join) {
             $join->on('program.term_id', '=', 'educate.term_id')
                  ->on('program.sub_id', '=', 'educate.sub_id');
         })
         ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->leftJoin('enrolment','enrolment.program_id','program.program_id')
+        ->leftJoin('enrolment','enrolment.sub_id','subject.sub_id')
         ->rightJoin('student','enrolment.std_id','student.std_id')
-        ->leftJoin('studygroup','studygroup.group_id','student.group_id')
-    
+        ->leftJoin('studygroup','studygroup.group_id','program.group_id')
         ->where('educate.teach_id',$user->teach_id)
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))

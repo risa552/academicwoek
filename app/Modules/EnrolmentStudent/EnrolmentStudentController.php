@@ -14,54 +14,48 @@ class EnrolmentStudentController extends Controller
     public function index()
     {
         $user=CurrentUser::user();
-        $program_open = DB::table('program')
-        ->select('program.*',
-        'subject.sub_code',
-        'subject.sub_name',
-        'subject.credit',
-        'subject.theory',
-        'subject.practice',
-        'educate.educate_id',
-        'teacher.first_name',
-        'teacher.last_name')
-        ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->rightJoin('educate','educate.sub_id','subject.sub_id')
-        ->rightJoin('teacher','educate.teach_id','teacher.teach_id')
-        ->rightJoin('studygroup','program.bran_id','studygroup.bran_id')
-        ->where('studygroup.group_id',$user->group_id)
-        ->whereNull('studygroup.delete_at')
-        ->whereNotExists(function ($query) use($user) {
-            $query->select(DB::raw(1))
-                  ->from('enrolment')
-                  ->where('enrolment.std_id',$user->std_id)
-                  ->whereRaw('program.program_id = enrolment.program_id');
-        })
-        ->whereNull('subject.delete_at')
-        ->whereNull('program.delete_at')->get();
 
-        $program_selected = DB::table('enrolment')
-        ->select('enrolment.*',
-        'program.program_id',
-        'subject.sub_name',
-        'subject.sub_code',
-        'subject.credit',
-        'subject.theory',
-        'subject.practice',
-        'educate.educate_id',
-        'teacher.first_name',
-        'teacher.last_name')
-        ->leftJoin('program','enrolment.program_id','program.program_id')
-        ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->rightJoin('educate','educate.sub_id','subject.sub_id')
-        ->rightJoin('teacher','educate.teach_id','teacher.teach_id')
-        ->rightJoin('studygroup','program.bran_id','studygroup.bran_id')
-        ->where('studygroup.group_id',$user->group_id)
-        ->where('enrolment.std_id',$user->std_id)
-        ->whereNull('studygroup.delete_at')
-        ->whereNull('subject.delete_at')
-        ->whereNull('educate.delete_at')
-        ->where('enrolment.status','!=','ถอน')
-        ->whereNull('enrolment.delete_at')->get();
+        $term_active = DB::table('term')
+                        ->where('startdate','<=',date('Y-m-d'))
+                        ->where('enddate','>=',date('Y-m-d'))
+                        ->first();
+        if(empty($term_active))
+        {
+            $term_active = DB::table('term')
+                        ->orderBy('startdate','desc')
+                        ->first();
+        }
+
+        $program_open = DB::select("SELECT program.*,
+        subject.sub_name,subject.sub_code,subject.credit,subject.theory,subject.practice ,
+        teacher.first_name,teacher.last_name
+        FROM program
+        LEFT JOIN subject ON(program.sub_id=subject.sub_id)
+        LEFT JOIN enrolment ON(enrolment.sub_id=subject.sub_id)
+        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id)
+        LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
+        WHERE program.term_id={$term_active->term_id} 
+        AND program.delete_at IS NULL 
+        AND program.group_id = {$user->group_id}
+        AND enrolment.std_id = {$user->std_id}
+        AND subject.delete_at IS NULL
+        AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id)
+        ");
+
+
+        $program_selected = DB::select("SELECT program.*,
+        subject.sub_name,subject.sub_code,subject.credit,subject.theory,subject.practice ,
+        teacher.first_name,teacher.last_name
+        FROM program
+        RIGHT JOIN enrolment ON(enrolment.sub_id=program.sub_id AND enrolment.term_id=program.term_id )
+        LEFT JOIN subject ON(program.sub_id=subject.sub_id)
+        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id)
+        LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
+        WHERE program.term_id={$term_active->term_id} 
+        AND program.delete_at IS NULL 
+        AND program.group_id = {$user->group_id}
+        AND subject.delete_at IS NULL
+        ");
 
         $history = DB::table('student')
         ->select('student.first_name',
@@ -87,24 +81,39 @@ class EnrolmentStudentController extends Controller
 
     public function store(Request $request)
     {
-        $program_selected = $request->get('program_id');
-        if(empty( $program_selected) && !is_array( $program_selected))
+        $subject_id = $request->get('subject_id');
+        if(empty( $subject_id) && !is_array( $subject_id))
         {
             return MyResponse::error('กรุณาเลือกรายการวิชาที่ต้องการลงทะเบียนก่อนคะ');
         }
+
         $user=CurrentUser::user();
-        $program_open = DB::table('program')
-        ->select('program.*')
-        ->rightJoin('studygroup','program.bran_id','studygroup.bran_id')
-        ->where('studygroup.group_id',$user->group_id)
-        ->whereNull('studygroup.delete_at')
-        ->whereNotExists(function ($query) use($user) {
-            $query->select(DB::raw(1))
-                  ->from('enrolment')
-                  ->where('enrolment.std_id',$user->std_id)
-                  ->whereRaw('program.program_id = enrolment.program_id');
-        })
-        ->whereNull('program.delete_at')->get();
+
+        $term_active = DB::table('term')
+                        ->where('startdate','<=',date('Y-m-d'))
+                        ->where('enddate','>=',date('Y-m-d'))
+                        ->first();
+        if(empty($term_active))
+        {
+            $term_active = DB::table('term')
+                        ->orderBy('startdate','desc')
+                        ->first();
+        }
+
+        $program_open = DB::select("SELECT program.*,
+        subject.sub_name,subject.sub_code,subject.credit,subject.theory,subject.practice ,
+        teacher.first_name,teacher.last_name
+        FROM program
+        LEFT JOIN subject ON(program.sub_id=subject.sub_id)
+        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id)
+        LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
+        WHERE program.term_id={$term_active->term_id} 
+        AND program.delete_at IS NULL 
+        AND program.group_id = {$user->group_id}
+        AND subject.delete_at IS NULL
+        AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id)
+        ");
+
 
         if(empty( $program_open) && !is_array( $program_open))
         {
@@ -114,11 +123,10 @@ class EnrolmentStudentController extends Controller
         foreach($program_open as $pro)
         {
             $insert_date[] = [
-                'status'=> in_array($pro->program_id,$program_selected)?'ปกติ':'ถอน',
+                'status'=> in_array($pro->sub_id,$subject_id)?'ปกติ':'ถอน',
                 'std_id'=>$user->std_id,
-                'program_id'=>$pro->program_id,
-                //'score'=>$pro->score,
-               // 'sub_id'=>$pro->sub_id,
+                'sub_id'=>$pro->sub_id,
+                'term_id'=>$pro->term_id,
                 'created_at'=>date('Y-m-d H:i:s'),
             ];
         }

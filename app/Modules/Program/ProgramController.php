@@ -23,9 +23,9 @@ class ProgramController extends Controller
         $term_id =$request->get('term_id');
         $sub_id =$request->get('sub_id');
 
-        // if(empty($)){
-        //     $bran_id=1;
-        // }
+        if(empty($group_id)){
+            $group_id=1;
+        }
         $items = DB::table($this->table_name)
         ->select('program.*',
         'studygroup.group_name',
@@ -130,7 +130,6 @@ class ProgramController extends Controller
 
             if(!empty($group_id) && !empty($term_id) && !empty($sub_id) )
             { 
-
                 DB::table($this->table_name)->insert([
                     'group_id' =>$group_id,
                     'term_id' =>$term_id,

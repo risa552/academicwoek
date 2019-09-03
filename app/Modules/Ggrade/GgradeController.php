@@ -37,7 +37,7 @@ class GgradeController extends Controller
                  ->on('program.sub_id', '=', 'educate.sub_id');
         })
         ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->leftJoin('enrolment','enrolment.program_id','program.program_id')
+        ->leftJoin('enrolment','enrolment.sub_id','subject.sub_id')
         ->rightJoin('student','enrolment.std_id','student.std_id')
         ->leftJoin('studygroup','studygroup.group_id','student.group_id')
         ->where('educate.teach_id',$user->teach_id)

@@ -16,20 +16,18 @@ class PlanController extends Controller
     {
         $items = DB::table('enrolment')
         ->select('enrolment.*',
-        'program.program_id',
         'subject.sub_code',
         'subject.sub_name',
         'term.term_name',
         'term.year')
-        ->leftJoin('program','enrolment.program_id','program.program_id')
-        ->rightJoin('subject','program.sub_id','subject.sub_id')
-        ->rightJoin('term','program.term_id','term.term_id')
+        ->rightJoin('subject','enrolment.sub_id','subject.sub_id')
+        ->rightJoin('term','enrolment.term_id','term.term_id')
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')
                   ->where('startdate','<=',date('Y-m-d'))
                   ->where('enddate','>=',date('Y-m-d'))
-                  ->whereRaw('program.term_id = term.term_id');
+                  ->whereRaw('enrolment.term_id = term.term_id');
         })
         ->whereNull('enrolment.delete_at')
         ->whereNull('term.delete_at')
@@ -48,8 +46,11 @@ class PlanController extends Controller
         return view('plan::list',compact('items','student'));
     }
 
-   
-
-
+    public function create()
+    {
+       
+        return view('plan::form');
+    }
+    
    
 }

@@ -1,19 +1,19 @@
 @extends('academic-layout') 
-@section('title','รายงานภาระการสอน')
+@section('title','รายงานการลงทะเบียน')
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row" >
         <!-- <div class="col-md-2">
            
             <!--<button type="submit" class="btn btn-info"><a href="#">อาจารย์</a></button> 
         </div>  -->
         <form class="form-ajax" method="POST" action="/plan">
-            <div class="col-md-11" >
+            <div class="col-md-9" style="magin:100px; auto;" >
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    <a href="/enrolment" class=""><i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ</a>
+                    <a href="/enrolment"><i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ</a>
                      รายงานการลงทะเบียน : รหัส {{$student->number}} ชื่อ {{$student->first_name}} {{$student->last_name}} 
-                    <a href="#" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มรายวิชา</a>
+                    <a href="/plan/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มรายวิชา</a>
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped">

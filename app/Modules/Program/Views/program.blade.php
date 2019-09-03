@@ -78,7 +78,7 @@
                             @foreach($items as $index => $row)
                                 <tr>
                                     <td>{{$index+1}}</td>
-                                    <td>{{$row->group_id}}</td>
+                                    <td>{{$row->group_name}}</td>
                                     <td>{{$row->term_name}}/{{$row->year}}</td>
                                     <td>{{$row->sub_name}}</td>
                                     <td>

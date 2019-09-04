@@ -15,7 +15,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="sub-nav-menu"><a href="/ggrade">เกรดตามวิชา</a></li>
-                        <li class="sub-nav-menu"><a href="#">เกรดตามห้องที่เป็นที่ปรึกษา</a></li>
+                        <li class="sub-nav-menu"><a href="/sgrade">เกรดตามห้องที่เป็นที่ปรึกษา</a></li>
                         <!-- <li class="sub-nav-menu"><a href="#"></a></li> -->
                     </ul>
                 </li>

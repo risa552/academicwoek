@@ -90,12 +90,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($program_selected as $index =>$row)
+                        @foreach($program_selected as $index =>$row1)
                                 <tr>
-                                    <td>{{$row->sub_code}}</td>
-                                    <td>{{$row->sub_name}}</td>
-                                    <td>{{$row->credit}}</td>
-                                    <td>{{$row->first_name}} {{$row->last_name}}</td>
+                                    <td>{{$row1->sub_code}}</td>
+                                    <td>{{$row1->sub_name}}</td>
+                                    <td>{{$row1->credit}}</td>
+                                    <td>{{$row1->first_name}} {{$row1->last_name}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

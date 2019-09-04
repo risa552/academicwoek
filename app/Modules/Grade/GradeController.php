@@ -38,6 +38,7 @@ class GradeController extends Controller
         ->rightJoin('student','enrolment.std_id','student.std_id')
         ->leftJoin('studygroup','studygroup.group_id','program.group_id')
         ->where('educate.teach_id',$user->teach_id)
+        ->where('enrolment.status','=','ปกติ')
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')

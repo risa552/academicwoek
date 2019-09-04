@@ -37,7 +37,6 @@ class EnrolmentStudentController extends Controller
         WHERE program.term_id={$term_active->term_id} 
         AND program.delete_at IS NULL 
         AND program.group_id = {$user->group_id}
-        AND enrolment.std_id = {$user->std_id}
         AND subject.delete_at IS NULL
         AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id)
         ");
@@ -45,7 +44,7 @@ class EnrolmentStudentController extends Controller
 
         $program_selected = DB::select("SELECT program.*,
         subject.sub_name,subject.sub_code,subject.credit,subject.theory,subject.practice ,
-        teacher.first_name,teacher.last_name
+        teacher.first_name,teacher.last_name,enrolment.std_id
         FROM program
         RIGHT JOIN enrolment ON(enrolment.sub_id=program.sub_id AND enrolment.term_id=program.term_id )
         LEFT JOIN subject ON(program.sub_id=subject.sub_id)
@@ -54,6 +53,7 @@ class EnrolmentStudentController extends Controller
         WHERE program.term_id={$term_active->term_id} 
         AND program.delete_at IS NULL 
         AND program.group_id = {$user->group_id}
+        AND enrolment.std_id = {$user->std_id}
         AND subject.delete_at IS NULL
         ");
 

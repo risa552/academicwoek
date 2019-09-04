@@ -14,7 +14,7 @@
                     <input type="hidden" value="put" name="_mathods">
                     @csrf()
                 @else
-                <form class="form-ajax" action="/educate" method="POST">
+                <form class="form-ajax" action="#" method="POST">
                 @csrf()
                 @endif
                

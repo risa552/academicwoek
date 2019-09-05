@@ -3,12 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row" >
-        <!-- <div class="col-md-2">
-           
-            <!--<button type="submit" class="btn btn-info"><a href="#">อาจารย์</a></button> 
-        </div>  -->
         <form class="form-ajax" method="POST" action="/plan">
-            <div class="col-md-9" style="magin:100px; auto;" >
+            <div class="col-md-9"  >
                 <div class="panel panel-default">
                     <div class="panel-heading">
                     <a href="/enrolment"><i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ</a>

@@ -34,6 +34,7 @@ Route::prefix('')->group(function ()
       Route::resource('/ggrade','\App\Modules\Ggrade\GgradeController');
       Route::resource('/sgrade','\App\Modules\Sgrade\SgradeController');
       Route::resource('/plan','\App\Modules\Plan\PlanController');
+      Route::resource('/hisgrade','\App\Modules\HistoryGrade\HistoryGradeController');
     });
 });
 ?>

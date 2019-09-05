@@ -11,11 +11,11 @@
                         <tr>
                             <td>
                             <b>ชื่อนักศึกษา:</b> {{$hit->first_name}} {{$hit->last_name}}<br>
-                            <b>รหัสนักศึกษา:</b> {{$hit->number}}
+                            <b>รหัสนักศึกษา:</b> {{$hit->number}}<br>
                             <b>กลุ่มเรียน:</b> {{$hit->group_name}}<br>
-                            <b>ระดับ:</b> {{$hit->degree_name}}
+                            <b>ระดับ:</b> {{$hit->degree_name}}<br>
                             <b>สาขาวิชา:</b> {{$hit->bran_name}}<br>
-                            <b>หลักสูตร:</b> {{$hit->cou_name}}
+                            <b>หลักสูตร:</b> {{$hit->cou_name}}<br>
                             </td>
                             <!--<tr>
                                 <td style="width:150px;"><b>รหัสนักศึกษา</b></td>

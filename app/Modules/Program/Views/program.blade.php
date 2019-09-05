@@ -18,9 +18,9 @@
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
-                            @foreach($items2 as $index => $row1)
-                                <option value ="{{$row1->group_id}}" {{Input::get('group_id')==$row1->group_id?'selected':''}}> 
-                                    {{$row1->group_name}}
+                            @foreach($items2 as $index => $rowm)
+                                <option value ="{{$rowm->group_id}}" {{Input::get('group_id')==$rowm->group_id?'selected':''}}> 
+                                    {{$rowm->group_name}}
                                 </option>
                             @endforeach
                             </select>
@@ -105,93 +105,98 @@
 
         <div class="col-md-12">
             <div class="panel panel-default">
-                <form>
+            
+                <div class="panel-heading">
+                    แผนการเรียน
+                    <a  class="btn btn-default fa fa-print pull-right" aria-hidden="true"></a>
+                </div>
+            <form>
                 <div class="panel-body">
-                        <h5 style="text-align:center;">แผนการเรียน</h5>
-                         <h4 style="border:1px solid #ccc;padding:5px;text-align:center;">สาขา : {{$branche}}</h4>
-                        
-                        <table class="table table-bordered">  
-                       @foreach($programs as $program)
-                            <thead>
-                                <tr>
-                                    <th colspan='4' >
-                                    @if(isset($program[1]))
-                                    ปีการศึกษา {{$program[1]['numyear']}} ภาคเรียน :   {{$program[1]['name']}}
-                                    @endif
-                                    </th>
-                                    <th colspan='4' >
-                                    @if(isset($program[2]))
-                                    ปีการศึกษา {{$program[2]['numyear']}} ภาคเรียน :   {{$program[2]['name']}}
-                                    @endif
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>รหัสวิชา</th>
-                                    <th>รายชื่อวิชา</th>
-                                    <th>ชม.ทฤษฏี</th>
-                                    <th>ชม.ปฏิบัติ</th>
-                                    <th>รหัสวิชา</th>
-                                    <th>รายชื่อวิชา</th>
-                                    <th>ชม.ทฤษฏี</th>
-                                    <th>ชม.ปฏิบัติ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                        <?php 
-                            $program_1 = null;
-                            $program_2 = null;
-                            if(isset($program[1]) && isset($program[2]))
-                            {
-                                if(count($program[1]['subjects']) > count($program[2]['subjects']))
-                                {
-                                    $program_1 = $program[1]['subjects'];
-                                    $program_2 = $program[2]['subjects'];
-                                }
-                                else
-                                {
-                                    $program_1 = $program[1]['subjects'];
-                                    $program_2 = $program[2]['subjects'];
-                                }
-                            }
-                            elseif(isset($program[1]))
+                    <h5 style="text-align:center;">แผนการเรียน</h5>
+                    <h4 style="border:1px solid #ccc;padding:5px;text-align:center;">สาขา : {{$branche}}</h4>
+                    
+                    <table class="table table-bordered">  
+                @foreach($programs as $program)
+                        <thead>
+                            <tr>
+                                <th colspan='4' >
+                                @if(isset($program[1]))
+                                ปีการศึกษา {{$program[1]['numyear']}} ภาคเรียน :   {{$program[1]['name']}}
+                                @endif
+                                </th>
+                                <th colspan='4' >
+                                @if(isset($program[2]))
+                                ปีการศึกษา {{$program[2]['numyear']}} ภาคเรียน :   {{$program[2]['name']}}
+                                @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>รหัสวิชา</th>
+                                <th>รายชื่อวิชา</th>
+                                <th>ชม.ทฤษฏี</th>
+                                <th>ชม.ปฏิบัติ</th>
+                                <th>รหัสวิชา</th>
+                                <th>รายชื่อวิชา</th>
+                                <th>ชม.ทฤษฏี</th>
+                                <th>ชม.ปฏิบัติ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    <?php 
+                        $program_1 = null;
+                        $program_2 = null;
+                        if(isset($program[1]) && isset($program[2]))
+                        {
+                            if(count($program[1]['subjects']) > count($program[2]['subjects']))
                             {
                                 $program_1 = $program[1]['subjects'];
-                                $program_2 = null;
+                                $program_2 = $program[2]['subjects'];
                             }
                             else
                             {
-                                $program_1 = $program[2]['subjects'];
-                                $program_2 = null;
+                                $program_1 = $program[1]['subjects'];
+                                $program_2 = $program[2]['subjects'];
                             }
-                        ?>
-                        @if(!empty($program_1))
-                            @foreach($program_1 as $index => $row1)
-                                <tr>
-                                    <td>{{$row1->sub_code}}</td>
-                                    <td>{{$row1->sub_name}}</td>
-                                    <td>{{$row1->theory}}</td>
-                                    <td>{{$row1->practice}}</td>
-                                @if(!empty($program_2))
-                                    <td>{{$program_2[$index]->sub_code}}</td>
-                                    <td>{{$program_2[$index]->sub_name}}</td>
-                                    <td>{{$program_2[$index]->theory}}</td>
-                                    <td>{{$program_2[$index]->practice}}</td>
-                                @else
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                @endif
-                                </tr>
-                            @endforeach
-                        @endif
-                            </tbody>
-                    @endforeach
+                        }
+                        elseif(isset($program[1]))
+                        {
+                            $program_1 = $program[1]['subjects'];
+                            $program_2 = null;
+                        }
+                        else
+                        {
+                            $program_1 = $program[2]['subjects'];
+                            $program_2 = null;
+                        }
+                    ?>
+                    @if(!empty($program_1))
+                        @foreach($program_1 as $index => $row1)
+                            <tr>
+                                <td>{{$row1->sub_code}}</td>
+                                <td>{{$row1->sub_name}}</td>
+                                <td>{{$row1->theory}}</td>
+                                <td>{{$row1->practice}}</td>
+                            @if(!empty($program_2))
+                                <td>{{$program_2[$index]->sub_code}}</td>
+                                <td>{{$program_2[$index]->sub_name}}</td>
+                                <td>{{$program_2[$index]->theory}}</td>
+                                <td>{{$program_2[$index]->practice}}</td>
+                            @else
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            @endif
+                            </tr>
+                        @endforeach
+                    @endif
+                        </tbody>
+                @endforeach
 
-                        </table>
-                        <a  class="btn btn-default fa fa-print pull-right" aria-hidden="true"></a>
-                    </div>
-                </form>
+                    </table>
+                </div>
+            </form>
+                
             </div>
         </div>
     </div>  

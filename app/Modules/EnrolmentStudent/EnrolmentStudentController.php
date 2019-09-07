@@ -31,12 +31,14 @@ class EnrolmentStudentController extends Controller
         teacher.first_name,teacher.last_name
         FROM program
         LEFT JOIN subject ON(program.sub_id=subject.sub_id)
-        LEFT JOIN enrolment ON(enrolment.sub_id=subject.sub_id)
+        -- LEFT JOIN enrolment ON(enrolment.sub_id=subject.sub_id)
+        -- LEFT JOIN student ON(enrolment.std_id=student.std_id)
         LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id)
         LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
         WHERE program.term_id={$term_active->term_id} 
         AND program.delete_at IS NULL 
         AND program.group_id = {$user->group_id}
+        -- AND student.std_id = {$user->std_id}
         AND subject.delete_at IS NULL
         AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id)
         ");

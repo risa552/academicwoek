@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="panel panel-default">
                 <div class="panel-heading">ค้นหาข้อมูลวิชา</div>
                 <div class="panel-body">
@@ -25,14 +25,14 @@
                             @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-default">ยืนยัน</button>
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>
             <!--<button type="submit" class="btn btn-info"><a href="#">วิชา</a></button> -->
         </div> 
 
-        <div class="col-md-9">
+        <div class="col-md-10">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     รายการข้อมูลวิชา
@@ -45,6 +45,7 @@
                                 <th>ลำดับที่</th>
                                 <th>รหัสวิชา</th>
                                 <th>ชื่อวิชา</th>
+                                <th>ชื่อวิชาอังกฤษ</th>
                                 <th>หน่วยกิต</th>
                                 <th>ชั่วโมงปฎิบัติ</th>
                                 <th>ชั่วโมงทฤษฎี</th>
@@ -58,6 +59,7 @@
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->sub_code}}</td>
                                 <td>{{$row->sub_name}}</td>
+                                <td>{{$row->sub_nameeng}}</td>
                                 <td>{{$row->credit}}</td>
                                 <td>{{$row->theory}}</td>
                                 <td>{{$row->practice}}</td>

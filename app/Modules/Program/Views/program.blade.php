@@ -51,7 +51,7 @@
                             @endforeach
                             </select>
                         </div>-->
-                        <button type="submit" class="btn btn-default">ยืนยัน</button>
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->group_name}}</td>
                                     <td>{{$row->term_name}}/{{$row->year}}</td>
-                                    <td>{{$row->sub_name}}</td>
+                                    <td>{{$row->sub_name}}<br>{{$row->sub_nameeng}}</td>
                                     <td>
                                         <div class="btn-group">
                                           <!--  <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/program/plan"></a> -->
@@ -131,14 +131,14 @@
                                 </th>
                             </tr>
                             <tr>
-                                <th>รหัสวิชา</th>
-                                <th>รายชื่อวิชา</th>
-                                <th>ชม.ทฤษฏี</th>
-                                <th>ชม.ปฏิบัติ</th>
-                                <th>รหัสวิชา</th>
-                                <th>รายชื่อวิชา</th>
-                                <th>ชม.ทฤษฏี</th>
-                                <th>ชม.ปฏิบัติ</th>
+                                <th style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">รหัสวิชา</th>
+                                <th  style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">รายชื่อวิชา</th>
+                                <th >ท.</th>
+                                <th >ป.</th>
+                                <th style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">รหัสวิชา</th>
+                                <th  style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">รายชื่อวิชา</th>
+                                <th >ท.</th>
+                                <th >ป.</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -173,12 +173,12 @@
                         @foreach($program_1 as $index => $row1)
                             <tr>
                                 <td>{{$row1->sub_code}}</td>
-                                <td>{{$row1->sub_name}}</td>
+                                <td>{{$row1->sub_name}}<br>{{$row1->sub_nameeng}}</td>
                                 <td>{{$row1->theory}}</td>
                                 <td>{{$row1->practice}}</td>
                             @if(!empty($program_2))
                                 <td>{{$program_2[$index]->sub_code}}</td>
-                                <td>{{$program_2[$index]->sub_name}}</td>
+                                <td>{{$program_2[$index]->sub_name}}<br>{{$program_2[$index]->sub_nameeng}}</td>
                                 <td>{{$program_2[$index]->theory}}</td>
                                 <td>{{$program_2[$index]->practice}}</td>
                             @else

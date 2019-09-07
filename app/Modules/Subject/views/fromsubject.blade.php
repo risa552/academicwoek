@@ -31,6 +31,10 @@
                             <input type="text" name="sub_name" class="form-control" value="{{isset($items)?$items->sub_name:''}}"/>
                         </div>
                         <div class="form-group">
+                            <label>ชื่อวิชาอังกฤษ:</label>
+                            <input type="text" name="sub_nameeng" class="form-control" value="{{isset($items)?$items->sub_nameeng:''}}"/>
+                        </div>
+                        <div class="form-group">
                             <label>หน่วยกิต:</label>
                             <input type="text" name="credit" class="form-control" value="{{isset($items)?$items->credit:''}}"/>
                         </div>

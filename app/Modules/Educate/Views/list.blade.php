@@ -60,7 +60,7 @@
                         @endforeach
                         </select>
                     </div>
-                        <button type="submit" class="btn btn-default">ยืนยัน</button>
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                                 <th>วิชา</th>
                                 <th>ภาคเรียน</th>
                                 <th>สาขา</th>
-                                <th style="width:150px">แก้ไขรายการ</th>
+                                <th>แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,7 +97,7 @@
                                     <td>{{$row1->term_name}}/{{$row1->year}}</td>-->
                                     <td>
                                         <div class="btn-group">
-                                            <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="#"></a>
+                                            <!-- <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="#"></a> -->
                                             <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/educate/{{$row->program_id}}"></a>
                                             <!--<a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/educate/{{$row->educate_id}}"></a>-->
                                         </div>

@@ -17,9 +17,10 @@ class ExamController extends Controller
         $keyword =$request->get('keyword');
         $sub_id = $request->get('sub_id');
         $exam = DB::table('program')
-        ->select('program.program_id',
+        ->select('program.*',
         'subject.sub_code',
         'subject.sub_name',
+        'subject.sub_nameeng',
         'exam.file_mid',
         'exam.file_final',
         'exam.exam_id',

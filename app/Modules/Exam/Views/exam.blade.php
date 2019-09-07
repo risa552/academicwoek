@@ -21,7 +21,7 @@
                                 @endforeach
                                 </select>
                         </div>
-                        <button type="submit" class="btn btn-default">ยืนยัน</button>
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>
@@ -42,7 +42,6 @@
                                 <th>ชื่อวิชา</th>
                                 <th>ไฟล์ข้อสอบกลางภาค</th>
                                 <th>ไฟล์ข้อสอบปลายภาค</th>
-                                <th>วันเดือนปีที่ส่งข้อสอบ</th>
                                <!-- <th style="width:50px">แก้ไขรายการ</th> -->
                             </tr>
                         </thead>
@@ -51,10 +50,9 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$row->sub_code}}</td>
-                                <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$row->sub_name}}</td>
-                                <td><a target="_blank" href="{{$row->file_mid}}">{{$row->file_mid}}</a></td>
-                                <td><a target="_blank" href="{{$row->file_final}}">{{$row->file_final}}</a></td>
-                                <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$row->created_at}}</td>
+                                <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
+                                <td><a target="_blank" href="{{$row->file_mid}}">{{$row->file_mid}} <br> {{$row->created_at}}</a></td>
+                                <td><a target="_blank" href="{{$row->file_final}}">{{$row->file_final}} <br> {{$row->created_at}}</a></td>
                                 <!--<td>
                                     <div class="btn-group">
                                         <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/exam/{{$row->exam_id}}"></a>

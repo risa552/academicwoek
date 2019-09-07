@@ -32,6 +32,7 @@ class ProgramController extends Controller
         'term.term_name',
         'term.year',
         'subject.sub_name',
+        'subject.sub_nameeng',
         'subject.sub_code',
         'subject.theory',
         'subject.practice')
@@ -66,6 +67,7 @@ class ProgramController extends Controller
         ->select('term.*',
         'subject.sub_code',
         'subject.sub_name',
+        'subject.sub_nameeng',
         'subject.theory',
         'subject.practice',
         'branch.bran_name')

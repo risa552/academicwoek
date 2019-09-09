@@ -67,7 +67,7 @@ class StudentController extends Controller
             ->where('first_name',$first_name)
             ->where('last_name',$last_name)
             ->whereNull('student.delete_at')->first();
-            if(!empty($student))
+            if(!empty($items))
             {
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้วค่ะ');
             }   

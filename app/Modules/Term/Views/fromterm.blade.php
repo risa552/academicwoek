@@ -12,6 +12,8 @@
                     @else
                     เพิ่มข้อมูลภาคเรียน
                     @endif
+                    <a class="btn btn-default pull-right" href="/term" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
+
                 </div>
                 @if(isset($term))
                 <form action="/term/{{$term->term_id}}" class="form-ajax" method="PUT">

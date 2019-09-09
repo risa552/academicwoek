@@ -12,6 +12,8 @@
                         @else
                     เพิ่มข้อมูลนักศึกษา
                         @endif
+                    <a class="btn btn-default pull-right" href="/student" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
+
                 </div>
                 @if(isset($student))
                 <form action="/student/{{$student->std_id}}" class="form-ajax" method="PUT">

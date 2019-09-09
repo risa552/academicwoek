@@ -28,6 +28,7 @@ class SgradeController extends Controller
         'enrolment.grade',
         'subject.sub_code',
         'subject.sub_name',
+        'subject.sub_nameeng',
         'enrolment.status')
         // ->leftJoin('teacher','teacher.teach_id','studygroup.teach_id')
         ->leftJoin('student','student.group_id','studygroup.group_id')

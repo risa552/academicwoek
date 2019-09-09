@@ -11,6 +11,8 @@
                         @else
                         เพิ่มกลุ่มวิชา
                         @endif
+                    <a class="btn btn-default pull-right" href="/subjectgroup" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
+
                 </div>
                     @if(isset($subjectgroup))
                     <form action="/subjectgroup/{{$subjectgroup->subgroup_id}}" class="form-ajax" method="PUT">

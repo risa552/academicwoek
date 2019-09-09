@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">ค้นหาข้อมูลภาคเรียน</div>
+                <div class="panel-heading">ค้นหาข้อมูลการออกเกรด</div>
                 <div class="panel-body">
                     <form action="/grade">
                     <div class="form-group">
                             <label >ชื่อวิชา:</label>
-                            <select name="sub_id">
+                            <select style="width:150px;" name="sub_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>

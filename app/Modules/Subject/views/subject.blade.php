@@ -20,7 +20,7 @@
                                 </option>
                             @foreach($items2 as $index => $row1)
                                 <option value ="{{$row1->subgroup_id}}" {{Input::get('subgroup_id')==$row1->subgroup_id?'selected':''}}>
-                                    {{$row1->subgroup_id}}
+                                    {{$row1->subgroup_name}}
                                 </option>
                             @endforeach
                             </select>
@@ -45,7 +45,6 @@
                                 <th>ลำดับที่</th>
                                 <th>รหัสวิชา</th>
                                 <th>ชื่อวิชา</th>
-                                <th>ชื่อวิชาอังกฤษ</th>
                                 <th>หน่วยกิต</th>
                                 <th>ชั่วโมงปฎิบัติ</th>
                                 <th>ชั่วโมงทฤษฎี</th>
@@ -58,8 +57,7 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->sub_code}}</td>
-                                <td>{{$row->sub_name}}</td>
-                                <td>{{$row->sub_nameeng}}</td>
+                                <td>{{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
                                 <td>{{$row->credit}}</td>
                                 <td>{{$row->theory}}</td>
                                 <td>{{$row->practice}}</td>

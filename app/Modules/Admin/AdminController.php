@@ -20,20 +20,20 @@ class AdminController extends Controller
         
         $admin = DB::table('admin')
         ->whereNull('delete_at');
-        if(!empty($keyword)){
+
+        if(!empty($keyword))
+        {
             $admin->where(function ($query) use($keyword){
-                $query->where('first_name','LIKE','%'.$keyword.'%');
-                $query->where('last_name','LIKE','%'.$keyword.'%');
-                $query->where('tel','LIKE','%'.$keyword.'%');
-                $query->where('sex','LIKE','%'.$keyword.'%');
-                $query->where('house','LIKE','%'.$keyword.'%');
-                $query->where('email','LIKE','%'.$keyword.'%');
+                $query->where('first_name','LIKE','%'.$keyword.'%')
+                      ->orwhere('last_name','LIKE','%'.$keyword.'%')
+                      ->orwhere('tel','LIKE','%'.$keyword.'%')
+                      ->orwhere('sex','LIKE','%'.$keyword.'%')
+                      ->orwhere('house','LIKE','%'.$keyword.'%')
+                      ->orwhere('email','LIKE','%'.$keyword.'%');
             });
         }
         $admin = $admin->paginate(10);
-        return view('admin::admin',[
-            'admin'=>$admin
-        ]);
+        return view('admin::admin',compact('admin'));
     }
 
     public function create()
@@ -44,8 +44,6 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-        
-        {
             $first_name = $request->get('first_name');
             $last_name = $request->get('last_name');
             $tel = $request->get('tel');
@@ -55,7 +53,8 @@ class AdminController extends Controller
             $username = $request->get('username');
             $password = $request->get('password');
 
-            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($house) && !empty($email) && !empty($username) && !empty($password))
+            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) 
+            && !empty($house) && !empty($email) && !empty($username) && !empty($password))
             {
                 $admin = DB::table('admin')
             ->where('first_name',$first_name)
@@ -95,14 +94,13 @@ class AdminController extends Controller
             }else{
                 return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ'); 
             }
-        }
     }
 
-    public function show($id,Request $request)
+    public function show($admin_id,Request $request)
     {
-        if(is_numeric($id))
+        if(is_numeric($admin_id))
         {
-            $admin = DB::table('admin')
+            $adminn = DB::table('admin')
             ->select('admin.*','users.username')
             ->leftJoin('users', function ($join) use ($admin_id) {
                 $join->on('users.user_id', '=', 'admin.admin_id')
@@ -110,9 +108,9 @@ class AdminController extends Controller
                     ->where('status','Y');
             })
             ->where('admin_id',$admin_id)->first();
-            $admin = DB::table('admin')->where('admin_id',$id)->first();
-            if(!empty($admin))
+            if(!empty($adminn))
             {
+                $admin = DB::table('admin')->where('admin_id',$admin_id)->first();
                 return view('admin::fromadmin',[
                     'admin'=>$admin
                 ]);
@@ -120,9 +118,9 @@ class AdminController extends Controller
         }
         return view('data-not-found',['back_url'=>'/admin']);
     }
-    public function update($id,Request $request)
+    public function update($admin_id,Request $request)
     {
-        if(is_numeric($id))
+        if(is_numeric($admin_id))
         {
             
             $first_name = $request->get('first_name');
@@ -141,10 +139,10 @@ class AdminController extends Controller
                 ->where('first_name',$first_name)
                 ->where('last_name',$last_name)
                 ->whereNull('delete_at')->first();
-                if(!empty($items)){
+                if(!empty($admin)){
                     return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
                 }
-                DB::table('admin')->where('admin_id',$id)->update([
+                DB::table('admin')->where('admin_id',$admin_id)->update([
                     'first_name' =>$first_name,
                     'last_name' =>$last_name,
                     'tel' =>$tel,
@@ -160,7 +158,7 @@ class AdminController extends Controller
                         ->where('user_id','!=','admin_id')
                         ->where('status','Y')->first();
                     if(!empty($users)){
-                        return MyResponse::error ('username นี้มีในระบบแล้วค่ะ'); 
+                        return MyResponse::error ('Username นี้มีในระบบแล้วค่ะ'); 
                     }else{
                         DB::table('users')
                         ->where('user_type','USER_LEVEL_ADMIN')
@@ -181,11 +179,11 @@ class AdminController extends Controller
         return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
     
-    public function destroy($id)
+    public function destroy($admin_id)
     {
-        if(is_numeric($id))
+        if(is_numeric($admin_id))
         {
-            DB::table('admin')->where('admin_id',$id)->update([
+            DB::table('admin')->where('admin_id',$admin_id)->update([
                 'delete_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');

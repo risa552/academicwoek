@@ -12,9 +12,10 @@
                     @else
                     เพิ่มผู้ดูแลระบบ
                     @endif
+                    <a class="btn btn-default pull-right" href="/admin" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
                 </div>
                 @if(isset($admin))
-                <form action="/admin/{{$admin->id}}" class="form-ajax" method="PUT">
+                <form action="/admin/{{$admin->admin_id}}" class="form-ajax" method="PUT">
                     <input type="hidden" value="put" name="_mathods">
                     @csrf()
                 @else
@@ -50,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <th>Username:</th>
-                        <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($admin)?$admin->username:''}}"/>
+                        <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($adminn)?$adminn->username:''}}"/>
                     </div>
                     <div class="form-group">
                         <th>Password:</th>

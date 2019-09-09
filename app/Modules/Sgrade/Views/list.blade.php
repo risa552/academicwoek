@@ -53,7 +53,7 @@
                             <tr>
                                 <td>{{$grade->first_name}} {{$grade->last_name}}</td>
                                 <td>{{$grade->group_name}}</td>
-                                <td>{{$grade->sub_code}} {{$grade->sub_name}}</td>
+                                <td>{{$grade->sub_code}} {{$grade->sub_name}} <br>{{$grade->sub_nameeng}}</td>
                                 <td>{{$grade->score}}</td>
                                 <td>{{$grade->grade}}</td>
                             </tr>

@@ -2,6 +2,27 @@
 @section('title','เพิ่มข้อมูลระดับ')
 @section('content')
 <div class="container">
+    <div class="col-md-10">
+        <div class="page__section">
+            <nav class="breadcrumb breadcrumb_type5" aria-label="Breadcrumb">
+            <ol class="breadcrumb__list r-list">
+                <li class="breadcrumb__group">
+                <a href="/" class="breadcrumb__point r-link"><i class="fa fa-home" aria-hidden="true"></i></a>
+                <span class="breadcrumb__divider" aria-hidden="true">›</span>
+                </li>
+                <li class="breadcrumb__group">
+                <a href="/degree" class="breadcrumb__point r-link">ระดับ</a>
+                <span class="breadcrumb__divider" aria-hidden="true">›</span>
+                </li>
+                <li class="breadcrumb__group">
+                <span class="breadcrumb__point" aria-current="page">รายงานเพิ่มระดับ</span>
+                </li>
+            </ol>
+            </nav>
+        </div>
+    <div>
+</div>
+<div class="container">
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default"> 

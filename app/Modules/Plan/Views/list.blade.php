@@ -2,6 +2,27 @@
 @section('title','รายงานการลงทะเบียน')
 @section('content')
 <div class="container">
+    <div class="col-md-10">
+        <div class="page__section">
+            <nav class="breadcrumb breadcrumb_type5" aria-label="Breadcrumb">
+            <ol class="breadcrumb__list r-list">
+                <li class="breadcrumb__group">
+                <a href="/" class="breadcrumb__point r-link"><i class="fa fa-home" aria-hidden="true"></i></a>
+                <span class="breadcrumb__divider" aria-hidden="true">›</span>
+                </li>
+                <li class="breadcrumb__group">
+                <a href="/enrolment" class="breadcrumb__point r-link">ลงทะเบียน</a>
+                <span class="breadcrumb__divider" aria-hidden="true">›</span>
+                </li>
+                <li class="breadcrumb__group">
+                <span class="breadcrumb__point" aria-current="page">รายงานลงทะเบียน</span>
+                </li>
+            </ol>
+            </nav>
+        </div>
+    <div>
+</div>
+<div class="container">
     <div class="row" >
         <form class="form-ajax" method="POST" action="/plan">
             <div class="col-md-9"  >
@@ -26,12 +47,12 @@
                                 @foreach($items as $item)
                                 <tr>
                                     <td> {{$item->term_name}}/{{$item->year}}</td>
-                                    <td> {{$item->sub_code}} {{$item->sub_name}}</td>
+                                    <td> {{$item->sub_code}} {{$item->sub_name}}<br>{{$item->sub_nameeng}}</td>
                                     <td> {{$item->status}}</td>
                                     <td> {{$item->grade}}</td>
                                     <td>
-                                    <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="#"></a>
-                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="#"></a>
+                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/plan/{{$item->enro_id}}"></a>
+                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/plan/{{$item->enro_id}}"></a>
                                     </td>
                                 </tr>
                                 @endforeach

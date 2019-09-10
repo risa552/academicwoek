@@ -2,6 +2,27 @@
 @section('title','ข้อมูลผู้ดูแลระบบ')
 @section('content')
 <div class="container">
+    <div class="col-md-10">
+        <div class="page__section">
+            <nav class="breadcrumb breadcrumb_type5" aria-label="Breadcrumb">
+            <ol class="breadcrumb__list r-list">
+                <li class="breadcrumb__group">
+                <a href="/" class="breadcrumb__point r-link"><i class="fa fa-home" aria-hidden="true"></i></a>
+                <span class="breadcrumb__divider" aria-hidden="true">›</span>
+                </li>
+                <li class="breadcrumb__group">
+                <a href="/admin" class="breadcrumb__point r-link">ผู้ดูแลระบบ</a>
+                <span class="breadcrumb__divider" aria-hidden="true">›</span>
+               
+                <li class="breadcrumb__group">
+                <span class="breadcrumb__point" aria-current="page">รายงานเพิ่มผู้ดูแลระบบ</span>
+                </li>
+            </ol>
+            </nav>
+        </div>
+    <div>
+</div>
+<div class="container">
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default"> 
@@ -35,11 +56,11 @@
                         <input type="text" name="tel" class="form-control" value="{{isset($admin)?$admin->tel:''}}"/>
                     </div>
                     <div class="panel-body">
-                        <th>เพศ: </th>
-                        <select  name="sex" class="form-control">
-                            <option {{isset($admin) && $admin->sex=='ชาย'?' selected ':''}} value="ชาย">ชาย</option>
-                            <option {{isset($admin) && $admin->sex=='หญิง'?' selected ':''}} value="หญิง">หญิง</option>
-                        </select>
+                    <label>เพศ:</label>
+                            <div class="form-group" >
+                                <input name="sex" type="radio" {{isset($admin) && $admin->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
+                                <input name="sex" type="radio" {{isset($admin) && $admin->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
+                            </div>
                     </div>
                     <div class="panel-body">
                         <th>ที่อยู่ : </th>

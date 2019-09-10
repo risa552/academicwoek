@@ -14,10 +14,13 @@ class PlanController extends Controller
 {
     public function show($std_id,Request $request)
     {
+        $sub_id =$request->get('sub_id');
+
         $items = DB::table('enrolment')
         ->select('enrolment.*',
         'subject.sub_code',
         'subject.sub_name',
+        'subject.sub_nameeng',
         'term.term_name',
         'term.year')
         ->rightJoin('subject','enrolment.sub_id','subject.sub_id')
@@ -38,19 +41,62 @@ class PlanController extends Controller
         ->where('std_id',$std_id)->first();
         
 
-        // $items = $items->orderBy('enrolment.created_at','asc')->get();
-        // $student = DB::table('student')->whereNull('delete_at')->get();
-        // $program = DB::table('program')->whereNull('delete_at')->get();
-        // $subject = DB::table('subject')->whereNull('delete_at')->get();
+        
+        $subject = DB::table('subject')->whereNull('delete_at')->get();
            // print_r($student);exit;
-        return view('plan::list',compact('items','student'));
+        return view('plan::list',compact('items','student','subject'));
+    }
+
+    
+    public function update($enro_id,Request $request)
+    {
+        if(is_numeric($enro_id))
+        {
+            $sub_id= $request->get('sub_id');
+            $status= $request->get('status');
+            if( !empty($sub_id) && !empty($status))
+            {
+                DB::table('enrolmemt')->where('enro_id',$enro_id)->update([
+                    'sub_id' =>$sub_id,
+                    'status' =>$status,
+                    'updated_at' =>date('Y-m-d H:i:s'),
+                ]);
+                return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/plan');
+            }else{
+                return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยคะ');
+            }
+        }
+        return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
 
     public function create()
     {
-       
-        return view('plan::form');
+        $subject = DB::table('subject')->whereNull('delete_at')->get();       
+        return view('plan::form',compact('subject'));
     }
     
+    public function store($std_id,Request $request)
+    {
+        $sub_id = $request->get('sub_id');
+        $status = $request->get('status');
+        if(!empty($sub_id) && !empty($status)){
+            DB::table('enrolment')->insertGetId([
+                'sub_id' => $sub_id,
+                'status' => $status,
+                'created_at' =>date('Y-m-d H:i:s')
+            ]);
+            return MyResponse::success('ระบบได้บันทึกข้องมูลเรียนร้อยแล้ว','/plan');
+        }else{
+            return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยคะ');
+        }
+    }
+
+    public function dastroy($std_id)
+    {
+        DB::table('enrolment')->where('std_id',$std_id)->update([
+            'delete_at' =>date('Y-m-d H:i:s'),
+        ]);
+        return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
+    }
    
 }

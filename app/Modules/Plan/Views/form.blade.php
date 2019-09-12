@@ -15,7 +15,7 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
-                <a href="/plan" class="breadcrumb__point r-link">รายงานลงทะเบียน</a>
+                <a href="/plan/{{$std_id}}" class="breadcrumb__point r-link">รายงานลงทะเบียน</a>
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
@@ -38,23 +38,30 @@
                         เพิ่มการลงทะเบียน
                         @endif
                     <!-- การลงทะเบียน : ชื่อ -->
-                    <a class="btn btn-default pull-right" href="/plan" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
+                    <a class="btn btn-default pull-right" href="/plan/{{$std_id}}" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
                 </div>
                 @if(isset($items))
                 <form action="/plan/{{$items->std_id}}" class="form-ajax" method="PUT">
                     <input type="hidden" value="put" name="_mathods">
                     @csrf()
                 @else
-                <form class="form-ajax" action="/plan/create" method="POST">
+                <form class="form-ajax" action="/plan" method="POST">
                 @csrf()
                 @endif
+                <input type="hidden" value="{{$std_id}}" name="std_id">
+
                     <div class="panel-body">
                         <div class="form-group">
                             <label >ภาคเรียน : </label>
-                            <select name="year" class="form-group">
-                                @for($i=date('Y');$i>date('Y')-3;$i--)
-                                <option {{isset($items) && $items->year==($i+543)?'select':''}} value="{{($i+543)}}">{{($i+543)}}</option>
-                                @endfor
+                            <select style="width:150px;" name="term_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($term as $index => $row4)
+                                <option value ="{{$row4->term_id}}" {{isset($items)&& $items->term_id==$row4->term_id?'selected':''}}>
+                                        {{$row4->term_name}}/{{$row4->year}}
+                                </option>
+                            @endforeach
                             </select>
                         </div>
                         <div class="form-group">

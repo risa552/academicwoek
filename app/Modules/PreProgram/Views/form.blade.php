@@ -1,5 +1,5 @@
 @extends('academic-layout') 
-@section('title','ข้อมูลแผนการเรียน')
+@section('title','เพิ่มการลงทะเบียน')
 @section('content')
 <div class="container">
     <div class="col-md-10">
@@ -15,7 +15,7 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">ข้อมูลแผนการเรียนของกลุ่ม</span>
+                <span class="breadcrumb__point" aria-current="page">เพิ่มข้อมูลแผนการเรียน</span>
                 </li>
             </ol>
             </nav>
@@ -24,11 +24,13 @@
 </div>
 <div class="container">
     <div class="row">
+       
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     ข้อมูลแผนการเรียนของกลุ่ม : กลุ่มเรียน : {{$group_show->group_name}}  สาขา : {{$group_show->bran_name}}
-                    <a href="/program/create?group_id={{$group_show->group_id}}" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลแผนการเรียน</a>
+                    <a href="/program/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลแผนการเรียน</a>
+
                 </div>
                 <div class="panel-body">  
                 <table class="table table-striped">
@@ -50,9 +52,8 @@
                                     <td>{{$row->term_name}}/{{$row->year}}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <!-- <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/program-report"></a> -->
-                                            <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/editprogram/{{$row->program_id}}"></a>
-                                            <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/program/{{$row->program_id}}"></a>
+                                            <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="#"></a>
+                                            <a class="fa fa-plus-circle btn btn-info" aria-hidden="true" href="#"></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -71,4 +72,5 @@
         </div>
     </div>  
 </div>
+
 @endsection

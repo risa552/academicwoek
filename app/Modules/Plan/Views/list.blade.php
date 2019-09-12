@@ -30,7 +30,7 @@
                     <div class="panel-heading">
                     <a href="/enrolment"><i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ</a>
                      รายงานการลงทะเบียน : รหัส {{$student->number}} ชื่อ {{$student->first_name}} {{$student->last_name}} 
-                    <a href="/plan/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มรายวิชา</a>
+                    <a href="/plan/create?std_id={{$student->std_id}}" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มรายวิชา</a>
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped">

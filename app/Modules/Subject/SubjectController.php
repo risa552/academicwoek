@@ -61,7 +61,7 @@ class SubjectController extends Controller
             if(!empty($sub_name) && !empty($sub_nameeng) && !empty($credit) && !empty($sub_code) && !empty($theory) && !empty($practice)  && !empty($subgroup_id) )
             {
                 $items = DB::table($this->table_name)
-                ->where('sub_name',$sub_name)
+                ->where('sub_code',$sub_code)
                 ->whereNull('delete_at')->first();
                 if(!empty($items))
                 {

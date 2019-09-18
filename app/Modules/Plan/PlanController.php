@@ -77,7 +77,24 @@ class PlanController extends Controller
         return view('plan::list',compact('items','student','subject','std_id'));
     }
 
-    
+    public function editplan($enro_id,Request $request)
+    {
+        if(is_numeric($enro_id))
+        {
+            $items = DB::table('enrolment')->where('enro_id',$enro_id)->first();
+            if(!empty($items)){
+               
+                $subject = DB::table('subject')->whereNull('delete_at')->get();
+                $term = DB::table('term')->whereNull('delete_at')->get(); 
+                return view('plan::form',[
+                    'items'=>$items,
+                    'subject'=>$subject,
+                    'term'=>$term
+                ]);
+            }
+        }
+    }
+
     public function update($enro_id,Request $request)
     {
         if(is_numeric($enro_id))

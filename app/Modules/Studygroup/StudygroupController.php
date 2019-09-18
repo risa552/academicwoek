@@ -69,8 +69,9 @@ class StudygroupController extends Controller
         $bran_id = $request->get('bran_id');
         $degree_id = $request->get('degree_id');
         $teach_id = $request->get('teach_id');
+        $group_type = $request->get('group_type');
         
-        if( !empty($group_name) && !empty($year) && !empty($bran_id) && !empty($degree_id) && !empty($teach_id))
+        if( !empty($group_name) && !empty($year) && !empty($bran_id) && !empty($degree_id) && !empty($teach_id) && !empty($group_type))
         {
             $group = DB::table($this->table_name)
             ->where('group_name',$group_name)
@@ -85,6 +86,7 @@ class StudygroupController extends Controller
                 'bran_id' =>$bran_id,
                 'degree_id'=>$degree_id,
                 'teach_id'=>$teach_id,
+                'group_type'=>$group_type,
                 'created_at' =>date('Y-m-d H:i:s'),
                 //'created_at' =>date('Y-m-d H::i::s'),
             ]);
@@ -124,8 +126,9 @@ class StudygroupController extends Controller
             $bran_id = $request->get('bran_id');
             $degree_id = $request->get('degree_id');
             $teach_id = $request->get('teach_id');
+            $group_type = $request->get('group_type');
             
-            if( !empty($group_name) && !empty($year) && !empty($bran_id) && !empty($degree_id) && !empty($teach_id))
+            if( !empty($group_name) && !empty($year) && !empty($bran_id) && !empty($degree_id) && !empty($teach_id) && !empty($group_type))
             {
                 $group = DB::table($this->table_name)
             ->where('group_id','!=',$group_id)
@@ -140,6 +143,7 @@ class StudygroupController extends Controller
                     'bran_id' =>$bran_id,
                     'degree_id'=>$degree_id,
                     'teach_id'=>$teach_id,
+                    'group_type'=>$group_type,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/studygroup');

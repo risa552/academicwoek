@@ -56,6 +56,13 @@
                                     @endfor
                                 </select>
                             </div>
+                            <div class="panel-body">
+                            <label>ประเภท:</label>
+                                    <div class="form-group" >
+                                        <input name="group_type" type="radio" {{isset($group) && $group->group_type=='ปกติ'?'checked':''}} value="ปกติ"/>ปกติ
+                                        <input name="group_type" type="radio" {{isset($group) && $group->group_type=='สมทบ'?'checked':''}} value="สมทบ"/>สมทบ
+                                    </div>
+                            </div>
                             <div class="form-group">
                                 <label >สาขาวิชา:</label>
                                 <select style="width:150px;" name="bran_id">

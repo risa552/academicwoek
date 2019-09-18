@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->sub_code}}</td>
-                                    <td>{{$row->sub_name}}<br>{{$row->sub_nameeng}}</td>
+                                    <td>{{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
                                     <td>{{$row->term_name}}/{{$row->year}}</td>
                                     <td>
                                         <div class="btn-group">

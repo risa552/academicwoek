@@ -17,10 +17,10 @@ class EducateController extends Controller
         $sub_id = $request->get('sub_id');
         $teach_id = $request->get('teach_id');
         $term_id = $request->get('term_id');
-        $bran_id = $request->get('bran_id');
-        if(empty($bran_id)){
-            $bran_id=1;
-        }
+        $group_id = $request->get('group_id');
+        // if(empty($group_id)){
+        //     $group_id=1;
+        // }
       
         $items = DB::table('program')
         ->select('program.*',
@@ -28,16 +28,14 @@ class EducateController extends Controller
         // 'teacher.last_name',
         'subject.sub_code',
         'subject.sub_name',
+        'subject.sub_nameeng',
         'subject.theory',
         'subject.practice',
-        'branch.bran_name',
-        'branch.bran_id',
         'term.term_name',
         'term.year',
         'studygroup.group_name')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->leftJoin('studygroup','program.group_id','studygroup.group_id')
-        ->leftJoin('branch','branch.bran_id','studygroup.bran_id')
         ->leftJoin('term','program.term_id','term.term_id')
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
@@ -65,9 +63,9 @@ class EducateController extends Controller
         {
             $items->where('program.term_id','=',$term_id);
         }
-        if(is_numeric($bran_id))
+        if(is_numeric($group_id))
         {
-            $items->where('studygroup.bran_id','=',$bran_id);
+            $items->where('program.group_id','=',$group_id);
         }
         $items = $items->get();
        // print_r($items);exit;
@@ -77,7 +75,7 @@ class EducateController extends Controller
             'educate_id',
             'sub_id',
             'term_id',
-            'bran_id',
+            'group_id',
             'educate.teach_id',
             'teacher.first_name',
             'teacher.last_name'
@@ -87,13 +85,13 @@ class EducateController extends Controller
         $educations = [];
         foreach($temp_educations as $edu)
         {
-            $key = $edu->sub_id.'-'.$edu->term_id.'-'.$edu->bran_id;
+            $key = $edu->sub_id.'-'.$edu->term_id.'-'.$edu->group_id;
             $educations[$key] = $edu;
         }
         $temp_items = [];
         foreach($items as $item)
         {
-            $key = $item->sub_id.'-'.$item->term_id.'-'.$item->bran_id;
+            $key = $item->sub_id.'-'.$item->term_id.'-'.$item->group_id;
             $item->educate_id=null;
             $item->teach_id=null;
             $item->first_name='';
@@ -115,20 +113,25 @@ class EducateController extends Controller
         'teacher.first_name',
         'teacher.last_name',
         'studygroup.group_name',
+        'studygroup.group_type',
         'subject.sub_code',
         'subject.sub_name',
+        'subject.sub_nameeng',
         'subject.theory',
         'subject.practice',
         'term.term_name',
         'term.year',
-        'branch.bran_name')
+        'degree.degree_name')
         ->leftjoin('term','program.term_id','term.term_id')
         ->leftjoin('subject','program.sub_id','subject.sub_id')
-        ->leftjoin('educate','educate.sub_id','subject.sub_id')
+        // ->leftjoin('educate','educate.sub_id','subject.sub_id')
+        ->leftjoin('educate', function ($join) {
+            $join->on('educate.sub_id','subject.sub_id')
+                 ->where('educate.group_id','progran.group_id');
+        })
         ->leftjoin('teacher','educate.teach_id','teacher.teach_id')
         ->leftjoin('studygroup','program.group_id','studygroup.group_id')
-        ->leftjoin('branch','studygroup.bran_id','branch.bran_id')
-        //->where('studygroup.bran_id',$bran_id) 
+        ->leftjoin('degree','studygroup.degree_id','degree.degree_id')
        
         ->whereNull('program.delete_at')
         ->whereExists(function ($query) {
@@ -139,22 +142,22 @@ class EducateController extends Controller
                   ->whereRaw('program.term_id = term.term_id');
         })
         ->get();
-        // print_r($list);exit;
+        //print_r($list);exit;
         $sub = DB::table('subject')->whereNull('delete_at')->get();
         $teachers = DB::table('teacher')->whereNull('delete_at')->get();
         $term = DB::table('term')->whereNull('delete_at')->get();
-        $bran = DB::table('branch')->whereNull('delete_at')->get();
+        $group = DB::table('studygroup')->whereNull('delete_at')->get();
    // dd($items);
-        return view('educate::list',compact('items','teachers','sub','term','bran','list'));
+        return view('educate::list',compact('items','teachers','sub','term','group','list'));
     }
 
     public function create()
     {
         $teachers = DB::table('teacher')->whereNull('delete_at')->get();
         $sub = DB::table('subject')->whereNull('delete_at')->get();
-        $bran = DB::table('branch')->whereNull('delete_at')->get();
+        $grpup = DB::table('studygroup')->whereNull('delete_at')->get();
         $term = DB::table('term')->whereNull('delete_at')->get();
-        return view('educate::form',compact('teachers','sub','term','bran'));
+        return view('educate::form',compact('teachers','sub','term','group'));
     }
 
     public function store(Request $request)
@@ -162,15 +165,15 @@ class EducateController extends Controller
         $teach_id = $request->get('teach_id');
         $sub_id = $request->get('sub_id');
         $term_id = $request->get('term_id');
-        $bran_id = $request->get('bran_id');
+        $group_id = $request->get('group_id');
 
-        if(!empty($teach_id) && !empty($sub_id) && !empty($term_id) && !empty($bran_id))
+        if(!empty($teach_id) && !empty($sub_id) && !empty($term_id) && !empty($group_id))
         { 
             DB::table('educate')->insertGetid([
                 'teach_id' =>$teach_id,
                 'sub_id' =>$sub_id,
                 'term_id' =>$term_id,
-                'bran_id' =>$bran_id,
+                'group_id' =>$group_id,
                 'created_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/educate');
@@ -191,12 +194,11 @@ class EducateController extends Controller
             'term.term_id',
             'term.term_name',
             'term.year',
-            'branch.bran_id',
-            'branch.bran_name')
+            'studygroup.group_id',
+            'studygroup.group_name')
            
             ->leftJoin('subject','program.sub_id','subject.sub_id')
             ->leftJoin('studygroup','program.group_id','studygroup.group_id')
-            ->leftJoin('branch','studygroup.bran_id','branch.bran_id')
             ->leftJoin('term','program.term_id','term.term_id')
             ->where('startdate','<=',date('Y-m-d'))
             ->where('enddate','>=',date('Y-m-d'))
@@ -206,7 +208,7 @@ class EducateController extends Controller
                 ->select('teach_id','educate_id')
                 ->where('sub_id',$item->sub_id)
                 ->where('term_id',$item->term_id)
-                ->where('bran_id',$item->bran_id)
+                ->where('group_id',$item->group_id)
                 ->whereNull('delete_at')->first();
                 //dd($teacher);
                 $teachers = DB::table('teacher')->whereNull('delete_at')->get();
@@ -226,9 +228,9 @@ class EducateController extends Controller
             $teach_id = $request->get('teach_id');
             $sub_id = $request->get('sub_id');
             $term_id = $request->get('term_id');
-            $bran_id = $request->get('bran_id');
+            $group_id = $request->get('group_id');
 
-            if(!empty($teach_id) && !empty($sub_id) && !empty($term_id) && !empty($bran_id) )
+            if(!empty($teach_id) && !empty($sub_id) && !empty($term_id) && !empty($group_id) )
             {
                /* $items = DB::table($this->table_name)
                 ->where('program_id','!=',$id)
@@ -240,7 +242,7 @@ class EducateController extends Controller
                     'teach_id' =>$teach_id,
                     'sub_id' =>$sub_id,
                     'term_id' =>$term_id,
-                    'bran_id' =>$bran_id,
+                    'group_id' =>$group_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/educate');
@@ -268,5 +270,109 @@ class EducateController extends Controller
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }
         return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
+    }
+    public function report(Request $request)
+    {
+        
+        if(empty($group_id)){
+            $group_id=1;
+        }
+        // DB::enableQueryLog();
+        // ส่วนตารางรายงาน
+        $lists = DB::table('program')
+        ->select('program.*',
+        'teacher.teach_id',
+        'teacher.first_name',
+        'teacher.last_name',
+        'studygroup.group_name',
+        'studygroup.group_type',
+        'subject.sub_code',
+        'subject.sub_name',
+        'subject.sub_nameeng',
+        'subject.theory',
+        'subject.practice',
+        'term.term_name',
+        'term.year',
+        'degree.degree_name')
+        ->leftjoin('term','program.term_id','term.term_id')
+        ->leftjoin('subject','program.sub_id','subject.sub_id')
+        // ->leftjoin('educate','educate.sub_id','subject.sub_id')
+        ->rightjoin('educate', function ($join) {
+            $join->on('educate.sub_id','subject.sub_id')
+                 ->whereRaw('educate.group_id=program.group_id');
+        })
+        ->leftjoin('teacher','educate.teach_id','teacher.teach_id')
+        ->leftjoin('studygroup','program.group_id','studygroup.group_id')
+        ->leftjoin('degree','studygroup.degree_id','degree.degree_id')
+       
+        ->whereNull('program.delete_at')
+        ->whereExists(function ($query) {
+            $query->select(DB::raw(1))
+                  ->from('term')
+                  ->where('startdate','<=',date('Y-m-d'))
+                  ->where('enddate','>=',date('Y-m-d'))
+                  ->whereRaw('program.term_id = term.term_id');
+        })
+        ->get();
+
+        $items=[];
+        foreach($lists as $list){
+            $theory=!is_numeric($list->theory)?0:$list->theory;
+            $practice=!is_numeric($list->practice)?0:$list->practice;
+            if(!isset($items[$list->teach_id])){
+                $items[$list->teach_id]=[
+                    'items'=>[],
+
+                ];
+                $items[$list->teach_id]['items'][] = [
+                    'name'=>$list->first_name,
+                    'surname'=>$list->last_name,
+                    'sub_code'=>$list->sub_code,
+                    'sub_name'=>$list->sub_name,
+                    'sub_nameeng'=>$list->sub_nameeng,
+                    'degree_1'=>($list->degree_name == 'ปวส.')?$list->group_name:'',
+                    'degree_2'=>($list->degree_name != 'ปวส.')?$list->group_name:'',
+                    'C1'=>($list->group_type == 'ปกติ')?$list->theory:'',
+                    'C2'=>($list->group_type == 'ปกติ')?$list->practice:'',
+                    'C3'=>($list->group_type == 'ปกติ' && $list->degree_name == 'ปวส.')?($practice+$theory):'',
+                    'C4'=>($list->group_type == 'ปกติ' && $list->degree_name != 'ปวส.')?($practice+$theory):'',
+                    'C5'=>($list->group_type != 'ปกติ')?$list->theory:'',
+                    'C6'=>($list->group_type != 'ปกติ')?$list->practice:'',
+                    'C7'=>($list->group_type != 'ปกติ' && $list->degree_name != 'ปวส.')?($practice+$theory):'',
+                    'C8'=>($list->group_type == 'ปกติ')?($practice+$theory):'',
+                    'C9'=>($list->group_type != 'ปกติ')?($practice+$theory):'',
+                    'C10'=>($practice+$theory)
+                ];
+            }else{
+                $items[$list->teach_id]['items'][] = [
+                    'name'=>"",
+                    'surname'=>"",
+                    'sub_code'=>$list->sub_code,
+                    'sub_name'=>$list->sub_name,
+                    'sub_nameeng'=>$list->sub_nameeng,
+                    'degree_1'=>($list->degree_name == 'ปวส.')?$list->group_name:'',
+                    'degree_2'=>($list->degree_name != 'ปวส.')?$list->group_name:'',
+                    'C1'=>($list->group_type == 'ปกติ')?$list->theory:'',
+                    'C2'=>($list->group_type == 'ปกติ')?$list->practice:'',
+                    'C3'=>($list->group_type == 'ปกติ' && $list->degree_name == 'ปวส.')?($practice+$theory):'',
+                    'C4'=>($list->group_type == 'ปกติ' && $list->degree_name != 'ปวส.')?($practice+$theory):'',
+                    'C5'=>($list->group_type != 'ปกติ')?$list->theory:'',
+                    'C6'=>($list->group_type != 'ปกติ')?$list->practice:'',
+                    'C7'=>($list->group_type != 'ปกติ' && $list->degree_name != 'ปวส.')?($practice+$theory):'',
+                    'C8'=>($list->group_type == 'ปกติ')?($practice+$theory):'',
+                    'C9'=>($list->group_type != 'ปกติ')?($practice+$theory):'',
+                    'C10'=>($practice+$theory)
+                ];
+            }
+        }
+        $items = array_values($items);
+        // dd(DB::getQueryLog());
+        // print_r($items);exit;
+        $sub = DB::table('subject')->whereNull('delete_at')->get();
+        $teachers = DB::table('teacher')->whereNull('delete_at')->get();
+        $term = DB::table('term')->whereNull('delete_at')->get();
+        $group = DB::table('studygroup')->whereNull('delete_at')->get();
+   // dd($items);
+        return view('educate::report',compact('teachers','sub','term','group','items'));
     }
 }

@@ -11,11 +11,11 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
-                <a href="/degree" class="breadcrumb__point r-link">ระดับ</a>
+                <a href="/degree" class="breadcrumb__point r-link">ข้อมูลระดับ</a>
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">รายงานเพิ่มระดับ</span>
+                <span class="breadcrumb__point" aria-current="page">รายงานเพิ่มข้อมูลระดับ</span>
                 </li>
             </ol>
             </nav>

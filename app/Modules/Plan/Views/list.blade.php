@@ -51,7 +51,7 @@
                                     <td> {{$item->status}}</td>
                                     <td> {{$item->grade}}</td>
                                     <td>
-                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/plan/{{$item->enro_id}}"></a>
+                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/editplan/{{$item->enro_id}}"></a>
                                         <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/plan/{{$item->enro_id}}"></a>
                                     </td>
                                 </tr>

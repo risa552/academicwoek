@@ -15,7 +15,7 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li> -->
                 <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">ระดับ</span>
+                <span class="breadcrumb__point" aria-current="page">ข้อมูลระดับ</span>
                 </li>
             </ol>
             </nav>

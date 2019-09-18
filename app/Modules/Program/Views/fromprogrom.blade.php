@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default"> 
-                 <a herf="/program" กลับหน้าหลัก> </a>
+                 <a herf="/program/{{$group_id}}" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     <a class="btn btn-default pull-right" href="/program/{{$group_id}}" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
 
@@ -64,7 +64,7 @@
                             </option>
                         @foreach($subjects as $index => $row3)
                             <option value ="{{$row3->sub_id}}" {{isset($program)&& $program->sub_id==$row3->sub_id?'selected':''}}>
-                                     {{$row3->sub_code}}  {{$row3->sub_name}}
+                                     {{$row3->sub_code}}  {{$row3->sub_name}}  {{$row3->sub_nameeng}}
                             </option>
                         @endforeach
                         </select>

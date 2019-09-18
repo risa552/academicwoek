@@ -84,6 +84,14 @@ class ProgramController extends Controller
 
             if(!empty($group_id) && !empty($term_id) && !empty($sub_id) )
             { 
+                $items = DB::table($this->table_name)
+                ->where('group_id','=',$group_id)
+                ->where('term_id','=',$term_id)
+                ->where('sub_id','=',$sub_id)
+                ->whereNull('delete_at')->first();
+                if(!empty($items)){
+                    return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
+                }
                 DB::table($this->table_name)->insert([
                     'group_id' =>$group_id,
                     'term_id' =>$term_id,
@@ -135,19 +143,22 @@ class ProgramController extends Controller
 
             if( !empty($group_id) && !empty($term_id) && !empty($sub_id) )
             {
-               /* $items = DB::table($this->table_name)
+                $items = DB::table($this->table_name)
                 ->where('program_id','!=',$id)
+                ->where('group_id','=',$group_id)
+                ->where('term_id','=',$term_id)
+                ->where('sub_id','=',$sub_id)
                 ->whereNull('delete_at')->first();
-            if(!empty($items)){
-                return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
-            }*/
+                if(!empty($items)){
+                    return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
+                }
                 DB::table($this->table_name)->where('program_id',$id)->update([
                     'group_id' =>$group_id,
                     'term_id' =>$term_id,
                     'sub_id' =>$sub_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
-                return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/program');
+                return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/program/'.$group_id);
             }else{
                 return MyResponse::error('กรุณาป้อนข้อมูลให้ครบด้วยค่ะ');
             }
@@ -171,33 +182,43 @@ class ProgramController extends Controller
     }*/
     public function report(Request $request)
     {
+        
+        $group_id = $request->get('group_id');
         if(empty($group_id)){
             $group_id=1;
         }
 
-        $shows = DB::table('term')
-        ->select('term.*',
+        $shows = DB::table('program')
+        ->select('program.*',
         'subject.sub_code',
         'subject.sub_name',
         'subject.sub_nameeng',
         'subject.theory',
         'subject.practice',
-        'branch.bran_name')
-        ->leftJoin('program','program.term_id','term.term_id')
+        'branch.bran_name',
+        'studygroup.year',
+        'studygroup.group_name',
+        'course.cou_name',
+        'course.year',
+        'term.term_name',
+        'term.year')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->leftJoin('studygroup','program.group_id','studygroup.group_id')
         ->leftJoin('branch','branch.bran_id','studygroup.bran_id')
+        ->leftJoin('course','course.cou_id','branch.cou_id')
+        ->leftJoin('term','term.term_id','program.term_id')
         ->whereNull('program.delete_at')
-        ->orderBy('term.year')
-        ->orderBy('term.term_name')
+        ->where('program.group_id',$group_id)
         ->get();
-       // print_r($bran_id);exit;
 
         $programs = [];
         $years = [];
         if(!empty($shows))
         {
             $branche = $shows[0]->bran_name;
+            $course = $shows[0]->cou_name;
+            $cou_year = $shows[0]->year;
+            $year = $shows[0]->year;
 
             foreach($shows as $index=> $item)
             {
@@ -213,16 +234,13 @@ class ProgramController extends Controller
                 }
                 else
                 {
-
                     $programs[$key_term][$item->term_name]['subjects'][] = $item;
                 }
             }
         }
-        //print_r($programs);exit;
-       // $items = $items->paginate(10);
-        
-        //dd($show);
-        return view('program::report',compact('programs','branche'));
+    //    print_r($programs);exit;
+
+        return view('program::report',compact('programs','branche','course','cou_year','year'));
     }
 
 }

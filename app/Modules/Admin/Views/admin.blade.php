@@ -11,7 +11,7 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">ผู้ดูแลระบบ</span>
+                <span class="breadcrumb__point" aria-current="page">ข้อมูลผู้ดูแลระบบ</span>
                 </li>
             </ol>
             </nav>

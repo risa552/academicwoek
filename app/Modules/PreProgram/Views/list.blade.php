@@ -15,7 +15,7 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li> -->
                 <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">แผนการเรียน</span>
+                <span class="breadcrumb__point" aria-current="page">ข้อมูลแผนการเรียน</span>
                 </li>
             </ol>
             </nav>
@@ -72,7 +72,7 @@
                                     <td>{{$row->year}}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/program-report"></a>
+                                            <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/program-report?group_id={{$row->group_id}}"></a>
                                             <a class="fa fa-plus-circle btn btn-info" aria-hidden="true" href="/program/{{$row->group_id}}"></a>
                                         </div>
                                     </td>

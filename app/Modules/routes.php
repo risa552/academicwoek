@@ -36,6 +36,12 @@ Route::prefix('')->group(function ()
       Route::resource('/plan','\App\Modules\Plan\PlanController');
       Route::resource('/hisgrade','\App\Modules\HistoryGrade\HistoryGradeController');
       Route::resource('/dgrade','\App\Modules\Dgrade\DgradeController');
+      Route::Get('/program-report', '\App\Modules\Program\ProgramController@report');
+      Route::resource('/preprogram', '\App\Modules\PreProgram\PreProgramController');
+      Route::Get('/editprogram/{group_id}', '\App\Modules\Program\ProgramController@showw');
+      Route::Get('/editplan/{enro_id}', '\App\Modules\Plan\PlanController@editplan');
+      Route::Get('/educate-report', '\App\Modules\Educate\EducateController@report');
+      
     });
 });
 ?>

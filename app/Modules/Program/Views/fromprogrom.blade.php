@@ -11,7 +11,11 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
-                <a href="/program" class="breadcrumb__point r-link">แผนการเรียน</a>
+                <a href="/preprogram" class="breadcrumb__point r-link">แผนการเรียน</a>
+                <span class="breadcrumb__divider" aria-hidden="true">›</span>
+                </li>
+                <li class="breadcrumb__group">
+                <a href="/program/{{$group_id}}" class="breadcrumb__point r-link">ข้อมูลแผนการเรียนของกลุ่มเรียน</a>
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
@@ -26,37 +30,18 @@
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default"> 
-                 <a herf="/program" กลับหน้าหลัก> </a>
+                 <a herf="/program/{{$group_id}}" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
-                    @if(isset($items))
-                    แผนการเรียน : {{$items->program_id}}
-                    @else
-                    เพิ่มแผนการเรียน
-                    @endif
-                    <a class="btn btn-default pull-right" href="/program" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
+                    <a class="btn btn-default pull-right" href="/program/{{$group_id}}" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
 
                 </div>
-                @if(isset($items))
-                <form action="/program/{{$items->program_id}}" class="form-ajax" method="PUT">
-                    <input type="hidden" value="put" name="_mathods">
+                <form action="{{$action}}" class="form-ajax" method="{{$method}}">
                     @csrf()
-                @else
-                <form class="form-ajax" action="/program" method="POST">
-                @csrf()
-                @endif
+                    <input type="hidden" value="{{$group_id}}" name="group_id">
+
                 <div class="panel-body">
                     <div class="form-group">
-                        <label >กลุ่มเรียน:</label>
-                        <select style="width:150px;" name="group_id">
-                            <option value="all">
-                                ทั้งหมด
-                            </option>
-                        @foreach($items2 as $index => $row1)
-                            <option value ="{{$row1->group_id}}" {{isset($items)&& $items->group_id==$row1->group_id?'selected':''}}> 
-                                {{$row1->group_name}}
-                            </option>
-                        @endforeach
-                        </select>
+                        <label >กลุ่มเรียน : {{$group_name}}</label>
                     </div>
                     <div class="form-group">
                         <label >ภาคเรียน:</label>
@@ -64,8 +49,8 @@
                             <option value="all">
                                 ทั้งหมด
                             </option>
-                        @foreach($items3 as $index => $row2)
-                            <option value ="{{$row2->term_id}}" {{isset($items)&& $items->term_id==$row2->term_id?'selected':''}}>
+                        @foreach($terms as $index => $row2)
+                            <option value ="{{$row2->term_id}}" {{isset($program)&& $program->term_id==$row2->term_id?'selected':''}}>
                                 {{$row2->term_name}}/{{$row2->year}}
                             </option>
                         @endforeach
@@ -77,9 +62,9 @@
                             <option value="all">
                                 ทั้งหมด
                             </option>
-                        @foreach($items4 as $index => $row3)
-                            <option value ="{{$row3->sub_id}}" {{isset($items)&& $items->sub_id==$row3->sub_id?'selected':''}}>
-                                     {{$row3->sub_code}}  {{$row3->sub_name}}
+                        @foreach($subjects as $index => $row3)
+                            <option value ="{{$row3->sub_id}}" {{isset($program)&& $program->sub_id==$row3->sub_id?'selected':''}}>
+                                     {{$row3->sub_code}}  {{$row3->sub_name}}  {{$row3->sub_nameeng}}
                             </option>
                         @endforeach
                         </select>

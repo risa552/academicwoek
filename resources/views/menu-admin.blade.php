@@ -25,7 +25,7 @@
                         <li class="sub-nav-menu"><a href="/admin">ผู้ใช้งาน</a></li>
                     </ul>
                 </li>
-                <li class="nav-menu"><a href="/program">แผนการเรียน</a></li>
+                <li class="nav-menu"><a href="/preprogram">แผนการเรียน</a></li>
                 <li class="nav-menu"><a href="/exam">การส่งข้อสอบ</a></li>
                 <li class="nav-menu"><a href="/educate">ภาระการสอน</a></li>
                 <!--<li class="dropdown nav-menu">

@@ -11,11 +11,11 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
-                <a href="/branch" class="breadcrumb__point r-link">สาขาวิชา</a>
+                <a href="/branch" class="breadcrumb__point r-link">ข้อมูลสาขาวิชา</a>
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">รายงานเพิ่มสาขาวิชา</span>
+                <span class="breadcrumb__point" aria-current="page">รายงานเพิ่มข้อมูลสาขาวิชา</span>
                 </li>
             </ol>
             </nav>

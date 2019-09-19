@@ -53,7 +53,7 @@
                         </select>
                         <th>ปีการศึกษา:</th>
                         <select  name="year" class="form-control">
-                            @for($i=date('Y');$i>date('Y')-3;$i--)
+                            @for($i=date('Y')+3;$i>date('Y')-3;$i--)
                             <option {{isset($term) && $term->year==($i+543)?' selected ':''}} value="{{($i+543)}}">{{($i+543)}}</option>
                             @endfor
                         </select>

@@ -69,14 +69,14 @@
                         </select>
                     </div>-->
                     <div class="form-group">
-                        <label >สาขา:</label>
-                        <select style="width:150px;" name="bran_id">
+                        <label >กลุ่มเรียน:</label>
+                        <select style="width:150px;" name="group_id">
                             <option value="all">
                                 ทั้งหมด
                             </option>
-                        @foreach($bran as $index => $row4)
-                            <option value ="{{$row4->bran_id}}" {{Input::get('bran_id')==$row4->bran_id?'selected':''}}>
-                                {{$row4->bran_name}}
+                        @foreach($group as $index => $row4)
+                            <option value ="{{$row4->group_id}}" {{Input::get('group_id')==$row4->group_id?'selected':''}}>
+                                {{$row4->group_name}}
                             </option>
                         @endforeach
                         </select>
@@ -91,6 +91,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     รายการข้อมูลภาระการสอน
+                    <a class="fa fa-file-text-o btn btn-success pull-right" aria-hidden="true" href="/educate-report"></a>
                 </div>
                 <div class="panel-body">  
                     <table class="table table-striped">
@@ -100,7 +101,7 @@
                                 <th>อาจารย์</th>
                                 <th>วิชา</th>
                                 <th>ภาคเรียน</th>
-                                <th>สาขา</th>
+                                <th>กลุ่มเรียน</th>
                                 <th>แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -109,9 +110,9 @@
                                 <tr>
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
-                                    <td>{{$row->sub_code}} {{$row->sub_name}}</td>
+                                    <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
                                     <td>{{$row->term_name}}/{{$row->year}}</td>
-                                    <td>{{$row->bran_name}}</td>
+                                    <td>{{$row->group_name}}</td>
                                     
                                     <!--<td>{{$row->first_name}} {{$row->last_name}}</td>
                                     <td>{{$row->sub_code}} {{$row->sub_name}}</td>
@@ -127,99 +128,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-        <div class="panel panel-default">
-                <div class="panel-body">
-                    <p style="text-align:center;">มหาวิทยาลัยราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</p>
-                    <p style="text-align:center;">บัญชีภาระการสอนส่วนบุคคลสาขา </p>
-                    <p style="text-align:center;">ประจำภาคการศึกษาที่  ปีการศึกษา </p>
-                    <p style="text-align:center;">(จำนวนคาบต่อสัปดาห์ ท = ทฤษฏี, ป = ปฏิบัติ)</p>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th rowspan=4 style="text-align:center;">ลำดับ</th>
-                                <th rowspan=4 style="text-align:center;padding-right:100px;">อาจารย์</th>
-                                <th colspan=2 rowspan=2 style="text-align:center;">รายวิชา</th>
-                                <th colspan=2 rowspan=2 style="text-align:center;">ห้องเรียน</th>
-                                <th colspan=12  style="text-align:center;">จำนวนคาบ</th>
-                                <th rowspan=4 >ลายเซ็นรับทราบ</th>
-                                <th rowspan=4>วดป.ส่งข้อสอบกลางภาค</th>
-                                <th rowspan=4>วดป.ส่งข้อสอบปลายภาค</th>
-                            </tr>
-                            <tr>
-                                <th colspan=4 style="text-align:center;">รอบเช้า</th>
-                                <th colspan=4 style="text-align:center;">สมทบ</th>
-                                <th colspan=4 style="text-align:center;">รวมทั้งสิ้น</th>
-                            </tr>
-                            <tr>
-                                <th rowspan=2 style="height:25px; width:100px;">รหัสวิชา</th>
-                                <th rowspan=2>วิชา</th>
-                                <th rowspan=2>ป.ตรี</th>
-                                <th rowspan=2>ปวส.</th>
-                                <th rowspan=2>ท</th>
-                                <th rowspan=2>ป</th>
-                                <th colspan=2 style="text-align:center;">รวม</th>
-                                <th rowspan=2>ท</th>
-                                <th rowspan=2>ป</th>
-                                <th colspan=2 style="text-align:center;">รวม</th>
-                                <th rowspan=2>ท</th>
-                                <th rowspan=2>ป</th>
-                                <th colspan=2 style="text-align:center;">รวม</th>
-                            </tr>
-                            <tr>
-                                
-                                <th>ปวส.</th>
-                                <th>ป.ตรี</th>
-                                <th>ปวส.</th>
-                                <th>ป.ตรี</th>
-                                <th>ปวส.</th>
-                                <th>ป.ตรี</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($list as $index => $roww)
-                            <tr>
-                                <td>{{$index+1}}</td>
-                                <td>{{$roww->first_name}} {{$roww->last_name}}</td>
-                                <td>{{$roww->sub_code}}</td>
-                                <td>{{$roww->sub_name}}</td>
-                                <td>{{$roww->group_name}}</td>
-                                <td>{{$roww->group_name}} </td>
-                                <!-- <td>{{$roww->theory}}</td>
-                                <td>{{$roww->practice}}</td>
-                                <td>({{$roww->theory}}+{{$roww->practice}})</td>
-                                <td>({{$roww->theory}}+{{$roww->practice}})</td>
-                                <td>{{$roww->theory}}</td>
-                                <td>{{$roww->practice}}</td>
-                                <td>({{$roww->theory}}+{{$roww->practice}})</td>
-                                <td>({{$roww->theory}}+{{$roww->practice}})</td>
-                                <td>{{$roww->theory}}</td>
-                                <td>{{$roww->practice}}</td>
-                                <td>({{$roww->theory}}+{{$roww->practice}})</td>
-                                <td>({{$roww->theory}}+{{$roww->practice}})</td> -->
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    <a  class="btn btn-default fa fa-print pull-right" aria-hidden="true"></a>
                 </div>
             </div>
         </div>

@@ -11,11 +11,11 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
-                <a href="/admin" class="breadcrumb__point r-link">ผู้ดูแลระบบ</a>
+                <a href="/admin" class="breadcrumb__point r-link">ข้อมูลผู้ดูแลระบบ</a>
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                
                 <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">รายงานเพิ่มผู้ดูแลระบบ</span>
+                <span class="breadcrumb__point" aria-current="page">รายงานเพิ่มข้อมูลผู้ดูแลระบบ</span>
                 </li>
             </ol>
             </nav>

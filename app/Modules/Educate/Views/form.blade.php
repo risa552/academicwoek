@@ -29,6 +29,8 @@
                  <a herf="/educate" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     ภาระการสอนวิชา : {{$item->sub_name}}
+                    <a class="btn btn-default pull-right" href="/educate" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
+
                 </div>
                 @if(isset($teacher))
                 <form action="/educate/{{$teacher->educate_id}}" class="form-ajax" method="PUT">
@@ -40,7 +42,7 @@
                 @endif
                 <input type="hidden" value="{{$item->sub_id}}" name="sub_id">
                 <input type="hidden" value="{{$item->term_id}}" name="term_id">
-                <input type="hidden" value="{{$item->bran_id}}" name="bran_id">
+                <input type="hidden" value="{{$item->group_id}}" name="group_id">
 
                 <div class="panel-body">
                     <div class="form-group">
@@ -53,7 +55,7 @@
                         <label >ภาคเรียน : {{$item->term_name}}/{{$item->year}}</label>
                     </div>
                     <div class="form-group">
-                        <label >สาขา : {{$item->bran_name}}</label>
+                        <label >กลุ่มเรียน : {{$item->group_name}}</label>
                     </div>
                     <div class="form-group">
                         <label >อาจารย์:</label>

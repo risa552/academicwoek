@@ -15,7 +15,7 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li> -->
                 <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">หลักสูตร</span>
+                <span class="breadcrumb__point" aria-current="page">ข้อมูลหลักสูตร</span>
                 </li>
             </ol>
             </nav>

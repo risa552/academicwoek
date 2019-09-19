@@ -43,19 +43,6 @@
                             </select>
                     </div>
                     <div class="form-group">
-                            <label >ภาคเรียน:</label>
-                            <select name="term_id">
-                                <option value="all">
-                                    ทั้งหมด
-                                </option>
-                            @foreach($rom as $index => $row2)
-                                <option value ="{{$row2->term_id}}" {{Input::get('term_id')==$row2->term_id?'selected':''}}>
-                                    {{$row2->term_name}}
-                                </option>
-                            @endforeach
-                            </select>
-                    </div>
-                    <div class="form-group">
                             <label >กลุ่มเรียน:</label>
                             <select name="group_id">
                                 <option value="all">
@@ -84,31 +71,32 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>รหัสวิชา</th>
                                     <th>ชื่อวิชา</th>
-                                    <th>นักศึกษา</th>
-                                    <th>คะแนน/เกรด</th>
+                                    <th>กลุ่มเรียน</th>
                                    <!-- <th>คะแนน/เกรด</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($grade as $index => $row)
                                 <tr>
-                                    <td>{{$row->sub_code}}</td>
-                                    <td>{{$row->sub_name}}</td>
-                                    <td>{{$row->first_name}} {{$row->last_name}}</td>
+                                    <td>{{$row->sub_code}} {{$row->sub_name}}</td>
+                                    <td>{{$row->group_name}}</td>
                                     <td>
+                                    <div class="btn-group">
+                                       <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/dgrade"></a>
+                                    </div>
+                                    </td>
+                                  <!--  <td>
                                         <input type="text" value="{{$row->score}}" name="score[{{$row->enro_id}}]"  style="width:100px;" class="score-grade"/>
                                         <input type="text" readonly style="width:100px;" value="{{$row->grade}}" name="grade[{{$row->enro_id}}]" class="grade-input"/>
                                     </td>
-                                    <!--<td>
+                                    <td>
                                     <input type="text" style="width:100px;" value="{{$row->grade}}" name="grade[{{$row->enro_id}}]"/>
                                     </td>-->
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        <button class="bth" style="margin-left:700px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                     </div>
                 </div>
             </div>

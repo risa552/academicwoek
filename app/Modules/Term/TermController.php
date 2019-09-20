@@ -23,7 +23,7 @@ class TermController extends Controller
         if(!empty($keyword)){
             $term->where(function ($query) use($keyword){
                 $query->where('term_name','LIKE','%'.$keyword.'%')
-                      ->orwhere('year','LIKE','%'.$keyword.'%')
+                      ->orwhere('term_year','LIKE','%'.$keyword.'%')
                       ->orwhere('startdate','LIKE','%'.$keyword.'%')
                       ->orwhere('enddate','LIKE','%'.$keyword.'%');
             });
@@ -43,15 +43,15 @@ class TermController extends Controller
     public function store(Request $request)
     {
             $term_name = $request->get('term_name');
-            $year = $request->get('year');
+            $term_year = $request->get('term_year');
             $startdate = $request->get('startdate');
             $enddate = $request->get('enddate');
 
-            if(!empty($term_name) && !empty($year) && !empty($startdate) && !empty($enddate))
+            if(!empty($term_name) && !empty($term_year) && !empty($startdate) && !empty($enddate))
             {
                 DB::table('term')->insert([
                     'term_name' =>$term_name,
-                    'year' =>$year,
+                    'term_year' =>$term_year,
                     'startdate' =>$startdate,
                     'enddate' =>$enddate,
                     'created_at' =>date('Y-m-d H:i:s'),
@@ -83,16 +83,16 @@ class TermController extends Controller
         {
             
             $term_name = $request->get('term_name');
-            $year = $request->get('year');
+            $term_year = $request->get('term_year');
             $startdate = $request->get('startdate');
             $enddate = $request->get('enddate');
 
-            if(!empty($term_name) && !empty($year) && !empty($startdate) && !empty($enddate) )
+            if(!empty($term_name) && !empty($term_year) && !empty($startdate) && !empty($enddate) )
             {
                
                 DB::table('term')->where('term_id',$term_id)->update([
                     'term_name' =>$term_name,
-                    'year' =>$year,
+                    'term_year' =>$term_year,
                     'startdate' =>$startdate,
                     'enddate' =>$enddate,
                     'updated_at' =>date('Y-m-d H:i:s'),

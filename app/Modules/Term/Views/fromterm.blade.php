@@ -52,9 +52,9 @@
                             <option {{isset($term) && $term->term_name==' 3'?' selected ':''}} value=" 3"> 3</option>
                         </select>
                         <th>ปีการศึกษา:</th>
-                        <select  name="year" class="form-control">
+                        <select  name="term_year" class="form-control">
                             @for($i=date('Y')+3;$i>date('Y')-3;$i--)
-                            <option {{isset($term) && $term->year==($i+543)?' selected ':''}} value="{{($i+543)}}">{{($i+543)}}</option>
+                            <option {{isset($term) && $term->term_year==($i+543)?' selected ':''}} value="{{($i+543)}}">{{($i+543)}}</option>
                             @endfor
                         </select>
                     </div>

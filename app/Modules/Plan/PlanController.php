@@ -52,7 +52,7 @@ class PlanController extends Controller
         'subject.sub_name',
         'subject.sub_nameeng',
         'term.term_name',
-        'term.year')
+        'term.term_year')
         ->rightJoin('subject','enrolment.sub_id','subject.sub_id')
         ->rightJoin('term','enrolment.term_id','term.term_id')
         ->whereExists(function ($query) {

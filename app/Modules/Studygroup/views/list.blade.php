@@ -104,7 +104,7 @@
                         <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->group_name}}</td>
-                                <td>{{$row->year}}</td>
+                                <td>{{$row->group_year}}</td>
                                 <td>{{$row->group_type}}</td>
                                 <td>{{$row->bran_name}}</td>
                                 <td>{{$row->degree_name}}</td>

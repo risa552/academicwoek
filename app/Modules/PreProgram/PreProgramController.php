@@ -38,7 +38,7 @@ class PreProgramController extends Controller
         ->select('program.*',
         'studygroup.group_id',
         'term.term_name',
-        'term.year',
+        'term.term_year',
         'subject.sub_name',
         'subject.sub_nameeng',
         'subject.sub_code',

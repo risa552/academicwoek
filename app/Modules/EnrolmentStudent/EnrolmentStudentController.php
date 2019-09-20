@@ -38,9 +38,8 @@ class EnrolmentStudentController extends Controller
         WHERE program.term_id={$term_active->term_id} 
         AND program.delete_at IS NULL 
         AND program.group_id = {$user->group_id}
-        -- AND student.std_id = {$user->std_id}
         AND subject.delete_at IS NULL
-        AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id)
+        AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id AND xx.std_id={$user->std_id})
         ");
 
 

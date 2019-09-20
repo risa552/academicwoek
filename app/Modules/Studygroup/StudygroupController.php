@@ -32,7 +32,7 @@ class StudygroupController extends Controller
         {
             $group->where(function ($query) use($keyword){
                 $query->where('group_name','LIKE','%'.$keyword.'%')
-                      ->orwhere('year','LIKE','%'.$keyword.'%');
+                      ->orwhere('group_year','LIKE','%'.$keyword.'%');
             });
         }
         if(is_numeric($bran_id))
@@ -47,7 +47,7 @@ class StudygroupController extends Controller
         {
             $group->where('studygroup.teach_id','=',$teach_id);
         }
-        $group = $group->orderBy('studygroup.year','asc')->paginate(10);
+        $group = $group->orderBy('studygroup.group_year','asc')->paginate(10);
         $branch = DB::table($this->table2)->whereNull('delete_at')->get();
         $degree = DB::table($this->table3)->whereNull('delete_at')->get();
         $teach = DB::table('teacher')->whereNull('delete_at')->get();
@@ -65,13 +65,13 @@ class StudygroupController extends Controller
     public function store(Request $request)
     {
         $group_name = $request->get('group_name');
-        $year = $request->get('year');
+        $group_year = $request->get('group_year');
         $bran_id = $request->get('bran_id');
         $degree_id = $request->get('degree_id');
         $teach_id = $request->get('teach_id');
         $group_type = $request->get('group_type');
         
-        if( !empty($group_name) && !empty($year) && !empty($bran_id) && !empty($degree_id) && !empty($teach_id) && !empty($group_type))
+        if( !empty($group_name) && !empty($group_year) && !empty($bran_id) && !empty($degree_id) && !empty($teach_id) && !empty($group_type))
         {
             $group = DB::table($this->table_name)
             ->where('group_name',$group_name)
@@ -82,7 +82,7 @@ class StudygroupController extends Controller
             }   
             DB::table($this->table_name)->insert([
                 'group_name' =>$group_name,
-                'year' =>$year,
+                'group_year' =>$group_year,
                 'bran_id' =>$bran_id,
                 'degree_id'=>$degree_id,
                 'teach_id'=>$teach_id,
@@ -122,13 +122,13 @@ class StudygroupController extends Controller
         if(is_numeric($group_id))
         {
             $group_name = $request->get('group_name');
-            $year = $request->get('year');
+            $group_year = $request->get('group_year');
             $bran_id = $request->get('bran_id');
             $degree_id = $request->get('degree_id');
             $teach_id = $request->get('teach_id');
             $group_type = $request->get('group_type');
             
-            if( !empty($group_name) && !empty($year) && !empty($bran_id) && !empty($degree_id) && !empty($teach_id) && !empty($group_type))
+            if( !empty($group_name) && !empty($group_year) && !empty($bran_id) && !empty($degree_id) && !empty($teach_id) && !empty($group_type))
             {
                 $group = DB::table($this->table_name)
             ->where('group_id','!=',$group_id)
@@ -139,7 +139,7 @@ class StudygroupController extends Controller
             }
                 DB::table($this->table_name)->where('group_id',$group_id)->update([
                     'group_name' =>$group_name,
-                    'year' =>$year,
+                    'group_year' =>$group_year,
                     'bran_id' =>$bran_id,
                     'degree_id'=>$degree_id,
                     'teach_id'=>$teach_id,

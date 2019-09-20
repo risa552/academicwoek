@@ -50,7 +50,7 @@
                     </div>
                     <div class="panel-body">
                         <th>ปีที่ปรับปรุง : </th>
-                        <input type="text" name="year" class="form-control" value="{{isset($course)?$course->year:''}}"/>
+                        <input type="text" name="cou_year" class="form-control" value="{{isset($course)?$course->cou_year:''}}"/>
                     </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>

@@ -50,9 +50,9 @@
                             </div>
                             <div>
                                 <label >ปีที่เข้าศึกษา:</label>
-                                <select name="year" class="form-group">
+                                <select name="group_year" class="form-group">
                                     @for($i=date('Y');$i>date('Y')-3;$i--)
-                                    <option {{isset($group) && $group->year==($i+543)?'select':''}} value="{{($i+543)}}">{{($i+543)}}</option>
+                                    <option {{isset($group) && $group->group_year==($i+543)?'select':''}} value="{{($i+543)}}">{{($i+543)}}</option>
                                     @endfor
                                 </select>
                             </div>

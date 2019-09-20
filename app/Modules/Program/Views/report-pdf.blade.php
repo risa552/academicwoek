@@ -1,44 +1,10 @@
-@extends('academic-layout') 
-@section('title','ข้อมูลแผนการเรียน')
-@section('content')
-<div class="container">
-    <div class="col-md-10">
-        <div class="page__section">
-            <nav class="breadcrumb breadcrumb_type5" aria-label="Breadcrumb">
-            <ol class="breadcrumb__list r-list">
-                <li class="breadcrumb__group">
-                <a href="/" class="breadcrumb__point r-link"><i class="fa fa-home" aria-hidden="true"></i></a>
-                <span class="breadcrumb__divider" aria-hidden="true">›</span>
-                </li>
-                <li class="breadcrumb__group">
-                <a href="/preprogram" class="breadcrumb__point r-link">ข้อมูลแผนการเรียน</a>
-                <span class="breadcrumb__divider" aria-hidden="true">›</span>
-                </li>
-                <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">รายงานแผนการเรียน</span>
-                </li>
-            </ol>
-            </nav>
-        </div>
-    <div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    รายงานแผนการเรียน  {{$group_name}}
-                    <a class="btn btn-default pull-right" href="/preprogram" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
-                    <a  class="btn btn-default fa fa-print pull-right" href="/print-program/{{$group_id}}" aria-hidden="true"></a>
-                </div>
-            <form>
-                <div class="panel-body">
+
                     <h5 style="text-align:center;">แผนการเรียน</h5>
                     <h4 style="border:1px solid #ccc;padding:5px;text-align:center;">
                     หลักสูตร : {{$course}}   สาขา : {{$branche}}   ปีการศึกษา : {{$group_year}}  ใช้หลักสูตรปรับปรุงปี  : {{$cou_year}}
                     </h4>
                     
-                    <table class="table table-bordered">  
+                    <table width=100% border="1" cellspacing="0" bordercolor="black"  class="table table-bordered">  
                 @foreach($programs as $program)
                         <thead>
                             <tr>
@@ -55,7 +21,7 @@
                             </tr>
                             <tr>
                                 <th style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">รหัสวิชา</th>
-                                <th  style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">รายชื่อวิชา</th>
+                                <th style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">รายชื่อวิชา</th>
                                 <th >ท.</th>
                                 <th >ป.</th>
                                 <th style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">รหัสวิชา</th>
@@ -141,32 +107,26 @@
                         </tbody>
                         <thead>
                         <tr>
-                            <th style="text-align:right;" colspan='2'>รวม</th>
+                            <th  colspan='1' rowspan='2'></th>
+                            <th style="text-align:center;" colspan='1'>รวม</th>
                             <th > {{$sumtheory1}}  </th>
                             <th> {{$sumpractice1}}</th>
 
-                            <th style="text-align:right;" colspan='2'>รวม</th>
+                            <th colspan='1' rowspan='2'></th>
+                            <th style="text-align:center;" colspan='1'>รวม</th>
                             <th > {{$sumtheory2}}  </th>
                             <th> {{$sumpractice2}}</th>
                         </tr>
                         <tr>
-                            <th style="text-align:right;" colspan='2'>รวมทั้งสิ้น</th>
+                            <th style="text-align:center;" colspan='1'>รวมทั้งสิ้น</th>
                             <th style="text-align:center;" colspan='2' >{{$sumtheory1+$sumpractice1}} </th>
 
-                            <th style="text-align:right;" colspan='2'>รวมทั้งสิ้น</th>
+                            <th style="text-align:center;" colspan='1'>รวมทั้งสิ้น</th>
                             <th style="text-align:center;" colspan='2' >{{$sumtheory2+$sumpractice2}} </th>
                         </tr>
+                    
                         </thead>
-                        <td colspan='8' style="padding:10px;">       </td>
                     @endif
                 @endforeach
 
                     </table>
-                </div>
-            </form>
-                
-            </div>
-        </div>
-    </div>  
-</div>
-@endsection

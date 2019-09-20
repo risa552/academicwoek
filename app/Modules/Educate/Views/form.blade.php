@@ -52,7 +52,7 @@
                         <label >ชื่อวิชา : {{$item->sub_name}}</label>
                     </div>
                     <div class="form-group">
-                        <label >ภาคเรียน : {{$item->term_name}}/{{$item->year}}</label>
+                        <label >ภาคเรียน : {{$item->term_name}}/{{$item->term_year}}</label>
                     </div>
                     <div class="form-group">
                         <label >กลุ่มเรียน : {{$item->group_name}}</label>

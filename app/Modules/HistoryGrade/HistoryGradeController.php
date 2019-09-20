@@ -42,7 +42,7 @@ class HistoryGradeController extends Controller
         'subject.theory',
         'subject.practice',
         'term.term_name',
-        'term.year')
+        'term.term_year')
         ->leftJoin('subject','subject.sub_id','enrolment.sub_id')
         ->leftJoin('term','term.term_id','enrolment.term_id')
         ->where('enrolment.std_id',$user->std_id)->get();

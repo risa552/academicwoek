@@ -21,7 +21,8 @@ class CourseController extends Controller
         ->whereNull('delete_at');
         if(!empty($keyword)){
             $course->where(function ($query) use($keyword){
-                $query->where('cou_name','LIKE','%'.$keyword.'%');
+                $query->where('cou_name','LIKE','%'.$keyword.'%')
+                      ->orwhere('cou_year','LIKE','%'.$keyword.'%');
             });
         }
         $course = $course->paginate(10);
@@ -41,14 +42,14 @@ class CourseController extends Controller
         
         {
             $cou_name = $request->get('cou_name');
-            $year = $request->get('year');
+            $cou_year = $request->get('cou_year');
 
-            if(!empty($cou_name)&& !empty($year) )
+            if(!empty($cou_name)&& !empty($cou_year) )
             {
                 
                 DB::table('course')->insert([
                     'cou_name' =>$cou_name,
-                    'year' =>$year,
+                    'cou_year' =>$cou_year,
                     'created_at' =>date('Y-m-d H:i:s'),
                 ]);
                // print_r('course');exit;
@@ -79,14 +80,14 @@ class CourseController extends Controller
         {
             
             $cou_name = $request->get('cou_name');
-            $year = $request->get('year');
+            $cou_year = $request->get('cou_year');
 
-            if(!empty($cou_name) && !empty($year) )
+            if(!empty($cou_name) && !empty($cou_year) )
             {
                
                 DB::table('course')->where('cou_id',$cou_id)->update([
                     'cou_name' =>$cou_name,
-                    'year' =>$year,
+                    'cou_year' =>$cou_year,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/course');

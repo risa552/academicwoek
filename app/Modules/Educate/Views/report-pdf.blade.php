@@ -1,41 +1,10 @@
-@extends('academic-layout') 
-@section('title','ข้อมูลภาระการสอน')
-@section('content')
-<div class="container">
-    <div class="col-md-10">
-        <div class="page__section">
-            <nav class="breadcrumb breadcrumb_type5" aria-label="Breadcrumb">
-            <ol class="breadcrumb__list r-list">
-                <li class="breadcrumb__group">
-                <a href="/" class="breadcrumb__point r-link"><i class="fa fa-home" aria-hidden="true"></i></a>
-                <span class="breadcrumb__divider" aria-hidden="true">›</span>
-                <!-- </li>
-                <li class="breadcrumb__group">
-                <a href="/professor" class="breadcrumb__point r-link">ข้อมูลอาจารย์</a>
-                <span class="breadcrumb__divider" aria-hidden="true">›</span>
-                </li> -->
-                <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">ข้อมูลภาระการสอน</span>
-                </li>
-            </ol>
-            </nav>
-        </div>
-    <div>
-</div>
-<!-- <div class="container"> -->
-    <!-- <div class="row">
-        <div class="col-md-12"> -->
-        <div class="panel panel-default">
-            <div class="panel-heading">
-            รายงานภาระการสอน
-            <a  class="btn btn-default fa fa-print pull-right" href="/print-educate" aria-hidden="true"></a>
-            </div>
+
                 <div class="panel-body">
                     <p style="text-align:center;">มหาวิทยาลัยราชมงคลสุวรรณภูมิ ศูนย์นนทบุรี</p>
                     <p style="text-align:center;">บัญชีภาระการสอนส่วนบุคคลสาขาเทคโนโลยีสารสนเทศและคอมพิวเตอร์ธุรกิจ </p>
                     <p style="text-align:center;">ประจำภาคการศึกษาที่ {{$terms->term_name}} ปีการศึกษา {{$terms->term_year}} </p>
                     <p style="text-align:center;">(จำนวนคาบต่อสัปดาห์ ท = ทฤษฏี, ป = ปฏิบัติ)</p>
-                    <table class="table table-bordered">
+                    <table width=100% border="1" cellspacing="0" bordercolor="black" style="float:left;" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th rowspan=4 style="text-align:center;">ลำดับ</th>
@@ -119,8 +88,4 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        <!-- </div> -->
-    <!-- </div>   -->
-<!-- </div> -->
-@endsection
+            

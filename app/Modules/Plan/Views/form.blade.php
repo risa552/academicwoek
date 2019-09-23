@@ -59,7 +59,7 @@
                                 </option>
                             @foreach($term as $index => $row4)
                                 <option value ="{{$row4->term_id}}" {{isset($items)&& $items->term_id==$row4->term_id?'selected':''}}>
-                                        {{$row4->term_name}}/{{$row4->year}}
+                                        {{$row4->term_name}}/{{$row4->term_year}}
                                 </option>
                             @endforeach
                             </select>

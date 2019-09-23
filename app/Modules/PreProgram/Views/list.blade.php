@@ -69,7 +69,7 @@
                                 <tr>
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->group_name}}</td>
-                                    <td>{{$row->year}}</td>
+                                    <td>{{$row->group_year}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/program-report?group_id={{$row->group_id}}"></a>

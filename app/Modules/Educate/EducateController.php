@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Input;
 use DB;
 use App\Services\MyResponse;
+use App\Services\MY_PDF;
 
 class EducateController extends Controller
 {
@@ -32,7 +33,7 @@ class EducateController extends Controller
         'subject.theory',
         'subject.practice',
         'term.term_name',
-        'term.year',
+        'term.term_year',
         'studygroup.group_name')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->leftJoin('studygroup','program.group_id','studygroup.group_id')
@@ -120,7 +121,7 @@ class EducateController extends Controller
         'subject.theory',
         'subject.practice',
         'term.term_name',
-        'term.year',
+        'term.term_year',
         'degree.degree_name')
         ->leftjoin('term','program.term_id','term.term_id')
         ->leftjoin('subject','program.sub_id','subject.sub_id')
@@ -193,7 +194,7 @@ class EducateController extends Controller
             'subject.sub_name',
             'term.term_id',
             'term.term_name',
-            'term.year',
+            'term.term_year',
             'studygroup.group_id',
             'studygroup.group_name')
            
@@ -277,8 +278,18 @@ class EducateController extends Controller
         if(empty($group_id)){
             $group_id=1;
         }
-        // DB::enableQueryLog();
-        // ส่วนตารางรายงาน
+        $result = $this->get_educate();
+        $teachers = $result['teachers'];
+        $sub = $result['sub'];
+        $term = $result['term'];
+        $group = $result['group'];
+        $items = $result['items'];
+        $terms = $result['terms'];
+        
+        return view('educate::report',compact('teachers','sub','term','group','items','terms'));
+    }
+    private function get_educate()
+    {
         $lists = DB::table('program')
         ->select('program.*',
         'teacher.teach_id',
@@ -292,7 +303,7 @@ class EducateController extends Controller
         'subject.theory',
         'subject.practice',
         'term.term_name',
-        'term.year',
+        'term.term_year',
         'degree.degree_name')
         ->leftjoin('term','program.term_id','term.term_id')
         ->leftjoin('subject','program.sub_id','subject.sub_id')
@@ -366,13 +377,29 @@ class EducateController extends Controller
             }
         }
         $items = array_values($items);
+        $terms = DB::table('term')
+        ->select('term.*')->first();
         // dd(DB::getQueryLog());
         // print_r($items);exit;
         $sub = DB::table('subject')->whereNull('delete_at')->get();
         $teachers = DB::table('teacher')->whereNull('delete_at')->get();
         $term = DB::table('term')->whereNull('delete_at')->get();
         $group = DB::table('studygroup')->whereNull('delete_at')->get();
-   // dd($items);
-        return view('educate::report',compact('teachers','sub','term','group','items'));
+
+        return ['teachers'=>$teachers,'sub'=>$sub,'term'=>$term,'group'=>$group,'items'=>$items,'terms'=>$terms];
+    }
+    public function print_educate()
+    {
+        $result = $this->get_educate();
+        $teachers = $result['teachers'];
+        $sub = $result['sub'];
+        $term = $result['term'];
+        $group = $result['group'];
+        $items = $result['items'];
+        $terms = $result['terms'];
+        
+        $html= view('educate::report-pdf',compact('teachers','sub','term','group','items','terms'));
+        // echo $html;exit;
+        MY_PDF::html($html->render());
     }
 }

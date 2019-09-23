@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Input;
 use DB;
 use App\Services\MyResponse;
+use App\services\MY_PDF;
 
 class ProgramController extends Controller
 {
@@ -17,12 +18,12 @@ class ProgramController extends Controller
 
     public function show($group_id,Request $request)
     {
-
+        // MY_PDF::html('<p>ทดสอบ รั้งท้ายทุ้งโครงการนี้</p>');
         $items = DB::table($this->table_name)
         ->select('program.*',
         'studygroup.group_name',
         'term.term_name',
-        'term.year',
+        'term.term_year',
         'subject.sub_name',
         'subject.sub_nameeng',
         'subject.sub_code',
@@ -33,7 +34,7 @@ class ProgramController extends Controller
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->where('program.group_id',$group_id)
         ->OrderBy('term.term_name','asc')
-        ->OrderBy('term.year','asc')
+        ->OrderBy('term.term_year','asc')
         ->whereNull('program.delete_at');
 
         $items = $items->get();
@@ -187,7 +188,18 @@ class ProgramController extends Controller
         if(empty($group_id)){
             $group_id=1;
         }
-
+        $result = $this->get_program($group_id);
+        $programs = $result['programs'];
+        $branche = $result['branche'];
+        $course = $result['course'];
+        $cou_year = $result['cou_year'];
+        $group_year = $result['group_year'];
+        $group_name = $result['group_name'];
+        
+        return view('program::report',compact('programs','branche','course','cou_year','group_year','group_name','group_id'));
+    }
+    private function get_program($group_id)
+    {
         $shows = DB::table('program')
         ->select('program.*',
         'subject.sub_code',
@@ -196,12 +208,12 @@ class ProgramController extends Controller
         'subject.theory',
         'subject.practice',
         'branch.bran_name',
-        'studygroup.year',
+        'studygroup.group_year',
         'studygroup.group_name',
         'course.cou_name',
-        'course.year',
+        'course.cou_year',
         'term.term_name',
-        'term.year')
+        'term.term_year')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->leftJoin('studygroup','program.group_id','studygroup.group_id')
         ->leftJoin('branch','branch.bran_id','studygroup.bran_id')
@@ -217,17 +229,18 @@ class ProgramController extends Controller
         {
             $branche = $shows[0]->bran_name;
             $course = $shows[0]->cou_name;
-            $cou_year = $shows[0]->year;
-            $year = $shows[0]->year;
+            $cou_year = $shows[0]->cou_year;
+            $group_year = $shows[0]->group_year;
+            $group_name = $shows[0]->group_name;
 
             foreach($shows as $index=> $item)
             {
-                if(!in_array($item->year,$years))  $years[] = $item->year;
-                $key_term = $item->year;
+                if(!in_array($item->term_year,$years))  $years[] = $item->term_year;
+                $key_term = $item->term_year;
                 if(!isset($programs[$key_term][$item->term_name]))
                 {
                     $programs[$key_term][$item->term_name] = [];
-                    $programs[$key_term][$item->term_name]['name']       = $item->term_name.'/'.$item->year;
+                    $programs[$key_term][$item->term_name]['name']       = $item->term_name.'/'.$item->term_year;
                     $programs[$key_term][$item->term_name]['numyear']    = count($years);
                     $programs[$key_term][$item->term_name]['subjects']   = [];
                     $programs[$key_term][$item->term_name]['subjects'][] = $item;
@@ -239,8 +252,22 @@ class ProgramController extends Controller
             }
         }
     //    print_r($programs);exit;
+        return ['programs'=>$programs,'branche'=>$branche,'course'=>$course,'cou_year'=>$cou_year,'group_year'=>$group_year,'group_name'=>$group_name];
+    }
 
-        return view('program::report',compact('programs','branche','course','cou_year','year'));
+    public function print_program($group_id)
+    {
+        $result = $this->get_program($group_id);
+        $programs = $result['programs'];
+        $branche = $result['branche'];
+        $course = $result['course'];
+        $cou_year = $result['cou_year'];
+        $group_year = $result['group_year'];
+        $group_name = $result['group_name'];
+        
+        $html= view('program::report-pdf',compact('programs','branche','course','cou_year','group_year','group_name'));
+        // echo $html;exit;
+        MY_PDF::html($html->render());
     }
 
 }

@@ -35,20 +35,20 @@
                         </div>
                         <div>
                             <label >ภาคเรียน:</label>
-                            <select name="term_id">
+                            <select style="width:150px;" name="term_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
                             @foreach($terms as $index => $row3)
                                 <option value ="{{$row3->term_id}}" {{Input::get('term_id')==$row3->term_id?'stlected':''}}>
-                                    {{$row3->term_name}}/{{$row3->year}}
+                                    {{$row3->term_name}}/{{$row3->term_year}}
                                 </option>
                             @endforeach
                             </select>
                         </div>
                         <div>
                             <label >สาขา:</label>
-                            <select name="bran_id">
+                            <select style="width:150px;" name="bran_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>

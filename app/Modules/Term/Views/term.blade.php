@@ -64,7 +64,7 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->term_name}}</td>
-                                <td>{{$row->year}}</td>
+                                <td>{{$row->term_year}}</td>
                                 <td>{{$row->startdate}}</td>
                                 <td>{{$row->enddate}}</td>
                                 <td>

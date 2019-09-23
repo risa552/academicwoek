@@ -30,17 +30,17 @@
                 <div class="panel-body">
                     <form action="/exam">
                     <div class="form-group">
-                                <label >วิชา:</label>
-                                <select style="width:120px;" name="sub_id">
-                                    <option value="all">
-                                        ทั้งหมด
-                                    </option>
-                                @foreach($items as $index => $row1)
-                                    <option value ="{{$row1->sub_id}}" {{Input::get('sub_id')==$row1->sub_id?'stlected':''}}>
-                                        {{$row1->sub_name}}
-                                    </option>
-                                @endforeach
-                                </select>
+                            <label >วิชา:</label>
+                            <select style="width:120px;" name="sub_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($items as $index => $row1)
+                                <option value ="{{$row1->sub_id}}" {{Input::get('sub_id')==$row1->sub_id?'stlected':''}}>
+                                    {{$row1->sub_name}} {{$row1->sub_nameeng}}
+                                </option>
+                            @endforeach
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>

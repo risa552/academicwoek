@@ -37,37 +37,11 @@
                             </option>
                         @foreach($term as $index => $row1)
                             <option value ="{{$row1->term_id}}" {{Input::get('term_id')==$row1->term_id?'selected':''}}> 
-                                {{$row1->term_name}}/{{$row1->year}}
+                                {{$row1->term_name}}/{{$row1->term_year}}
                             </option>
                         @endforeach
                         </select>
                     </div>
-                   <!-- <div class="form-group">
-                        <label >อาจารย์:</label>
-                        <select style="width:150px;" name="teach_id">
-                            <option value="all">
-                                ทั้งหมด
-                            </option>
-                        @foreach($teachers as $index => $row2)
-                            <option value ="{{$row2->teach_id}}" {{Input::get('teach_id')==$row2->teach_id?'selected':''}}>
-                                {{$row2->first_name}} {{$row2->last_name}}
-                            </option>
-                        @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label >วิชา:</label>
-                        <select style="width:150px;" name="sub_id">
-                            <option value="all">
-                                ทั้งหมด
-                            </option>
-                        @foreach($sub as $index => $row3)
-                            <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'selected':''}}>
-                                {{$row3->sub_name}}
-                            </option>
-                        @endforeach
-                        </select>
-                    </div>-->
                     <div class="form-group">
                         <label >กลุ่มเรียน:</label>
                         <select style="width:150px;" name="group_id">
@@ -111,12 +85,8 @@
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
                                     <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
-                                    <td>{{$row->term_name}}/{{$row->year}}</td>
+                                    <td>{{$row->term_name}}/{{$row->term_year}}</td>
                                     <td>{{$row->group_name}}</td>
-                                    
-                                    <!--<td>{{$row->first_name}} {{$row->last_name}}</td>
-                                    <td>{{$row->sub_code}} {{$row->sub_name}}</td>
-                                    <td>{{$row1->term_name}}/{{$row1->year}}</td>-->
                                     <td>
                                         <div class="btn-group">
                                             <!-- <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="#"></a> -->

@@ -61,7 +61,7 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$course->cou_name}}</td>
-                                <td>{{$course->year}}</td>
+                                <td>{{$course->cou_year}}</td>
                                 <td>
                                     <div class="btn-group">
                                     <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/course/{{$course->cou_id}}"></a>

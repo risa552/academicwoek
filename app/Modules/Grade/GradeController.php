@@ -31,11 +31,12 @@ class GradeController extends Controller
             $join->on('program.term_id', '=', 'educate.term_id')
                  ->on('program.sub_id', '=', 'educate.sub_id');
         })
+        //->rightJoin('subject','enrolment.sub_id','subject.sub_id')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->leftJoin('enrolment','enrolment.sub_id','subject.sub_id')
-       // ->rightJoin('student','enrolment.std_id','student.std_id')
+        ->rightJoin('enrolment','enrolment.sub_id','subject.sub_id')
+        ->rightJoin('student','enrolment.std_id','student.std_id')
         ->leftJoin('studygroup','studygroup.group_id','program.group_id')
-        ->leftJoin('teacher','studygroup.group_id','teacher.teach_id')
+        ->leftJoin('teacher','studygroup.group_id','program.group_id')
         ->where('educate.teach_id',$user->teach_id)
         ->where('enrolment.status','=','ปกติ')
         ->whereExists(function ($query) { 
@@ -46,7 +47,8 @@ class GradeController extends Controller
                   ->whereRaw('program.term_id = term.term_id');
         })
         ->whereNull('program.delete_at')
-        //->whereNull('student.delete_at')
+        ->whereNull('studygroup.delete_at')
+        ->whereNull('student.delete_at')
         ->whereNull('enrolment.delete_at');
 
         if(!empty($keyword)){
@@ -62,11 +64,11 @@ class GradeController extends Controller
         {
             $grade->where('program.sub_id','=',$sub_id);
         }
-        // if(is_numeric($group_id))
-        // {
-        //     $grade->where('student.group_id','=',$group_id);
-        // }
-        //   //print_r($g1);exit;*/
+        if(is_numeric($group_id))
+        {
+            $grade->where('student.group_id','=',$group_id);
+        }
+          //print_r($g1);exit;*/
         $grade = $grade->get();
         $rom = DB::table('term')->whereNull('delete_at')->get();
         $rom1 = DB::table('subject')->whereNull('delete_at')->get();
@@ -74,21 +76,21 @@ class GradeController extends Controller
         return view('grade::form',compact('grade','rom','rom1','rom2'));
     }
 
-    // public function store(Request $request)
-    // {
-    //     $score = $request->get('score');
-    //     $grade = $request->get('grade');
-    //     if(!empty($grade) && is_array($grade) && !empty($score) && is_array($score))
-    //     {
-    //         foreach($grade as $enro_id=>$g)
-    //        DB::table('enrolment')->where('enro_id',$enro_id)->update([
-    //             'grade'=>$g,
-    //         ]);
-    //         foreach($score as $enro_id=>$s)
-    //         DB::table('enrolment')->where('enro_id',$enro_id)->update([
-    //              'score'=>$s,
-    //          ]);
-    //     }  
-    //     return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/grade');
-    // }
+    public function store(Request $request)
+    {
+        $score = $request->get('score');
+        $grade = $request->get('grade');
+        if(!empty($grade) && is_array($grade) && !empty($score) && is_array($score))
+        {
+            foreach($grade as $enro_id=>$g)
+           DB::table('enrolment')->where('enro_id',$enro_id)->update([
+                'grade'=>$g,
+            ]);
+            foreach($score as $enro_id=>$s)
+            DB::table('enrolment')->where('enro_id',$enro_id)->update([
+                 'score'=>$s,
+             ]);
+        }  
+        return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/grade');
+    }
 }

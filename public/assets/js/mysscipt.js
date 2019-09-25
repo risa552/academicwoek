@@ -83,14 +83,14 @@ $(function(){
         var grade = $(this).parent().find(".grade-input");
         $(grade).val('');
         if(!isNaN(score)){
-            if(score >= 80) $(grade).val('A');
-            else if(score >= 75) $(grade).val('B+');
-            else if(score >= 70) $(grade).val('B');
-            else if(score >= 65) $(grade).val('C+');
-            else if(score >= 60) $(grade).val('C');
-            else if(score >= 55) $(grade).val('D+');
-            else if(score >= 50) $(grade).val('D');
-            else $(grade).val('F');
+            if(score >= 80) $(grade).val('A');//4
+            else if(score >= 75) $(grade).val('B+');//3.5
+            else if(score >= 70) $(grade).val('B');//3
+            else if(score >= 65) $(grade).val('C+');//2.5
+            else if(score >= 60) $(grade).val('C');//2
+            else if(score >= 55) $(grade).val('D+');//1.5
+            else if(score >= 50) $(grade).val('D');//1
+            else $(grade).val('F');//0
         }
         
     });

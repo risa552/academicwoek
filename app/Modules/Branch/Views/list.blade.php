@@ -41,7 +41,7 @@
                                     </option>
                                 @foreach($items2 as $index => $row1)
                                     <option value ="{{$row1->cou_id}}" {{Input::get('cou_id')==$row1->cou_id?'stlected':''}}>
-                                        {{$row1->cou_name}}
+                                        {{$row1->cou_name}}[{{$row1->cou_year}}]
                                     </option>
                                 @endforeach
                                 </select>
@@ -74,7 +74,7 @@
                                 <tr>
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->bran_name}}</td>
-                                    <td>{{$row->cou_name}}</td>
+                                    <td>{{$row->cou_name}}[{{$row->cou_year}}]</td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/branch/{{$row->bran_id}}"></a>

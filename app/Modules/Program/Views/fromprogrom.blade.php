@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-group">
                         <label >วิชา:</label>
-                        <select style="width:150px;" name="sub_id">
+                        <select style="width:500px;" name="sub_id">
                             <option value="all">
                                 ทั้งหมด
                             </option>

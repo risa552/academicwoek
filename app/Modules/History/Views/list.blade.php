@@ -38,6 +38,10 @@
                             <td>{{$his->first_name}} {{$his->last_name}}</td>
                         </tr>
                         <tr>
+                            <td style="width:150px;"><b>กลุ่มเรียน</b></td>
+                            <td>{{$his->group_name}}</td>
+                        </tr>
+                        <tr>
                             <td style="width:150px;"><b>ข้อมูลระดับ</b></td>
                             <td>{{$his->degree_name}}</td>
                         </tr>

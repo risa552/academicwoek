@@ -28,6 +28,7 @@ class SubjectController extends Controller
             $items->where(function ($query) use($keyword){
                 $query->where('sub_name','LIKE','%'.$keyword.'%')
                       ->orwhere('sub_nameeng','LIKE','%'.$keyword.'%')
+                      ->orwhere('sub_code','LIKE','%'.$keyword.'%')
                       ->orwhere('credit','LIKE','%'.$keyword.'%')
                       ->orwhere('theory','LIKE','%'.$keyword.'%')
                       ->orwhere('practice','LIKE','%'.$keyword.'%');
@@ -56,9 +57,10 @@ class SubjectController extends Controller
             $credit = $request->get('credit');
             $theory = $request->get('theory');
             $practice = $request->get('practice');
+            $special = $request->get('special');
             $subgroup_id = $request->get('subgroup_id');
             
-            if(!empty($sub_name) && !empty($sub_nameeng) && !empty($credit) && !empty($sub_code) && !empty($theory) && !empty($practice)  && !empty($subgroup_id) )
+            if(!empty($sub_name) && !empty($sub_nameeng) && !empty($credit) && !empty($sub_code)   && !empty($subgroup_id) )
             {
                 $items = DB::table($this->table_name)
                 ->where('sub_code',$sub_code)
@@ -74,6 +76,7 @@ class SubjectController extends Controller
                     'credit' =>$credit,
                     'theory' =>$theory,
                     'practice' =>$practice,
+                    'special' =>$special,
                     'subgroup_id' =>$subgroup_id,
                     'created_at' =>date('Y-m-d H:i:s'),
                 ]);
@@ -111,9 +114,10 @@ class SubjectController extends Controller
             $credit = $request->get('credit');
             $theory = $request->get('theory');
             $practice = $request->get('practice');
+            $special = $request->get('special');
             $subgroup_id = $request->get('subgroup_id');
             
-            if(!empty($sub_name) && !empty($sub_nameeng) && !empty($credit) && !empty($sub_code) && !empty($theory) && !empty($practice)  && !empty($subgroup_id) )
+            if(!empty($sub_name) && !empty($sub_nameeng) && !empty($credit) && !empty($sub_code) && !empty($subgroup_id) )
             {
                 $items = DB::table($this->table_name)
                     ->where('sub_id','!=',$id)
@@ -129,6 +133,7 @@ class SubjectController extends Controller
                     'credit' =>$credit,
                     'theory' =>$theory,
                     'practice' =>$practice,
+                    'special' =>$special,
                     'subgroup_id' =>$subgroup_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);

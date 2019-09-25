@@ -48,7 +48,7 @@
                                 <label for="email">ชื่อกลุ่มรียน:</label>
                                 <input type="text" name="group_name" class="form-control" value="{{isset($group)?$group->group_name:''}}"/> 
                             </div>
-                            <div>
+                            <div class=" col-md-6">
                                 <label >ปีที่เข้าศึกษา:</label>
                                 <select name="group_year" class="form-group">
                                     @for($i=date('Y');$i>date('Y')-3;$i--)
@@ -56,14 +56,14 @@
                                     @endfor
                                 </select>
                             </div>
-                            <div class="panel-body">
+                            <div class="form-group col-md-6">
                             <label>ประเภท:</label>
                                     <div class="form-group" >
                                         <input name="group_type" type="radio" {{isset($group) && $group->group_type=='ปกติ'?'checked':''}} value="ปกติ"/>ปกติ
                                         <input name="group_type" type="radio" {{isset($group) && $group->group_type=='สมทบ'?'checked':''}} value="สมทบ"/>สมทบ
                                     </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-4">
                                 <label >สาขาวิชา:</label>
                                 <select style="width:150px;" name="bran_id">
                                     <option value="all">
@@ -76,7 +76,7 @@
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-4">
                                 <label >ระดับ:</label>
                                 <select style="width:150px;" name="degree_id">
                                     <option value="all">
@@ -89,7 +89,7 @@
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-4">
                                 <label >อาจารย์:</label>
                                 <select style="width:150px;" name="teach_id">
                                     <option value="all">

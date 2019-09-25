@@ -55,26 +55,25 @@
                         <th>เบอร์โทรศัพท์ : </th>
                         <input type="text" name="tel" class="form-control" value="{{isset($admin)?$admin->tel:''}}"/>
                     </div>
-                    <div class="panel-body">
+                    <div class="form-group col-md-6" >
                     <label>เพศ:</label>
-                            <div class="form-group" >
-                                <input name="sex" type="radio" {{isset($admin) && $admin->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
-                                <input name="sex" type="radio" {{isset($admin) && $admin->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
-                            </div>
+
+                        <input name="sex" type="radio" {{isset($admin) && $admin->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
+                        <input name="sex" type="radio" {{isset($admin) && $admin->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
                     </div>
-                    <div class="panel-body">
-                        <th>ที่อยู่ : </th>
-                        <input type="text" name="house" class="form-control" value="{{isset($admin)?$admin->house:''}}"/>
-                    </div>
-                    <div class="panel-body">
+                    <div class="form-group col-md-6">
                         <th>e-mail : </th>
                         <input type="text" name="email" class="form-control" value="{{isset($admin)?$admin->email:''}}"/>
                     </div>
                     <div class="form-group">
+                        <th>ที่อยู่ : </th>
+                        <input type="text" name="house" class="form-control" value="{{isset($admin)?$admin->house:''}}"/>
+                    </div>
+                    <div class="form-group col-md-6">
                         <th>Username:</th>
                         <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($adminn)?$adminn->username:''}}"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <th>Password:</th>
                         <input type="password" name="password" class="form-control" />
                     </div>  

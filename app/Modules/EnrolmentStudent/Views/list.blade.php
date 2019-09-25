@@ -70,6 +70,7 @@
                         <table class="table table-striped" >
                             <thead style="background-color:#a4b4fb">
                                 <tr>
+                                    <th>#</th>
                                     <th>รหัสวิชา</th>
                                     <th>ชื่อวิชา</th>
                                     <th>หน่วยกิต</th>
@@ -81,6 +82,7 @@
                             <tbody>
                             @foreach($program_open as $index =>$row)
                                 <tr>
+                                    <td>{{$index+1}}</td>
                                     <td>
                                     <input type="hidden" name="subject_id[]" value="{{$row->sub_id}}"/>
                                     {{$row->sub_code}}</td>
@@ -104,6 +106,7 @@
                     <table class="table table-striped">
                         <thead style="background-color:#a4b4fb">
                             <tr>
+                                <th>#</th>
                                 <th>รหัสวิชา</th>
                                 <th>ชื่อวิชา</th>
                                 <th>หน่วยกิต</th>
@@ -113,6 +116,7 @@
                         <tbody>
                         @foreach($program_selected as $index =>$row1)
                                 <tr>
+                                    <td>{{$index+1}}</td>
                                     <td>{{$row1->sub_code}}</td>
                                     <td>{{$row1->sub_name}}</td>
                                     <td>{{$row1->credit}}</td>

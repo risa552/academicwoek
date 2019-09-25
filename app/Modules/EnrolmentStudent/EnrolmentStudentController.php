@@ -33,7 +33,7 @@ class EnrolmentStudentController extends Controller
         LEFT JOIN subject ON(program.sub_id=subject.sub_id)
         -- LEFT JOIN enrolment ON(enrolment.sub_id=subject.sub_id)
         -- LEFT JOIN student ON(enrolment.std_id=student.std_id)
-        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id)
+        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id AND educate.group_id=program.group_id)
         LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
         WHERE program.term_id={$term_active->term_id} 
         AND program.delete_at IS NULL 
@@ -41,22 +41,25 @@ class EnrolmentStudentController extends Controller
         AND subject.delete_at IS NULL
         AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id AND xx.std_id={$user->std_id})
         ");
-
+    // print_r($program_open);exit;
 
         $program_selected = DB::select("SELECT program.*,
         subject.sub_name,subject.sub_code,subject.credit,subject.theory,subject.practice ,
         teacher.first_name,teacher.last_name,enrolment.std_id
         FROM program
         RIGHT JOIN enrolment ON(enrolment.sub_id=program.sub_id AND enrolment.term_id=program.term_id )
-        LEFT JOIN subject ON(program.sub_id=subject.sub_id)
-        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id)
+        LEFT JOIN subject ON(enrolment.sub_id=subject.sub_id)
+        LEFT JOIN educate ON(educate.sub_id=enrolment.sub_id AND educate.term_id=enrolment.term_id)
         LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
         WHERE program.term_id={$term_active->term_id} 
         AND program.delete_at IS NULL 
         AND program.group_id = {$user->group_id}
+        AND program.group_id = {$user->group_id}
         AND enrolment.std_id = {$user->std_id}
+        AND educate.group_id = {$user->group_id}
         AND subject.delete_at IS NULL
         ");
+        // print_r($program_selected);exit;
 
         $history = DB::table('student')
         ->select('student.first_name',
@@ -106,15 +109,16 @@ class EnrolmentStudentController extends Controller
         teacher.first_name,teacher.last_name
         FROM program
         LEFT JOIN subject ON(program.sub_id=subject.sub_id)
-        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id)
+        -- LEFT JOIN enrolment ON(enrolment.sub_id=subject.sub_id)
+        -- LEFT JOIN student ON(enrolment.std_id=student.std_id)
+        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id AND educate.group_id=program.group_id)
         LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
         WHERE program.term_id={$term_active->term_id} 
         AND program.delete_at IS NULL 
         AND program.group_id = {$user->group_id}
         AND subject.delete_at IS NULL
-        AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id)
+        AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id AND xx.std_id={$user->std_id})
         ");
-
 
         if(empty( $program_open) && !is_array( $program_open))
         {

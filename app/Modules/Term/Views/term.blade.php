@@ -52,7 +52,7 @@
                         <thead>
                             <tr>
                                 <th>ลำดับที่</th>
-                                <th>ชื่อภาคเรียน</th>
+                                <!-- <th>ชื่อภาคเรียน</th> -->
                                 <th>ปีการศึกษา</th>
                                 <th>วันเปิดภาคการศึกษา</th>
                                 <th>วันปิดภาคการศึกษา</th>
@@ -63,8 +63,8 @@
                         @foreach($term as $index =>$row)
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{$row->term_name}}</td>
-                                <td>{{$row->term_year}}</td>
+                                <!-- <td>{{$row->term_name}}</td> -->
+                                <td>{{$row->term_name}}/{{$row->term_year}}</td>
                                 <td>{{$row->startdate}}</td>
                                 <td>{{$row->enddate}}</td>
                                 <td>

@@ -57,17 +57,21 @@
                             <label>ชื่อวิชาอังกฤษ:</label>
                             <input type="text" name="sub_nameeng" class="form-control" value="{{isset($items)?$items->sub_nameeng:''}}"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group ">
                             <label>หน่วยกิต:</label>
                             <input type="text" name="credit" class="form-control" value="{{isset($items)?$items->credit:''}}"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-3">
                             <label>ชั่วโมงทฎษฎี:</label>
                             <input type="text" name="theory" class="form-control" value="{{isset($items)?$items->theory:''}}"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group  col-md-3">
                             <label>ชั่วโมงปฎิบัติ:</label>
                             <input type="text" name="practice" class="form-control" value="{{isset($items)?$items->practice:''}}"/>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>ศึกษาเพิ่มเติม:</label>
+                            <input type="text" name="special" class="form-control" value="{{isset($items)?$items->special:''}}"/>
                         </div>
                         <div class="form-group">
                             <label >กลุ่มวิชา:</label>

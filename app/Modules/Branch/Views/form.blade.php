@@ -44,18 +44,19 @@
                 @csrf()
                 @endif
                     <div class="panel-body">
-                        <label >ชื่อสาขา:</label>
-                        <input type="text" name="bran_name" class="form-control" value="{{isset($items)?$items->bran_name:''}}"/>
+                        <div class="form-group ">
+                            <label >ชื่อสาขา:</label>
+                            <input type="text" name="bran_name" class="form-control" value="{{isset($items)?$items->bran_name:''}}"/>
                         </div>
                         <div class="form-group">
                             <label >หลักสูตร:</label>
-                            <select style="width:150px;" name="cou_id">
+                            <select style="width:300px;" name="cou_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
                             @foreach($items2 as $index => $row1)
                                 <option value ="{{$row1->cou_id}}" {{isset($items)&& $items->cou_id==$row1->cou_id?'selected':''}}>
-                                    {{$row1->cou_name}}
+                                    {{$row1->cou_name}}[{{$row1->cou_year}}]
                                 </option>
                             @endforeach
                             </select>

@@ -51,20 +51,25 @@
                              <input type="text" name="last_name" class="form-control" value="{{isset($professor)?$professor->last_name:''}}"/> 
                         <label>เบอร์:</label>
                              <input type="text" name="tel" class="form-control" value="{{isset($professor)?$professor->tel:''}}"/>  
+                        <div class="form-group col-md-6" >
                         <label>เพศ:</label>
-                            <div class="form-group" >
-                                <input name="sex" type="radio" {{isset($professor) && $professor->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
-                                <input name="sex" type="radio" {{isset($professor) && $professor->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
-                            </div>
-                        <label>ที่อยู่:</label>
-                            <input type="text" name="add" class="form-control" value="{{isset($professor)?$professor->add:''}}"/>
-                        <label>email:</label>
-                            <input type="text" name="email" class="form-control" value="{{isset($professor)?$professor->email:''}}"/> 
-                        <div class="form-group">
+                            <input name="sex" type="radio" {{isset($professor) && $professor->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
+                            <input name="sex" type="radio" {{isset($professor) && $professor->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>email:</label>
+                                <input type="text" name="email" class="form-control" value="{{isset($professor)?$professor->email:''}}"/>
+                        </div>
+                        <div class="form-group " >
+                            <label>ที่อยู่:</label>
+                                <input type="text" name="add" class="form-control" value="{{isset($professor)?$professor->add:''}}"/>
+                        </div>
+                         
+                        <div class="form-group col-md-6">
                             <label>Username:</label>
                                 <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($professor)?$professor->username:''}}"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label>Password:</label>
                                 <input type="password" name="password" class="form-control" />
                         </div>   

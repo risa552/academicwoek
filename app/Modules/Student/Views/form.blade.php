@@ -61,12 +61,12 @@
                             <label for="pwd">เบอร์โทรศัพท์:</label>
                             <input type="text" name="tel" class="form-control" value="{{isset($student)?$student->tel:''}}"/>
                         </div>
-                        <label>เพศ:</label>
-                            <div class="form-group" >
+                        <div class="form-group col-md-2" >
+                            <label>เพศ:</label>
                                 <input name="sex" type="radio" {{isset($professor) && $professor->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
                                 <input name="sex" type="radio" {{isset($professor) && $professor->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
-                            </div>
-                        <div class="form-group">
+                        </div>
+                        <div class="form-group col-md-10">
                             <label for="pwd">ที่อยู่:</label>
                             <input type="text" name="add" class="form-control" value="{{isset($student)?$student->add:''}}"/>
                         </div>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group">
                                 <label >กลุ่มเรียน:</label>
-                                <select name="group_id">
+                                <select style="300px;" name="group_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
@@ -87,11 +87,11 @@
                                 @endforeach
                                 </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <th>Username:</th>
                             <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($student)?$student->username:''}}"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <th>Password:</th>
                             <input type="password" name="password" class="form-control" />
                         </div>  

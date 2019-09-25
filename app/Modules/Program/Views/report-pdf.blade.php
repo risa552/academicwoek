@@ -6,7 +6,6 @@
                     
                     <table width=100% border="1" cellspacing="0" bordercolor="black"  class="table table-bordered">  
                 @foreach($programs as $program)
-                        <thead>
                             <tr>
                                 <th colspan='4' >
                                 @if(isset($program[1]))
@@ -29,8 +28,6 @@
                                 <th >ท.</th>
                                 <th >ป.</th>
                             </tr>
-                        </thead>
-                        <tbody>
                     <?php 
                         $program_1 = null;
                         $program_2 = null;
@@ -104,8 +101,6 @@
                                 @endif
                             </tr>
                         @endfor
-                        </tbody>
-                        <thead>
                         <tr>
                             <th  colspan='1' rowspan='2'></th>
                             <th style="text-align:center;" colspan='1'>รวม</th>
@@ -125,7 +120,6 @@
                             <th style="text-align:center;" colspan='2' >{{$sumtheory2+$sumpractice2}} </th>
                         </tr>
                     
-                        </thead>
                     @endif
                 @endforeach
 

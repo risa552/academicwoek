@@ -33,8 +33,7 @@ class ProgramController extends Controller
         ->leftJoin('term','program.term_id','term.term_id')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->where('program.group_id',$group_id)
-        ->OrderBy('term.term_name','asc')
-        ->OrderBy('term.term_year','asc')
+        // ->OrderBy('term.term_year','asc')
         ->whereNull('program.delete_at');
 
         $items = $items->get();

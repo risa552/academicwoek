@@ -1,8 +1,8 @@
 <nav class="navbar navbar-default nav-bg-color">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img class="mylogo" src="http://bait.rmutsb.ac.th/bait/images/logobait.png"/>
+                 <a class="navbar-brand" style="width:400px;">
+                    <img class="mylogo" src="/assets/img/logo/logowed2.png"/>
                 </a>
             </div>
             <ul class="nav navbar-nav pull-right" style="margin-top: 11px">

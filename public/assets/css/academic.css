@@ -1,6 +1,6 @@
 .navbar-header{height:80px;}
-.navbar-brand{padding:0px 0px 15px 15px;}
-.navbar-brand .mylogo{height:80px;}
+.navbar-brand{padding:10px 0px 10px 10px;}
+.navbar-brand .mylogo{height:70px;}
 .nav-bg-color{background: #2759be;}
 .nav-menu a{color:#fff!important;}
 .sub-nav-menu a{color:#333!important; font-size:13px;}

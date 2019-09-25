@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label >กลุ่มวิชา:</label>
-                            <select name="subgroup_id">
+                            <select style="width:150px;" name="subgroup_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
@@ -67,8 +67,9 @@
                                 <th>รหัสวิชา</th>
                                 <th>ชื่อวิชา</th>
                                 <th>หน่วยกิต</th>
-                                <th>ชั่วโมงปฎิบัติ</th>
+                                <!-- <th>ชั่วโมงปฎิบัติ</th>
                                 <th>ชั่วโมงทฤษฎี</th>
+                                <th>ศึกษาเพิ่มเติม</th> -->
                                 <th>กลุ่มวิชา</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
@@ -79,9 +80,10 @@
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->sub_code}}</td>
                                 <td>{{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
-                                <td>{{$row->credit}}</td>
-                                <td>{{$row->theory}}</td>
+                                <td>{{$row->credit}}({{$row->theory}}-{{$row->practice}}-{{$row->special}})</td>
+                                <!-- <td>{{$row->theory}}</td>
                                 <td>{{$row->practice}}</td>
+                                <td>{{$row->special}}</td> -->
                                 <td>{{$row->subgroup_name}}</td>
                                 <td>
                                     <div class="btn-group">
@@ -92,7 +94,9 @@
                             </tr>
                         @endforeach
                         </tbody>
+                       
                     </table>
+                    {!! $items->render() !!}
                 </div>
             </div>
         </div>

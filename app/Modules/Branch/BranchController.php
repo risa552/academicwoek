@@ -19,7 +19,7 @@ class BranchController extends Controller
         $cou_id =$request->get('cou_id');
 
         $items = DB::table($this->table_name)
-        ->select('branch.*','course.cou_name')
+        ->select('branch.*','course.cou_name','course.cou_year')
         ->leftJoin('course','branch.cou_id','course.cou_id')
         ->whereNull('branch.delete_at');
 

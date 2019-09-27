@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default"> 
+            <div class="panel panel-info"> 
                  <a herf="/educate" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     ภาระการสอนวิชา : {{$item->sub_name}}

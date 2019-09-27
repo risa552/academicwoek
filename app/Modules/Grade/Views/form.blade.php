@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">ค้นหาข้อมูลการออกเกรด</div>
                 <div class="panel-body">
                     <form action="/grade">
@@ -37,7 +37,7 @@
                                 </option>
                             @foreach($rom1 as $index => $row3)
                                 <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'selected':''}}>
-                                    {{$row3->sub_name}}
+                                    {{$row3->sub_name}} {{$row3->sub_nameeng}}
                                 </option>
                             @endforeach
                             </select>
@@ -63,7 +63,7 @@
         </div> 
         <form class="form-ajax" method="POST" action="/grade">
             <div class="col-md-9">
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                     <div class="panel-heading">
                     รายการการออกเกรด
                     </div>
@@ -71,32 +71,39 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>#</th>
+                                    <th>นักศึกษา</th>
                                     <th>ชื่อวิชา</th>
-                                    <th>กลุ่มเรียน</th>
+                                    <th>เกรด</th>
                                    <!-- <th>คะแนน/เกรด</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($grade as $index => $row)
                                 <tr>
+                                    <td>{{$index+$grade->firstItem()}}</td>
+                                    <td>{{$row->first_name}} {{$row->last_name}} [{{$row->group_name}}]</td>
                                     <td>{{$row->sub_code}} {{$row->sub_name}}</td>
-                                    <td>{{$row->group_name}}</td>
                                     <td>
-                                    <div class="btn-group">
-                                       <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/dgrade"></a>
-                                    </div>
+                                        <div class="form-group">
+                                            <select class="form-control" value="{{$row->grade}}" name="grade">
+                                                <option value="A">A</option>
+                                                <option value="B+">B+</option>
+                                                <option value="B">B</option>
+                                                <option value="C+">C+</option>
+                                                <option value="C">C</option>
+                                                <option value="D+">D+</option>
+                                                <option value="D">D</option>
+                                                <option value="F">F</option>
+                                            </select>
+                                        </div>
                                     </td>
-                                  <!--  <td>
-                                        <input type="text" value="{{$row->score}}" name="score[{{$row->enro_id}}]"  style="width:100px;" class="score-grade"/>
-                                        <input type="text" readonly style="width:100px;" value="{{$row->grade}}" name="grade[{{$row->enro_id}}]" class="grade-input"/>
-                                    </td>
-                                    <td>
-                                    <input type="text" style="width:100px;" value="{{$row->grade}}" name="grade[{{$row->enro_id}}]"/>
-                                    </td>-->
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        <button tyep="button" class="pull-right">ยืนยัน </button>
+                        {!! $grade->render() !!}
                     </div>
                 </div>
             </div>

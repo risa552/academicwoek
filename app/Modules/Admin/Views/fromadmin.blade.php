@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default"> 
+            <div class="panel panel-info"> 
                  <a herf="/admin" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     @if(isset($admin))
@@ -43,38 +43,39 @@
                 <form class="form-ajax" action="/admin" method="POST">
                 @csrf()
                 @endif
-                    <div class="panel-body">
-                        <th>ชื่อ : </th>
+                    <div class="form-group col-md-6">
+                        <label>ชื่อ : </label>
                         <input type="text" name="first_name" class="form-control" value="{{isset($admin)?$admin->first_name:''}}"/>
                     </div>
-                    <div class="panel-body">
-                        <th>นามสกุล : </th>
+                    <div class="form-group col-md-6">
+                        <label>นามสกุล : </label>
                         <input type="text" name="last_name" class="form-control" value="{{isset($admin)?$admin->last_name:''}}"/>
                     </div>
-                    <div class="panel-body">
-                        <th>เบอร์โทรศัพท์ : </th>
+                    <div class="form-group col-md-4">
+                        <label>เบอร์โทรศัพท์ : </label>
                         <input type="text" name="tel" class="form-control" value="{{isset($admin)?$admin->tel:''}}"/>
                     </div>
-                    <div class="form-group col-md-6" >
+                    <div class="form-group col-md-2" >
                     <label>เพศ:</label>
-
-                        <input name="sex" type="radio" {{isset($admin) && $admin->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
-                        <input name="sex" type="radio" {{isset($admin) && $admin->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
+                        <select  name="sex" class="form-control">
+                            <option {{isset($admin) && $admin->sex==' ชาย'?' selected ':''}} value=" ชาย"> ชาย</option>
+                            <option {{isset($admin) && $admin->sex==' หญิง'?' selected ':''}} value=" หญิง"> หญิง</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <th>e-mail : </th>
+                        <label>e-mail : </label>
                         <input type="text" name="email" class="form-control" value="{{isset($admin)?$admin->email:''}}"/>
                     </div>
-                    <div class="form-group">
-                        <th>ที่อยู่ : </th>
+                    <div class="form-group col-md-12">
+                        <label>ที่อยู่ : </label>
                         <input type="text" name="house" class="form-control" value="{{isset($admin)?$admin->house:''}}"/>
                     </div>
                     <div class="form-group col-md-6">
-                        <th>Username:</th>
+                        <label>Username:</label>
                         <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($adminn)?$adminn->username:''}}"/>
                     </div>
                     <div class="form-group col-md-6">
-                        <th>Password:</th>
+                        <label>Password:</label>
                         <input type="password" name="password" class="form-control" />
                     </div>  
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>

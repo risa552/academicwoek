@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">ค้นหาข้อมูลกลุ่มเรียน</div>
                 <div class="panel-body">
                     <form action="/studygroup">
@@ -80,7 +80,7 @@
         </div> 
 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     รายการข้อมูลกลุ่มเรียน
                     <a href="/studygroup/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลกลุ่มเรียน</a>

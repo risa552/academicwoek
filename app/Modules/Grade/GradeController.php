@@ -17,40 +17,46 @@ class GradeController extends Controller
         $term_id = $request->get('term_id');
         $sub_id = $request->get('sub_id');
         $group_id = $request->get('group_id');
-
+/*
+SELECT enrolment.grade,student.first_name,subject.sub_name,teacher.first_name,studygroup.group_name
+from `enrolment` 
+left join `student` on `student`.`std_id` = `enrolment`.`std_id` 
+left join `subject` on `subject`.`sub_id` = `enrolment`.`sub_id` 
+left join `educate` on `educate`.`sub_id` = `subject`.`sub_id` 
+left join `teacher` on `teacher`.`teach_id` = `educate`.`teach_id` 
+left join `studygroup` on `studygroup`.`group_id` = `student`.`group_id` 
+where `teacher`.`teach_id` = 1 and `studygroup`.`group_id` = educate.group_id
+*/
         $user=CurrentUser::user();
-        $grade = DB::table('educate')
-        ->select('educate.*',
-        'subject.sub_code', 
+        //DB::enableQueryLog();
+        $grade = DB::table('enrolment')
+        ->select('enrolment.grade',
+        'student.first_name',
+        'student.last_name',
+        'subject.sub_code',
         'subject.sub_name',
-        'enrolment.enro_id',
-        'enrolment.score',
-        'enrolment.grade',
+        'subject.sub_nameeng',
         'studygroup.group_name')
-        ->leftjoin('program', function ($join) {
-            $join->on('program.term_id', '=', 'educate.term_id')
-                 ->on('program.sub_id', '=', 'educate.sub_id');
+        ->leftJoin('student','student.std_id','enrolment.std_id')
+        ->leftJoin('subject','subject.sub_id','enrolment.sub_id')
+        ->leftJoin('educate','educate.sub_id','subject.sub_id')
+        ->leftJoin('teacher','teacher.teach_id','educate.teach_id')
+        ->leftJoin('studygroup','studygroup.group_id','student.group_id')
+        
+        /*
+        ->leftjoin('studygroup', function ($join) {
+            $join->on('studygroup.group_id', '=', 'student.group_id')
+                 ->on('studygroup.group_id', '=', 'educate.group_id');
         })
-        //->rightJoin('subject','enrolment.sub_id','subject.sub_id')
-        ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->rightJoin('enrolment','enrolment.sub_id','subject.sub_id')
-        ->rightJoin('student','enrolment.std_id','student.std_id')
-        ->leftJoin('studygroup','studygroup.group_id','program.group_id')
-        ->leftJoin('teacher','studygroup.group_id','program.group_id')
-        ->where('educate.teach_id',$user->teach_id)
-        ->where('enrolment.status','=','ปกติ')
-        ->whereExists(function ($query) { 
-            $query->select(DB::raw(1))
-                  ->from('term')
-                  ->where('startdate','<=',date('Y-m-d'))
-                  ->where('enddate','>=',date('Y-m-d'))
-                  ->whereRaw('program.term_id = term.term_id');
-        })
-        ->whereNull('program.delete_at')
-        ->whereNull('studygroup.delete_at')
+        */
+        ->where('teacher.teach_id',$user->teach_id)
+        ->whereRaw(DB::raw('studygroup.group_id = educate.group_id'))
+        ->whereNull('enrolment.delete_at')
         ->whereNull('student.delete_at')
-        ->whereNull('enrolment.delete_at');
-
+        ->whereNull('subject.delete_at')
+        ->whereNull('teacher.delete_at');
+        
+        
         if(!empty($keyword)){
             $grade->where(function ($query) use($keyword){
                 $query->where('term_id','LIKE','%'.$keyword.'%');
@@ -58,18 +64,19 @@ class GradeController extends Controller
         }
         if(is_numeric($term_id))
         {
-            $grade->where('program.term_id','=',$term_id);
+            $grade->where('enrolment.term_id','=',$term_id);
         }
         if(is_numeric($sub_id))
         {
-            $grade->where('program.sub_id','=',$sub_id);
+            $grade->where('enrolment.sub_id','=',$sub_id);
         }
         if(is_numeric($group_id))
         {
             $grade->where('student.group_id','=',$group_id);
         }
-          //print_r($g1);exit;*/
-        $grade = $grade->get();
+        $grade = $grade->OrderBy('subject.sub_name','asc')->OrderBy('studygroup.group_name','asc')->paginate(20);
+       //// print_r(DB::getQueryLog());exit;
+
         $rom = DB::table('term')->whereNull('delete_at')->get();
         $rom1 = DB::table('subject')->whereNull('delete_at')->get();
         $rom2 = DB::table('studygroup')->whereNull('delete_at')->get();
@@ -78,18 +85,12 @@ class GradeController extends Controller
 
     public function store(Request $request)
     {
-        $score = $request->get('score');
         $grade = $request->get('grade');
-        if(!empty($grade) && is_array($grade) && !empty($score) && is_array($score))
+        if(!empty($grade))
         {
-            foreach($grade as $enro_id=>$g)
            DB::table('enrolment')->where('enro_id',$enro_id)->update([
-                'grade'=>$g,
+                'grade'=>$grade,
             ]);
-            foreach($score as $enro_id=>$s)
-            DB::table('enrolment')->where('enro_id',$enro_id)->update([
-                 'score'=>$s,
-             ]);
         }  
         return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/grade');
     }

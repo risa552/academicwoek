@@ -26,7 +26,7 @@
     <div class="row">
        
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     ข้อมูลแผนการเรียนของกลุ่ม : กลุ่มเรียน : {{$group_show->group_name}}  สาขา : {{$group_show->bran_name}}
                     <a href="/program/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลแผนการเรียน</a>

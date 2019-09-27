@@ -40,7 +40,6 @@ class ProfessorController extends Controller
 
     public function store(Request $request)
     {
-        
         {
             $first_name = $request->get('first_name');
             $last_name = $request->get('last_name');

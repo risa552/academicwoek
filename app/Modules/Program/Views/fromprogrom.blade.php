@@ -29,7 +29,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default"> 
+            <div class="panel panel-info"> 
                  <a herf="/program/{{$group_id}}" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     <a class="btn btn-default pull-right" href="/program/{{$group_id}}" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>

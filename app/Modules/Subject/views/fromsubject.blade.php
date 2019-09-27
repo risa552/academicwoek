@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default"> 
+            <div class="panel panel-info"> 
                  <a herf="/subject" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     @if(isset($items))
@@ -45,19 +45,19 @@
                 @csrf()
                 @endif
                 <div class="panel-body">
-                         <div class="form-group">
-                            <label>รหัสวิชา:</label>
-                            <input type="text" name="sub_code" class="form-control" value="{{isset($items)?$items->sub_code:''}}"/>
-                        </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label>ชื่อวิชา:</label>
                             <input type="text" name="sub_name" class="form-control" value="{{isset($items)?$items->sub_name:''}}"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label>ชื่อวิชาอังกฤษ:</label>
                             <input type="text" name="sub_nameeng" class="form-control" value="{{isset($items)?$items->sub_nameeng:''}}"/>
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group col-md-6">
+                            <label>รหัสวิชา:</label>
+                            <input type="text" name="sub_code" class="form-control" value="{{isset($items)?$items->sub_code:''}}"/>
+                        </div>
+                        <div class="form-group col-md-6">
                             <label>หน่วยกิต:</label>
                             <input type="text" name="credit" class="form-control" value="{{isset($items)?$items->credit:''}}"/>
                         </div>

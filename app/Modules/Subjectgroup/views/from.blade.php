@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default">  
+            <div class="panel panel-info">  
                 <div class="panel-heading">
                         @if(isset($subjectgroup))
                         กลุ่มวิชา : {{$subjectgroup->subgroup_name}}

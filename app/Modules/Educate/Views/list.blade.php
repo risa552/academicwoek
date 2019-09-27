@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">ค้นหาแผนการเรียน</div>
                 <div class="panel-body">
                     <form action="/educate">
@@ -62,7 +62,7 @@
         </div> 
 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     รายการข้อมูลภาระการสอน
                     <a class="fa fa-file-text-o btn btn-success pull-right" aria-hidden="true" href="/educate-report"></a>

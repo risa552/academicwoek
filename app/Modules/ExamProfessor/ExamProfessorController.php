@@ -79,7 +79,7 @@ class ExamProfessorController extends Controller
             $exam->where('program.term_id','=',$term_id);
         }
           //  print_r($exam);exit;
-        $exam = $exam->get();
+        $exam = $exam->paginate(10);
         $rom = DB::table('term')->whereNull('delete_at')->get();
         return view('examprofessor::form',compact('exam','rom'));
     }

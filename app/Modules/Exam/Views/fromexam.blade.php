@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default">  
+            <div class="panel panel-info">  
                 <div class="panel-heading">เพิ่มข้อมูลข้อสอบ</div>
                 @if(isset($exam))
                     ข้อสอบ {{$exam->sub_name}}

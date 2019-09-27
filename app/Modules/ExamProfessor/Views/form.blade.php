@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
     <div class="col-md-3">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">ค้นหาข้อสอบ</div>
             <div class="panel-body">
                 <form action="/examprofessor">
@@ -49,7 +49,7 @@
     </div> 
 
         <div class="col-md-9">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
                 <div class="panel-heading">
                 รายการการส่งข้อสอบ
                 </div>
@@ -68,6 +68,7 @@
                         <tbody>
                             @foreach($exam as $index => $row)
                                 <tr>
+                                    <td>{{$index+$exam->FirstItem()}}</td>
                                     <td>{{$row->sub_code}}</td>
                                     <td>{{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
                                     <td><a target="_blank" href="{{$row->file_mid}}">{{$row->file_mid}}</a></td>
@@ -86,6 +87,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {!! $exam->render()  !!}
                 </div>
             </div>
         </div>

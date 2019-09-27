@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">ค้นหาข้อมูลกลุ่มเรียน</div>
                 <div class="panel-body">
                     <form action="/ggrade">
@@ -81,7 +81,7 @@
         </div> 
         <form class="form-ajax" method="POST" action="/plan">
             <div class="col-md-9">
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                     <div class="panel-heading">
              รายงานเกรดนักศึกษา <!--: {{$row3->sub_name}}     -->
                     </div>
@@ -92,7 +92,7 @@
                                     <th>ลำดับ</th>
                                     <th>ชื่อวิชา</th>
                                     <th>นักศึกษา</th>
-                                    <th>คะแนนสอบ</th>
+                                    <th>กลุ่มเรียน</th>
                                     <th>เกรด</th>
                                 </tr>
                             </thead>
@@ -102,7 +102,7 @@
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->sub_name}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
-                                    <td>{{$row->score}}</td>
+                                    <td>{{$row->group_name}}</td>
                                     <td>{{$row->grade}}</td>
                                 </tr>
                             @endforeach

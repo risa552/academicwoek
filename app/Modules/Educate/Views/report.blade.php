@@ -25,7 +25,7 @@
 <!-- <div class="container"> -->
     <!-- <div class="row">
         <div class="col-md-12"> -->
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">
             รายงานภาระการสอน
             <a  class="btn btn-default fa fa-print pull-right" href="/print-educate" aria-hidden="true"></a>

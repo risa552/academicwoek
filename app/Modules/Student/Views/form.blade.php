@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default"> 
+            <div class="panel panel-info"> 
                  <a herf="/student" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                         @if(isset($student))
@@ -45,35 +45,44 @@
                 @csrf()
                 @endif
                 <div class="panel-body">
-                <div class="form-group">
+                        <div class="form-group col-md-4">
                             <label for="email">รหัสนักศึกษา:</label>
                             <input type="text" name="number" class="form-control" value="{{isset($student)?$student->number:''}}"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-4">
                             <label for="email">ชื่อนักศึกษา:</label>
                             <input type="text" name="first_name" class="form-control" value="{{isset($student)?$student->first_name:''}}"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-4">
                             <label for="pwd">นามสกุล:</label>
                             <input type="text" name="last_name" class="form-control" value="{{isset($student)?$student->last_name:''}}"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-4">
                             <label for="pwd">เบอร์โทรศัพท์:</label>
                             <input type="text" name="tel" class="form-control" value="{{isset($student)?$student->tel:''}}"/>
                         </div>
                         <div class="form-group col-md-2" >
                             <label>เพศ:</label>
-                                <input name="sex" type="radio" {{isset($professor) && $professor->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
-                                <input name="sex" type="radio" {{isset($professor) && $professor->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
+                            <select  name="sex" class="form-control">
+                                <option {{isset($student) && $student->sex==' ชาย'?' selected ':''}} value=" ชาย"> ชาย</option>
+                                <option {{isset($student) && $student->sex==' หญิง'?' selected ':''}} value=" หญิง"> หญิง</option>
+                            </select>
+                                <!-- <input name="sex" type="radio" {{isset($professor) && $professor->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
+                                <input name="sex" type="radio" {{isset($professor) && $professor->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง -->
+                        </div>
+                        <!-- <div class="panel-body col-md-6">
+                            <th>ชื่อภาคเรียน : </th>
+                            
+                        </div> -->
+                        <div class="form-group col-md-6">
+                            <label for="pwd">e-mail:</label>
+                            <input type="text" name="email" class="form-control" value="{{isset($student)?$student->email:''}}"/>
                         </div>
                         <div class="form-group col-md-10">
                             <label for="pwd">ที่อยู่:</label>
                             <input type="text" name="add" class="form-control" value="{{isset($student)?$student->add:''}}"/>
                         </div>
-                        <div class="form-group">
-                            <label for="pwd">e-mail:</label>
-                            <input type="text" name="email" class="form-control" value="{{isset($student)?$student->email:''}}"/>
-                        </div>
+                        
                         <div class="form-group">
                                 <label >กลุ่มเรียน:</label>
                                 <select style="300px;" name="group_id">
@@ -96,6 +105,7 @@
                             <input type="password" name="password" class="form-control" />
                         </div>  
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
+                </div>    
                 </form>
         </div>
     

@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">ค้นหาข้อมูลลงทะเบียน</div>
                 <div class="panel-body">
                     <form action="/enrolment">
@@ -67,7 +67,7 @@
         </div> 
 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                 รายการข้อมูลลงทะเบียน 
                 <!-- <a href="#" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> ข้อมูลลงทะเบียน</a> -->

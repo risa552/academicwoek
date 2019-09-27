@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">ค้นหาข้อมูลข้อสอบ</div>
                 <div class="panel-body">
                     <form action="/exam">
@@ -49,7 +49,7 @@
             <!--<button type="submit" class="btn btn-info"><a href="#">ส่งข้อสอบ</a></button> -->
         </div> 
         <div class="col-md-10">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                 รายการการส่งข้อสอบ
               <!-- <a href="/exam/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> ส่งข้อสอบ</a> -->

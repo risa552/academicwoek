@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default"> 
+            <div class="panel panel-info"> 
                  <a herf="/degree" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     @if(isset($degree))
@@ -45,7 +45,7 @@
                 @csrf()
                 @endif
                     <div class="panel-body">
-                        <th>ชื่อระดับ : </th>
+                        <label>ชื่อระดับ : </label>
                         <input type="text" name="degree_name" class="form-control" value="{{isset($degree)?$degree->degree_name:''}}"/>
                     </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>

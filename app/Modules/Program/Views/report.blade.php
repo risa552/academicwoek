@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     รายงานแผนการเรียน  {{$group_name}}
                     <a class="btn btn-default pull-right" href="/preprogram" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>

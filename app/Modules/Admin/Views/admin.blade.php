@@ -21,7 +21,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">ค้นหาข้อมูลผู้ดูแลระบบ</div>
                 <div class="panel-body">
                     <form action="/admin">
@@ -37,7 +37,7 @@
         </div> 
 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     รายการข้อมูลผู้ดูแลระบบ
                     <a href="/admin/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลผูู้แลระบบ</a>

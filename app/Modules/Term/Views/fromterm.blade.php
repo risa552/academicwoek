@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default"> 
+            <div class="panel panel-info"> 
                  <a herf="/term" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     @if(isset($term))
@@ -45,7 +45,7 @@
                 @csrf()
                 @endif
                 <div class="panel-body col-md-6">
-                    <th>ชื่อภาคเรียน : </th>
+                    <label>ชื่อภาคเรียน : </label>
                     <select  name="term_name" class="form-control">
                         <option {{isset($term) && $term->term_name==' 1'?' selected ':''}} value=" 1"> 1</option>
                         <option {{isset($term) && $term->term_name==' 2'?' selected ':''}} value=" 2"> 2</option>
@@ -53,7 +53,7 @@
                     </select>
                 </div>
                 <div class="panel-body col-md-6">
-                    <th>ปีการศึกษา:</th>
+                    <label>ปีการศึกษา:</label>
                     <select  name="term_year" class="form-control">
                         @for($i=date('Y')+3;$i>date('Y')-3;$i--)
                         <option {{isset($term) && $term->term_year==($i+543)?' selected ':''}} value="{{($i+543)}}">{{($i+543)}}</option>

@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default"> 
+            <div class="panel panel-info"> 
                  <a herf="/course" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     @if(isset($course))
@@ -44,12 +44,12 @@
                 <form class="form-ajax" action="/course" method="POST">
                 @csrf()
                 @endif
-                    <div class="panel-body">
-                        <th>ชื่อหลักสูตร : </th>
+                    <div class="panel-body col-md-6">
+                        <label>ชื่อหลักสูตร : </label>
                         <input type="text" name="cou_name" class="form-control" value="{{isset($course)?$course->cou_name:''}}"/>
                     </div>
-                    <div class="panel-body">
-                        <th>ปีที่ปรับปรุง : </th>
+                    <div class="panel-body col-md-6">
+                        <label>ปีที่ปรับปรุง : </label>
                         <input type="text" name="cou_year" class="form-control" value="{{isset($course)?$course->cou_year:''}}"/>
                     </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>

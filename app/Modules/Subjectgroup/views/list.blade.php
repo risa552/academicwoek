@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">ค้นหากลุ่มวิชา</div>
                 <div class="panel-body">
                     <form action="/subjectgroup">
@@ -40,7 +40,7 @@
             <!--<button type="submit" class="btn btn-info"><a href="#">ข้อมูลกลุ่มวิชา</a></button> -->
         </div> 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     รายการข้อมูลกลุ่มวิชา
                     <a href="/subjectgroup/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลกลุ่มวิชา</a>

@@ -26,7 +26,7 @@
     <div class="row" >
         <form class="form-ajax" method="POST" action="/plan">
             <div class="col-md-9"  >
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                     <div class="panel-heading">
                     <a href="/enrolment"><i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ</a>
                      รายงานการลงทะเบียน : รหัส {{$student->number}} ชื่อ {{$student->first_name}} {{$student->last_name}} 

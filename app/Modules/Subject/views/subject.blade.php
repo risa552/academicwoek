@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">ค้นหาข้อมูลวิชา</div>
                 <div class="panel-body">
                     <form action="/subject">
@@ -54,7 +54,7 @@
         </div> 
 
         <div class="col-md-10">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     รายการข้อมูลวิชา
                     <a href="/subject/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลวิชา</a>

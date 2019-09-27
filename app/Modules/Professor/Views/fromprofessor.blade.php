@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default"> 
+            <div class="panel panel-info"> 
                  <a herf="/professor" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
                     @if(isset($professor))
@@ -45,16 +45,24 @@
                 @csrf()
                 @endif
                     <div class="panel-body">
-                        <label>ชื่อ : </label>
-                            <input type="text" name="first_name" class="form-control" value="{{isset($professor)?$professor->first_name:''}}"/>
-                        <label>นามสกุล:</label>
-                             <input type="text" name="last_name" class="form-control" value="{{isset($professor)?$professor->last_name:''}}"/> 
-                        <label>เบอร์:</label>
-                             <input type="text" name="tel" class="form-control" value="{{isset($professor)?$professor->tel:''}}"/>  
                         <div class="form-group col-md-6" >
-                        <label>เพศ:</label>
-                            <input name="sex" type="radio" {{isset($professor) && $professor->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
-                            <input name="sex" type="radio" {{isset($professor) && $professor->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง
+                            <label>ชื่อ : </label>
+                                <input type="text" name="first_name" class="form-control" value="{{isset($professor)?$professor->first_name:''}}"/>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <label>นามสกุล:</label>
+                                <input type="text" name="last_name" class="form-control" value="{{isset($professor)?$professor->last_name:''}}"/> 
+                        </div>
+                        <div class="from-group col-md-4">
+                            <label>เบอร์:</label>
+                                <input type="text" name="tel" class="form-control" value="{{isset($professor)?$professor->tel:''}}"/> 
+                        </div>
+                        <div class="form-group col-md-2" >
+                            <label>เพศ:</label>
+                            <select  name="sex" class="form-control">
+                                <option {{isset($professor) && $professor->sex==' ชาย'?' selected ':''}} value=" ชาย"> ชาย</option>
+                                <option {{isset($professor) && $professor->sex==' หญิง'?' selected ':''}} value=" หญิง"> หญิง</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label>email:</label>

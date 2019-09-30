@@ -32,6 +32,25 @@ class CurrentUser
         }
         return null;
     }
+
+    public static function is_admin()
+    {
+        $user = Auth::user();
+        return $user &&  $user->user_type===MyConst::$USER_LEVEL_ADMIN;
+    }
+
+    public static function is_teacher()
+    {
+        $user = Auth::user();
+        return $user &&  $user->user_type===MyConst::$USER_LEVEL_TEACHER;
+    }
+
+    public static function is_student()
+    {
+        $user = Auth::user();
+        return $user &&  $user->user_type===MyConst::$USER_LEVEL_STUDENT;
+    }
+
     public static function menu(){
         if(Auth::check()){
             $user = Auth::user();

@@ -2,11 +2,11 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" style="width:400px;">
-                    <img class="mylogo" src="/assets/img/logo/logowed2.png"/>
+                    <img class="mylogo" src="/assets/img/logo/don0007.png"/>
                 </a>
             </div>
             <ul class="nav navbar-nav pull-right" style="margin-top: 11px">
-                <li class="nav-menu"><a href="#">หน้าแรก</a></li>
+                <li class="nav-menu"><a href="/">หน้าแรก</a></li>
                 <li class="nav-menu"><a href="/grade">ออกเกรด</a></li>
                 <li class="nav-menu"><a href="/examprofessor">ข้อสอบ</a></li>
                 <li class="dropdown nav-menu">

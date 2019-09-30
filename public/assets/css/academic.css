@@ -1,6 +1,6 @@
-.navbar-header{height:80px;}
-.navbar-brand{padding:10px 0px 10px 10px;}
-.navbar-brand .mylogo{height:70px;}
+.navbar-header{height:90px;}
+.navbar-brand{padding:0px 0px 5px 5px;}
+.navbar-brand .mylogo{height:100px;}
 .nav-bg-color{background: #2759be;}
 .nav-menu a{color:#fff!important;}
 .sub-nav-menu a{color:#333!important; font-size:13px;}
@@ -142,7 +142,16 @@ DEPENDENCES
       font-size: 50%;
     }
   }
+  body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    
+  }
   
+
   
   
 

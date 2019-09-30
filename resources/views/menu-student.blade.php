@@ -2,11 +2,11 @@
         <div class="container-fluid">
             <div class="navbar-header">
                  <a class="navbar-brand" style="width:400px;">
-                    <img class="mylogo" src="/assets/img/logo/logowed2.png"/>
+                    <img class="mylogo" src="/assets/img/logo/don0007.png"/>
                 </a>
             </div>
-            <ul class="nav navbar-nav pull-right" style="margin-top: 11px">
-                <li class="nav-menu"><a href="#">หน้าแรก</a></li>
+            <ul class="nav navbar-nav pull-right" style="margin-top: 20px">
+                <li class="nav-menu"><a href="/">หน้าแรก</a></li>
                 <li class="nav-menu"><a href="/enrostudent">ลงทะเบียน</a></li>
                 <li class="nav-menu"><a href="/history">ข้อมูลทั่วไป</a></li>
                 <li class="nav-menu"><a href="/hisgrade">ข้อมูลการศึกษา</a></li>

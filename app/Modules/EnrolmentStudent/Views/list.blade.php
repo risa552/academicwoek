@@ -66,37 +66,37 @@
             <div class="col-md-12">
                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">รายการลงทะเบียนนักศึกษา</button>
                     <div id="demo" class="collapse in">
-                    <form class="form-ajax" id="program_open" action="/enrostudent" method="POST">
-                        <table class="table table-striped" >
-                            <thead style="background-color:#a4b4fb">
-                                <tr>
-                                    <th>#</th>
-                                    <th>รหัสวิชา</th>
-                                    <th>ชื่อวิชา</th>
-                                    <th>หน่วยกิต</th>
-                                    <th>อาจารย์ผู้สอน</th>
-                                    <!--<th>ตารางสอบ</th>-->
-                                    <th>ลบ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($program_open as $index =>$row)
-                                <tr>
-                                    <td>{{$index+1}}</td>
-                                    <td>
-                                    <input type="hidden" name="subject_id[]" value="{{$row->sub_id}}"/>
-                                    {{$row->sub_code}}</td>
-                                    <td>{{$row->sub_name}}</td>
-                                    <td>{{$row->credit}}</td>
-                                    <td>{{$row->first_name}} {{$row->last_name}}</td>
-                                    <td>
-                                        <a class="remove-row" href="javascript:;"><i class="fa fa-times btn btn-danger" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </form>
+                        <form class="form-ajax" id="program_open" action="/enrostudent" method="POST">
+                            <table class="table table-striped" >
+                                <thead style="background-color:#a4b4fb">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>รหัสวิชา</th>
+                                        <th>ชื่อวิชา</th>
+                                        <th>หน่วยกิต</th>
+                                        <th>อาจารย์ผู้สอน</th>
+                                        <!--<th>ตารางสอบ</th>-->
+                                        <th>ลบ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($program_open as $index =>$row)
+                                    <tr>
+                                        <td>{{$index+1}}</td>
+                                        <td>
+                                        <input type="hidden" name="subject_id[]" value="{{$row->sub_id}}"/>
+                                        {{$row->sub_code}}</td>
+                                        <td>{{$row->sub_name}}</td>
+                                        <td>{{$row->credit}}</td>
+                                        <td>{{$row->first_name}} {{$row->last_name}}</td>
+                                        <td>
+                                            <a class="remove-row" href="javascript:;"><i class="fa fa-times btn btn-danger" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
                 @if(!empty($program_open))
                 <a id="program_open_btn" href="javascript:;" class="btn btn-info pull-right">ยืนยัน</a>

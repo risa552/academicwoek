@@ -33,5 +33,6 @@ class ModuleServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/HistoryGrade/Views','hisgrade');
         $this->loadViewsFrom(__DIR__.'/Dgrade/Views','dgrade');
         $this->loadViewsFrom(__DIR__.'/PreProgram/Views','preprogram');
+        $this->loadViewsFrom(__DIR__.'/HomeStudent/Views','homestudent');
     }
 }

@@ -13,6 +13,8 @@ class HistoryGradeController extends Controller
 {
     public function index()
     {
+        
+        
         $user=CurrentUser::user();
         $history = DB::table('student')
         ->select('student.first_name',
@@ -46,9 +48,36 @@ class HistoryGradeController extends Controller
         ->leftJoin('subject','subject.sub_id','enrolment.sub_id')
         ->leftJoin('term','term.term_id','enrolment.term_id')
         ->where('enrolment.std_id',$user->std_id)->get();
+        //ต่อเทอม
+        $down_term = 0;//หน่วยกิตรวมต่อเทอม
+        $have_term = 0;//หน่วยกิตที่ได้ต่อเทอม
+        $count_term = 0;//หน่วยกิตรวมต่อเทอม
+        $score_term = 0;//หน่วยกิต*เกรด ทุกวิชา แล้วเอาผลมาบวกกัน
+        $GPA_term = 0;//เอา score / count
+        //สะสม
+        $down_glean = 0;
+        $have_glean = 0;
+        $count_glean = 0;
+        $score_glean = 0;
+        $GPA_glean = 0;
+
+        $mapping_grade =[
+            'A'=>4,
+            'B+'=>3.5,
+            'B'=>3,
+            'C+'=>2.5,
+            'C'=>2,
+            'D+'=>1.5,
+            'D'=>1,
+            'F'=>0,
+        ];
+        // foreach($grades as $grade)
+        // {
+        //     if()
+        // }
 
 
-        return view ('hisgrade::list',compact('history','grades'));
+        return view ('hisgrade::list',compact('history','grades','mapping_grade'));
     }
 
     

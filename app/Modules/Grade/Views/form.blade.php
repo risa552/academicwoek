@@ -86,15 +86,15 @@
                                     <td>{{$row->sub_code}} {{$row->sub_name}}</td>
                                     <td>
                                         <div class="form-group">
-                                            <select class="form-control" value="{{$row->grade}}" name="grade">
-                                                <option value="A">A</option>
-                                                <option value="B+">B+</option>
-                                                <option value="B">B</option>
-                                                <option value="C+">C+</option>
-                                                <option value="C">C</option>
-                                                <option value="D+">D+</option>
-                                                <option value="D">D</option>
-                                                <option value="F">F</option>
+                                            <select class="form-control"  name="grade[{{$row->enro_id}}]">
+                                            <option {{isset($row)&& $row->grade=='A'?' selected ':''}} value="A">A</option>
+                                                <option {{isset($row)&& $row->grade=='B+'?'selected':''}} value="B+">B+</option>
+                                                <option {{isset($row)&& $row->grade=='B'?'selected':''}} value="B">B</option>
+                                                <option {{isset($row)&& $row->grade=='C+'?'selected':''}} value="C+">C+</option>
+                                                <option {{isset($row)&& $row->grade=='C'?'selected':''}} value="C">C</option>
+                                                <option {{isset($row)&& $row->grade=='D+'?'selected':''}} value="D+">D+</option>
+                                                <option {{isset($row)&& $row->grade=='D'?'selected':''}} value="D">D</option>
+                                                <option {{isset($row)&& $row->grade=='F'?'selected':''}} value="F">F</option>
                                             </select>
                                         </div>
                                     </td>

@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-5">
                 <div>
-                <table class="table table-bordered" style="margin-left:400px; background-color:#33d9b2;" >
+                <table class="table table-bordered" style="margin-left:400px; background-color:#B7D3E9;" >
                     @foreach($history as $index => $hit)
                         <tr>
                             <td>

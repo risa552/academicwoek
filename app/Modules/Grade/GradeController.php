@@ -59,11 +59,16 @@ class GradeController extends Controller
         {
             $grade->where('student.group_id','=',$group_id);
         }
-        $grade = $grade->OrderBy('subject.sub_name','asc')->OrderBy('studygroup.group_name','asc')->paginate(20);
+        $grade = $grade->OrderBy('subject.sub_name','asc')
+        ->OrderBy('studygroup.group_name','asc')->paginate(10);
        //// print_r(DB::getQueryLog());exit;
 
         $rom = DB::table('term')->whereNull('delete_at')->get();
-        $rom1 = DB::table('subject')->whereNull('delete_at')->get();
+        $rom1 = DB::table('subject')
+        ->leftJoin('educate','educate.sub_id','subject.sub_id')
+        ->where('educate.teach_id',$user->teach_id)
+        ->whereNull('subject.delete_at')
+        ->get();
         $rom2 = DB::table('studygroup')->whereNull('delete_at')->get();
         return view('grade::form',compact('grade','rom','rom1','rom2'));
     }

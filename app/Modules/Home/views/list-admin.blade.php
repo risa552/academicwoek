@@ -25,7 +25,7 @@
                         <table class="table table-striped">
                             @foreach($home as $admin)
                                 <tr>
-                                    <td><b>ชื่ออาจารย์ :</b>{{$admin->first_name}} {{$admin->last_name}}</td>
+                                    <td><b>ชื่อ :</b>{{$admin->first_name}} {{$admin->last_name}}</td>
                                 <tr>
                                 <tr>
                                     <td><b>เพศ :</b>{{$admin->sex}} </td>

@@ -77,7 +77,7 @@
                         <tbody>
                         @foreach($items as $index =>$row)
                             <tr>
-                                <td>{{$index+1}}</td>
+                                <td>{{$index+$items->firstItem()}}</td>
                                 <td>{{$row->sub_code}}</td>
                                 <td>{{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
                                 <td>{{$row->credit}}({{$row->theory}}-{{$row->practice}}-{{$row->special}})</td>

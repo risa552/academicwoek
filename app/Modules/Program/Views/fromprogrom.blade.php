@@ -32,6 +32,7 @@
             <div class="panel panel-info"> 
                  <a herf="/program/{{$group_id}}" กลับหน้าหลัก> </a>
                 <div class="panel-heading">
+                    รายงานเพิ่มข้อมูลแผนการเรียน
                     <a class="btn btn-default pull-right" href="/program/{{$group_id}}" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
 
                 </div>

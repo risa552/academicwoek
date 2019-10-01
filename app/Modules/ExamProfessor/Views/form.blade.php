@@ -37,7 +37,7 @@
                             </option>
                         @foreach($rom as $index => $row2)
                             <option value ="{{$row2->term_id}}" {{Input::get('term_id')==$row2->term_id?'selected':''}}>
-                                {{$row2->term_name}}
+                                {{$row2->term_name}}/{{$row2->term_year}}
                             </option>
                         @endforeach
                         </select>

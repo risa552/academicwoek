@@ -44,7 +44,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     รายการข้อมูลระดับ
-                    <a href="/degree/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> ข้อมูลระดับ</a>
+                    <a href="/degree/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i>เพิ่มข้อมูลระดับ</a>
                 </div>
                 <div class="panel-body">
                 <table class="table table-striped">

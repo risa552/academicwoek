@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="panel-body">
-                <table class="table table-bordered" style="border: 3px solid #ddd;">
+                <table class="table table-bordered" style="border: 1px solid #000;">
                     <tbody >
                     @foreach($history as $index => $his)
                         <tr>

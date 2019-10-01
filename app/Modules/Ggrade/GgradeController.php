@@ -61,7 +61,11 @@ class GgradeController extends Controller
        
         $ggrade = $ggrade->OrderBy('subject.sub_name','asc')->OrderBy('studygroup.group_name','asc')->get();
         $rom = DB::table('term')->whereNull('delete_at')->get();
-        $rom1 = DB::table('subject')->whereNull('delete_at')->get();
+        $rom1 = DB::table('subject')
+        ->leftJoin('educate','educate.sub_id','subject.sub_id')
+        ->where('educate.teach_id',$user->teach_id)
+        ->whereNull('subject.delete_at')
+        ->get();
         $rom2 = DB::table('studygroup')->whereNull('delete_at')->get();
         return view('ggrade::form',compact('ggrade','rom','rom1','rom2'));
     }

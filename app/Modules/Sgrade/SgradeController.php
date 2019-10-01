@@ -24,7 +24,7 @@ class SgradeController extends Controller
         // 'teacher.last_name',
         'student.first_name',
         'student.last_name',
-        'enrolment.score',
+        // 'enrolment.score',
         'enrolment.grade',
         'subject.sub_code',
         'subject.sub_name',
@@ -51,7 +51,9 @@ class SgradeController extends Controller
         }
 
         $sgrade =  $sgrade->get();
-        $studygroup = DB::table('studygroup')->whereNull('delete_at')->get();
+        $studygroup = DB::table('studygroup')
+        ->where('studygroup.teach_id',$user->teach_id)
+        ->whereNull('delete_at')->get();
         return view('sgrade::list',compact('sgrade','studygroup'));
     }
 

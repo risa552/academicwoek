@@ -81,13 +81,14 @@ class PlanController extends Controller
     {
         if(is_numeric($enro_id))
         {
-            $items = DB::table('enrolment')->where('enro_id',$enro_id)->first();
-            if(!empty($items)){
+            $item = DB::table('enrolment')->where('enro_id',$enro_id)->first();
+            if(!empty($item)){
                
                 $subject = DB::table('subject')->whereNull('delete_at')->get();
                 $term = DB::table('term')->whereNull('delete_at')->get(); 
                 return view('plan::form',[
-                    'items'=>$items,
+                    'item'=>$item,
+                    'std_id'=>$item->std_id,
                     'subject'=>$subject,
                     'term'=>$term
                 ]);

@@ -62,20 +62,21 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>#</th>
+                                <th>รหัส</th>
                                 <th>ชื่อ-สกุล</th>
                                 <th>ห้อง</th>
-                                <th>วิชา</th>
-                                <th>คะแนน</th>
                                 <th>เกรด</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($sgrade as $grade)
+                        @foreach($sgrade as $index=> $grade)
                             <tr>
-                                <td>{{$grade->first_name}} {{$grade->last_name}}</td>
+                                <td>{{$index+1}}</td>
+                                <td>{{$grade->number}}</td>
+                                <td> {{$grade->first_name}} {{$grade->last_name}}</td>
                                 <td>{{$grade->group_name}}</td>
-                                <td>{{$grade->sub_code}} {{$grade->sub_name}} <br>{{$grade->sub_nameeng}}</td>
-                                <td>{{$grade->grade}}</td>
+                                <td></td>
                             </tr>
                         @endforeach
                         </tbody>

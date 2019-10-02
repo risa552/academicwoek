@@ -15,7 +15,7 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
-                <a href="/plan/{{$items->std_id}}" class="breadcrumb__point r-link">รายงานลงทะเบียน</a>
+                <a href="/plan/{{$std_id}}" class="breadcrumb__point r-link">รายงานลงทะเบียน</a>
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li>
                 <li class="breadcrumb__group">
@@ -38,17 +38,17 @@
                         เพิ่มการลงทะเบียน
                         @endif
                     <!-- การลงทะเบียน : ชื่อ -->
-                    <a class="btn btn-default pull-right" href="/plan/{{$items->std_id}}" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
+                    <a class="btn btn-default pull-right" href="/plan/{{$std_id}}" style="padding-top: 2px;padding-bottom: 2px;" data-toggle="tooltip" title=""><i class="fa fa-close"></i></a>
                 </div>
-                @if(isset($items))
-                <form action="/plan/{{$items->enro_id}}" class="form-ajax" method="PUT">
+                @if(isset($item))
+                <form action="/plan/{{$item->enro_id}}" class="form-ajax" method="PUT">
                     <input type="hidden" value="put" name="_mathods">
                     @csrf()
                 @else
                 <form class="form-ajax" action="/plan" method="POST">
                 @csrf()
                 @endif
-                <input type="hidden" value="{{$items->std_id}}" name="std_id">
+                <input type="hidden" value="{{$std_id}}" name="std_id">
 
                     <div class="panel-body">
                         <div class="form-group">
@@ -58,7 +58,7 @@
                                     ทั้งหมด
                                 </option>
                             @foreach($term as $index => $row4)
-                                <option value ="{{$row4->term_id}}" {{isset($items)&& $items->term_id==$row4->term_id?'selected':''}}>
+                                <option value ="{{$row4->term_id}}" {{isset($item)&& $item->term_id==$row4->term_id?'selected':''}}>
                                         {{$row4->term_name}}/{{$row4->term_year}}
                                 </option>
                             @endforeach
@@ -71,7 +71,7 @@
                                     ทั้งหมด
                                 </option>
                             @foreach($subject as $index => $row3)
-                                <option value ="{{$row3->sub_id}}" {{isset($items)&& $items->sub_id==$row3->sub_id?'selected':''}}>
+                                <option value ="{{$row3->sub_id}}" {{isset($item)&& $item->sub_id==$row3->sub_id?'selected':''}}>
                                         {{$row3->sub_code}}  {{$row3->sub_name}}
                                 </option>
                             @endforeach
@@ -80,8 +80,8 @@
                         <div class="panel-body">
                             <th>สถานะ : </th>
                             <select  name="status" class="form-control">
-                                <option {{isset($items) && $items->status=='ปกติ'?' selected ':''}} value="ปกติ">ปกติ</option>
-                                <option {{isset($items) && $items->status=='ถอน'?' selected ':''}} value="ถอน">ถอน</option>
+                                <option {{isset($item) && $item->status=='ปกติ'?' selected ':''}} value="ปกติ">ปกติ</option>
+                                <option {{isset($item) && $item->status=='ถอน'?' selected ':''}} value="ถอน">ถอน</option>
                             </select>
                         </div>                   
                         <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>

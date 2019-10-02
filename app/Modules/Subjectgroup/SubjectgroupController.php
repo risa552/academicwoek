@@ -21,7 +21,7 @@ class SubjectgroupController extends Controller
                 $query->where('subgroup_name','LIKE','%'.$keyword.'%');
             });
         }
-        $items = $items->paginate(10);
+        $items = $items->orderBy('subjectgroup.created_at','desc')->paginate(10);
         return view($this->table_name.'::list',[
             'items'=>$items
         ]);

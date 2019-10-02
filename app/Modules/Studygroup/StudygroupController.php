@@ -47,7 +47,7 @@ class StudygroupController extends Controller
         {
             $group->where('studygroup.teach_id','=',$teach_id);
         }
-        $group = $group->orderBy('studygroup.group_year','asc')->paginate(10);
+        $group = $group->orderBy('studygroup.created_at','desc')->paginate(10);
         $branch = DB::table($this->table2)->whereNull('delete_at')->get();
         $degree = DB::table($this->table3)->whereNull('delete_at')->get();
         $teach = DB::table('teacher')->whereNull('delete_at')->get();

@@ -62,11 +62,11 @@
                 </div>
                 <div class="form-group col-md-6">
                         <label for="pwd">วันเปิดภาคการศึกษา:</label>
-                        <input type="DATE" name="startdate" class="form-control" value="{{isset($student)?$student->startdate:''}}"/>
+                        <input type="DATE" name="startdate" class="form-control" value="{{isset($term)?$term->startdate:''}}"/>
                 </div>
                 <div class="form-group col-md-6">
                         <label for="pwd">วันปิดภาคการศึกษา:</label>
-                        <input type="DATE" name="enddate" class="form-control" value="{{isset($student)?$student->enddate:''}}"/>
+                        <input type="DATE" name="enddate" class="form-control" value="{{isset($term)?$term->enddate:''}}"/>
                 </div>
                 <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
             </form>

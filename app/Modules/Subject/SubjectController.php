@@ -38,7 +38,7 @@ class SubjectController extends Controller
         {
             $items->where('subject.subgroup_id','=',$subgroup_id);
         }
-        $items = $items->paginate(10);
+        $items = $items->orderBy('subject.created_at','desc')->paginate(10);
         $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
         return view($this->table_name.'::subject',compact('items','items2'));
     }

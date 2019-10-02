@@ -37,7 +37,7 @@ class StudentController extends Controller
         {
             $items->where('student.group_id','=',$group_id);
         }
-        $items = $items->orderBy('student.first_name','asc')->paginate(10);
+        $items = $items->orderBy('student.number','asc')->paginate(10);
         $studygroup = DB::table($this->table2)->whereNull('delete_at')->get();
         return view($this->table_name.'::list',compact('items','studygroup'));
     }

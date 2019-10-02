@@ -28,7 +28,7 @@ class TermController extends Controller
                       ->orwhere('enddate','LIKE','%'.$keyword.'%');
             });
         }
-        $term = $term->paginate(10);
+        $term = $term->orderBy('term_year','asc')->paginate(10);
         return view('term::term',[
             'term'=>$term
         ]);

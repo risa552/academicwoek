@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                                 <label >กลุ่มเรียน:</label>
-                                <select name="group_id">
+                                <select class="form-control" name="group_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>

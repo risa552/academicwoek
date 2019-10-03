@@ -31,7 +31,7 @@
                     <form action="/preprogram">
                         <div class="form-group">
                             <label >กลุ่มเรียน:</label>
-                            <select style="width:150px;" name="group_id">
+                            <select class="form-control" name="group_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>

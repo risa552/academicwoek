@@ -30,7 +30,7 @@
                 <div class="panel-body">
                     <form action="/term">
                         <div class="form-group">
-                            <label for="keyword">ชื่อภาคเรียน</label>
+                            <label for="keyword">ภาคเรียน</label>
                             <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}" >
                         </div>
                         

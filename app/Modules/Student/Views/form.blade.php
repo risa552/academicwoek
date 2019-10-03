@@ -67,25 +67,19 @@
                                 <option {{isset($student) && $student->sex==' ชาย'?' selected ':''}} value=" ชาย"> ชาย</option>
                                 <option {{isset($student) && $student->sex==' หญิง'?' selected ':''}} value=" หญิง"> หญิง</option>
                             </select>
-                                <!-- <input name="sex" type="radio" {{isset($professor) && $professor->sex=='ชาย'?'checked':''}} value="ชาย"/>ชาย
-                                <input name="sex" type="radio" {{isset($professor) && $professor->sex=='หญิง'?'checked':''}} value="หญิง"/>หญิง -->
                         </div>
-                        <!-- <div class="panel-body col-md-6">
-                            <th>ชื่อภาคเรียน : </th>
-                            
-                        </div> -->
                         <div class="form-group col-md-6">
                             <label for="pwd">e-mail:</label>
                             <input type="text" name="email" class="form-control" value="{{isset($student)?$student->email:''}}"/>
                         </div>
-                        <div class="form-group col-md-10">
+                        <div class="form-group col-md-9">
                             <label for="pwd">ที่อยู่:</label>
                             <input type="text" name="add" class="form-control" value="{{isset($student)?$student->add:''}}"/>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group col-md-3">
                                 <label >กลุ่มเรียน:</label>
-                                <select style="300px;" name="group_id">
+                                <select class="form-control" name="group_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>

@@ -18,6 +18,8 @@ class ProgramController extends Controller
 
     public function show($group_id,Request $request)
     {
+        $keyword = $request->get('keyword');
+
         // MY_PDF::html('<p>ทดสอบ รั้งท้ายทุ้งโครงการนี้</p>');
         $items = DB::table($this->table_name)
         ->select('program.*',
@@ -36,7 +38,18 @@ class ProgramController extends Controller
         // ->OrderBy('term.term_year','asc')
         ->whereNull('program.delete_at');
 
-        $items = $items->get();
+        if(!empty($keyword))
+        {
+            $items->where(function ($query) use($keyword){
+                $query->where('sub_code','LIKE','%'.$keyword.'%')
+                      ->orwhere('sub_name','LIKE','%'.$keyword.'%')
+                      ->orwhere('sub_nameeng','LIKE','%'.$keyword.'%')
+                      ->orwhere('term_name','LIKE','%'.$keyword.'%')
+                      ->orwhere('term_year','LIKE','%'.$keyword.'%');
+            });
+        }
+
+        $items = $items->paginate(10);
         $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
         $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
         $items4 = DB::table($this->table4)->whereNull('delete_at')->get();

@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label >หลักสูตร:</label>
-                            <select style="width:300px;" name="cou_id">
+                            <select class="form-control"  name="cou_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>

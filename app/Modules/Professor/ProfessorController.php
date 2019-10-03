@@ -173,7 +173,7 @@ class ProfessorController extends Controller
     {
         if(is_numeric($id))
         {
-            $exists1 = DB::table('program')
+            $exists1 = DB::table('studygroup')
             ->where('teach_id',$id)
             ->whereNull('delete_at')->first();
             if(!empty($exists1))

@@ -48,7 +48,7 @@ class PreProgramController extends Controller
         ->leftJoin('term','program.term_id','term.term_id')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->where('studygroup.group_id','=',$group_id)
-        ->whereNull('program.delete_at')->get();
+        ->whereNull('program.delete_at')->paginate(10);
         
 
         $group_show = DB::table('studygroup')

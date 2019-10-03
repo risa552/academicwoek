@@ -44,7 +44,7 @@
         <div class="col-md-9">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    รายการข้อมูลอาารย์
+                    รายการข้อมูลอาจารย์
                     <a href="/professor/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลอาจารย์</a>
                 </div>
                 <div class="panel-body">

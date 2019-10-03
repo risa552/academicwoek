@@ -31,7 +31,7 @@
                     <form action="/educate">
                     <div class="form-group">
                         <label >ภาคเรียน:</label>
-                        <select style="width:150px;" name="term_id">
+                        <select class="form-control" name="term_id">
                             <option value="all">
                                 ทั้งหมด
                             </option>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         <label >กลุ่มเรียน:</label>
-                        <select style="width:150px;" name="group_id">
+                        <select class="form-control" name="group_id">
                             <option value="all">
                                 ทั้งหมด
                             </option>

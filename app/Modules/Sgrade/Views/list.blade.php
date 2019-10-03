@@ -31,13 +31,13 @@
                 </div>
                 <div class="panel-body">
                     <form action="/sgrade">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>ชื่อนักศึกษา</label>
                             <input type="text" class="form-control" name="keyword" value="{{Input::get('keyword')}}">
-                        </div>
+                        </div> -->
                         <div class="form-group">
                                 <label >กลุ่มเรียน:</label>
-                                <select name="group_id">
+                                <select class="form-control" name="group_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
@@ -63,20 +63,22 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>รหัส</th>
-                                <th>ชื่อ-สกุล</th>
+                                <!-- <th>รหัส</th>
+                                <th>ชื่อ-สกุล</th> -->
                                 <th>ห้อง</th>
-                                <th>เกรด</th>
+                                <th>รายงาน</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($sgrade as $index=> $grade)
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{$grade->number}}</td>
-                                <td> {{$grade->first_name}} {{$grade->last_name}}</td>
                                 <td>{{$grade->group_name}}</td>
-                                <td></td>
+                                <td>
+                                    <div class="btn-group">
+                                       <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/sgrade/{{$grade->group_id}}"></a>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

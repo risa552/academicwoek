@@ -44,13 +44,13 @@
                     @csrf()
                     @endif
                     <div class="panel-body">
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <label for="email">ชื่อกลุ่มรียน:</label>
                                 <input type="text" name="group_name" class="form-control" value="{{isset($group)?$group->group_name:''}}"/> 
                             </div>
                             <div class=" col-md-6">
                                 <label >ปีที่เข้าศึกษา:</label>
-                                <select name="group_year" class="form-group">
+                                <select class="form-control" name="group_year" class="form-group">
                                     @for($i=date('Y');$i>date('Y')-3;$i--)
                                     <option {{isset($group) && $group->group_year==($i+543)?'select':''}} value="{{($i+543)}}">{{($i+543)}}</option>
                                     @endfor
@@ -58,14 +58,16 @@
                             </div>
                             <div class="form-group col-md-6">
                             <label>ประเภท:</label>
-                                    <div class="form-group" >
-                                        <input name="group_type" type="radio" {{isset($group) && $group->group_type=='ปกติ'?'checked':''}} value="ปกติ"/>ปกติ
-                                        <input name="group_type" type="radio" {{isset($group) && $group->group_type=='สมทบ'?'checked':''}} value="สมทบ"/>สมทบ
+                                    <div class="form-group">
+                                        <select class="form-control"  name="group_type">
+                                            <option {{isset($group) && $group->group_type=='ปกติ'?'checked':''}} value="ปกติ"/>ปกติ</option>
+                                            <option {{isset($group) && $group->group_type=='สมทบ'?'checked':''}} value="สมทบ"/>สมทบ</option>
+                                        </select>
                                     </div>
                             </div>
                             <div class="form-group col-md-4">
                                 <label >สาขาวิชา:</label>
-                                <select style="width:150px;" name="bran_id">
+                                <select class="form-control"  name="bran_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
@@ -78,7 +80,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label >ระดับ:</label>
-                                <select style="width:150px;" name="degree_id">
+                                <select class="form-control"  name="degree_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>
@@ -90,8 +92,8 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label >อาจารย์:</label>
-                                <select style="width:150px;" name="teach_id">
+                                <label >อาจารย์ที่ปรึกษาประจำกลุ่มเรียน:</label>
+                                <select class="form-control"  name="teach_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>

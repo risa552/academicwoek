@@ -35,7 +35,7 @@
                         </div>
                         <div>
                             <label >ภาคเรียน:</label>
-                            <select style="width:150px;" name="term_id">
+                            <select class="form-control" name="term_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
@@ -48,7 +48,7 @@
                         </div>
                         <div>
                             <label >สาขา:</label>
-                            <select style="width:150px;" name="bran_id">
+                            <select class="form-control" name="bran_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
@@ -91,8 +91,6 @@
                                 <td>
                                     <div class="btn-group">
                                        <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/plan/{{$row->std_id}}"></a>
-                                       <!-- <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/enrolment"></a>
-                                       <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/enrolment"></a> -->
                                     </div>
                                 </td>
                             </tr>

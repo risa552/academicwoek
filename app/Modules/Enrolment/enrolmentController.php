@@ -31,30 +31,40 @@ class EnrolmentController extends Controller
 
             
         $items = DB::table($this->table2)
-        ->select('student.*',
-        'term.term_id',
-        'branch.bran_id')
-        ->leftJoin('studygroup','student.group_id','studygroup.group_id')
-        ->leftJoin('branch','studygroup.bran_id','branch.bran_id')
-        ->leftJoin('enrolment','student.std_id','enrolment.std_id')
-        ->leftJoin('term','enrolment.term_id','term.term_id')
+        ->select('student.*')
+        // ->leftJoin('studygroup','student.group_id','studygroup.group_id')
+        // ->leftJoin('branch','studygroup.bran_id','branch.bran_id')
+        // ->leftJoin('enrolment','student.std_id','enrolment.std_id')
+        // ->leftJoin('term','enrolment.term_id','term.term_id')
         ->whereNull('student.delete_at');
         if(!empty($keyword))
             {
                 $items->where(function ($query) use($keyword){
                     $query->where('first_name','LIKE','%'.$keyword.'%')
-                          ->orwhere('last_name','LIKE','%'.$keyword.'%');
+                          ->orwhere('last_name','LIKE','%'.$keyword.'%')
+                          ->orwhere('number','LIKE','%'.$keyword.'%');
                 });
             }
         if(is_numeric($bran_id))
         {
-            $items->where('studygroup.bran_id','=',$bran_id);
+            $items->whereExists(function ($query) use($bran_id) {
+                $query->select(DB::raw(1))
+                      ->from('studygroup')
+                      ->where('studygroup.bran_id','=',$bran_id)
+                      ->whereRaw('student.group_id = studygroup.group_id');
+            });
         }
         if(is_numeric($term_id))
         {
-            $items->where('enrolment.term_id','=',$term_id);
+            $items->whereExists(function ($query) use($term_id) {
+                $query->select(DB::raw(1))
+                      ->from('enrolment')
+                      ->leftJoin('term','term.term_id','enrolment.term_id')
+                      ->where('term.term_id','=',$term_id)
+                      ->whereRaw('enrolment.std_id = student.std_id');
+            });
         }
-        $items=$items->get();
+        $items=$items->orderBy('student.number','asc')->get();
 
         // print_r($items);exit;
         

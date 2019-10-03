@@ -22,8 +22,25 @@
         </div>
     <div>
 </div>
+
 <div class="container">
     <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">ค้นหาวิชาที่ลงแผนการเรียน</div>
+                <div class="panel-body">
+                    <form action="/program/{{$group_show->group_id}}">
+                        <div class="form-group">
+                            <label for="keyword">ชื่อวิชา</label>
+                            <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}" >
+                        </div>
+                        
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+            <!--<button type="submit" class="btn btn-info"><a href="#">อาจารย์</a></button> -->
+        </div> 
         <div class="col-md-9">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -44,7 +61,7 @@
                         <tbody>
                             @foreach($items as $index => $row)
                                 <tr>
-                                    <td>{{$index+1}}</td>
+                                    <td>{{$index+$items->firstItem()}}</td>
                                     <td>{{$row->sub_code}}</td>
                                     <td>{{$row->sub_name}}<br>{{$row->sub_nameeng}}</td>
                                     <td>{{$row->term_name}}/{{$row->term_year}}</td>
@@ -59,6 +76,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {!! $items->render() !!}
                     <!--<ul class="pagination">
                         <li><a href="#">1</a></li>
                         <li><a href="#">2</a></li>

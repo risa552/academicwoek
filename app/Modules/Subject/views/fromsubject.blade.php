@@ -73,9 +73,9 @@
                             <label>ศึกษาเพิ่มเติม:</label>
                             <input type="text" name="special" class="form-control" value="{{isset($items)?$items->special:''}}"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-3">
                             <label >กลุ่มวิชา:</label>
-                            <select name="subgroup_id">
+                            <select class="form-control" name="subgroup_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>

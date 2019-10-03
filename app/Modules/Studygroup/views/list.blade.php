@@ -30,7 +30,7 @@
                 <div class="panel-body">
                     <form action="/studygroup">
                         <div class="form-group">
-                            <label>รหัสกลุ่มเรียน</label>
+                            <label>กลุ่มเรียน</label>
                             <input type="text" class="form-control" name="keyword" value="{{Input::get('keyword')}}">
                         </div>
                         <div class="form-group">
@@ -95,7 +95,7 @@
                                 <th>ประเภท</th>
                                 <th>สาขา</th>
                                 <th>ระดับ</th>
-                                <th>อาจารย์</th>
+                                <th>อาจารย์ที่ปรึกษา</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>

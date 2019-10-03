@@ -46,7 +46,7 @@
                         <tbody>
                             @foreach($items as $index => $row)
                                 <tr>
-                                    <td>{{$index+1}}</td>
+                                    <td>{{$index+$item->firstItem()}}</td>
                                     <td>{{$row->sub_code}}</td>
                                     <td>{{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
                                     <td>{{$row->term_name}}/{{$row->term_year}}</td>
@@ -60,6 +60,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {!! $items->render() !!}
                     <!--<ul class="pagination">
                         <li><a href="#">1</a></li>
                         <li><a href="#">2</a></li>

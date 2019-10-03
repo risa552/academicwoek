@@ -57,9 +57,9 @@
                     <div class="form-group">
                         <label >กลุ่มเรียน : {{$item->group_name}}</label>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-10">
                         <label >อาจารย์:</label>
-                        <select name="teach_id">
+                        <select class="form-control" style="widht:150px;" name="teach_id">
                             <option value="all">
                                 ทั้งหมด
                             </option>

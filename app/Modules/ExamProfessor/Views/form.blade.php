@@ -31,7 +31,7 @@
                 <form action="/examprofessor">
                     <div class="form-group">
                         <label >ภาคเรียน:</label>
-                        <select style="width:150px;" name="term_id">
+                        <select class="form-control" name="term_id">
                             <option value="all">
                                 ทั้งหมด
                             </option>

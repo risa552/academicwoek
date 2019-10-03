@@ -31,7 +31,7 @@
                     <form action="/exam">
                     <div class="form-group">
                             <label >วิชา:</label>
-                            <select style="width:120px;" name="sub_id">
+                            <select class="form-control" name="sub_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>

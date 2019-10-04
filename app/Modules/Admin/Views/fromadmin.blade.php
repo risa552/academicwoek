@@ -43,12 +43,13 @@
                 <form class="form-ajax" action="/admin" method="POST">
                 @csrf()
                 @endif
+                <div class="panel-body">
                     <div class="form-group col-md-6">
-                        <label>ชื่อ : </label>
+                        <label>ชื่อ : <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></label>
                         <input type="text" name="first_name" class="form-control" value="{{isset($admin)?$admin->first_name:''}}"/>
                     </div>
                     <div class="form-group col-md-6">
-                        <label>นามสกุล : </label>
+                        <label>นามสกุล : <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i> </label>
                         <input type="text" name="last_name" class="form-control" value="{{isset($admin)?$admin->last_name:''}}"/>
                     </div>
                     <div class="form-group col-md-4">
@@ -56,7 +57,7 @@
                         <input type="text" name="tel" class="form-control" value="{{isset($admin)?$admin->tel:''}}"/>
                     </div>
                     <div class="form-group col-md-2" >
-                    <label>เพศ:</label>
+                    <label>เพศ: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></label>
                         <select  name="sex" class="form-control">
                             <option {{isset($admin) && $admin->sex==' ชาย'?' selected ':''}} value=" ชาย"> ชาย</option>
                             <option {{isset($admin) && $admin->sex==' หญิง'?' selected ':''}} value=" หญิง"> หญิง</option>
@@ -67,17 +68,19 @@
                         <input type="text" name="email" class="form-control" value="{{isset($admin)?$admin->email:''}}"/>
                     </div>
                     <div class="form-group col-md-12">
-                        <label>ที่อยู่ : </label>
+                        <label>ที่อยู่ : <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i> </label>
                         <input type="text" name="house" class="form-control" value="{{isset($admin)?$admin->house:''}}"/>
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Username:</label>
-                        <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($adminn)?$adminn->username:''}}"/>
+                        <label>Username: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></label>
+                        <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($admin)?$admin->username:''}}"/>
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Password:</label>
+                        <label>Password: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></label>
                         <input type="password" name="password" class="form-control" />
-                    </div>  
+                    </div> 
+                    <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i><p>จำเป็นต้องใส่</p> 
+                </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </form>
         </div>

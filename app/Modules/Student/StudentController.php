@@ -61,7 +61,7 @@ class StudentController extends Controller
         $username = $request->get('username');
         $password = $request->get('password');
 
-        if( !empty($number) && !empty($username) && !empty($password) && !empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($group_id))
+        if( !empty($number) && !empty($username) && !empty($password) && !empty($first_name) && !empty($last_name)  && !empty($sex)  && !empty($add) && !empty($group_id))
         {
             $items = DB::table($this->table_name)
             ->where('first_name',$first_name)
@@ -145,7 +145,7 @@ class StudentController extends Controller
             $username = $request->get('username');
             $password = $request->get('password');
             
-        if( !empty($number) && !empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($group_id))
+        if( !empty($number) && !empty($first_name) && !empty($last_name)  && !empty($sex)  && !empty($add) && !empty($group_id) )
         {
                 $items = DB::table($this->table_name)
             ->where('std_id','!=',$std_id)

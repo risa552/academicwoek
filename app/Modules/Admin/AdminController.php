@@ -53,8 +53,8 @@ class AdminController extends Controller
             $username = $request->get('username');
             $password = $request->get('password');
 
-            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) 
-            && !empty($house) && !empty($email) && !empty($username) && !empty($password))
+            if(!empty($first_name) && !empty($last_name)  && !empty($sex) 
+            && !empty($house)  && !empty($username) && !empty($password))
             {
                 $admin = DB::table('admin')
             ->where('first_name',$first_name)
@@ -100,7 +100,7 @@ class AdminController extends Controller
     {
         if(is_numeric($admin_id))
         {
-            $adminn = DB::table('admin')
+            $admin = DB::table('admin')
             ->select('admin.*','users.username')
             ->leftJoin('users', function ($join) use ($admin_id) {
                 $join->on('users.user_id', '=', 'admin.admin_id')
@@ -108,9 +108,9 @@ class AdminController extends Controller
                     ->where('status','Y');
             })
             ->where('admin_id',$admin_id)->first();
-            if(!empty($adminn))
+            if(!empty($admin))
             {
-                $admin = DB::table('admin')->where('admin_id',$admin_id)->first();
+                // $admin = DB::table('admin')->where('admin_id',$admin_id)->first();
                 return view('admin::fromadmin',[
                     'admin'=>$admin
                 ]);
@@ -132,7 +132,7 @@ class AdminController extends Controller
             $username = $request->get('username');
             $password = $request->get('password');
 
-            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($house) && !empty($email) && !empty($username) && !empty($password))
+            if(!empty($first_name) && !empty($last_name)  && !empty($sex) && !empty($house))
             {
                 $admin = DB::table('admin')
                 ->where('admin_id','!=',$admin_id)

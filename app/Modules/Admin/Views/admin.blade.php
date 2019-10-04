@@ -51,8 +51,8 @@
                                 <th>นามสกุล</th>
                                 <th>เบอร์โทรศัพท์</th>
                                 <th>เพศ</th>
-                                <th>ที่อยู่</th>
-                                <th>e-mail</th>
+                                <!-- <th>ที่อยู่</th> -->
+                                <!-- <th>e-mail</th> -->
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -64,8 +64,8 @@
                                 <td>{{$admin->last_name}}</td>
                                 <td>{{$admin->tel}}</td>
                                 <td>{{$admin->sex}}</td>
-                                <td>{{$admin->house}}</td>
-                                <td>{{$admin->email}}</td>
+                                <!-- <td>{{$admin->house}}</td>
+                                <td>{{$admin->email}}</td> -->
                                 <td>
                                     <div class="btn-group">
                                     <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/admin/{{$admin->admin_id}}"></a>

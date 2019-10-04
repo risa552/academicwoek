@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                                 <label >หลักสูตร:</label>
-                                <select style="width:150px;" name="cou_id">
+                                <select class="form-control"  name="cou_id">
                                     <option value="all">
                                         ทั้งหมด
                                     </option>

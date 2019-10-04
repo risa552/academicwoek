@@ -66,7 +66,7 @@
                                 <th>ลำดับที่</th>
                                 <th>รหัสนักศึกษา</th>
                                 <th>ชื่อนักศึกษา</th>
-                                <th>เบอร์โทรศัพท์</th>
+                                <!-- <th>เบอร์โทรศัพท์</th> -->
                                 <th>กลุ่มเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
@@ -77,7 +77,7 @@
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->number}}</td>
                                 <td>{{$row->first_name}} {{$row->last_name}}</td>
-                                <td>{{$row->tel}}</td>
+                                <!-- <td>{{$row->tel}}</td> -->
                                 <td>{{$row->group_name}}</td>
                                 <td>
                                     <div class="btn-group">

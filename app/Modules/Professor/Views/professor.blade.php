@@ -53,8 +53,8 @@
                             <tr>
                                 <th>ลำดับที่</th>
                                 <th>ชื่ออาจารย์</th>
-                                <th>เบอร์โทรศัพท์</th>
-                                <th>E-mail</th>
+                                <th>ที่อยู่</th>
+                                <!-- <th>E-mail</th> -->
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -63,8 +63,8 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$professor->first_name}} {{$professor->last_name}}</td>
-                                <td>{{$professor->tel}}</td>
-                                <td>{{$professor->email}}</td>
+                                <td>{{$professor->add}}</td>
+                                <!-- <td>{{$professor->email}}</td> -->
                                 <td>
                                     <div class="btn-group">
                                         <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/professor/{{$professor->teach_id}}"></a>

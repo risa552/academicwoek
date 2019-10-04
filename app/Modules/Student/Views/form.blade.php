@@ -46,15 +46,15 @@
                 @endif
                 <div class="panel-body">
                         <div class="form-group col-md-4">
-                            <label for="email">รหัสนักศึกษา:</label>
+                            <label for="email">รหัสนักศึกษา: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></label>
                             <input type="text" name="number" class="form-control" value="{{isset($student)?$student->number:''}}"/>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="email">ชื่อนักศึกษา:</label>
+                            <label for="email">ชื่อนักศึกษา: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></label>
                             <input type="text" name="first_name" class="form-control" value="{{isset($student)?$student->first_name:''}}"/>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="pwd">นามสกุล:</label>
+                            <label for="pwd">นามสกุล: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></label>
                             <input type="text" name="last_name" class="form-control" value="{{isset($student)?$student->last_name:''}}"/>
                         </div>
                         <div class="form-group col-md-4">
@@ -62,7 +62,7 @@
                             <input type="text" name="tel" class="form-control" value="{{isset($student)?$student->tel:''}}"/>
                         </div>
                         <div class="form-group col-md-2" >
-                            <label>เพศ:</label>
+                            <label>เพศ: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></label>
                             <select  name="sex" class="form-control">
                                 <option {{isset($student) && $student->sex==' ชาย'?' selected ':''}} value=" ชาย"> ชาย</option>
                                 <option {{isset($student) && $student->sex==' หญิง'?' selected ':''}} value=" หญิง"> หญิง</option>
@@ -73,12 +73,12 @@
                             <input type="text" name="email" class="form-control" value="{{isset($student)?$student->email:''}}"/>
                         </div>
                         <div class="form-group col-md-9">
-                            <label for="pwd">ที่อยู่:</label>
+                            <label for="pwd">ที่อยู่: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></label>
                             <input type="text" name="add" class="form-control" value="{{isset($student)?$student->add:''}}"/>
                         </div>
                         
                         <div class="form-group col-md-3">
-                                <label >กลุ่มเรียน:</label>
+                                <label >กลุ่มเรียน: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></label>
                                 <select class="form-control" name="group_id">
                                     <option value="all">
                                         ทั้งหมด
@@ -91,15 +91,18 @@
                                 </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <th>Username:</th>
+                            <th>Username: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></th>
                             <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($student)?$student->username:''}}"/>
                         </div>
                         <div class="form-group col-md-6">
-                            <th>Password:</th>
+                            <th>Password: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></th>
                             <input type="password" name="password" class="form-control" />
                         </div>  
-                    <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
-                </div>    
+                    <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i> <p>จำเป็นต้องใส่</p>
+
+                </div> 
+                <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
+
                 </form>
         </div>
     

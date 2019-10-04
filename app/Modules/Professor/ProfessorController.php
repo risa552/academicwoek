@@ -49,7 +49,7 @@ class ProfessorController extends Controller
             $email = $request->get('email');
             $username = $request->get('username');
             $password = $request->get('password');
-            if(!empty($first_name) && !empty($last_name) && !empty($tel) && !empty($sex) && !empty($add) && !empty($email) && !empty($username) &&!empty($password))
+            if(!empty($first_name) && !empty($last_name)  && !empty($sex) && !empty($add)  && !empty($username) &&!empty($password))
             {
                 $users = DB::table('users')
                 ->where('username',$username)
@@ -121,7 +121,7 @@ class ProfessorController extends Controller
             $username = $request->get('username');
             $password = $request->get('password');
 
-            if(!empty($first_name) && !empty($last_name) && !empty($Tel) && !empty($sex) && !empty($Add) && !empty($email))
+            if(!empty($first_name) && !empty($last_name)  && !empty($sex) && !empty($Add))
             {
                 $teacher = DB::table('teacher')
             ->where('teach_id','!=',$id)

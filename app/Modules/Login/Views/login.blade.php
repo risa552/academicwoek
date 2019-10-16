@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
         <link rel="stylesheet" href="/assets/css/academic.css">
-        <link rel="stylesheet" href="/assets/css/login.css">
+        <!-- <link rel="stylesheet" href="/assets/css/login.css"> -->
     </head>
     <body>
         <nav class="navbar navbar-default nav-bg-color">
@@ -26,7 +26,7 @@
             <div class="container-fluid">
                 <div class="modal-content" style="height:302px; width:352px; margin:100px auto;  ">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Login</h4>
+                    <center> <img src="/assets/img/04.png"> 
                     </div> <!-- /.modal-header -->
                     <div class="modal-body">
                         <form role="form" id='login' >

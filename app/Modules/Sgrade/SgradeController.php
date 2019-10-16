@@ -60,10 +60,12 @@ class SgradeController extends Controller
         when 'C' Then 2
         when 'D+' Then 1.5
         when 'D' Then 1
+        when 'F' then 0
         when null then 0
         END as total,
         std_id,credit FROM `enrolment` LEFT JOIN subject ON(enrolment.sub_id=subject.sub_id)
-        WHERE  (grade NOT IN('S','U','F') OR grade is null)  ");
+        WHERE ( grade NOT IN('S','U') OR grade is null)  ");
+
         $temp = [];
         if(!empty($result_greads))
         {
@@ -83,12 +85,14 @@ class SgradeController extends Controller
                 } 
             }
         }
+        // print_r($result_greads);exit;
+
         $student_gpa = [];
         foreach($temp as $std_id=>$item)
         {
             $student_gpa[$std_id] = number_format($item['score']/$item['credit'],2);
         }
-        // print_r($students);exit;
+        // print_r($student_gpa[$std_id]);exit;
         $group = DB::table('studygroup')
         ->where('studygroup.group_id',$group_id)
         ->whereNull('delete_at')->first();

@@ -68,7 +68,7 @@ class EducateController extends Controller
         {
             $items->where('program.group_id','=',$group_id);
         }
-        $items = $items->get();
+        $items = $items->paginate(50);
        // print_r($items);exit;
 
         $temp_educations = DB::table('educate')

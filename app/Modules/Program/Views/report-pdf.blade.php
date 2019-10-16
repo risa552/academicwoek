@@ -1,11 +1,12 @@
 
+                @foreach($programs as $index => $program)
+                    
                     <h5 style="text-align:center;">แผนการเรียน</h5>
                     <h4 style="border:1px solid #ccc;padding:5px;text-align:center;">
                     หลักสูตร : {{$course}}   สาขา : {{$branche}}   ปีการศึกษา : {{$group_year}}  ใช้หลักสูตรปรับปรุงปี  : {{$cou_year}}
                     </h4>
                     
-                    <table width=100% border="1" cellspacing="0" bordercolor="black"  class="table table-bordered">  
-                @foreach($programs as $program)
+                    <table width=100% border="1" cellspacing="0" bordercolor="black"  class="table table-bordered" font-size="12px;">  
                             <tr>
                                 <th colspan='4' >
                                 @if(isset($program[1]))
@@ -121,6 +122,7 @@
                         </tr>
                     
                     @endif
-                @endforeach
-
                     </table>
+                        <div style="page-break-after: always;"></div>
+                @endforeach
+                

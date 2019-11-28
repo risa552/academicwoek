@@ -1,5 +1,6 @@
+
 @extends('academic-layout') 
-@section('title','ออกเกรด')
+@section('title','รายงานเกรด กลุ่มเรียน')
 @section('content')
 <div class="container">
     <div class="col-md-10">
@@ -15,7 +16,7 @@
                 <span class="breadcrumb__divider" aria-hidden="true">›</span>
                 </li> -->
                 <li class="breadcrumb__group">
-                <span class="breadcrumb__point" aria-current="page">การออกเกรด</span>
+                <span class="breadcrumb__point" aria-current="page">รายงานเกรดตามวิชา</span>
                 </li>
             </ol>
             </nav>
@@ -26,44 +27,53 @@
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-info">
-                <div class="panel-heading">ค้นหาข้อมูลการออกเกรด</div>
+                <div class="panel-heading">ค้นหาข้อมูลกลุ่มเรียน</div>
                 <div class="panel-body">
-                    <form action="/grade">
-                    
+                    <form action="/ggrade">
+                    <div class="form-group">
+                        <label for="keyword">ชื่อนักศึกษา</label>
+                        <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}" >
+                    </div>
+                  
+                  
                         <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>
-            <!--<button type="submit" class="btn btn-info"><a href="#">อาจารย์</a></button> -->
+            <!--<button type="submit" class="btn btn-info"><a href="#">เกรด กลุ่มเรียน</a></button> -->
         </div> 
-        <form class="form-ajax" method="POST" action="/grade">
+        <form class="form-ajax" method="POST" action="/plan">
             <div class="col-md-9">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                    รายการการออกเกรด
+             รายงานเกรดนักศึกษา 
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>ลำดับ</th>
                                     <th>ชื่อวิชา</th>
-                                    <th style="width:10px;">กลุ่มเรียน</th>
-                                   <!-- <th>คะแนน/เกรด</th> -->
+                                    <th>กลุ่มเรียน</th>
+                                    <th>รายงาน</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($teach as $index => $row)
-                                <tr>
-                                    <td>{{$index+1}}</td>
-                                    <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
-                                    <td>{{$row->group_name}}</td>                                   
-                                </tr>
-                            @endforeach
+                                @foreach($items as $index => $item)
+                                    <tr>
+                                        <td>{{$index+$items->firstItem()}}</td>
+                                        <td>{{$item->sub_name}} <br> {{$item->sub_name_eng}}</td>
+                                        <td>{{$item->group_name}}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a class="fa fa-list-alt btn btn-default" aria-hidden="true" href="/ggrade/{{$item->educate_id}}"></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
-                        <button tyep="button" class="pull-right">ยืนยัน </button>
-                       
+                        {!! $items->render() !!}
                     </div>
                 </div>
             </div>

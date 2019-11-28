@@ -20,7 +20,7 @@ class ExamController extends Controller
         ->select('program.*',
         'subject.sub_code',
         'subject.sub_name',
-        'subject.sub_nameeng',
+        'subject.sub_name_eng',
         'exam.file_mid',
         'exam.file_final',
         'exam.exam_id',

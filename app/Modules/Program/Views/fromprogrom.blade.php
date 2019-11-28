@@ -65,7 +65,7 @@
                             </option>
                         @foreach($subjects as $index => $row3)
                             <option value ="{{$row3->sub_id}}" {{isset($program)&& $program->sub_id==$row3->sub_id?'selected':''}}>
-                                     {{$row3->sub_code}}  {{$row3->sub_name}}  {{$row3->sub_nameeng}}
+                                     {{$row3->sub_code}}  {{$row3->sub_name}}  {{$row3->sub_name_eng}}
                             </option>
                         @endforeach
                         </select>

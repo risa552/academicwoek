@@ -47,7 +47,7 @@
                                 @foreach($items as $item)
                                 <tr>
                                     <td> {{$item->term_name}}/{{$item->term_year}}</td>
-                                    <td> {{$item->sub_code}} {{$item->sub_name}}<br>{{$item->sub_nameeng}}</td>
+                                    <td> {{$item->sub_code}} {{$item->sub_name}}<br>{{$item->sub_name_eng}}</td>
                                     <td> {{$item->status}}</td>
                                     <td> {{$item->grade}}</td>
                                     <td>

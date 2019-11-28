@@ -70,6 +70,30 @@ class EnrolmentController extends Controller
         
         return view($this->table_name.'::list',compact('items','terms','term_current','bran'));
     }
-    
+    public function page_group (Request $request)
+    {
+        $keyword = $request->get('keyword');
+        $term_id = $request->get('term_id');
+        $bran_id = $request->get('bran_id');
+        $group_id = $request->get('group_id');
+
+        $groups = DB::table('studygroup')
+        ->select('studygroup.*',
+        'branch.bran_name',
+        'term.term_name',
+        'term.term_year')
+        ->leftJoin('branch','branch.bran_id','studygroup.bran_id')
+        ->leftJion('program','program.group_id','studygroup.group_id')
+        ->leftJion('term','term.term_id','program.term_id')
+        ->whereNull('studygroup.delete_at');
+        if(!empty($keyword))
+        {
+            $groups->where(function ($query) use($keyword){
+                $query->where('group_name','LIKE','%'.$keyword.'%');      
+            });
+        }
+       $groups = $groups->get();
+        return view($this->table_name.'::list-one',compact('groups'));
+    }
     
 }

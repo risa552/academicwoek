@@ -108,7 +108,7 @@
                             <tr>
                                 @if(!empty($program_1 && isset($program_1[$i])))
                                     <td>{{$program_1[$i]->sub_code}}</td>
-                                    <td>{{$program_1[$i]->sub_name}}<br>{{$program_1[$i]->sub_nameeng}}</td>
+                                    <td>{{$program_1[$i]->sub_name}}<br>{{$program_1[$i]->sub_name_eng}}</td>
                                     <td>{{$program_1[$i]->theory}}</td>
                                     <td>{{$program_1[$i]->practice}}</td>
                                     <?php 
@@ -123,7 +123,7 @@
                                 @endif
                                 @if(!empty($program_2 && isset($program_2[$i])))
                                     <td>{{$program_2[$i]->sub_code}}</td>
-                                    <td>{{$program_2[$i]->sub_name}}<br>{{$program_2[$i]->sub_nameeng}}</td>
+                                    <td>{{$program_2[$i]->sub_name}}<br>{{$program_2[$i]->sub_name_eng}}</td>
                                     <td>{{$program_2[$i]->theory}}</td>
                                     <td>{{$program_2[$i]->practice}}</td>
                                     <?php 

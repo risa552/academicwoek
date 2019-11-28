@@ -27,7 +27,7 @@ class SubjectController extends Controller
         if(!empty($keyword)){
             $items->where(function ($query) use($keyword){
                 $query->where('sub_name','LIKE','%'.$keyword.'%')
-                      ->orwhere('sub_nameeng','LIKE','%'.$keyword.'%')
+                      ->orwhere('sub_name_eng','LIKE','%'.$keyword.'%')
                       ->orwhere('sub_code','LIKE','%'.$keyword.'%')
                       ->orwhere('credit','LIKE','%'.$keyword.'%')
                       ->orwhere('theory','LIKE','%'.$keyword.'%')
@@ -52,7 +52,7 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
             $sub_name = $request->get('sub_name');
-            $sub_nameeng = $request->get('sub_nameeng');
+            $sub_name_eng = $request->get('sub_name_eng');
             $sub_code = $request->get('sub_code');
             $credit = $request->get('credit');
             $theory = $request->get('theory');
@@ -60,7 +60,7 @@ class SubjectController extends Controller
             $special = $request->get('special');
             $subgroup_id = $request->get('subgroup_id');
             
-            if(!empty($sub_name) && !empty($sub_nameeng) && !empty($credit) && !empty($sub_code)   && !empty($subgroup_id) )
+            if(!empty($sub_name) && !empty($sub_name_eng) && !empty($credit) && !empty($sub_code)   && !empty($subgroup_id) )
             {
                 $items = DB::table($this->table_name)
                 ->where('sub_code',$sub_code)
@@ -71,7 +71,7 @@ class SubjectController extends Controller
                 }   
                 DB::table($this->table_name)->insert([
                     'sub_name' =>$sub_name,
-                    'sub_nameeng' =>$sub_nameeng,
+                    'sub_name_eng' =>$sub_name_eng,
                     'sub_code' =>$sub_code,
                     'credit' =>$credit,
                     'theory' =>$theory,
@@ -109,7 +109,7 @@ class SubjectController extends Controller
         if(is_numeric($id))
         {
             $sub_name = $request->get('sub_name');
-            $sub_nameeng = $request->get('sub_nameeng');
+            $sub_name_eng = $request->get('sub_name_eng');
             $sub_code = $request->get('sub_code');
             $credit = $request->get('credit');
             $theory = $request->get('theory');
@@ -117,7 +117,7 @@ class SubjectController extends Controller
             $special = $request->get('special');
             $subgroup_id = $request->get('subgroup_id');
             
-            if(!empty($sub_name) && !empty($sub_nameeng) && !empty($credit) && !empty($sub_code) && !empty($subgroup_id) )
+            if(!empty($sub_name) && !empty($sub_name_eng) && !empty($credit) && !empty($sub_code) && !empty($subgroup_id) )
             {
                 $items = DB::table($this->table_name)
                     ->where('sub_id','!=',$id)
@@ -128,7 +128,7 @@ class SubjectController extends Controller
                 }
                 DB::table($this->table_name)->where('sub_id',$id)->update([
                     'sub_name' =>$sub_name,
-                    'sub_nameeng' =>$sub_nameeng,
+                    'sub_name_eng' =>$sub_name_eng,
                     'sub_code' =>$sub_code,
                     'credit' =>$credit,
                     'theory' =>$theory,

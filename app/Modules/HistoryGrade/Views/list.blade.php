@@ -105,7 +105,7 @@
                                                     <tr>
                                                         <td>{{$index}}</td>
                                                         <td>{{$grade->sub_code}}</td>
-                                                        <td>{{$grade->sub_name}}<br>{{$grade->sub_nameeng}}</td>
+                                                        <td>{{$grade->sub_name}}<br>{{$grade->sub_name_eng}}</td>
                                                         <td>{{$grade->credit}} ( {{$grade->theory}} - {{$grade->practice}} - {{$grade->special}} )</td>
                                                         <td>{{$grade->grade}}</td>
                                                     </tr>

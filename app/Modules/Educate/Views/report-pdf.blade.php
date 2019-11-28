@@ -57,7 +57,7 @@
                                 <td>{{$i==0?$index+1:''}}</td>
                                 <td>{{$item['name']}} {{$item['surname']}}</td>
                                 <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$item['sub_code']}}</td>
-                                <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$item['sub_name']}}<br> {{$item['sub_nameeng']}}</td>
+                                <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$item['sub_name']}}<br> {{$item['sub_name_eng']}}</td>
                                 <td>{{$item['degree_1']}}</td>
                                 <td>{{$item['degree_2']}}</td>
                                 @for($i=1;$i<=10;$i++)

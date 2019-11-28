@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Input;
 use DB;
 use App\Services\MyResponse;
-use App\services\MY_PDF;
+use App\services\PDF_Landscape;
 
 class ProgramController extends Controller
 {
@@ -27,7 +27,7 @@ class ProgramController extends Controller
         'term.term_name',
         'term.term_year',
         'subject.sub_name',
-        'subject.sub_nameeng',
+        'subject.sub_name_eng',
         'subject.sub_code',
         'subject.theory',
         'subject.practice')
@@ -43,7 +43,7 @@ class ProgramController extends Controller
             $items->where(function ($query) use($keyword){
                 $query->where('sub_code','LIKE','%'.$keyword.'%')
                       ->orwhere('sub_name','LIKE','%'.$keyword.'%')
-                      ->orwhere('sub_nameeng','LIKE','%'.$keyword.'%')
+                      ->orwhere('sub_name_eng','LIKE','%'.$keyword.'%')
                       ->orwhere('term_name','LIKE','%'.$keyword.'%')
                       ->orwhere('term_year','LIKE','%'.$keyword.'%');
             });
@@ -216,7 +216,7 @@ class ProgramController extends Controller
         ->select('program.*',
         'subject.sub_code',
         'subject.sub_name',
-        'subject.sub_nameeng',
+        'subject.sub_name_eng',
         'subject.theory',
         'subject.practice',
         'branch.bran_name',
@@ -279,7 +279,7 @@ class ProgramController extends Controller
         
         $html= view('program::report-pdf',compact('programs','branche','course','cou_year','group_year','group_name'));
         // echo $html;exit;
-        MY_PDF::html($html->render());
+        PDF_Landscape::html($html->render());
     }
 
 }

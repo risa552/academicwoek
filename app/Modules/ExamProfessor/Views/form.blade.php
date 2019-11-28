@@ -70,7 +70,7 @@
                                 <tr>
                                     <td>{{$index+$exam->FirstItem()}}</td>
                                     <td>{{$row->sub_code}}</td>
-                                    <td>{{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
+                                    <td>{{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
                                     <td><a target="_blank" href="{{$row->file_mid}}">{{$row->file_mid}}</a></td>
                                     <td>
                                         <button type="button" data-term="file_mid" data-programid="{{$row->program_id}}" data-ext="doc,docx,xls,xlsx,pdf" data-url="/upload-exam" data-callback="exam_success" class="btn btn-default upload-file">

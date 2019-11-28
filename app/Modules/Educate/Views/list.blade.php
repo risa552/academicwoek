@@ -84,7 +84,7 @@
                                 <tr>
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
-                                    <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
+                                    <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
                                     <td>{{$row->term_name}}/{{$row->term_year}}</td>
                                     <td>{{$row->group_name}}</td>
                                     <td>

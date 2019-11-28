@@ -8,7 +8,7 @@
 namespace App\services;
 use Storage;
 use Mpdf\Mpdf;
-class MY_PDF
+class PDF_Landscape
 {
     public static function html($html='',$orentation='P')
     {
@@ -34,7 +34,7 @@ class MY_PDF
                 ]
             ],
             'default_font' => 'thsarabun',
-            'orientation'  => ($orentation=='P')?'P':'L',
+            'orientation'  => ($orentation=='L')?'P':'L',
             'format'=>'A4',
             'mode'=>'th',
             'mgl'=>12,
@@ -45,7 +45,7 @@ class MY_PDF
             'mgf'=>3
         ];
 
-        if($orentation=='P') $pdf = new mPDF($config); // margin left right top bottom
+        if($orentation=='L') $pdf = new mPDF($config); // margin left right top bottom
         else $pdf = new mPDF($config);
         $css = 'body{font-family:thsarabun;font-size:13pt;letter-spacing:0px;}.fa{font-family:fa;font-size:13px;}span{body{font-family:thsarabun;font-size:13pt;}';
         $pdf->WriteHTML($css,1);

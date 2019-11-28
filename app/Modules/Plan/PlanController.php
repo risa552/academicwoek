@@ -50,7 +50,7 @@ class PlanController extends Controller
         ->select('enrolment.*',
         'subject.sub_code',
         'subject.sub_name',
-        'subject.sub_nameeng',
+        'subject.sub_name_eng',
         'term.term_name',
         'term.term_year')
         ->rightJoin('subject','enrolment.sub_id','subject.sub_id')
@@ -117,7 +117,6 @@ class PlanController extends Controller
         return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
 
-    
     public function dastroy($enro_id)
     {
         DB::table('enrolment')->where('enro_id',$enro_id)->update([

@@ -63,7 +63,7 @@ class HistoryGradeController extends Controller
         ->select('enrolment.*',
         'subject.sub_code',
         'subject.sub_name',
-        'subject.sub_nameeng',
+        'subject.sub_name_eng',
         'subject.credit',
         'subject.theory',
         'subject.practice',

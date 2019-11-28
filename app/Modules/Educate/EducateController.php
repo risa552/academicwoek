@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Input;
 use DB;
 use App\Services\MyResponse;
-use App\Services\MY_PDF;
+use App\Services\PDF_Landscape;
 
 class EducateController extends Controller
 {
@@ -29,7 +29,7 @@ class EducateController extends Controller
         // 'teacher.last_name',
         'subject.sub_code',
         'subject.sub_name',
-        'subject.sub_nameeng',
+        'subject.sub_name_eng',
         'subject.theory',
         'subject.practice',
         'term.term_name',
@@ -117,7 +117,7 @@ class EducateController extends Controller
         'studygroup.group_type',
         'subject.sub_code',
         'subject.sub_name',
-        'subject.sub_nameeng',
+        'subject.sub_name_eng',
         'subject.theory',
         'subject.practice',
         'term.term_name',
@@ -299,7 +299,7 @@ class EducateController extends Controller
         'studygroup.group_type',
         'subject.sub_code',
         'subject.sub_name',
-        'subject.sub_nameeng',
+        'subject.sub_name_eng',
         'subject.theory',
         'subject.practice',
         'term.term_name',
@@ -340,7 +340,7 @@ class EducateController extends Controller
                     'surname'=>$list->last_name,
                     'sub_code'=>$list->sub_code,
                     'sub_name'=>$list->sub_name,
-                    'sub_nameeng'=>$list->sub_nameeng,
+                    'sub_name_eng'=>$list->sub_name_eng,
                     'degree_1'=>($list->degree_name == 'ปวส.')?$list->group_name:'',
                     'degree_2'=>($list->degree_name != 'ปวส.')?$list->group_name:'',
                     'C1'=>($list->group_type == 'ปกติ')?$list->theory:'',
@@ -360,7 +360,7 @@ class EducateController extends Controller
                     'surname'=>"",
                     'sub_code'=>$list->sub_code,
                     'sub_name'=>$list->sub_name,
-                    'sub_nameeng'=>$list->sub_nameeng,
+                    'sub_name_eng'=>$list->sub_name_eng,
                     'degree_1'=>($list->degree_name == 'ปวส.')?$list->group_name:'',
                     'degree_2'=>($list->degree_name != 'ปวส.')?$list->group_name:'',
                     'C1'=>($list->group_type == 'ปกติ')?$list->theory:'',
@@ -400,6 +400,6 @@ class EducateController extends Controller
         
         $html= view('educate::report-pdf',compact('teachers','sub','term','group','items','terms'));
         // echo $html;exit;
-        MY_PDF::html($html->render());
+        PDF_Landscape::html($html->render());
     }
 }

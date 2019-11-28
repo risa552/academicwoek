@@ -37,7 +37,7 @@
                                 </option>
                             @foreach($rom1 as $index => $row3)
                                 <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'selected':''}}>
-                                    {{$row3->sub_name}} {{$row3->sub_nameeng}}
+                                    {{$row3->sub_name}} {{$row3->sub_name_eng}}
                                 </option>
                             @endforeach
                             </select>
@@ -83,7 +83,7 @@
                                 <tr>
                                     <td>{{$index+$grade->firstItem()}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}} [{{$row->group_name}}]</td>
-                                    <td>{{$row->sub_code}} {{$row->sub_name}}</td>
+                                    <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
                                     <td>
                                         <div class="form-group">
                                             <select class="form-control"  name="grade[{{$row->enro_id}}]">

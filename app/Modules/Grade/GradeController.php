@@ -27,7 +27,7 @@ class GradeController extends Controller
         'student.last_name',
         'subject.sub_code',
         'subject.sub_name',
-        'subject.sub_nameeng',
+        'subject.sub_name_eng',
         'studygroup.group_name')
         ->leftJoin('student','student.std_id','enrolment.std_id')
         ->leftJoin('subject','subject.sub_id','enrolment.sub_id')

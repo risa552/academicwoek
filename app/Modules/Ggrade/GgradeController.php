@@ -15,10 +15,34 @@ class GgradeController extends Controller
 
     public function index(Request $request)
     {
-        $keyword = $request->get('keyword');
-        $term_id = $request->get('term_id');
-        $sub_id = $request->get('sub_id');
-        $group_id = $request->get('group_id');
+        
+        $user=CurrentUser::user();
+        $items = DB::table('educate')
+        ->select('educate.*',
+        'subject.sub_name',
+        'subject.sub_name_eng',
+        'studygroup.group_name',
+        'term.term_name',
+        'term.term_year')
+        ->leftJoin('subject','subject.sub_id','educate.sub_id')
+        ->leftJoin('studygroup','studygroup.group_id','educate.group_id')
+        ->leftJoin('term','term.term_id','educate.term_id')
+        ->whereExists(function ($query) {
+            $query->select(DB::raw(1))
+                    ->from('term')
+                    ->where('startdate','<=',date('Y-m-d'))
+                    ->where('enddate','>=',date('Y-m-d'))
+                    ->whereRaw('educate.term_id = term.term_id');
+        })
+        ->whereNull('educate.delete_at');
+
+        $items =$items->paginate(10);
+        return view ('ggrade::list',compact('items'));
+
+    }
+    public function show($educate_id,Request $request)
+    {
+        
 
         $user=CurrentUser::user();
         $ggrade = DB::table('enrolment')
@@ -27,7 +51,7 @@ class GgradeController extends Controller
         'student.last_name',
         'subject.sub_code',
         'subject.sub_name',
-        'subject.sub_nameeng',
+        'subject.sub_name_eng',
         'studygroup.group_name')
         ->leftJoin('student','student.std_id','enrolment.std_id')
         ->leftJoin('subject','subject.sub_id','enrolment.sub_id')
@@ -41,23 +65,7 @@ class GgradeController extends Controller
         ->whereNull('subject.delete_at')
         ->whereNull('teacher.delete_at');
         
-        if(!empty($keyword)){
-            $ggrade->where(function ($query) use($keyword){
-                $query->where('term_id','LIKE','%'.$keyword.'%');
-            });
-        }
-        if(is_numeric($term_id))
-        {
-            $ggrade->where('enrolment.term_id','=',$term_id);
-        }
-        if(is_numeric($sub_id))
-        {
-            $ggrade->where('enrolment.sub_id','=',$sub_id);
-        }
-        if(is_numeric($group_id))
-        {
-            $ggrade->where('student.group_id','=',$group_id);
-        }
+        
        
         $ggrade = $ggrade->OrderBy('subject.sub_name','asc')->OrderBy('studygroup.group_name','asc')->get();
         $rom = DB::table('term')->whereNull('delete_at')->get();

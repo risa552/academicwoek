@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>ชื่อวิชาอังกฤษ:</label>
-                            <input type="text" name="sub_nameeng" class="form-control" value="{{isset($items)?$items->sub_nameeng:''}}"/>
+                            <input type="text" name="sub_name_eng" class="form-control" value="{{isset($items)?$items->sub_name_eng:''}}"/>
                         </div>
                         <div class="form-group col-md-6">
                             <label>รหัสวิชา:</label>

@@ -23,8 +23,14 @@ class HomeService
     {
         $home = DB::table('student')
         ->select('student.*',
-        'studygroup.group_name')
+        'course.cou_name',
+        'branch.bran_name',
+        'studygroup.group_name',
+        'degree.degree_name')
         ->leftJoin('studygroup','student.group_id','studygroup.group_id')
+        ->rightJoin('branch','studygroup.bran_id','branch.bran_id')
+        ->rightJoin('degree','studygroup.degree_id','degree.degree_id')
+        ->rightJoin('course','branch.cou_id','course.cou_id')
         ->where('student.std_id',$user->std_id)
         ->get();
         $hometeach = DB::table('teacher')

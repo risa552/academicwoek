@@ -24,7 +24,7 @@ class ExamProfessorController extends Controller
         'subject.sub_name',
         'exam.file_mid',
         'exam.file_final',
-        'subject.sub_nameeng')
+        'subject.sub_name_eng')
         ->leftJoin('subject','subject.sub_id','program.sub_id')
         ->leftJoin('exam','exam.program_id','program.program_id')
         ->leftJoin('term','term.term_id','program.term_id')

@@ -37,7 +37,7 @@
                                 </option>
                             @foreach($items as $index => $row1)
                                 <option value ="{{$row1->sub_id}}" {{Input::get('sub_id')==$row1->sub_id?'stlected':''}}>
-                                    {{$row1->sub_name}} {{$row1->sub_nameeng}}
+                                    {{$row1->sub_name}} {{$row1->sub_name_eng}}
                                 </option>
                             @endforeach
                             </select>
@@ -71,7 +71,7 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$row->sub_code}}</td>
-                                <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
+                                <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
                                 <td><a target="_blank" href="{{$row->file_mid}}">{{$row->file_mid}} <br> {{$row->created_at}}</a></td>
                                 <td><a target="_blank" href="{{$row->file_final}}">{{$row->file_final}} <br> {{$row->created_at}}</a></td>
                                 <!--<td>

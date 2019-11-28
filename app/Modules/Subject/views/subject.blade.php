@@ -79,7 +79,7 @@
                             <tr>
                                 <td>{{$index+$items->firstItem()}}</td>
                                 <td>{{$row->sub_code}}</td>
-                                <td>{{$row->sub_name}} <br> {{$row->sub_nameeng}}</td>
+                                <td>{{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
                                 <td>{{$row->credit}}({{$row->theory}}-{{$row->practice}}-{{$row->special}})</td>
                                 <!-- <td>{{$row->theory}}</td>
                                 <td>{{$row->practice}}</td>

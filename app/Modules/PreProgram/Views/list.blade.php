@@ -80,6 +80,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {!! $studygroup->render() !!}
                     <!--<ul class="pagination">
                         <li><a href="#">1</a></li>
                         <li><a href="#">2</a></li>

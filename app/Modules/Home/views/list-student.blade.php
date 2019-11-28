@@ -39,6 +39,15 @@
                             <tr>
                                 <td><b>กลุ่มเรียน :</b>{{$student->group_name}} </td>
                             <tr>
+                            <tr>
+                                <td><b>ระดับ :</b>{{$student->degree_name}} </td>
+                            <tr>
+                            <tr>
+                                <td><b>สาขา :</b>{{$student->bran_name}} </td>
+                            <tr>
+                            <tr>
+                                <td><b>หลักสูตร:</b>{{$student->cou_name}} </td>
+                            <tr>
                         @endforeach
                         </table>
                     </div>

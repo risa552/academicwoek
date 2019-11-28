@@ -25,7 +25,7 @@ class PreProgramController extends Controller
         if(is_numeric($group_id)){
             $studygroup->where('studygroup.group_id','=',$group_id);
         }
-        $studygroup=$studygroup->get();
+        $studygroup=$studygroup->paginate(10);
         return view('preprogram::list',compact('studygroup'));
 
     }

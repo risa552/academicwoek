@@ -140,26 +140,15 @@ class ProfessorController extends Controller
                     'email' =>$email,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
-                if(!empty($username))
-                {   
-                    $users = DB::table('users')
-                        ->where('username',$username)
-                        ->where('user_type','USER_LEVEL_TEACHER')
-                        ->where('user_id','!=',$id)
-                        ->where('status','Y')->first();
-                        if(!empty($users)){
-                            return MyResponse::error('Username นี้มีในระบบแล้ว');
-                        }else{
-                            DB::table('users')
-                            ->where('user_type','USER_LEVEL_TEACHER')
-                            ->where('user_id',$id)
-                            ->where('user_type','USER_LEVEL_TEACHER')
-                            ->where('status','Y')
-                            ->update([
-                                'username' =>$username,
-                                'password' =>Hash::make($password)
-                            ]);
-                        }
+                if(!empty($password)){
+                    DB::table('users')
+                    ->where('user_type','USER_LEVEL_TEACHER')
+                    ->where('user_id',$id)
+                    ->where('user_type','USER_LEVEL_TEACHER')
+                    ->where('status','Y')
+                    ->update([
+                        'password' =>Hash::make($password)
+                    ]);
                 }
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/professor');
             }else{

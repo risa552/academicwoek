@@ -92,7 +92,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <th>Username: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></th>
-                            <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($student)?$student->username:''}}"/>
+                            <input type="text" name="username" {{isset($student)?' disabled':''}}  autocomplate="off" class="form-control" value="{{isset($student)?$student->username:''}}"/>
                         </div>
                         <div class="form-group col-md-6">
                             <th>Password: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i></th>

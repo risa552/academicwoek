@@ -116,8 +116,8 @@ class PlanController extends Controller
         }
         return MyResponse::error('ป้อนข้อมูลไม่ถูกต้อง');
     }
-
-    public function dastroy($enro_id)
+    
+    public function destroy($enro_id)
     {
         DB::table('enrolment')->where('enro_id',$enro_id)->update([
             'delete_at' =>date('Y-m-d H:i:s'),

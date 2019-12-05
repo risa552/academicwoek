@@ -24,46 +24,48 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <div class="panel panel-info">
-                <div class="panel-heading">ค้นหาข้อมูลการออกเกรด</div>
-                <div class="panel-body">
-                    <form action="/grade">
-                    
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
-                </div>
-            </div>
-            <!--<button type="submit" class="btn btn-info"><a href="#">อาจารย์</a></button> -->
-        </div> 
+       
         <form class="form-ajax" method="POST" action="/grade">
             <div class="col-md-9">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                    รายการการออกเกรด
+                    รายการการออกเกรด : {{$subject->sub_name}}   กลุ่มเรียน :  {{$subject->group_name}} 
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ชื่อวิชา</th>
-                                    <th style="width:10px;">กลุ่มเรียน</th>
+                                    <th>นักศึกษา</th>
+                                    <th>เกรด</th>
                                    <!-- <th>คะแนน/เกรด</th> -->
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($teach as $index => $row)
+                            @foreach($grade as $index => $row)
                                 <tr>
-                                    <td>{{$index+1}}</td>
-                                    <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
-                                    <td>{{$row->group_name}}</td>                                   
+                                    <td>{{$index+$grade->firstItem()}}</td>
+                                    <td>{{$row->first_name}} {{$row->last_name}}</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="form-control"  name="grade[{{$row->enro_id}}]">
+                                            <option {{isset($row)&& $row->grade=='A'?' selected ':''}} value="A">A</option>
+                                                <option {{isset($row)&& $row->grade=='B+'?'selected':''}} value="B+">B+</option>
+                                                <option {{isset($row)&& $row->grade=='B'?'selected':''}} value="B">B</option>
+                                                <option {{isset($row)&& $row->grade=='C+'?'selected':''}} value="C+">C+</option>
+                                                <option {{isset($row)&& $row->grade=='C'?'selected':''}} value="C">C</option>
+                                                <option {{isset($row)&& $row->grade=='D+'?'selected':''}} value="D+">D+</option>
+                                                <option {{isset($row)&& $row->grade=='D'?'selected':''}} value="D">D</option>
+                                                <option {{isset($row)&& $row->grade=='F'?'selected':''}} value="F">F</option>
+                                            </select>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                         <button tyep="button" class="pull-right">ยืนยัน </button>
-                       
+                        {!! $grade->render() !!}
                     </div>
                 </div>
             </div>

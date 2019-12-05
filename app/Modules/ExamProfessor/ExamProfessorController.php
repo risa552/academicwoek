@@ -17,69 +17,77 @@ class ExamProfessorController extends Controller
         $term_id =$request->get('term_id');
 
         $user=CurrentUser::user();
-        
-        $exam = DB::table('program')
-        ->select('program.*',
-        'subject.sub_code',
-        'subject.sub_name',
-        'exam.file_mid',
-        'exam.file_final',
-        'subject.sub_name_eng')
-        ->leftJoin('subject','subject.sub_id','program.sub_id')
-        ->leftJoin('exam','exam.program_id','program.program_id')
-        ->leftJoin('term','term.term_id','program.term_id')
-        ->leftjoin('educate', function ($join) {
-            $join->on('program.term_id', '=', 'educate.term_id')
-                 ->on('program.sub_id', '=', 'educate.sub_id');
-        })
-        ->where('educate.teach_id',$user->teach_id)
-        ->whereExists(function ($query) {
-            $query->select(DB::raw(1))
-                    ->from('term')
-                    ->where('startdate','<=',date('Y-m-d'))
-                    ->where('enddate','>=',date('Y-m-d'))
-                    ->whereRaw('program.term_id = term.term_id');
-        })
-        ->whereNull('program.delete_at');
+        $now = date('Y-m-d');
 
-        // $exam = DB::table('educate')
-        // ->select('educate.teach_id',
-        // 'program.program_id',
+        $select = 'subject.sub_code,subject.sub_name,subject.sub_name_eng,studygroup.group_name,exam.file_mid,exam.file_final,educate.educate_id';
+        $exam = DB::table('educate')
+                ->select(explode(',',$select))
+                ->leftJoin('subject','subject.sub_id','=','educate.sub_id')
+                ->leftJoin('studygroup','studygroup.group_id','=','educate.group_id')
+                ->leftJoin('exam','exam.educate_id','=','educate.educate_id')
+                ->where('educate.teach_id',$user->teach_id)
+                ->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                            ->from('term')
+                            ->where('startdate','<=',date('Y-m-d'))
+                            ->where('enddate','>=',date('Y-m-d'))
+                            ->whereRaw('educate.term_id = term.term_id');
+                })->paginate(10);
+
+/*
+        $exam = DB::select("SELECT subject.sub_name,subject.sub_name_eng,studygroup.group_name,
+        exam.file_mid,exam.file_final
+        FROM educate 
+        LEFT JOIN subject ON(subject.sub_id=educate.sub_id)
+        LEFT JOIN studygroup ON(studygroup.group_id=educate.group_id)
+        LEFT JOIN program ON(program.group_id=educate.group_id 
+        AND program.term_id=educate.term_id 
+        and program.sub_id=educate.sub_id)
+        LEFT JOIN exam ON(exam.program_id=program.program_id)
+        WHERE educate.teach_id={$user->teach_id} and program.delete_at is null 
+        AND EXISTS(SElECT 1 from term where term.term_id=educate.term_id 
+        and term.startdate<='{$now}'
+        and term.enddate>='{$now}')");
+        */
+
+
+
+
+        // table('educate')
+        // ->select(
         // 'subject.sub_code',
         // 'subject.sub_name',
         // 'exam.file_mid',
         // 'exam.file_final',
-        // 'program.term_id')
-        // ->leftjoin('program', function ($join) {
-        //     $join->on('program.term_id', '=', 'educate.term_id')
-        //          ->on('program.sub_id', '=', 'educate.sub_id');
-        // })
-        // ->leftJoin('subject','program.sub_id','subject.sub_id')
-        // ->leftJoin('exam','program.program_id','exam.program_id')
-    
+        // 'subject.sub_name_eng',
+        // 'studygroup.group_name')
+        // ->leftJoin('subject','subject.sub_id','educate.sub_id')
+        // ->leftJoin('exam','exam.program_id','program.program_id')
+        // ->leftJoin('term','term.term_id','educate.term_id')
+        // ->rightJoin('studygroup','studygroup.group_id','educate.group_id')
+
         // ->where('educate.teach_id',$user->teach_id)
         // ->whereExists(function ($query) {
         //     $query->select(DB::raw(1))
-        //           ->from('term')
-        //           ->where('startdate','<=',date('Y-m-d'))
-        //           ->where('enddate','>=',date('Y-m-d'))
-        //           ->whereRaw('program.term_id = term.term_id');
+        //             ->from('term')
+        //             ->where('startdate','<=',date('Y-m-d'))
+        //             ->where('enddate','>=',date('Y-m-d'))
+        //             ->whereRaw('program.term_id = term.term_id');
         // })
-        // ->whereNull('program.delete_at')
-        // ->whereNull('exam.delete_at');
+        // ->whereNull('program.delete_at');
+        
+        // if(!empty($keyword)){
+        //     $exam->where(function ($query) use($keyword){
+        //         $query->where('term_id','LIKE','%'.$keyword.'%');
+        //     });
+        // }
+        // if(is_numeric($term_id))
+        // {
+        //     $exam->where('program.term_id','=',$term_id);
+        // }
+        //$exam = $exam->paginate(10);
+        //print_r($exam);exit;
 
-
-        if(!empty($keyword)){
-            $exam->where(function ($query) use($keyword){
-                $query->where('term_id','LIKE','%'.$keyword.'%');
-            });
-        }
-        if(is_numeric($term_id))
-        {
-            $exam->where('program.term_id','=',$term_id);
-        }
-          //  print_r($exam);exit;
-        $exam = $exam->paginate(10);
         $rom = DB::table('term')->whereNull('delete_at')->get();
         return view('examprofessor::form',compact('exam','rom'));
     }

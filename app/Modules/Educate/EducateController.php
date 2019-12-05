@@ -187,7 +187,7 @@ class EducateController extends Controller
     {
         if(is_numeric($id))
         { 
-            $item = DB::table('program')
+            $item = DB::table('')
             ->select('program.*',
             'subject.sub_id',
             'subject.sub_code',

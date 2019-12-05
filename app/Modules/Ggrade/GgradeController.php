@@ -27,6 +27,9 @@ class GgradeController extends Controller
         ->leftJoin('subject','subject.sub_id','educate.sub_id')
         ->leftJoin('studygroup','studygroup.group_id','educate.group_id')
         ->leftJoin('term','term.term_id','educate.term_id')
+        ->where('educate.teach_id',$user->teach_id)
+
+        ->whereRaw(DB::raw('studygroup.group_id = educate.group_id'))
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                     ->from('term')
@@ -42,7 +45,7 @@ class GgradeController extends Controller
     }
     public function show($educate_id,Request $request)
     {
-        
+        $keyword = $request->get('keyword');
 
         $user=CurrentUser::user();
         $ggrade = DB::table('enrolment')
@@ -59,14 +62,27 @@ class GgradeController extends Controller
         ->leftJoin('teacher','teacher.teach_id','educate.teach_id')
         ->leftJoin('studygroup','studygroup.group_id','student.group_id')
         ->where('teacher.teach_id',$user->teach_id)
+        ->where('educate.educate_id',$educate_id)
         ->whereRaw(DB::raw('studygroup.group_id = educate.group_id'))
         ->whereNull('enrolment.delete_at')
         ->whereNull('student.delete_at')
         ->whereNull('subject.delete_at')
         ->whereNull('teacher.delete_at');
+        if(!empty($keyword)){
+            $ggrade->where(function ($query) use($keyword){
+                $query->where('student.first_name','LIKE','%'.$keyword.'%')
+                        ->orwhere('student.last_name','LIKE','%'.$keyword.'%');
+            });
+        }
+
+        $subject = DB::table('subject')
+        ->select('subject.*',
+        'studygroup.group_name')
+        ->leftJoin('educate','educate.sub_id','subject.sub_id')
+        ->leftJoin('studygroup','educate.group_id','studygroup.group_id')
+        ->whereNull('subject.delete_at')->first();
+
         
-        
-       
         $ggrade = $ggrade->OrderBy('subject.sub_name','asc')->OrderBy('studygroup.group_name','asc')->get();
         $rom = DB::table('term')->whereNull('delete_at')->get();
         $rom1 = DB::table('subject')
@@ -75,7 +91,7 @@ class GgradeController extends Controller
         ->whereNull('subject.delete_at')
         ->get();
         $rom2 = DB::table('studygroup')->whereNull('delete_at')->get();
-        return view('ggrade::form',compact('ggrade','rom','rom1','rom2'));
+        return view('ggrade::form',compact('ggrade','rom','rom1','rom2','subject','educate_id'));
     }
 
     public function store(Request $request)

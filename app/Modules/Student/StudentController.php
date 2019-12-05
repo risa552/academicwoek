@@ -166,25 +166,15 @@ class StudentController extends Controller
                     'group_id'=>$group_id,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
-                if(!empty($username)){
-                    $users = DB::table ('users')
-                        ->where('username',$username)
-                        ->where('user_type','USER_LEVEL_STUDENT')
-                        ->where('user_id','!=','std_id')
-                        ->where('status','Y')->first();
-                    if(!empty($users)){
-                        return MyResponse::error ('username นี้มีในระบบแล้วค่ะ'); 
-                    }else{
-                        DB::table('users')
-                        ->where('user_type','USER_LEVEL_STUDENT')
-                        ->where('user_id',$std_id)
-                        ->where('user_type','USER_LEVEL_STUDENT')
-                        ->where('status','Y')
-                        ->update([
-                            'username' =>$username,
-                            'password' =>Hash::make($password)
-                        ]);
-                    }
+                if(!empty($password)){
+                    DB::table('users')
+                    ->where('user_type','USER_LEVEL_STUDENT')
+                    ->where('user_id',$std_id)
+                    ->where('user_type','USER_LEVEL_STUDENT')
+                    ->where('status','Y')
+                    ->update([
+                        'password' =>Hash::make($password)
+                    ]);
                 }
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/student');
             }else{

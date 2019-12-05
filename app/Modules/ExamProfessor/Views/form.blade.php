@@ -57,11 +57,12 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>รหัสวิชา</th>
+                                <th>#</th>
                                 <th>ชื่อวิชา</th>
-                                <th>ไฟล์ข้อสอบกลางภาค</th>
+                                <th>กลุ่มเรียน</th>
+                                <th style="width:150px;">ไฟล์ข้อสอบกลางภาค</th>
                                 <th></th>
-                                <th>ไฟล์ข้อสอบปลายภาค</th>
+                                <th style="width:150px;">ไฟล์ข้อสอบปลายภาค</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -69,17 +70,17 @@
                             @foreach($exam as $index => $row)
                                 <tr>
                                     <td>{{$index+$exam->FirstItem()}}</td>
-                                    <td>{{$row->sub_code}}</td>
-                                    <td>{{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
-                                    <td><a target="_blank" href="{{$row->file_mid}}">{{$row->file_mid}}</a></td>
+                                    <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
+                                    <td>{{$row->group_name}}</td>
+                                    <td><a target="_blank" href="{{$row->file_mid}}">{{$row->file_mid?'Download':''}}</a></td>
                                     <td>
-                                        <button type="button" data-term="file_mid" data-programid="{{$row->program_id}}" data-ext="doc,docx,xls,xlsx,pdf" data-url="/upload-exam" data-callback="exam_success" class="btn btn-default upload-file">
+                                        <button type="button" data-term="file_mid" data-programid="{{$row->educate_id}}" data-ext="doc,docx,xls,xlsx,pdf" data-url="/upload-exam" data-callback="exam_success" class="btn btn-default upload-file">
                                         <i class="fa fa-file-text" aria-hidden="true"></i>
                                         </button>
                                     </td>
-                                    <td><a target="_blank" href="{{$row->file_final}}">{{$row->file_final}}</a></td>
+                                    <td><a target="_blank" href="{{$row->file_final}}">{{$row->file_final?'Download':''}}</a></td>
                                      <td>
-                                        <button type="button"  data-term="file_final" data-programid="{{$row->program_id}}" data-ext="doc,docx,xls,xlsx,pdf" data-url="/upload-exam" data-callback="exam_success" class="btn btn-default upload-file">
+                                        <button type="button"  data-term="file_final" data-programid="{{$row->educate_id}}" data-ext="doc,docx,xls,xlsx,pdf" data-url="/upload-exam" data-callback="exam_success" class="btn btn-default upload-file">
                                         <i class="fa fa-file-text" aria-hidden="true"></i>
                                         </button>
                                     </td>

@@ -151,25 +151,15 @@ class AdminController extends Controller
                     'email' =>$email,
                     'updated_at' =>date('Y-m-d H:i:s'),
                 ]);
-                if(!empty($username)){
-                    $users = DB::table ('users')
-                        ->where('username',$username)
-                        ->where('user_type','USER_LEVEL_ADMIN')
-                        ->where('user_id','!=','admin_id')
-                        ->where('status','Y')->first();
-                    if(!empty($users)){
-                        return MyResponse::error ('Username นี้มีในระบบแล้วค่ะ'); 
-                    }else{
+                if(!empty($password)){
                         DB::table('users')
                         ->where('user_type','USER_LEVEL_ADMIN')
                         ->where('user_id',$admin_id)
                         ->where('user_type','USER_LEVEL_ADMIN')
                         ->where('status','Y')
                         ->update([
-                            'username' =>$username,
                             'password' =>Hash::make($password)
                         ]);
-                    }
                 }
                 return MyResponse::success('ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว','/admin');
             }else{

@@ -54,7 +54,7 @@ class UploadController extends Controller
                 'message'=>'ขออภัย ไฟล์ที่ท่านเลือกไม่ได้รับอนุญาตให้อัพโหลดค่ะ ค่ะ'
             ];
         }
-        if($_FILES['userfile']['size'] > 2485760) // 2 mb
+        if($_FILES['userfile']['size'] > 2048*1024) // 2 mb
         {
             return [
                 'status' => 500,
@@ -65,9 +65,9 @@ class UploadController extends Controller
         $dir_temp = 'uploads/';
         $filename = uniqid() . '_' . time() . '.' . $extension;
         $request->file('userfile')->move($dir_temp, $filename);
-        $exam= DB::table('exam')->where('program_id',$program_id)->first();
+        $exam= DB::table('exam')->where('educate_id',$program_id)->first();
         if(!empty($exam)){
-            DB::table('exam')->where('program_id',$program_id)->update([
+            DB::table('exam')->where('educate_id',$program_id)->update([
                 $term=> '/' . $dir_temp . $filename,
                 'updated_at'=>date('Y-m-d H:i:s')
             ]);
@@ -75,7 +75,7 @@ class UploadController extends Controller
             DB::table('exam')->insert([
                 $term => '/' . $dir_temp . $filename,
                 'created_at'=>date('Y-m-d H:i:s'),
-                'program_id'=>$program_id
+                'educate_id'=>$program_id
             ]);
         }
         return [

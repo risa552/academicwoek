@@ -28,50 +28,12 @@
             <div class="panel panel-info">
                 <div class="panel-heading">ค้นหาข้อมูลกลุ่มเรียน</div>
                 <div class="panel-body">
-                    <form action="/ggrade">
+                    <form action="/ggrade/{{$educate_id}}">
                     <div class="form-group">
                         <label for="keyword">ชื่อนักศึกษา</label>
                         <input type="text" name="keyword" class="form-control" value="{{Input::get('keyword')}}" >
                     </div>
-                    <div class="form-group">
-                        <label >กลุ่มเรียน:</label>
-                        <select class="form-control" name="group_id">
-                            <option value="all">
-                                ทั้งหมด
-                            </option>
-                        @foreach($rom2 as $index => $row4)
-                            <option value ="{{$row4->group_id}}" {{Input::get('group_id')==$row4->group_id?'selected':''}}>
-                                {{$row4->group_name}}
-                            </option>
-                        @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label >ชื่อวิชา:</label>
-                        <select class="form-control"  name="sub_id">
-                            <option value="all">
-                                ทั้งหมด
-                            </option>
-                        @foreach($rom1 as $index => $row3)
-                            <option value ="{{$row3->sub_id}}" {{Input::get('sub_id')==$row3->sub_id?'selected':''}}>
-                                {{$row3->sub_name}}
-                            </option>
-                        @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label >ภาคเรียน:</label>
-                        <select class="form-control" name="term_id">
-                            <option value="all">
-                                ทั้งหมด
-                            </option>
-                        @foreach($rom as $index => $row2)
-                            <option value ="{{$row2->term_id}}" {{Input::get('term_id')==$row2->term_id?'selected':''}}>
-                                {{$row2->term_name}}/{{$row2->term_year}} 
-                            </option>
-                        @endforeach
-                        </select>
-                    </div>
+                    
                   
                         <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
@@ -83,16 +45,14 @@
             <div class="col-md-9">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-             รายงานเกรดนักศึกษา <!--: {{$row3->sub_name}}     -->
+             รายงานเกรดวิชา : {{$subject->sub_name}}   กลุ่มเรียน :  {{$subject->group_name}} 
                     </div>
                     <div class="panel-body">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>ลำดับ</th>
-                                    <th>ชื่อวิชา</th>
                                     <th>นักศึกษา</th>
-                                    <th>กลุ่มเรียน</th>
                                     <th>เกรด</th>
                                 </tr>
                             </thead>
@@ -100,9 +60,7 @@
                             @foreach($ggrade as $index => $row)
                                 <tr>
                                     <td>{{$index+1}}</td>
-                                    <td>{{$row->sub_name}}</td>
                                     <td>{{$row->first_name}} {{$row->last_name}}</td>
-                                    <td>{{$row->group_name}}</td>
                                     <td>{{$row->grade}}</td>
                                 </tr>
                             @endforeach

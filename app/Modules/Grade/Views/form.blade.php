@@ -74,36 +74,26 @@
                                     <th>#</th>
                                     <th>นักศึกษา</th>
                                     <th>ชื่อวิชา</th>
-                                    <th>เกรด</th>
+                                    <th>รายงาน</th>
                                    <!-- <th>คะแนน/เกรด</th> -->
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($grade as $index => $row)
+                            @foreach($items as $index => $row)
                                 <tr>
-                                    <td>{{$index+$grade->firstItem()}}</td>
-                                    <td>{{$row->first_name}} {{$row->last_name}} [{{$row->group_name}}]</td>
+                                    <td>{{$index+$items->firstItem()}}</td>
+                                    <td>{{$row->group_name}}</td>
                                     <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
                                     <td>
-                                        <div class="form-group">
-                                            <select class="form-control"  name="grade[{{$row->enro_id}}]">
-                                            <option {{isset($row)&& $row->grade=='A'?' selected ':''}} value="A">A</option>
-                                                <option {{isset($row)&& $row->grade=='B+'?'selected':''}} value="B+">B+</option>
-                                                <option {{isset($row)&& $row->grade=='B'?'selected':''}} value="B">B</option>
-                                                <option {{isset($row)&& $row->grade=='C+'?'selected':''}} value="C+">C+</option>
-                                                <option {{isset($row)&& $row->grade=='C'?'selected':''}} value="C">C</option>
-                                                <option {{isset($row)&& $row->grade=='D+'?'selected':''}} value="D+">D+</option>
-                                                <option {{isset($row)&& $row->grade=='D'?'selected':''}} value="D">D</option>
-                                                <option {{isset($row)&& $row->grade=='F'?'selected':''}} value="F">F</option>
-                                            </select>
+                                        <div class="btn-group">
+                                            <a class="fa fa-list-alt btn btn-default" aria-hidden="true" href="/grade/{{$row->educate_id}}"></a>
                                         </div>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        <button tyep="button" class="pull-right">ยืนยัน </button>
-                        {!! $grade->render() !!}
+                        {!! $items->render() !!}
                     </div>
                 </div>
             </div>

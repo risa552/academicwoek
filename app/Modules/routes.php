@@ -26,8 +26,7 @@ Route::prefix('')->group(function ()
       Route::resource('/admin', '\App\Modules\Admin\AdminController');
       Route::Get('/enrostudent','\App\Modules\EnrolmentStudent\EnrolmentStudentController@index');
       Route::POST('/enrostudent','\App\Modules\EnrolmentStudent\EnrolmentStudentController@store');
-      Route::Get('/grade','\App\Modules\Grade\GradeController@index');
-      Route::POST('/grade','\App\Modules\Grade\GradeController@store');
+      Route::resource('/grade','\App\Modules\Grade\GradeController');
       Route::Get('/examprofessor','\App\Modules\ExamProfessor\ExamProfessorController@index');
       Route::Get('/history','\App\Modules\History\HistoryController@index');
       Route::resource('/educate','\App\Modules\Educate\EducateController');

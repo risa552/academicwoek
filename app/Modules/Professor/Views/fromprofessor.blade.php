@@ -75,7 +75,7 @@
                          
                         <div class="form-group col-md-6">
                             <label>Username: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i> </label>
-                                <input type="text" name="username" autocomplate="off" class="form-control" value="{{isset($professor)?$professor->username:''}}"/>
+                                <input type="text" name="username"  {{isset($professor)?' disabled':''}} autocomplate="off" class="form-control" value="{{isset($professor)?$professor->username:''}}"/>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Password: <i class="fa fa-asterisk fa-sm" style="color:#FF0000; font-size: 0.8rem;"  aria-hidden="true"></i> </label>

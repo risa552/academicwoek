@@ -32,9 +32,9 @@ class GradeController extends Controller
         ->leftJoin('studygroup','studygroup.group_id','educate.group_id')
         ->where('teacher.teach_id',$user->teach_id)
         ->whereRaw(DB::raw('studygroup.group_id = educate.group_id'))
-        ->whereNull('educate.delete_at')
-        ->whereNull('subject.delete_at')
-        ->whereNull('teacher.delete_at');
+        ->whereNull('educate.deleted_at')
+        ->whereNull('subject.deleted_at')
+        ->whereNull('teacher.deleted_at');
         
         
         if(!empty($keyword)){
@@ -58,13 +58,13 @@ class GradeController extends Controller
         ->OrderBy('studygroup.group_name','asc')->paginate(10);
        //// print_r(DB::getQueryLog());exit;
 
-        $rom = DB::table('term')->whereNull('delete_at')->get();
+        $rom = DB::table('term')->whereNull('deleted_at')->get();
         $rom1 = DB::table('subject')
         ->leftJoin('educate','educate.sub_id','subject.sub_id')
         ->where('educate.teach_id',$user->teach_id)
-        ->whereNull('subject.delete_at')
+        ->whereNull('subject.deleted_at')
         ->get();
-        $rom2 = DB::table('studygroup')->whereNull('delete_at')->get();
+        $rom2 = DB::table('studygroup')->whereNull('deleted_at')->get();
         return view('grade::form',compact('items','rom','rom1','rom2'));
     }
     public function show($educate_id,Request $request)
@@ -89,10 +89,10 @@ class GradeController extends Controller
         ->where('teacher.teach_id',$user->teach_id)
         ->where('educate.educate_id',$educate_id)
         ->whereRaw(DB::raw('studygroup.group_id = educate.group_id'))
-        ->whereNull('enrolment.delete_at')
-        ->whereNull('student.delete_at')
-        ->whereNull('subject.delete_at')
-        ->whereNull('teacher.delete_at');
+        ->whereNull('enrolment.deleted_at')
+        ->whereNull('student.deleted_at')
+        ->whereNull('subject.deleted_at')
+        ->whereNull('teacher.deleted_at');
         
         $subject = DB::table('subject')
         ->select('subject.*',
@@ -100,7 +100,7 @@ class GradeController extends Controller
         ->leftJoin('educate','educate.sub_id','subject.sub_id')
         ->leftJoin('studygroup','educate.group_id','studygroup.group_id')
         ->where('educate.educate_id',$educate_id)
-        ->whereNull('subject.delete_at')->first();
+        ->whereNull('subject.deleted_at')->first();
 
         $grade = $grade->OrderBy('studygroup.group_name','asc')
         ->OrderBy('studygroup.group_name','asc')->paginate(10);

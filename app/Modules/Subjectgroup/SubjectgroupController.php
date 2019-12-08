@@ -15,7 +15,7 @@ class SubjectgroupController extends Controller
     {
         $keyword =$request->get('keyword');
         $items = DB::table($this->table_name)
-        ->whereNull('delete_at');
+        ->whereNull('deleted_at');
         if(!empty($keyword)){
             $items->where(function ($query) use($keyword){
                 $query->where('subgroup_name','LIKE','%'.$keyword.'%');
@@ -86,13 +86,13 @@ class SubjectgroupController extends Controller
         { 
             $exists = DB::table('subject')
             ->where('subgroup_id',$id)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($exists))
             {
                 return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
             }   
             DB::table($this->table_name)->where('subgroup_id',$id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

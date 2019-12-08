@@ -27,11 +27,11 @@ class HistoryGradeController extends Controller
         ->rightJoin('degree','studygroup.degree_id','degree.degree_id')
         ->rightJoin('course','branch.cou_id','course.cou_id')
         ->where('student.std_id',$user->std_id)
-        ->whereNull('studygroup.delete_at')
-        ->whereNull('branch.delete_at')
-        ->whereNull('degree.delete_at')
-        ->whereNull('course.delete_at')
-        ->whereNull('student.delete_at')->get();
+        ->whereNull('studygroup.deleted_at')
+        ->whereNull('branch.deleted_at')
+        ->whereNull('degree.deleted_at')
+        ->whereNull('course.deleted_at')
+        ->whereNull('student.deleted_at')->get();
         //print_r($history);exit;
                 
         $terms = DB::table('term')

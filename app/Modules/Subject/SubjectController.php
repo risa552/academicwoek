@@ -22,7 +22,7 @@ class SubjectController extends Controller
         $items = DB::table($this->table_name)
         ->select('subject.*','subjectgroup.subgroup_name')
         ->leftJoin('subjectgroup','subject.subgroup_id','subjectgroup.subgroup_id')
-        ->whereNull('subject.delete_at');
+        ->whereNull('subject.deleted_at');
 
         if(!empty($keyword)){
             $items->where(function ($query) use($keyword){
@@ -39,13 +39,13 @@ class SubjectController extends Controller
             $items->where('subject.subgroup_id','=',$subgroup_id);
         }
         $items = $items->orderBy('subject.created_at','desc')->paginate(10);
-        $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
+        $items2 = DB::table($this->table2)->whereNull('deleted_at')->get();
         return view($this->table_name.'::subject',compact('items','items2'));
     }
 
     public function create()
     {
-        $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
+        $items2 = DB::table($this->table2)->whereNull('deleted_at')->get();
         return view($this->table_name.'::fromsubject',compact('items2'));
     }
 
@@ -64,7 +64,7 @@ class SubjectController extends Controller
             {
                 $items = DB::table($this->table_name)
                 ->where('sub_code',$sub_code)
-                ->whereNull('delete_at')->first();
+                ->whereNull('deleted_at')->first();
                 if(!empty($items))
                 {
                     return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
@@ -94,7 +94,7 @@ class SubjectController extends Controller
             $items = DB::table($this->table_name)->where('sub_id',$id)->first();
             if(!empty($items))
             {
-                $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
+                $items2 = DB::table($this->table2)->whereNull('deleted_at')->get();
                 return view($this->table_name.'::fromsubject',[
                     'items'=>$items,
                     'items2'=>$items2,
@@ -122,7 +122,7 @@ class SubjectController extends Controller
                 $items = DB::table($this->table_name)
                     ->where('sub_id','!=',$id)
                     ->where('sub_name',$sub_name)
-                    ->whereNull('delete_at')->first();
+                    ->whereNull('deleted_at')->first();
                 if(!empty($items)){
                     return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
                 }
@@ -151,13 +151,13 @@ class SubjectController extends Controller
         { 
             $exists1 = DB::table('program')
             ->where('sub_id',$id)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($exists1))
             {
                 return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
             }   
             DB::table($this->table_name)->where('sub_id',$id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

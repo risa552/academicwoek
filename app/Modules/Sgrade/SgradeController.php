@@ -24,7 +24,7 @@ class SgradeController extends Controller
         'studygroup.group_id')
         ->leftJoin('studygroup','teacher.teach_id','studygroup.teach_id')
         ->where('studygroup.teach_id',$user->teach_id)
-        ->whereNull('teacher.delete_at');
+        ->whereNull('teacher.deleted_at');
 
         
         if(is_numeric($group_id))
@@ -35,7 +35,7 @@ class SgradeController extends Controller
         $sgrade =  $sgrade->paginate(20);
         $studygroup = DB::table('studygroup')
         ->where('studygroup.teach_id',$user->teach_id)
-        ->whereNull('delete_at')->get();
+        ->whereNull('deleted_at')->get();
         return view('sgrade::list',compact('sgrade','studygroup'));
     }
     public function show($group_id,Request $request)
@@ -49,7 +49,7 @@ class SgradeController extends Controller
         ->leftJoin('student','student.group_id','studygroup.group_id')
         // ->whereRaw(DB::raw('studygroup.group_id = student.group_id'))
         ->where('studygroup.group_id',$group_id)
-        ->whereNull('studygroup.delete_at')
+        ->whereNull('studygroup.deleted_at')
         ->get();
 
         $result_greads = DB::select("SELECT CASE grade
@@ -95,7 +95,7 @@ class SgradeController extends Controller
         // print_r($student_gpa[$std_id]);exit;
         $group = DB::table('studygroup')
         ->where('studygroup.group_id',$group_id)
-        ->whereNull('delete_at')->first();
+        ->whereNull('deleted_at')->first();
 
 
         return view('sgrade::form',compact('students','group','student_gpa'));

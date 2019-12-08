@@ -43,7 +43,8 @@ Route::prefix('')->group(function ()
       Route::Get('/print-program/{group_id}', '\App\Modules\Program\ProgramController@print_program');
       Route::Get('/print-educate', '\App\Modules\Educate\EducateController@print_educate');
       Route::Get('/list-one', '\App\Modules\Enrolment\EnrolmentController@page_group');
-      Route::resource('/project', '\App\Modules\Project\ProjectController');
+      Route::resource('/year', '\App\Modules\Year\YearController');
+      Route::resource('/detail', '\App\Modules\DetailProgram\DetailProgramController');
 
     });
 });

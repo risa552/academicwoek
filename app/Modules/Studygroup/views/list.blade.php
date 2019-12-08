@@ -91,8 +91,7 @@
                             <tr>
                                 <th>ลำดับที่</th>
                                 <th>กลุ่มเรียน</th>
-                                <th>วัน/เดือน/ปี ที่เข้า</th>
-                                <th>ประเภท</th>
+                                <th>ประเภท</th> 
                                 <th>สาขา</th>
                                 <th>ระดับ</th>
                                 <th>อาจารย์ที่ปรึกษา</th>
@@ -104,7 +103,6 @@
                         <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$row->group_name}}</td>
-                                <td>{{$row->group_year}}</td>
                                 <td>{{$row->group_type}}</td>
                                 <td>{{$row->bran_name}}</td>
                                 <td>{{$row->degree_name}}</td>

@@ -45,7 +45,7 @@ class EducateController extends Controller
                   ->where('enddate','>=',date('Y-m-d'))
                   ->whereRaw('program.term_id = term.term_id');
         })
-        ->whereNull('program.delete_at');
+        ->whereNull('program.deleted_at');
 
         if(!empty($keyword)){
             $items->where(function ($query) use($keyword){
@@ -134,7 +134,7 @@ class EducateController extends Controller
         ->leftjoin('studygroup','program.group_id','studygroup.group_id')
         ->leftjoin('degree','studygroup.degree_id','degree.degree_id')
        
-        ->whereNull('program.delete_at')
+        ->whereNull('program.deleted_at')
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')
@@ -144,20 +144,20 @@ class EducateController extends Controller
         })
         ->get();
         //print_r($list);exit;
-        $sub = DB::table('subject')->whereNull('delete_at')->get();
-        $teachers = DB::table('teacher')->whereNull('delete_at')->get();
-        $term = DB::table('term')->whereNull('delete_at')->get();
-        $group = DB::table('studygroup')->whereNull('delete_at')->get();
+        $sub = DB::table('subject')->whereNull('deleted_at')->get();
+        $teachers = DB::table('teacher')->whereNull('deleted_at')->get();
+        $term = DB::table('term')->whereNull('deleted_at')->get();
+        $group = DB::table('studygroup')->whereNull('deleted_at')->get();
    // dd($items);
         return view('educate::list',compact('items','teachers','sub','term','group','list'));
     }
 
     public function create()
     {
-        $teachers = DB::table('teacher')->whereNull('delete_at')->get();
-        $sub = DB::table('subject')->whereNull('delete_at')->get();
-        $grpup = DB::table('studygroup')->whereNull('delete_at')->get();
-        $term = DB::table('term')->whereNull('delete_at')->get();
+        $teachers = DB::table('teacher')->whereNull('deleted_at')->get();
+        $sub = DB::table('subject')->whereNull('deleted_at')->get();
+        $grpup = DB::table('studygroup')->whereNull('deleted_at')->get();
+        $term = DB::table('term')->whereNull('deleted_at')->get();
         return view('educate::form',compact('teachers','sub','term','group'));
     }
 
@@ -210,9 +210,9 @@ class EducateController extends Controller
                 ->where('sub_id',$item->sub_id)
                 ->where('term_id',$item->term_id)
                 ->where('group_id',$item->group_id)
-                ->whereNull('delete_at')->first();
+                ->whereNull('deleted_at')->first();
                 //dd($teacher);
-                $teachers = DB::table('teacher')->whereNull('delete_at')->get();
+                $teachers = DB::table('teacher')->whereNull('deleted_at')->get();
                 return view('educate::form',[
                     'item'=>$item,
                     'teacher'=>$teacher,
@@ -235,7 +235,7 @@ class EducateController extends Controller
             {
                /* $items = DB::table($this->table_name)
                 ->where('program_id','!=',$id)
-                ->whereNull('delete_at')->first();
+                ->whereNull('deleted_at')->first();
             if(!empty($items)){
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
             }*/
@@ -260,13 +260,13 @@ class EducateController extends Controller
         {
            /* $exists1 = DB::table('enrolment')
             ->where('program_id',$id)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($exists1))
             {
                 return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
             }   */
             DB::table('educate')->where('educate_id',$id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }
@@ -316,7 +316,7 @@ class EducateController extends Controller
         ->leftjoin('studygroup','program.group_id','studygroup.group_id')
         ->leftjoin('degree','studygroup.degree_id','degree.degree_id')
        
-        ->whereNull('program.delete_at')
+        ->whereNull('program.deleted_at')
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')
@@ -381,10 +381,10 @@ class EducateController extends Controller
         ->select('term.*')->first();
         // dd(DB::getQueryLog());
         // print_r($items);exit;
-        $sub = DB::table('subject')->whereNull('delete_at')->get();
-        $teachers = DB::table('teacher')->whereNull('delete_at')->get();
-        $term = DB::table('term')->whereNull('delete_at')->get();
-        $group = DB::table('studygroup')->whereNull('delete_at')->get();
+        $sub = DB::table('subject')->whereNull('deleted_at')->get();
+        $teachers = DB::table('teacher')->whereNull('deleted_at')->get();
+        $term = DB::table('term')->whereNull('deleted_at')->get();
+        $group = DB::table('studygroup')->whereNull('deleted_at')->get();
 
         return ['teachers'=>$teachers,'sub'=>$sub,'term'=>$term,'group'=>$group,'items'=>$items,'terms'=>$terms];
     }

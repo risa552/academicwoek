@@ -26,7 +26,7 @@ class StudygroupController extends Controller
         ->leftJoin('branch','studygroup.bran_id','branch.bran_id')
         ->leftJoin('degree','studygroup.degree_id','degree.degree_id')
         ->leftJoin('teacher','studygroup.teach_id','teacher.teach_id')
-        ->whereNull('studygroup.delete_at');
+        ->whereNull('studygroup.deleted_at');
 
         if(!empty($keyword))
         {
@@ -48,17 +48,17 @@ class StudygroupController extends Controller
             $group->where('studygroup.teach_id','=',$teach_id);
         }
         $group = $group->orderBy('studygroup.created_at','desc')->paginate(10);
-        $branch = DB::table($this->table2)->whereNull('delete_at')->get();
-        $degree = DB::table($this->table3)->whereNull('delete_at')->get();
-        $teach = DB::table('teacher')->whereNull('delete_at')->get();
+        $branch = DB::table($this->table2)->whereNull('deleted_at')->get();
+        $degree = DB::table($this->table3)->whereNull('deleted_at')->get();
+        $teach = DB::table('teacher')->whereNull('deleted_at')->get();
         return view($this->table_name.'::list',compact('group','branch','degree','teach'));
     }
     
     public function create()
     {
-        $branch = DB::table($this->table2)->whereNull('delete_at')->get();
-        $degree = DB::table($this->table3)->whereNull('delete_at')->get();
-        $teach = DB::table('teacher')->whereNull('delete_at')->get();
+        $branch = DB::table($this->table2)->whereNull('deleted_at')->get();
+        $degree = DB::table($this->table3)->whereNull('deleted_at')->get();
+        $teach = DB::table('teacher')->whereNull('deleted_at')->get();
         return view($this->table_name.'::form',compact('branch','degree','teach'));
     }
     
@@ -75,7 +75,7 @@ class StudygroupController extends Controller
         {
             $group = DB::table($this->table_name)
             ->where('group_name',$group_name)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($group))
             {
                 return MyResponse::error('ขออภัยข้อมูลกลุ่มเรียนนี้มีอยู่ในระบบแล้ว');
@@ -103,9 +103,9 @@ class StudygroupController extends Controller
             $group = DB::table($this->table_name)->where('group_id',$group_id)->first();
             if(!empty($group))
             {
-                $branch = DB::table($this->table2)->whereNull('delete_at')->get();
-                $degree = DB::table($this->table3)->whereNull('delete_at')->get();
-                $teach = DB::table('teacher')->whereNull('delete_at')->get();
+                $branch = DB::table($this->table2)->whereNull('deleted_at')->get();
+                $degree = DB::table($this->table3)->whereNull('deleted_at')->get();
+                $teach = DB::table('teacher')->whereNull('deleted_at')->get();
                 return view($this->table_name.'::form',[
                     'group'=>$group,
                     'branch'=>$branch,
@@ -133,7 +133,7 @@ class StudygroupController extends Controller
                 $group = DB::table($this->table_name)
             ->where('group_id','!=',$group_id)
             ->where('group_name',$group_name)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($group)){
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
             }
@@ -160,13 +160,13 @@ class StudygroupController extends Controller
         {
             $exists = DB::table('student')
             ->where('group_id',$group_id)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($exists))
             {
                 return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
             }   
             DB::table($this->table_name)->where('group_id',$group_id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

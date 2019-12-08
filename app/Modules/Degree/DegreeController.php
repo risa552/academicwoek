@@ -18,7 +18,7 @@ class DegreeController extends Controller
         $keyword =$request->get('keyword');
         
         $degree = DB::table('degree')
-        ->whereNull('delete_at');
+        ->whereNull('deleted_at');
         if(!empty($keyword)){
             $degree->where(function ($query) use($keyword){
                 $query->where('degree_name','LIKE','%'.$keyword.'%');
@@ -44,7 +44,7 @@ class DegreeController extends Controller
         {
             $degree = DB::table('degree')
             ->where('degree_name',$degree_name)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($degree)){
                 return MyResponse::error('ขออภัยข้อมูลระดับนี้มีอยู่ในระบบแล้ว');
             }
@@ -85,7 +85,7 @@ class DegreeController extends Controller
                 $degree = DB::table('degree')
                 ->where('degree_id','!=',$degree_id)
                 ->where('degree_name',$degree_name)
-                ->whereNull('delete_at')->first();
+                ->whereNull('deleted_at')->first();
                 if(!empty($degree)){
                     return MyResponse::error('ขออภัยข้อมูลระดับนี้มีอยู่ในระบบแล้ว');
                 }
@@ -107,13 +107,13 @@ class DegreeController extends Controller
         {   
             $exists = DB::table('studygroup')
             ->where('degree_id',$degree_id)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($exists))
             {
                 return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
             }   
             DB::table('degree')->where('degree_id',$degree_id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

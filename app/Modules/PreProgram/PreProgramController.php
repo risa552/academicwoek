@@ -16,7 +16,7 @@ class PreProgramController extends Controller
         $group_id = $request->get('group_id');
 
         $studygroup = DB::table('studygroup')
-        ->whereNull('delete_at');
+        ->whereNull('deleted_at');
         if(!empty($keyword)){
             $exam->where(function ($query) use($keyword){
                 $query->where('group_name','LIKE','%'.$keyword.'%');
@@ -48,14 +48,14 @@ class PreProgramController extends Controller
         ->leftJoin('term','program.term_id','term.term_id')
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->where('studygroup.group_id','=',$group_id)
-        ->whereNull('program.delete_at')->paginate(10);
+        ->whereNull('program.deleted_at')->paginate(10);
         
 
         $group_show = DB::table('studygroup')
         ->select('studygroup.group_name',
         'branch.bran_name')
         ->leftJoin('branch','studygroup.bran_id','branch.bran_id')
-        ->whereNull('studygroup.delete_at')->first();
+        ->whereNull('studygroup.deleted_at')->first();
 
         return view('preprogram::form',compact('items','group_show'));
     }
@@ -79,7 +79,7 @@ class PreProgramController extends Controller
     //     ->leftJoin('subject','program.sub_id','subject.sub_id')
     //     ->leftJoin('studygroup','program.group_id','studygroup.group_id')
     //     ->leftJoin('branch','branch.bran_id','studygroup.bran_id')
-    //     ->whereNull('program.delete_at')
+    //     ->whereNull('program.deleted_at')
     //     ->orderBy('term.year')
     //     ->orderBy('term.term_name')
     //     ->get();

@@ -36,7 +36,7 @@ class HomeService
         $hometeach = DB::table('teacher')
         ->leftJoin('studygroup','studygroup.teach_id','teacher.teach_id')
         ->where('studygroup.group_id',$user->group_id)        
-        ->whereNull('teacher.delete_at')
+        ->whereNull('teacher.deleted_at')
         ->get();
         return view('home::list-student',compact('home','hometeach'));
     }
@@ -45,12 +45,12 @@ class HomeService
     {
         $home = DB::table('teacher')
         ->where('teacher.teach_id',$user->teach_id)
-        ->whereNull('teacher.delete_at')
+        ->whereNull('teacher.deleted_at')
         ->get();
 
         $groups = DB::table('studygroup')
         ->where('studygroup.teach_id',$user->teach_id)
-        ->whereNull('studygroup.delete_at')
+        ->whereNull('studygroup.deleted_at')
         ->get();
         return view('home::list-teacher',compact('home','groups'));
     }
@@ -59,7 +59,7 @@ class HomeService
     {
         $home = DB::table('admin')
         ->where('admin.admin_id',$user->admin_id)
-        ->whereNull('admin.delete_at')
+        ->whereNull('admin.deleted_at')
         ->get();
         return view('home::list-admin',compact('home'));
 

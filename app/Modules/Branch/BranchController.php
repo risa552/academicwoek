@@ -21,7 +21,7 @@ class BranchController extends Controller
         $items = DB::table($this->table_name)
         ->select('branch.*','course.cou_name','course.cou_year')
         ->leftJoin('course','branch.cou_id','course.cou_id')
-        ->whereNull('branch.delete_at');
+        ->whereNull('branch.deleted_at');
 
         if(!empty($keyword))
         {
@@ -35,13 +35,13 @@ class BranchController extends Controller
         }
        
         $items = $items->orderBy('bran_name','asc')->paginate(10);
-        $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
+        $items2 = DB::table($this->table2)->whereNull('deleted_at')->get();
         return view($this->table_name.'::list',compact('items','items2'));
     }
     
     public function create()
     {
-        $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
+        $items2 = DB::table($this->table2)->whereNull('deleted_at')->get();
         return view($this->table_name.'::form',compact('items2'));
     }
     
@@ -54,7 +54,7 @@ class BranchController extends Controller
         {
             $items = DB::table($this->table_name)
             ->where('bran_name',$bran_name)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($items))
             {
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
@@ -78,7 +78,7 @@ class BranchController extends Controller
             $items = DB::table($this->table_name)->where('bran_id',$id)->first();
             if(!empty($items))
             {
-                $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
+                $items2 = DB::table($this->table2)->whereNull('deleted_at')->get();
                 return view($this->table_name.'::form',[
                     'items'=>$items,
                     'items2'=>$items2,
@@ -100,7 +100,7 @@ class BranchController extends Controller
                 $items = DB::table($this->table_name)
                     ->where('bran_id','!=',$id)
                     ->where('bran_name',$bran_name)
-                    ->whereNull('delete_at')->first();
+                    ->whereNull('deleted_at')->first();
                 if(!empty($items)){
                     return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
                 }
@@ -123,13 +123,13 @@ class BranchController extends Controller
         {
             $exists = DB::table('studygroup')
             ->where('bran_id',$id)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($exists))
             {
                 return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
             }   
             DB::table($this->table_name)->where('bran_id',$id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

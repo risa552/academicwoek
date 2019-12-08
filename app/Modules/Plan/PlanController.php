@@ -16,8 +16,8 @@ class PlanController extends Controller
     {
         $std_id = $request->get('std_id');
 
-        $subject = DB::table('subject')->whereNull('delete_at')->get();
-        $term = DB::table('term')->whereNull('delete_at')->get();       
+        $subject = DB::table('subject')->whereNull('deleted_at')->get();
+        $term = DB::table('term')->whereNull('deleted_at')->get();       
         return view('plan::form',compact('subject','term','std_id'));
     }
     
@@ -62,8 +62,8 @@ class PlanController extends Controller
                   ->where('enddate','>=',date('Y-m-d'))
                   ->whereRaw('enrolment.term_id = term.term_id');
         })
-        ->whereNull('enrolment.delete_at')
-        ->whereNull('term.delete_at')
+        ->whereNull('enrolment.deleted_at')
+        ->whereNull('term.deleted_at')
         ->where('enrolment.std_id','=',$std_id)->get();
 
         $student  = DB::table('student')
@@ -72,7 +72,7 @@ class PlanController extends Controller
         
 
         
-        $subject = DB::table('subject')->whereNull('delete_at')->get();
+        $subject = DB::table('subject')->whereNull('deleted_at')->get();
            // print_r($student);exit;
         return view('plan::list',compact('items','student','subject','std_id'));
     }
@@ -84,8 +84,8 @@ class PlanController extends Controller
             $item = DB::table('enrolment')->where('enro_id',$enro_id)->first();
             if(!empty($item)){
                
-                $subject = DB::table('subject')->whereNull('delete_at')->get();
-                $term = DB::table('term')->whereNull('delete_at')->get(); 
+                $subject = DB::table('subject')->whereNull('deleted_at')->get();
+                $term = DB::table('term')->whereNull('deleted_at')->get(); 
                 return view('plan::form',[
                     'item'=>$item,
                     'std_id'=>$item->std_id,
@@ -120,7 +120,7 @@ class PlanController extends Controller
     public function destroy($enro_id)
     {
         DB::table('enrolment')->where('enro_id',$enro_id)->update([
-            'delete_at' =>date('Y-m-d H:i:s'),
+            'deleted_at' =>date('Y-m-d H:i:s'),
         ]);
         return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
     }

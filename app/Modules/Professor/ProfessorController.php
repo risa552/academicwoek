@@ -18,7 +18,7 @@ class ProfessorController extends Controller
         $keyword =$request->get('keyword');
         
         $teacher = DB::table('teacher')
-        ->whereNull('delete_at');
+        ->whereNull('deleted_at');
         if(!empty($keyword)){
             $teacher->where(function ($query) use($keyword){
                 $query->where('first_name','LIKE','%'.$keyword.'%')
@@ -127,7 +127,7 @@ class ProfessorController extends Controller
             ->where('teach_id','!=',$id)
             ->where('first_name',$first_name)
             ->where('last_name',$last_name)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($teacher)){
                 return MyResponse::error('ขออภัยข้อมูลนี้มีในระบบแล้วคะ');
             }
@@ -164,13 +164,13 @@ class ProfessorController extends Controller
         {
             $exists1 = DB::table('studygroup')
             ->where('teach_id',$id)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($exists1))
             {
                 return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
             }   
             DB::table('teacher')->where('teach_id',$id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

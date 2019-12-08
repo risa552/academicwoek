@@ -44,7 +44,7 @@ class ExamProfessorController extends Controller
         AND program.term_id=educate.term_id 
         and program.sub_id=educate.sub_id)
         LEFT JOIN exam ON(exam.program_id=program.program_id)
-        WHERE educate.teach_id={$user->teach_id} and program.delete_at is null 
+        WHERE educate.teach_id={$user->teach_id} and program.deleted_at is null 
         AND EXISTS(SElECT 1 from term where term.term_id=educate.term_id 
         and term.startdate<='{$now}'
         and term.enddate>='{$now}')");
@@ -74,7 +74,7 @@ class ExamProfessorController extends Controller
         //             ->where('enddate','>=',date('Y-m-d'))
         //             ->whereRaw('program.term_id = term.term_id');
         // })
-        // ->whereNull('program.delete_at');
+        // ->whereNull('program.deleted_at');
         
         // if(!empty($keyword)){
         //     $exam->where(function ($query) use($keyword){
@@ -88,7 +88,7 @@ class ExamProfessorController extends Controller
         //$exam = $exam->paginate(10);
         //print_r($exam);exit;
 
-        $rom = DB::table('term')->whereNull('delete_at')->get();
+        $rom = DB::table('term')->whereNull('deleted_at')->get();
         return view('examprofessor::form',compact('exam','rom'));
     }
 }

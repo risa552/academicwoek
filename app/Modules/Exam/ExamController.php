@@ -34,7 +34,7 @@ class ExamController extends Controller
                   ->where('enddate','>=',date('Y-m-d'))
                   ->whereRaw('program.term_id = term.term_id');
         })
-        ->whereNull('program.delete_at');
+        ->whereNull('program.deleted_at');
         if(!empty($keyword)){
             $exam->where(function ($query) use($keyword){
                 $query->where('sub_name','LIKE','%'.$keyword.'%');
@@ -44,13 +44,13 @@ class ExamController extends Controller
             $exam->where('program.sub_id','=',$sub_id);
         }
         $exam = $exam->get();
-        $items = DB::table($this->table_name)->whereNull('delete_at')->get();       
+        $items = DB::table($this->table_name)->whereNull('deleted_at')->get();       
         return view('exam::exam',compact('exam','items'));
     }
     
     public function create()
     {
-        $items = DB::table($this->table_name)->whereNull('delete_at')->get();
+        $items = DB::table($this->table_name)->whereNull('deleted_at')->get();
         return view('exam::fromexam',compact('items'));
     }
     
@@ -114,7 +114,7 @@ class ExamController extends Controller
         if(is_numeric($exam_id))
         {
             DB::table('exam')->where('exam_id',$exam_id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

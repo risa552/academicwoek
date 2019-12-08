@@ -22,7 +22,7 @@ class StudentController extends Controller
         $items = DB::table($this->table_name)
         ->select('student.*','studygroup.group_name')
         ->leftJoin('studygroup','student.group_id','studygroup.group_id')
-        ->whereNull('student.delete_at');
+        ->whereNull('student.deleted_at');
 
         if(!empty($keyword))
         {
@@ -38,13 +38,13 @@ class StudentController extends Controller
             $items->where('student.group_id','=',$group_id);
         }
         $items = $items->orderBy('student.number','asc')->paginate(10);
-        $studygroup = DB::table($this->table2)->whereNull('delete_at')->get();
+        $studygroup = DB::table($this->table2)->whereNull('deleted_at')->get();
         return view($this->table_name.'::list',compact('items','studygroup'));
     }
     
     public function create()
     {
-        $studygroup = DB::table($this->table2)->whereNull('delete_at')->get();
+        $studygroup = DB::table($this->table2)->whereNull('deleted_at')->get();
         return view($this->table_name.'::form',compact('studygroup'));
     }
     
@@ -66,7 +66,7 @@ class StudentController extends Controller
             $items = DB::table($this->table_name)
             ->where('first_name',$first_name)
             ->where('last_name',$last_name)
-            ->whereNull('student.delete_at')->first();
+            ->whereNull('student.deleted_at')->first();
             if(!empty($items))
             {
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้วค่ะ');
@@ -120,7 +120,7 @@ class StudentController extends Controller
             ->where('std_id',$std_id)->first();
             if(!empty($student))
             {
-                $studygroup = DB::table($this->table2)->whereNull('delete_at')->get();
+                $studygroup = DB::table($this->table2)->whereNull('deleted_at')->get();
                 return view($this->table_name.'::form',[
                     'student'=>$student,
                     'studygroup'=>$studygroup
@@ -151,7 +151,7 @@ class StudentController extends Controller
             ->where('std_id','!=',$std_id)
             ->where('first_name',$first_name)
             ->where('last_name',$last_name)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($items)){
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
             }
@@ -189,7 +189,7 @@ class StudentController extends Controller
         if(is_numeric($std_id))
         {
             DB::table($this->table_name)->where('std_id',$std_id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

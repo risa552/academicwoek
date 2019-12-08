@@ -19,7 +19,7 @@ class TermController extends Controller
         $keyword =$request->get('keyword');
         
         $term = DB::table('term')
-        ->whereNull('delete_at');
+        ->whereNull('deleted_at');
         if(!empty($keyword)){
             $term->where(function ($query) use($keyword){
                 $query->where('term_name','LIKE','%'.$keyword.'%')
@@ -111,13 +111,13 @@ class TermController extends Controller
         {
             $exists1 = DB::table('program')
             ->where('term_id',$term_id)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($exists1))
             {
                 return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
             }   
             DB::table('term')->where('term_id',$term_id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

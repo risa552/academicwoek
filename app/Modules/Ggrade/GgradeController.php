@@ -37,7 +37,7 @@ class GgradeController extends Controller
                     ->where('enddate','>=',date('Y-m-d'))
                     ->whereRaw('educate.term_id = term.term_id');
         })
-        ->whereNull('educate.delete_at');
+        ->whereNull('educate.deleted_at');
 
         $items =$items->paginate(10);
         return view ('ggrade::list',compact('items'));
@@ -64,10 +64,10 @@ class GgradeController extends Controller
         ->where('teacher.teach_id',$user->teach_id)
         ->where('educate.educate_id',$educate_id)
         ->whereRaw(DB::raw('studygroup.group_id = educate.group_id'))
-        ->whereNull('enrolment.delete_at')
-        ->whereNull('student.delete_at')
-        ->whereNull('subject.delete_at')
-        ->whereNull('teacher.delete_at');
+        ->whereNull('enrolment.deleted_at')
+        ->whereNull('student.deleted_at')
+        ->whereNull('subject.deleted_at')
+        ->whereNull('teacher.deleted_at');
         if(!empty($keyword)){
             $ggrade->where(function ($query) use($keyword){
                 $query->where('student.first_name','LIKE','%'.$keyword.'%')
@@ -80,17 +80,17 @@ class GgradeController extends Controller
         'studygroup.group_name')
         ->leftJoin('educate','educate.sub_id','subject.sub_id')
         ->leftJoin('studygroup','educate.group_id','studygroup.group_id')
-        ->whereNull('subject.delete_at')->first();
+        ->whereNull('subject.deleted_at')->first();
 
         
         $ggrade = $ggrade->OrderBy('subject.sub_name','asc')->OrderBy('studygroup.group_name','asc')->get();
-        $rom = DB::table('term')->whereNull('delete_at')->get();
+        $rom = DB::table('term')->whereNull('deleted_at')->get();
         $rom1 = DB::table('subject')
         ->leftJoin('educate','educate.sub_id','subject.sub_id')
         ->where('educate.teach_id',$user->teach_id)
-        ->whereNull('subject.delete_at')
+        ->whereNull('subject.deleted_at')
         ->get();
-        $rom2 = DB::table('studygroup')->whereNull('delete_at')->get();
+        $rom2 = DB::table('studygroup')->whereNull('deleted_at')->get();
         return view('ggrade::form',compact('ggrade','rom','rom1','rom2','subject','educate_id'));
     }
 

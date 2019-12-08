@@ -36,7 +36,7 @@ class ProgramController extends Controller
         ->leftJoin('subject','program.sub_id','subject.sub_id')
         ->where('program.group_id',$group_id)
         // ->OrderBy('term.term_year','asc')
-        ->whereNull('program.delete_at');
+        ->whereNull('program.deleted_at');
 
         if(!empty($keyword))
         {
@@ -50,16 +50,16 @@ class ProgramController extends Controller
         }
 
         $items = $items->paginate(10);
-        $items2 = DB::table($this->table2)->whereNull('delete_at')->get();
-        $items3 = DB::table($this->table3)->whereNull('delete_at')->get();
-        $items4 = DB::table($this->table4)->whereNull('delete_at')->get();
+        $items2 = DB::table($this->table2)->whereNull('deleted_at')->get();
+        $items3 = DB::table($this->table3)->whereNull('deleted_at')->get();
+        $items4 = DB::table($this->table4)->whereNull('deleted_at')->get();
 
         $group_show = DB::table('studygroup')
         ->select('studygroup.*',
         'branch.bran_name')
         ->leftJoin('branch','studygroup.bran_id','branch.bran_id')
         ->where('studygroup.group_id',$group_id)
-        ->whereNull('studygroup.delete_at')->first();
+        ->whereNull('studygroup.deleted_at')->first();
         
         return view('program::program',compact('items','items2','items3','items4','group_show'));
     }
@@ -74,8 +74,8 @@ class ProgramController extends Controller
             ->where('group_id',$group_id)->first();
             if(!empty($group))
             {
-                $terms = DB::table($this->table3)->whereNull('delete_at')->get();
-                $subjects = DB::table($this->table4)->whereNull('delete_at')->get();
+                $terms = DB::table($this->table3)->whereNull('deleted_at')->get();
+                $subjects = DB::table($this->table4)->whereNull('deleted_at')->get();
                 return view('program::fromprogrom',[
                     'terms'=>$terms,
                     'subjects'=>$subjects,
@@ -101,7 +101,7 @@ class ProgramController extends Controller
                 ->where('group_id','=',$group_id)
                 ->where('term_id','=',$term_id)
                 ->where('sub_id','=',$sub_id)
-                ->whereNull('delete_at')->first();
+                ->whereNull('deleted_at')->first();
                 if(!empty($items)){
                     return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
                 }
@@ -131,8 +131,8 @@ class ProgramController extends Controller
             { 
                 $group_id = $program->group_id;
                 $group_name = $program->group_name;
-                $terms = DB::table($this->table3)->whereNull('delete_at')->get();
-                $subjects = DB::table($this->table4)->whereNull('delete_at')->get();
+                $terms = DB::table($this->table3)->whereNull('deleted_at')->get();
+                $subjects = DB::table($this->table4)->whereNull('deleted_at')->get();
                 return view('program::fromprogrom',[
                     'program'=>$program,
                     'terms'=>$terms,
@@ -161,7 +161,7 @@ class ProgramController extends Controller
                 ->where('group_id','=',$group_id)
                 ->where('term_id','=',$term_id)
                 ->where('sub_id','=',$sub_id)
-                ->whereNull('delete_at')->first();
+                ->whereNull('deleted_at')->first();
                 if(!empty($items)){
                     return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
                 }
@@ -183,7 +183,7 @@ class ProgramController extends Controller
     {
         
             DB::table($this->table_name)->where('program_id',$program_id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         
@@ -231,7 +231,7 @@ class ProgramController extends Controller
         ->leftJoin('branch','branch.bran_id','studygroup.bran_id')
         ->leftJoin('course','course.cou_id','branch.cou_id')
         ->leftJoin('term','term.term_id','program.term_id')
-        ->whereNull('program.delete_at')
+        ->whereNull('program.deleted_at')
         ->where('program.group_id',$group_id)
         ->get();
 

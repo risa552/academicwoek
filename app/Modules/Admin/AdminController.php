@@ -19,7 +19,7 @@ class AdminController extends Controller
         $keyword =$request->get('keyword');
         
         $admin = DB::table('admin')
-        ->whereNull('delete_at');
+        ->whereNull('deleted_at');
 
         if(!empty($keyword))
         {
@@ -59,7 +59,7 @@ class AdminController extends Controller
                 $admin = DB::table('admin')
             ->where('first_name',$first_name)
             ->where('last_name',$last_name)
-            ->whereNull('admin.delete_at')->first();
+            ->whereNull('admin.deleted_at')->first();
             if(!empty($admin))
             {
                 return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้วค่ะ');
@@ -138,7 +138,7 @@ class AdminController extends Controller
                 ->where('admin_id','!=',$admin_id)
                 ->where('first_name',$first_name)
                 ->where('last_name',$last_name)
-                ->whereNull('delete_at')->first();
+                ->whereNull('deleted_at')->first();
                 if(!empty($admin)){
                     return MyResponse::error('ขออภัยข้อมูลนี้มีอยู่ในระบบแล้ว');
                 }
@@ -174,7 +174,7 @@ class AdminController extends Controller
         if(is_numeric($admin_id))
         {
             DB::table('admin')->where('admin_id',$admin_id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

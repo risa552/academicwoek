@@ -13,6 +13,7 @@
                     การบริหารจัดการ<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
+                        <li class="sub-nav-menu"><a href="/year">ปีการศึกษา</a></li>
                         <li class="sub-nav-menu"><a href="/term">ภาคเรียน</a></li>
                         <li class="sub-nav-menu"><a href="/course">หลักสูตร</a></li>
                         <li class="sub-nav-menu"><a href="/degree">ระดับ</a></li>
@@ -25,7 +26,15 @@
                         <li class="sub-nav-menu"><a href="/admin">ผู้ใช้งาน</a></li>
                     </ul>
                 </li>
-                <li class="nav-menu"><a href="/preprogram">แผนการเรียน</a></li>
+                <li class="dropdown nav-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                    การจัดแผนการเรียน<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="sub-nav-menu"><a href="/preprogram">แผนการเรียน</a></li>
+                        <li class="sub-nav-menu"><a href="/detail">รายละเอียดแผนการเรียน</a></li>
+                    </ul>
+                </li>
                 <li class="nav-menu"><a href="/exam">การส่งข้อสอบ</a></li>
                 <li class="nav-menu"><a href="/educate">ภาระการสอน</a></li>
                 <!--<li class="dropdown nav-menu">

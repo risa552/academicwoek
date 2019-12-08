@@ -18,7 +18,7 @@ class CourseController extends Controller
         $keyword =$request->get('keyword');
         
         $course = DB::table('course')
-        ->whereNull('delete_at');
+        ->whereNull('deleted_at');
         if(!empty($keyword)){
             $course->where(function ($query) use($keyword){
                 $query->where('cou_name','LIKE','%'.$keyword.'%')
@@ -104,13 +104,13 @@ class CourseController extends Controller
         {
             $exists = DB::table('branch')
             ->where('cou_id',$cou_id)
-            ->whereNull('delete_at')->first();
+            ->whereNull('deleted_at')->first();
             if(!empty($exists))
             {
                 return MyResponse::error('ขออภัยไม่สามารถลบรายการนีได้');
             }   
             DB::table('course')->where('cou_id',$cou_id)->update([
-                'delete_at' =>date('Y-m-d H:i:s'),
+                'deleted_at' =>date('Y-m-d H:i:s'),
             ]);
             return MyResponse::success('ระบบได้ลบข้อมูลเรียบร้อยแล้ว');
         }

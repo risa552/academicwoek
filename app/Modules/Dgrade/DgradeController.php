@@ -35,8 +35,8 @@ class DgradeController extends Controller
                   ->where('enddate','>=',date('Y-m-d'))
                   ->whereRaw('enrolment.term_id = term.term_id');
         })
-        ->whereNull('enrolment.delete_at')
-        ->whereNull('term.delete_at')
+        ->whereNull('enrolment.deleted_at')
+        ->whereNull('term.deleted_at')
         ->where('enrolment.sub_id','=',$sub_id)->get();
 
         $student  = DB::table('student')
@@ -44,7 +44,7 @@ class DgradeController extends Controller
         //->where('std_id',$std_id)->first();
     
    
-        $subject = DB::table('subject')->whereNull('delete_at')->get();    
+        $subject = DB::table('subject')->whereNull('deleted_at')->get();    
         // print_r($student);exit;   
         return view('dgrade::list',compact('items','student','subject'));
     }

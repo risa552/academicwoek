@@ -36,9 +36,9 @@ class EnrolmentStudentController extends Controller
         LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id AND educate.group_id=program.group_id)
         LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
         WHERE program.term_id={$term_active->term_id} 
-        AND program.delete_at IS NULL 
+        AND program.deleted_at IS NULL 
         AND program.group_id = {$user->group_id}
-        AND subject.delete_at IS NULL
+        AND subject.deleted_at IS NULL
         AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id AND xx.std_id={$user->std_id})
         ");
     // print_r($program_open);exit;
@@ -52,12 +52,12 @@ class EnrolmentStudentController extends Controller
         LEFT JOIN educate ON(educate.sub_id=enrolment.sub_id AND educate.term_id=enrolment.term_id)
         LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
         WHERE program.term_id={$term_active->term_id} 
-        AND program.delete_at IS NULL 
+        AND program.deleted_at IS NULL 
         AND program.group_id = {$user->group_id}
         AND program.group_id = {$user->group_id}
         AND enrolment.std_id = {$user->std_id}
         AND educate.group_id = {$user->group_id}
-        AND subject.delete_at IS NULL
+        AND subject.deleted_at IS NULL
         ");
         // print_r($program_selected);exit;
 
@@ -74,11 +74,11 @@ class EnrolmentStudentController extends Controller
         ->rightJoin('degree','studygroup.degree_id','degree.degree_id')
         ->rightJoin('course','branch.cou_id','course.cou_id')
         ->where('student.std_id',$user->std_id)
-        ->whereNull('studygroup.delete_at')
-        ->whereNull('branch.delete_at')
-        ->whereNull('degree.delete_at')
-        ->whereNull('course.delete_at')
-        ->whereNull('student.delete_at')->get();
+        ->whereNull('studygroup.deleted_at')
+        ->whereNull('branch.deleted_at')
+        ->whereNull('degree.deleted_at')
+        ->whereNull('course.deleted_at')
+        ->whereNull('student.deleted_at')->get();
         //print_r($history);exit;
         return view ('enrostudent::list',compact('program_open','program_selected','history'));
     }
@@ -114,9 +114,9 @@ class EnrolmentStudentController extends Controller
         LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id AND educate.group_id=program.group_id)
         LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
         WHERE program.term_id={$term_active->term_id} 
-        AND program.delete_at IS NULL 
+        AND program.deleted_at IS NULL 
         AND program.group_id = {$user->group_id}
-        AND subject.delete_at IS NULL
+        AND subject.deleted_at IS NULL
         AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id AND xx.std_id={$user->std_id})
         ");
 

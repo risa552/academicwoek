@@ -45,7 +45,19 @@
                 @csrf()
                 @endif
                 <div class="panel-body">
-                       
+                      <div class="form-group col-md-6">
+                            <label >กลุ่มวชา:</label>
+                            <select class="form-control" onchange="get_subject(this)" name="subgroup_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($subgroup as $index => $row5)
+                                <option value ="{{$row5->subgroup_id}}" {{isset($subgroup_id)&& $subgroup_id==$row5->subgroup_id?'selected':''}}>
+                                {{$row5->subgroup_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
                         <div class="form-group col-md-6">
                             <label >ภาคเรียน:</label>
                             <select class="form-control" name="term_id">
@@ -59,15 +71,29 @@
                             @endforeach
                             </select>
                         </div>
+                        
                         <div class="form-group col-md-6">
                             <label >วิชา:</label>
-                            <select class="form-control" name="sub_id">
+                            <select class="form-control" id="sub_id" name="sub_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
                             @foreach($subject as $index => $row2)
                                 <option value ="{{$row2->sub_id}}" {{isset($items)&& $items->sub_id==$row2->sub_id?'selected':''}}>
                                  {{$row2->sub_code}} {{$row2->sub_name}} <br> {{$row2->sub_name_eng}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label >แผนการเรียน:</label>
+                            <select class="form-control" name="program_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($program as $index => $pro)
+                                <option value ="{{$pro->program_id}}" {{isset($items)&& $items->program_id==$pro->program_id?'selected':''}}>
+                                 {{$pro->cou_name}} {{$pro->year_name}}
                                 </option>
                             @endforeach
                             </select>
@@ -80,3 +106,21 @@
 </div>
 
 @endsection
+@push('scripts')
+<script>
+   function get_subject(o){
+       var subgroup_id = $(o).val();
+       $('#sub_id').empty();
+       $('#sub_id').append('<option value="">  กรุณาเลือก </option>');
+       if(subgroup_id){
+
+           $.getJSON('/subject-group?subgroup_id='+subgroup_id,function(result){
+            result.forEach(function(row){
+                $('#sub_id').append('<option value="'+row.sub_id+'">'+row.sub_code+'  '+row.sub_name+' '+row.sub_name_eng+' </option>');
+
+               })
+           });
+       }
+   }
+ </script>
+@endpush

@@ -22,9 +22,14 @@ class DetailProgramController extends Controller
         'subject.sub_name',
         'subject.sub_name_eng',
         'term.term_name',
-        'term.term_year')
+        'term.term_year',
+        'course.cou_name',
+        'year.year_name')
         ->leftJoin('subject','subject.sub_id','detailprogram.sub_id')
         ->leftJoin('term','term.term_id','detailprogram.term_id')
+        ->leftJoin('program','program.program_id','detailprogram.program_id')
+        ->leftJoin('course','course.cou_id','program.cou_id')
+        ->leftJoin('year','year.year_id','program.year_id')
         ->whereNull('detailprogram.deleted_at');
 
         if(!empty($keyword))
@@ -48,11 +53,30 @@ class DetailProgramController extends Controller
             $term = DB::table('term')->whereNull('deleted_at')->get();
             return view ('detail::list',compact('items','subject','term'));
     }   
-    public function create()
+    public function create(Request $request)
     {
-        $subject = DB::table('subject')->whereNull('deleted_at')->get();
+
+        $subgroup = DB::table('subjectgroup')->whereNull('deleted_at')->get();
+        $subject = [];
         $term = DB::table('term')->whereNull('deleted_at')->get();
-        return view('detail::form',compact('subject','term'));
+        $program = DB::table('program')
+        ->select('program.*',
+        'course.cou_name',
+        'year.year_name')
+        ->leftJoin('course','course.cou_id','program.cou_id')
+        ->leftJoin('year','year.year_id','program.year_id')
+        ->whereNull('program.deleted_at')->get();
+        return view('detail::form',compact('subject','term','program','subgroup'));
+    }
+    public function get_subjectBygroup (Request $request)
+    {
+        $subgroup_id = $request->get('subgroup_id');
+        $subject = DB::table('subject')
+        ->select('subject.*')
+        ->whereNull('subject.deleted_at')
+        ->where('subject.subgroup_id',$subgroup_id)
+        ->get();
+        return $subject;
     }
     
     public function store(Request $request)
@@ -92,12 +116,30 @@ class DetailProgramController extends Controller
             $items = DB::table('detailprogram')->where('detailpro_id',$detailpro_id)->first();
             if(!empty($items))
             {
-                $subject = DB::table('subject')->whereNull('deleted_at')->get();
+                $subject_select = DB::table('subject')
+                ->select('subject.*')
+                ->where('sub_id',$items->sub_id)
+                ->first();
+                $subgroup = DB::table('subjectgroup')->whereNull('deleted_at')->get();
+                $subject = DB::table('subject')
+                ->select('subject.*')
+                ->where('subgroup_id',$subject_select->subgroup_id)
+                ->whereNull('subject.deleted_at')->get();
                 $term = DB::table('term')->whereNull('deleted_at')->get();
+                $program = DB::table('program')
+                ->select('program.*',
+                'course.cou_name',
+                'year.year_name')
+                ->leftJoin('course','course.cou_id','program.cou_id')
+                ->leftJoin('year','year.year_id','program.year_id')
+                ->whereNull('program.deleted_at')->get();
                 return view('detail::form',[
                     'items'=>$items,
                     'subject'=>$subject,
+                    'subgroup'=>$subgroup,
                     'term'=>$term,
+                    'program'=>$program,
+                    'subgroup_id'=>$subject_select->subgroup_id
                 ]);
             }
             

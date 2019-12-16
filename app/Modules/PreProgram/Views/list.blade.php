@@ -30,14 +30,27 @@
                 <div class="panel-body">
                     <form action="/preprogram">
                         <div class="form-group">
-                            <label >กลุ่มเรียน:</label>
-                            <select class="form-control" name="group_id">
+                            <label >ปีการศึกษา:</label>
+                            <select class="form-control" name="year_id">
                                 <option value="all">
                                     ทั้งหมด
                                 </option>
-                            @foreach($studygroup as $index => $rowm)
-                                <option value ="{{$rowm->group_id}}" {{Input::get('group_id')==$rowm->group_id?'selected':''}}> 
-                                    {{$rowm->group_name}}
+                            @foreach($years as $index => $year)
+                                <option value ="{{$year->year_id}}" {{Input::get('year_id')==$year->year_id?'selected':''}}> 
+                                    {{$year->year_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label >หลักสูตร:</label>
+                            <select class="form-control" name="cou_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($courses as $index => $cou)
+                                <option value ="{{$cou->cou_id}}" {{Input::get('cou_id')==$cou->cou_id?'selected':''}}> 
+                                    {{$cou->cou_name}}
                                 </option>
                             @endforeach
                             </select>
@@ -52,35 +65,36 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     รายการข้อมูลแผนการเรียน
-                    <!-- <a href="/program/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลแผนการเรียน</a> -->
+                    <a href="/preprogram/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลแผนการเรียน</a>
                 </div>
                 <div class="panel-body">  
                 <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>ลำดับที่</th>
-                                <th>กลุ่มเรียน</th>
+                                <!-- <th>กลุ่มเรียน</th> -->
                                 <th>ปีการศึกษา</th>
+                                <th>หลักสูตร</th>
                                 <th style="width:150px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($studygroup as $index => $row)
+                            @foreach($items as $index => $row)
                                 <tr>
                                     <td>{{$index+1}}</td>
-                                    <td>{{$row->group_name}}</td>
-                                    <td>{{$row->group_year}}</td>
+                                    <td>{{$row->year_name}}</td>
+                                    <td>{{$row->cou_name}}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/program-report?group_id={{$row->group_id}}"></a>
-                                            <a class="fa fa-plus-circle btn btn-info" aria-hidden="true" href="/program/{{$row->group_id}}"></a>
+                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/preprogram/{{$row->program_id}}"></a>
+                                       <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/preprogram/{{$row->program_id}}"></a>
                                         </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $studygroup->render() !!}
+                    {!! $items->render() !!}
                     <!--<ul class="pagination">
                         <li><a href="#">1</a></li>
                         <li><a href="#">2</a></li>

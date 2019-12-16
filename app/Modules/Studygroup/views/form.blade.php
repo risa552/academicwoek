@@ -50,9 +50,9 @@
                             </div>
                             <div class=" col-md-6">
                                 <label >ปีที่เข้าศึกษา:</label>
-                                <select class="form-control" name="group_year" class="form-group">
+                                <select class="form-control" name="year_id" class="form-group">
                                     @for($i=date('Y');$i>date('Y')-3;$i--)
-                                    <option {{isset($group) && $group->group_year==($i+543)?'select':''}} value="{{($i+543)}}">{{($i+543)}}</option>
+                                    <option {{isset($group) && $group->year_id==($i+543)?'select':''}} value="{{($i+543)}}">{{($i+543)}}</option>
                                     @endfor
                                 </select>
                             </div>
@@ -100,6 +100,19 @@
                                 @foreach($teach as $index => $teacher)
                                     <option value ="{{$teacher->teach_id}}" {{isset($group)&& $group->teach_id==$teacher->teach_id?'selected':''}}>
                                         {{$teacher->first_name}}  {{$teacher->last_name}}
+                                    </option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label >แผนการเรียน:</label>
+                                <select class="form-control"  name="program_id">
+                                    <option value="all">
+                                        ทั้งหมด
+                                    </option>
+                                @foreach($program as $index => $pro)
+                                    <option value ="{{$pro->program_id}}" {{isset($group)&& $group->program_id==$pro->program_id?'selected':''}}>
+                                        {{$pro->cou_name}}  {{$pro->year_name}}
                                     </option>
                                 @endforeach
                                 </select>

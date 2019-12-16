@@ -18,11 +18,12 @@
                         <li class="sub-nav-menu"><a href="/course">หลักสูตร</a></li>
                         <li class="sub-nav-menu"><a href="/degree">ระดับ</a></li>
                         <li class="sub-nav-menu"><a href="/branch">สาขาวิชา</a></li>
+                        <li class="sub-nav-menu"><a href="/subjectgroup">กลุ่มวิชา</a></li>
+                        <li class="sub-nav-menu"><a href="/subject">วิชา</a></li>
                         <li class="sub-nav-menu"><a href="/professor">อาจารย์</a></li>
                         <li class="sub-nav-menu"><a href="/studygroup">กลุ่มเรียน</a></li>
                         <li class="sub-nav-menu"><a href="/student">นักศึกษา</a></li>
-                        <li class="sub-nav-menu"><a href="/subjectgroup">กลุ่มวิชา</a></li>
-                        <li class="sub-nav-menu"><a href="/subject">วิชา</a></li>
+                        
                         <li class="sub-nav-menu"><a href="/admin">ผู้ใช้งาน</a></li>
                     </ul>
                 </li>

@@ -149,7 +149,7 @@ class SubjectController extends Controller
     {
         if(is_numeric($id))
         { 
-            $exists1 = DB::table('program')
+            $exists1 = DB::table('detailprogram')
             ->where('sub_id',$id)
             ->whereNull('deleted_at')->first();
             if(!empty($exists1))

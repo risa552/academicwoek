@@ -66,6 +66,7 @@
                                 <th>ลำดับที่</th>
                                 <th>ภาคเรียน</th>
                                 <th>วิชา</th>
+                                <th>หนักสูตร</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -75,6 +76,7 @@
                                 <td>{{$index+$items->firstItem()}}</td>
                                 <td>{{$row->term_name}}/{{$row->term_year}}</td>
                                 <td>{{$row->sub_code}} {{$row->sub_name}} <br>{{$row->sub_name_eng}} </td>
+                                <td>{{$row->cou_name}} {{$row->year_name}}</td>
                                 <td>
                                     <div class="btn-group">
                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/detail/{{$row->detailpro_id}}"></a>

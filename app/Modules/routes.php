@@ -45,6 +45,7 @@ Route::prefix('')->group(function ()
       Route::Get('/list-one', '\App\Modules\Enrolment\EnrolmentController@page_group');
       Route::resource('/year', '\App\Modules\Year\YearController');
       Route::resource('/detail', '\App\Modules\DetailProgram\DetailProgramController');
+      Route::Get('/subject-group', '\App\Modules\DetailProgram\DetailProgramController@get_subjectBygroup');
 
     });
 });

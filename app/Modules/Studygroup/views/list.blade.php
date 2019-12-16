@@ -24,7 +24,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="panel panel-info">
                 <div class="panel-heading">ค้นหาข้อมูลกลุ่มเรียน</div>
                 <div class="panel-body">
@@ -79,7 +79,7 @@
             <!--<button type="submit" class="btn btn-info"><a href="#">ข้อมูลกลุ่มเรียน</a></button> -->
         </div> 
 
-        <div class="col-md-9">
+        <div class="col-md-10">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     รายการข้อมูลกลุ่มเรียน
@@ -95,6 +95,7 @@
                                 <th>สาขา</th>
                                 <th>ระดับ</th>
                                 <th>อาจารย์ที่ปรึกษา</th>
+                                <th>แผนการเรียน</th>
                                 <th style="width:110px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -107,6 +108,7 @@
                                 <td>{{$row->bran_name}}</td>
                                 <td>{{$row->degree_name}}</td>
                                 <td>{{$row->first_name}} {{$row->last_name}}</td>
+                                <td>{{$row->cou_name}} {{$row->year_name}}</td>
                                 <td>
                                     <div class="btn-group">
                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/studygroup/{{$row->group_id}}"></a>

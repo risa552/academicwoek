@@ -19,12 +19,13 @@ class ExamProfessorController extends Controller
         $user=CurrentUser::user();
         $now = date('Y-m-d');
 
-        $select = 'subject.sub_code,subject.sub_name,subject.sub_name_eng,studygroup.group_name,exam.file_mid,exam.file_final,educate.educate_id';
+        $select = 'subject.sub_code,subject.sub_name,subject.sub_name_eng,studygroup.group_name,sendexam.file_mid,sendexam.file_final,educate.educate_id,term.term_name,term.term_year';
         $exam = DB::table('educate')
                 ->select(explode(',',$select))
                 ->leftJoin('subject','subject.sub_id','=','educate.sub_id')
                 ->leftJoin('studygroup','studygroup.group_id','=','educate.group_id')
-                ->leftJoin('exam','exam.educate_id','=','educate.educate_id')
+                ->leftJoin('sendexam','sendexam.sub_id','=','subject.sub_id')
+                ->leftJoin('term','term.term_id','educate.term_id')
                 ->where('educate.teach_id',$user->teach_id)
                 ->whereExists(function ($query) {
                     $query->select(DB::raw(1))

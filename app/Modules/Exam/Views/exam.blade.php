@@ -42,6 +42,19 @@
                             @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label >อาจารย์:</label>
+                            <select class="form-control" name="teach_id">
+                                <option value="all">
+                                    ทั้งหมด
+                                </option>
+                            @foreach($teachs as $index => $teach)
+                                <option value ="{{$teach->teach_id}}" {{Input::get('teach_id')==$teach->teach_id?'stlected':''}}>
+                                    {{$teach->first_name}} {{$teach->last_name}}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
@@ -71,15 +84,10 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$row->sub_code}}</td>
-                                <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
+                                <td style="white-space: nowrap; overflow:hidden; text-overflow:ellipsis">{{$row->sub_name}} <br> {{$row->sub_name_eng}} <br> {{$row->first_name}} {{$row->last_name}} </td>
                                 <td><a target="_blank" href="{{$row->file_mid}}">{{$row->file_mid}} <br> {{$row->created_at}}</a></td>
                                 <td><a target="_blank" href="{{$row->file_final}}">{{$row->file_final}} <br> {{$row->created_at}}</a></td>
-                                <!--<td>
-                                    <div class="btn-group">
-                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/exam/{{$row->exam_id}}"></a>
-                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/exam/{{$row->exam_id}}"></a>
-                                    </div>
-                                </td>-->
+                                
                             </tr>
                         @endforeach
                         </tbody>

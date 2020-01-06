@@ -57,6 +57,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     รายการข้อมูลรายละเอียด
+                    
                     <a href="/detail/create" class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูล</a>
                 </div>
                 <div class="panel-body">  

@@ -75,6 +75,7 @@
                                 <!-- <th>กลุ่มเรียน</th> -->
                                 <th>ปีการศึกษา</th>
                                 <th>หลักสูตร</th>
+                                <th>สาขา</th>
                                 <th style="width:150px">แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -84,10 +85,12 @@
                                     <td>{{$index+1}}</td>
                                     <td>{{$row->year_name}}</td>
                                     <td>{{$row->cou_name}}</td>
+                                    <td>{{$row->bran_name}}</td>
                                     <td>
                                         <div class="btn-group">
-                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/preprogram/{{$row->program_id}}"></a>
-                                       <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/preprogram/{{$row->program_id}}"></a>
+                                            <a class="fa fa-file-text-o btn btn-success" aria-hidden="true" href="/detail-report/{{$row->program_id}}/{{$row->bran_id}}"></a>
+                                            <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/preprogram/{{$row->program_id}}"></a>
+                                            <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="/preprogram/{{$row->program_id}}"></a>
                                         </div>
                                     </td>
                                 </tr>

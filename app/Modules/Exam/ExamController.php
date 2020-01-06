@@ -16,36 +16,48 @@ class ExamController extends Controller
     {
         $keyword =$request->get('keyword');
         $sub_id = $request->get('sub_id');
-        $exam = DB::table('program')
-        ->select('program.*',
+        $teach_id = $request->get('teach_id');
+
+        $exam = DB::table('educate')
+        ->select('educate.*',
         'subject.sub_code',
         'subject.sub_name',
         'subject.sub_name_eng',
-        'exam.file_mid',
-        'exam.file_final',
-        'exam.exam_id',
-        'exam.created_at')
-        ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->leftJoin('exam','program.program_id','exam.program_id')
+        
+        'sendexam.file_mid',
+        'sendexam.file_final',
+        'teacher.first_name',
+        'teacher.last_name',
+        'term.term_name',
+        'term.term_year')
+        ->leftJoin('subject','educate.sub_id','subject.sub_id')
+        ->leftJoin('term','educate.term_id','term.term_id')
+        ->leftJoin('teacher','educate.teach_id','teacher.teach_id')
+        ->leftJoin('sendexam','sendexam.term_id','term.term_id')
+
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')
                   ->where('startdate','<=',date('Y-m-d'))
                   ->where('enddate','>=',date('Y-m-d'))
-                  ->whereRaw('program.term_id = term.term_id');
+                  ->whereRaw('educate.term_id = term.term_id');
         })
-        ->whereNull('program.deleted_at');
+        ->whereNull('educate.deleted_at');
         if(!empty($keyword)){
             $exam->where(function ($query) use($keyword){
                 $query->where('sub_name','LIKE','%'.$keyword.'%');
             });
         }
         if(is_numeric($sub_id)){
-            $exam->where('program.sub_id','=',$sub_id);
+            $exam->where('educate.sub_id','=',$sub_id);
+        }
+        if(is_numeric($teach_id)){
+            $exam->where('educate.teach_id','=',$teach_id);
         }
         $exam = $exam->get();
         $items = DB::table($this->table_name)->whereNull('deleted_at')->get();       
-        return view('exam::exam',compact('exam','items'));
+        $teachs = DB::table('teacher')->whereNull('deleted_at')->get();       
+        return view('exam::exam',compact('exam','items','teachs'));
     }
     
     public function create()

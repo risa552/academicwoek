@@ -60,6 +60,7 @@
                                 <th>#</th>
                                 <th>ชื่อวิชา</th>
                                 <th>กลุ่มเรียน</th>
+                                <th>ภาคเรียน</th>
                                 <th style="width:150px;">ไฟล์ข้อสอบกลางภาค</th>
                                 <th></th>
                                 <th style="width:150px;">ไฟล์ข้อสอบปลายภาค</th>
@@ -72,6 +73,7 @@
                                     <td>{{$index+$exam->FirstItem()}}</td>
                                     <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
                                     <td>{{$row->group_name}}</td>
+                                    <td>{{$row->term_name}}/{{$row->term_year}}</td>
                                     <td><a target="_blank" href="{{$row->file_mid}}">{{$row->file_mid?'Download':''}}</a></td>
                                     <td>
                                         <button type="button" data-term="file_mid" data-programid="{{$row->educate_id}}" data-ext="doc,docx,xls,xlsx,pdf" data-url="/upload-exam" data-callback="exam_success" class="btn btn-default upload-file">

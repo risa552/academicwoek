@@ -65,18 +65,29 @@ class UploadController extends Controller
         $dir_temp = 'uploads/';
         $filename = uniqid() . '_' . time() . '.' . $extension;
         $request->file('userfile')->move($dir_temp, $filename);
-        $exam= DB::table('exam')->where('educate_id',$program_id)->first();
+        $exam= DB::table('educate')->where('educate_id',$program_id)->first();
         if(!empty($exam)){
-            DB::table('exam')->where('educate_id',$program_id)->update([
-                $term=> '/' . $dir_temp . $filename,
-                'updated_at'=>date('Y-m-d H:i:s')
-            ]);
-        }else {
-            DB::table('exam')->insert([
-                $term => '/' . $dir_temp . $filename,
-                'created_at'=>date('Y-m-d H:i:s'),
-                'educate_id'=>$program_id
-            ]);
+            $sendexam= DB::table('sendexam')
+            ->where('group_id',$exam->group_id)
+            ->where('term_id',$exam->term_id)
+            ->where('sub_id',$exam->sub_id)
+            ->first();
+
+            if(!empty($sendexam)){
+                DB::table('sendexam')->where('send_id',$sendexam->send_id)->update([
+                    $term=> '/' . $dir_temp . $filename,
+                    'updated_at'=>date('Y-m-d')
+                ]);
+
+            }else{
+                DB::table('sendexam')->insert([
+                    $term => '/' . $dir_temp . $filename,
+                    'created_at'=>date('Y-m-d'),
+                    'group_id'=>$exam->group_id,
+                    'term_id'=>$exam->term_id,
+                    'sub_id'=>$exam->sub_id
+                ]);
+            }           
         }
         return [
             'status' => 200,

@@ -26,35 +26,34 @@ class EnrolmentStudentController extends Controller
                         ->first();
         }
 
-        $program_open = DB::select("SELECT program.*,
+        $program_open = DB::select("SELECT detailprogram.*,
         subject.sub_name,subject.sub_code,subject.credit,subject.theory,subject.practice ,
         teacher.first_name,teacher.last_name
-        FROM program
-        LEFT JOIN subject ON(program.sub_id=subject.sub_id)
-        -- LEFT JOIN enrolment ON(enrolment.sub_id=subject.sub_id)
-        -- LEFT JOIN student ON(enrolment.std_id=student.std_id)
-        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id AND educate.group_id=program.group_id)
+        FROM detailprogram
+        LEFT JOIN subject ON(detailprogram.sub_id=subject.sub_id)
+        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=detailprogram.term_id)
         LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
-        WHERE program.term_id={$term_active->term_id} 
-        AND program.deleted_at IS NULL 
-        AND program.group_id = {$user->group_id}
+        WHERE detailprogram.term_id={$term_active->term_id}
+        AND detailprogram.deleted_at IS NULL 
+        AND educate.group_id = {$user->group_id}
         AND subject.deleted_at IS NULL
-        AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id AND xx.std_id={$user->std_id})
-        ");
+        AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=detailprogram.sub_id and xx.term_id=detailprogram.term_id AND xx.std_id={$user->std_id} )");
+        
+        
     // print_r($program_open);exit;
 
-        $program_selected = DB::select("SELECT program.*,
+        $program_selected = DB::select("SELECT detailprogram.*,
         subject.sub_name,subject.sub_code,subject.credit,subject.theory,subject.practice ,
         teacher.first_name,teacher.last_name,enrolment.std_id
-        FROM program
-        RIGHT JOIN enrolment ON(enrolment.sub_id=program.sub_id AND enrolment.term_id=program.term_id )
+        FROM detailprogram
+        RIGHT JOIN enrolment ON(enrolment.sub_id=detailprogram.sub_id AND enrolment.term_id=detailprogram.term_id )
         LEFT JOIN subject ON(enrolment.sub_id=subject.sub_id)
         LEFT JOIN educate ON(educate.sub_id=enrolment.sub_id AND educate.term_id=enrolment.term_id)
         LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
-        WHERE program.term_id={$term_active->term_id} 
-        AND program.deleted_at IS NULL 
-        AND program.group_id = {$user->group_id}
-        AND program.group_id = {$user->group_id}
+        WHERE detailprogram.term_id={$term_active->term_id} 
+        AND detailprogram.deleted_at IS NULL 
+        -- AND program.group_id = {$user->group_id}
+        -- AND program.group_id = {$user->group_id}
         AND enrolment.std_id = {$user->std_id}
         AND educate.group_id = {$user->group_id}
         AND subject.deleted_at IS NULL
@@ -104,21 +103,18 @@ class EnrolmentStudentController extends Controller
                         ->first();
         }
 
-        $program_open = DB::select("SELECT program.*,
+        $program_open = DB::select("SELECT detailprogram.*,
         subject.sub_name,subject.sub_code,subject.credit,subject.theory,subject.practice ,
         teacher.first_name,teacher.last_name
-        FROM program
-        LEFT JOIN subject ON(program.sub_id=subject.sub_id)
-        -- LEFT JOIN enrolment ON(enrolment.sub_id=subject.sub_id)
-        -- LEFT JOIN student ON(enrolment.std_id=student.std_id)
-        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=program.term_id AND educate.group_id=program.group_id)
+        FROM detailprogram
+        LEFT JOIN subject ON(detailprogram.sub_id=subject.sub_id)
+        LEFT JOIN educate ON(educate.sub_id=subject.sub_id AND educate.term_id=detailprogram.term_id)
         LEFT JOIN teacher ON(teacher.teach_id=educate.teach_id)
-        WHERE program.term_id={$term_active->term_id} 
-        AND program.deleted_at IS NULL 
-        AND program.group_id = {$user->group_id}
+        WHERE detailprogram.term_id={$term_active->term_id}
+        AND detailprogram.deleted_at IS NULL 
+        AND educate.group_id = {$user->group_id}
         AND subject.deleted_at IS NULL
-        AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=program.sub_id and xx.term_id=program.term_id AND xx.std_id={$user->std_id})
-        ");
+        AND NOT EXISTS(SELECT 1 FROM enrolment xx WHERE xx.sub_id=detailprogram.sub_id and xx.term_id=detailprogram.term_id AND xx.std_id={$user->std_id} )");
 
         if(empty( $program_open) && !is_array( $program_open))
         {

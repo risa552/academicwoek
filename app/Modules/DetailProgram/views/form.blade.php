@@ -45,59 +45,58 @@
                 @csrf()
                 @endif
                 <div class="panel-body">
-                      <div class="form-group col-md-6">
-                            <label >กลุ่มวชา:</label>
-                            <select class="form-control" onchange="get_subject(this)" name="subgroup_id">
-                                <option value="all">
-                                    ทั้งหมด
-                                </option>
-                            @foreach($subgroup as $index => $row5)
-                                <option value ="{{$row5->subgroup_id}}" {{isset($subgroup_id)&& $subgroup_id==$row5->subgroup_id?'selected':''}}>
-                                {{$row5->subgroup_name}}
-                                </option>
-                            @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label >ภาคเรียน:</label>
-                            <select class="form-control" name="term_id">
-                                <option value="all">
-                                    ทั้งหมด
-                                </option>
-                            @foreach($term as $index => $row1)
-                                <option value ="{{$row1->term_id}}" {{isset($items)&& $items->term_id==$row1->term_id?'selected':''}}>
-                                {{$row1->term_name}}/{{$row1->term_year}}
-                                </option>
-                            @endforeach
-                            </select>
-                        </div>
-                        
-                        <div class="form-group col-md-6">
-                            <label >วิชา:</label>
-                            <select class="form-control" id="sub_id" name="sub_id">
-                                <option value="all">
-                                    ทั้งหมด
-                                </option>
-                            @foreach($subject as $index => $row2)
-                                <option value ="{{$row2->sub_id}}" {{isset($items)&& $items->sub_id==$row2->sub_id?'selected':''}}>
-                                 {{$row2->sub_code}} {{$row2->sub_name}} <br> {{$row2->sub_name_eng}}
-                                </option>
-                            @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label >แผนการเรียน:</label>
-                            <select class="form-control" name="program_id">
-                                <option value="all">
-                                    ทั้งหมด
-                                </option>
-                            @foreach($program as $index => $pro)
-                                <option value ="{{$pro->program_id}}" {{isset($items)&& $items->program_id==$pro->program_id?'selected':''}}>
-                                 {{$pro->cou_name}} {{$pro->year_name}}
-                                </option>
-                            @endforeach
-                            </select>
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label >แผนการเรียน:</label>
+                        <select class="form-control" name="program_id">
+                            <option value="all">
+                                ทั้งหมด
+                            </option>
+                        @foreach($program as $index => $pro)
+                            <option value ="{{$pro->program_id}}" {{isset($items)&& $items->program_id==$pro->program_id?'selected':''}}>
+                            {{$pro->cou_name}} {{$pro->year_name}}
+                            </option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label >ภาคเรียน:</label>
+                        <select class="form-control" name="term_id">
+                            <option value="all">
+                                ทั้งหมด
+                            </option>
+                        @foreach($term as $index => $row1)
+                            <option value ="{{$row1->term_id}}" {{isset($items)&& $items->term_id==$row1->term_id?'selected':''}}>
+                            {{$row1->term_name}}/{{$row1->term_year}}
+                            </option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label >กลุ่มวิชา:</label>
+                        <select class="form-control" onchange="get_subject(this)" name="subgroup_id">
+                            <option value="all">
+                                ทั้งหมด
+                            </option>
+                        @foreach($subgroup as $index => $row5)
+                            <option value ="{{$row5->subgroup_id}}" {{isset($subgroup_id)&& $subgroup_id==$row5->subgroup_id?'selected':''}}>
+                            {{$row5->subgroup_name}}
+                            </option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label >วิชา:</label>
+                        <select class="form-control" id="sub_id" name="sub_id">
+                            <option value="all">
+                                ทั้งหมด
+                            </option>
+                        @foreach($subject as $index => $row2)
+                            <option value ="{{$row2->sub_id}}" {{isset($items)&& $items->sub_id==$row2->sub_id?'selected':''}}>
+                                {{$row2->sub_code}} {{$row2->sub_name}} <br> {{$row2->sub_name_eng}}
+                            </option>
+                        @endforeach
+                        </select>
+                    </div>
                     <button class="bth" style="margin-left:100px; margin-bottom:10px;"> <i class="fa fa-check" aria-hidden="true"> ยืนยัน</i></button>
                 </div>                
                 </form>

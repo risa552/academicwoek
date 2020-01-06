@@ -72,10 +72,10 @@
                         <thead>
                             <tr>
                                 <th>ลำดับที่</th>
-                                <!-- <th>อาจารย์</th> -->
-                                <!-- <th>วิชา</th> -->
-                                <th>ภาคเรียน</th>
-                                <th>กลุ่มเรียน</th>
+                                <th>อาจารย์</th> 
+                                 <th>วิชา</th>
+                                <!-- <th>ภาคเรียน</th>
+                                <th>กลุ่มเรียน</th> -->
                                 <th>แก้ไขรายการ</th>
                             </tr>
                         </thead>
@@ -83,11 +83,11 @@
                             @foreach($items as $index => $row)
                                 <tr>
                                     <td>{{$index+1}}</td>
-                                    <td>{{$row->term_name}}/{{$row->term_year}}</td>
-                                    <td>{{$row->group_name}}</td>
+                                    <td>{{$row->first_name}}/{{$row->last_name}}</td>
+                                    <td>{{$row->sub_code}} {{$row->sub_name}} <br> {{$row->sub_name_eng}}</td>
                                     <td>
                                         <div class="btn-group">
-                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/educate-teach?group_id={{$row->group_id}}&term_id={{$row->term_id}}"></a>
+                                        <a class="fa fa-pencil-square btn btn-info" aria-hidden="true" href="/educate/{{$row->detailpro_id}}?term_id={{$row->term_id}}&group_id={{$row->group_id}}"></a>
                                        <a class="fa fa-trash delete-item btn btn-danger" aria-hidden="true" href="#"></a>
                                         </div>
                                     </td>

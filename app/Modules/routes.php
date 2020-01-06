@@ -35,17 +35,18 @@ Route::prefix('')->group(function ()
       Route::resource('/plan','\App\Modules\Plan\PlanController');
       Route::resource('/hisgrade','\App\Modules\HistoryGrade\HistoryGradeController');
       Route::resource('/dgrade','\App\Modules\Dgrade\DgradeController');
-      Route::Get('/program-report', '\App\Modules\Program\ProgramController@report');
+      Route::Get('/detail-report/{program_id}/{bran_id}', '\App\Modules\DetailProgram\DetailProgramController@report');
       Route::resource('/preprogram', '\App\Modules\PreProgram\PreProgramController');
       Route::Get('/editprogram/{group_id}', '\App\Modules\Program\ProgramController@showw');
       Route::Get('/editplan/{enro_id}', '\App\Modules\Plan\PlanController@editplan');
       Route::Get('/educate-report', '\App\Modules\Educate\EducateController@report');
-      Route::Get('/print-program/{group_id}', '\App\Modules\Program\ProgramController@print_program');
+      Route::Get('/print-program/{program_id}/{bran_id}', '\App\Modules\DetailProgram\DetailProgramController@print_program');
       Route::Get('/print-educate', '\App\Modules\Educate\EducateController@print_educate');
       Route::Get('/list-one', '\App\Modules\Enrolment\EnrolmentController@page_group');
       Route::resource('/year', '\App\Modules\Year\YearController');
       Route::resource('/detail', '\App\Modules\DetailProgram\DetailProgramController');
       Route::Get('/subject-group', '\App\Modules\DetailProgram\DetailProgramController@get_subjectBygroup');
+      Route::Get('/educate-teach', '\App\Modules\Educate\EducateController@index2');
 
     });
 });

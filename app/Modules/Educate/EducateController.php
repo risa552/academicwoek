@@ -15,18 +15,42 @@ class EducateController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('keyword');
-        $sub_id = $request->get('sub_id');
-        $teach_id = $request->get('teach_id');
+        $term_id = $request->get('term_id');
+        $group_id = $request->get('group_id');
+
+        $items = DB::table('term')
+        ->select('term.term_id',
+        'term.term_name',
+        'term.term_year',
+        'studygroup.group_id',
+        'studygroup.group_name',
+        'detailprogram.detailpro_id')
+        ->leftjoin('detailprogram','detailprogram.term_id','term.term_id')
+        ->leftjoin('studygroup','detailprogram.program_id','studygroup.program_id')
+        ->whereNotNull('studygroup.group_name')
+        ->get();
+      
+        $terms = DB::table('term')->whereNull('deleted_at')->get();
+        $groups = DB::table('studygroup')->whereNull('deleted_at')->get();
+   // dd($items);
+        return view('educate::list',compact('items','terms','groups'));
+    }
+
+    public function index2(Request $request)
+    {
+        // $keyword = $request->get('keyword');
+        // $sub_id = $request->get('sub_id');
+        // $teach_id = $request->get('teach_id');
         $term_id = $request->get('term_id');
         $group_id = $request->get('group_id');
         // if(empty($group_id)){
         //     $group_id=1;
         // }
       
-        $items = DB::table('program')
-        ->select('program.*',
-        // 'teacher.first_name',
-        // 'teacher.last_name',
+        $items = DB::table('detailprogram')
+        ->select('detailprogram.*',
+        'teacher.first_name',
+        'teacher.last_name',
         'subject.sub_code',
         'subject.sub_name',
         'subject.sub_name_eng',
@@ -34,40 +58,19 @@ class EducateController extends Controller
         'subject.practice',
         'term.term_name',
         'term.term_year',
-        'studygroup.group_name')
-        ->leftJoin('subject','program.sub_id','subject.sub_id')
-        ->leftJoin('studygroup','program.group_id','studygroup.group_id')
-        ->leftJoin('term','program.term_id','term.term_id')
-        ->whereExists(function ($query) {
-            $query->select(DB::raw(1))
-                  ->from('term')
-                  ->where('startdate','<=',date('Y-m-d'))
-                  ->where('enddate','>=',date('Y-m-d'))
-                  ->whereRaw('program.term_id = term.term_id');
-        })
-        ->whereNull('program.deleted_at');
+        'studygroup.group_name',
+        'studygroup.group_id')
+        ->leftJoin('subject','detailprogram.sub_id','subject.sub_id')
+        ->leftJoin('program','detailprogram.program_id','program.program_id')
+        ->leftJoin('studygroup','program.program_id','studygroup.program_id')
+        ->leftJoin('teacher','teacher.teach_id','studygroup.teach_id')
+        ->leftJoin('term','detailprogram.term_id','term.term_id')
+        ->where('term.term_id',$term_id)
+        ->where('studygroup.group_id',$group_id)
+        
+        ->whereNull('detailprogram.deleted_at');
 
-        if(!empty($keyword)){
-            $items->where(function ($query) use($keyword){
-              
-            });
-        }
-        if(is_numeric($sub_id))
-        {
-            $items->where('program.sub_id','=',$sub_id);
-        }
-        if(is_numeric($teach_id))
-        {
-            //$items->where('educate.teach_id','=',$teach_id);
-        }
-        if(is_numeric($term_id))
-        {
-            $items->where('program.term_id','=',$term_id);
-        }
-        if(is_numeric($group_id))
-        {
-            $items->where('program.group_id','=',$group_id);
-        }
+        
         $items = $items->paginate(50);
        // print_r($items);exit;
 
@@ -109,8 +112,8 @@ class EducateController extends Controller
         }
         $items = $temp_items;
         // ส่วนตารางรายงาน
-        $list = DB::table('program')
-        ->select('program.*',
+        $list = DB::table('detailprogram')
+        ->select('detailprogram.*',
         'teacher.first_name',
         'teacher.last_name',
         'studygroup.group_name',
@@ -123,40 +126,38 @@ class EducateController extends Controller
         'term.term_name',
         'term.term_year',
         'degree.degree_name')
-        ->leftjoin('term','program.term_id','term.term_id')
-        ->leftjoin('subject','program.sub_id','subject.sub_id')
-        // ->leftjoin('educate','educate.sub_id','subject.sub_id')
-        ->leftjoin('educate', function ($join) {
-            $join->on('educate.sub_id','subject.sub_id')
-                 ->where('educate.group_id','progran.group_id');
-        })
+        ->leftjoin('term','detailprogram.term_id','term.term_id')
+        ->leftjoin('subject','detailprogram.sub_id','subject.sub_id')
+        ->leftjoin('educate','educate.sub_id','subject.sub_id')
+        ->leftJoin('program','detailprogram.program_id','program.program_id')
+
         ->leftjoin('teacher','educate.teach_id','teacher.teach_id')
-        ->leftjoin('studygroup','program.group_id','studygroup.group_id')
+        ->leftjoin('studygroup','program.program_id','studygroup.program_id')
         ->leftjoin('degree','studygroup.degree_id','degree.degree_id')
        
-        ->whereNull('program.deleted_at')
+        ->whereNull('detailprogram.deleted_at')
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')
                   ->where('startdate','<=',date('Y-m-d'))
                   ->where('enddate','>=',date('Y-m-d'))
-                  ->whereRaw('program.term_id = term.term_id');
+                  ->whereRaw('detailprogram.term_id = term.term_id');
         })
         ->get();
         //print_r($list);exit;
         $sub = DB::table('subject')->whereNull('deleted_at')->get();
         $teachers = DB::table('teacher')->whereNull('deleted_at')->get();
-        $term = DB::table('term')->whereNull('deleted_at')->get();
-        $group = DB::table('studygroup')->whereNull('deleted_at')->get();
+        $terms = DB::table('term')->whereNull('deleted_at')->get();
+        $groups = DB::table('studygroup')->whereNull('deleted_at')->get();
    // dd($items);
-        return view('educate::list',compact('items','teachers','sub','term','group','list'));
+        return view('educate::educate-teach',compact('items','teachers','sub','terms','groups','list'));
     }
 
     public function create()
     {
         $teachers = DB::table('teacher')->whereNull('deleted_at')->get();
         $sub = DB::table('subject')->whereNull('deleted_at')->get();
-        $grpup = DB::table('studygroup')->whereNull('deleted_at')->get();
+        $group = DB::table('studygroup')->whereNull('deleted_at')->get();
         $term = DB::table('term')->whereNull('deleted_at')->get();
         return view('educate::form',compact('teachers','sub','term','group'));
     }
@@ -185,10 +186,12 @@ class EducateController extends Controller
 
     public function show($id,Request $request)
     {
+        $term_id = $request->get('term_id');
+        $group_id = $request->get('group_id');
         if(is_numeric($id))
         { 
-            $item = DB::table('')
-            ->select('program.*',
+            $item = DB::table('detailprogram')
+            ->select('detailprogram.*',
             'subject.sub_id',
             'subject.sub_code',
             'subject.sub_name',
@@ -198,12 +201,13 @@ class EducateController extends Controller
             'studygroup.group_id',
             'studygroup.group_name')
            
-            ->leftJoin('subject','program.sub_id','subject.sub_id')
-            ->leftJoin('studygroup','program.group_id','studygroup.group_id')
-            ->leftJoin('term','program.term_id','term.term_id')
-            ->where('startdate','<=',date('Y-m-d'))
-            ->where('enddate','>=',date('Y-m-d'))
-            ->where('program.program_id',$id)->first();
+            ->leftJoin('program','detailprogram.program_id','program.program_id')
+            ->leftJoin('subject','detailprogram.sub_id','subject.sub_id')
+            ->leftJoin('studygroup','program.program_id','studygroup.program_id')
+            ->leftJoin('term','detailprogram.term_id','term.term_id')
+            ->where('term.term_id',$term_id)
+            ->where('studygroup.group_id',$group_id)
+            ->where('detailprogram.detailpro_id',$id)->first();
             if(!empty($item)){
                 $teacher = DB::table('educate')
                 ->select('teach_id','educate_id')
@@ -290,8 +294,8 @@ class EducateController extends Controller
     }
     private function get_educate()
     {
-        $lists = DB::table('program')
-        ->select('program.*',
+        $lists = DB::table('detailprogram')
+        ->select('detailprogram.*',
         'teacher.teach_id',
         'teacher.first_name',
         'teacher.last_name',
@@ -305,24 +309,21 @@ class EducateController extends Controller
         'term.term_name',
         'term.term_year',
         'degree.degree_name')
-        ->leftjoin('term','program.term_id','term.term_id')
-        ->leftjoin('subject','program.sub_id','subject.sub_id')
-        // ->leftjoin('educate','educate.sub_id','subject.sub_id')
-        ->rightjoin('educate', function ($join) {
-            $join->on('educate.sub_id','subject.sub_id')
-                 ->whereRaw('educate.group_id=program.group_id');
-        })
+        ->leftjoin('term','detailprogram.term_id','term.term_id')
+        ->leftjoin('subject','detailprogram.sub_id','subject.sub_id')
+        ->leftjoin('educate','educate.sub_id','subject.sub_id')
+        ->leftjoin('program','detailprogram.program_id','program.program_id')
         ->leftjoin('teacher','educate.teach_id','teacher.teach_id')
-        ->leftjoin('studygroup','program.group_id','studygroup.group_id')
+        ->leftjoin('studygroup','educate.group_id','studygroup.group_id')
         ->leftjoin('degree','studygroup.degree_id','degree.degree_id')
        
-        ->whereNull('program.deleted_at')
+        ->whereNull('detailprogram.deleted_at')
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
                   ->from('term')
                   ->where('startdate','<=',date('Y-m-d'))
                   ->where('enddate','>=',date('Y-m-d'))
-                  ->whereRaw('program.term_id = term.term_id');
+                  ->whereRaw('detailprogram.term_id = term.term_id');
         })
         ->get();
 

@@ -19,9 +19,12 @@ class PreProgramController extends Controller
         $items = DB::table('program')
         ->select('program.*',
         'year.year_name',
-        'course.cou_name')
+        'course.cou_name',
+        'branch.bran_name',
+        'branch.bran_id')
         ->leftJoin('year','year.year_id','program.year_id')
         ->leftJoin('course','course.cou_id','program.cou_id')
+        ->leftJoin('branch','branch.cou_id','course.cou_id')
         ->whereNull('program.deleted_at');
 
         if(!empty($keyword)){
